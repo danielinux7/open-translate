@@ -5,20 +5,20 @@
       <div class="row m-0 border-google nav" role="navigation">
         <div class="nav col" id="lang-src">
           <div *ngFor="let lang of langs" [class.active]="lang === selectedSrcLang" (click)="onSelectSrc(lang)" class="lang nav-link">
-            {{lang.name}}
+            {{lang.name | uppercase}}
           </div>
         </div>
         <div class="nav col" id="lang-src-sm">
-          <div class="lang nav-link" data-lang="ab">Аԥсуа</div>
+          <div class="lang nav-link">{{selectedSrcLang.name | uppercase}}</div>
         </div>
-        <div class="col-1 nav-link material-icons align-middle swap" id="swap-lang" data-lang="ab">swap_horiz</div>
+        <div (click)="onSwap()" class="col-1 nav-link material-icons align-middle swap" id="swap-lang">swap_horiz</div>
         <div class="nav col" id="lang-tgt">
           <div *ngFor="let lang of langs" [class.active]="lang === selectedTgtLang" (click)="onSelectTgt(lang)" class="lang nav-link">
-            {{lang.name}}
+            {{lang.name | uppercase}}
           </div>
         </div>
         <div class="nav col" id="lang-tgt-sm">
-          <div class="lang nav-link" data-lang="ab">Аурыс</div>
+          <div class="lang nav-link">{{selectedTgtLang.name | uppercase}}</div>
         </div>
       </div>
       <div class="row m-0 form-group">

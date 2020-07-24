@@ -2,5 +2,6 @@ import { Lang } from './language';
 
 export const LANGS: Lang[] = [
   { id: 'ab', name: 'Аԥсуа' },
-  { id: 'ru', name: 'Аурыс' }
+  { id: 'ru', name: 'Аурыс' },
+  { id: 'abq', name: 'Абаза' }
 ];
