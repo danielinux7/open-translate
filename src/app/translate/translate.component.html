@@ -4,16 +4,18 @@
     <div class="shadow-google bg-white">
       <div class="row m-0 border-google nav" role="navigation">
         <div class="nav col" id="lang-src">
-          <div class="lang nav-link active" data-lang="ab">Аԥсуа</div>
-          <div class="lang nav-link" data-lang="ru">Аурыс</div>
+          <div *ngFor="let lang of langs" [class.active]="lang === selectedSrcLang" (click)="onSelectSrc(lang)" class="lang nav-link">
+            {{lang.name}}
+          </div>
         </div>
         <div class="nav col" id="lang-src-sm">
           <div class="lang nav-link" data-lang="ab">Аԥсуа</div>
         </div>
         <div class="col-1 nav-link material-icons align-middle swap" id="swap-lang" data-lang="ab">swap_horiz</div>
         <div class="nav col" id="lang-tgt">
-          <div class="lang nav-link active" data-lang="ru">Аурыс</div>
-          <div class="lang nav-link" data-lang="ab">Аԥсуа</div>
+          <div *ngFor="let lang of langs" [class.active]="lang === selectedTgtLang" (click)="onSelectTgt(lang)" class="lang nav-link">
+            {{lang.name}}
+          </div>
         </div>
         <div class="nav col" id="lang-tgt-sm">
           <div class="lang nav-link" data-lang="ab">Аурыс</div>
