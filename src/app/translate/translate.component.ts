@@ -9,6 +9,10 @@ import { Lang } from '../language';
 })
 export class TranslateComponent implements OnInit {
   langs = LANGS
+  selectedSrcLang: Lang;
+  selectedTgtLang: Lang;
+  temp: Lang;
+  
   ngOnInit(): void {
     this.selectedSrcLang = this.langs[0]
     this.selectedTgtLang = this.langs[1]
