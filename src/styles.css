@@ -151,6 +151,10 @@ body {
     min-height: 4em;
   }
 
+  textarea#target::placeholder {
+    color: #fff;
+  }
+
   textarea#target, textarea#target:focus {
     color: #fff;
     background-color: rgb(40, 167, 69);
