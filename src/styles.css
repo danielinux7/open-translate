@@ -87,6 +87,10 @@ body {
   cursor: default;
 }
 
+.lang {
+  font-size: 14px;
+}
+
 .swap.nav-link {
   cursor: pointer;
 }
