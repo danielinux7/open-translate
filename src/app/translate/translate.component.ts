@@ -18,7 +18,6 @@ export class TranslateComponent implements OnInit {
   ngOnInit(): void {
     this.selectedSrcLang = this.langs[0]
     this.selectedTgtLang = this.langs[1]
-    this.tgt = "Аиҭагара"
   }
   onSelectSrc(lang: Lang): void {
     if(lang === this.selectedTgtLang){
