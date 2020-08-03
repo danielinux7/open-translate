@@ -125,19 +125,19 @@ body {
   background-size: 32px;
   width: 32px;
   height: 32px;
-  background-image: url('/assets/images/logo.png');
+  background-image: url('assets/images/logo.png');
 }
 
 .law {
-  background-image: url('/assets/images/law.svg');
+  background-image: url('assets/images/law.svg');
 }
 
 .github {
-  background-image: url('/assets/images/github.svg');
+  background-image: url('assets/images/github.svg');
 }
 
 .mail {
-  background-image: url('/assets/images/mail.svg');
+  background-image: url('assets/images/mail.svg');
 }
 
 /* This is the media query section */
