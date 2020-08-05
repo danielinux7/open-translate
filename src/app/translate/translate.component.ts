@@ -14,6 +14,10 @@ export class TranslateComponent implements OnInit {
   temp: Lang;
   src: string;
   tgt: string;
+  placeholderTgt = "Аиҭагара"
+  isReadOnlyTgt = true
+  // regular expression for lines with only white spaces
+  regexp: RegExp = /^[\t\r\n\s]*$/;
 
   ngOnInit(): void {
     this.selectedSrcLang = this.langs[0]
@@ -43,5 +47,16 @@ export class TranslateComponent implements OnInit {
     this.selectedTgtLang = this.temp;
   }
   onTranslate(){
+    if (!this.src || this.regexp.test(this.src)){
+        this.placeholderTgt = "Аиҭагара";
+        this.isReadOnlyTgt = true;
+        return;
+    }
+    if (!this.tgt)
+      this.placeholderTgt = "Аиҭагара иаҿуп";
+    else
+      this.tgt = this.tgt + "..."
+    // Here we add HTTP implementation
+    this.isReadOnlyTgt = false;
   }
 }
