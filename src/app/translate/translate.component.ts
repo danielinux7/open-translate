@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LANGS } from '../languages';
 import { Lang } from '../language';
+import { TranslateService } from '../translate.service';
 
 @Component({
   selector: 'translate',
@@ -8,7 +8,7 @@ import { Lang } from '../language';
   styleUrls: ['./translate.component.css']
 })
 export class TranslateComponent implements OnInit {
-  langs = LANGS
+  langs: Lang[];
   selectedSrcLang: Lang;
   selectedTgtLang: Lang;
   temp: Lang;
@@ -19,9 +19,16 @@ export class TranslateComponent implements OnInit {
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
+  constructor(private translateService: TranslateService) {}
+
   ngOnInit(): void {
+    this.getLangs();
     this.selectedSrcLang = this.langs[0]
     this.selectedTgtLang = this.langs[1]
+  }
+
+  getLangs(): void {
+    this.langs = this.translateService.getLangs();
   }
   onSelectSrc(lang: Lang): void {
     if(lang === this.selectedTgtLang){
@@ -32,6 +39,7 @@ export class TranslateComponent implements OnInit {
     else
       this.selectedSrcLang = lang;
   }
+
   onSelectTgt(lang: Lang): void {
     if(lang === this.selectedSrcLang) {
       this.temp = this.selectedSrcLang
@@ -41,11 +49,13 @@ export class TranslateComponent implements OnInit {
     else
       this.selectedTgtLang = lang;
   }
+
   onSwap(){
     this.temp = this.selectedSrcLang
     this.selectedSrcLang = this.selectedTgtLang;
     this.selectedTgtLang = this.temp;
   }
+
   onTranslate(){
     if (!this.src || this.regexp.test(this.src)){
         this.placeholderTgt = "Аиҭагара";
