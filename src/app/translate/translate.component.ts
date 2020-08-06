@@ -19,7 +19,7 @@ export class TranslateComponent implements OnInit {
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
-  constructor(private translateService: TranslateService) {}
+  constructor(private translateService: TranslateService) { }
 
   ngOnInit(): void {
     this.getLangs();
@@ -27,11 +27,8 @@ export class TranslateComponent implements OnInit {
     this.selectedTgtLang = this.langs[1]
   }
 
-  getLangs(): void {
-    this.langs = this.translateService.getLangs();
-  }
   onSelectSrc(lang: Lang): void {
-    if(lang === this.selectedTgtLang){
+    if (lang === this.selectedTgtLang) {
       this.temp = this.selectedSrcLang
       this.selectedSrcLang = this.selectedTgtLang;
       this.selectedTgtLang = this.temp;
@@ -41,7 +38,7 @@ export class TranslateComponent implements OnInit {
   }
 
   onSelectTgt(lang: Lang): void {
-    if(lang === this.selectedSrcLang) {
+    if (lang === this.selectedSrcLang) {
       this.temp = this.selectedSrcLang
       this.selectedSrcLang = this.selectedTgtLang;
       this.selectedTgtLang = this.temp;
@@ -50,23 +47,34 @@ export class TranslateComponent implements OnInit {
       this.selectedTgtLang = lang;
   }
 
-  onSwap(){
+  onSwap() {
     this.temp = this.selectedSrcLang
     this.selectedSrcLang = this.selectedTgtLang;
     this.selectedTgtLang = this.temp;
   }
 
-  onTranslate(){
-    if (!this.src || this.regexp.test(this.src)){
-        this.placeholderTgt = "Аиҭагара";
-        this.isReadOnlyTgt = true;
-        return;
+  onTranslate() {
+    if (!this.src || this.regexp.test(this.src)) {
+      this.placeholderTgt = "Аиҭагара";
+      this.isReadOnlyTgt = true;
+      return;
     }
     if (!this.tgt)
       this.placeholderTgt = "Аиҭагара иаҿуп";
     else
       this.tgt = this.tgt + "..."
     // Here we add HTTP implementation
+    this.getTranslate()
     this.isReadOnlyTgt = false;
+  }
+
+  // fucntions to call the translate services
+  getLangs(): void {
+    this.langs = this.translateService.getLangs();
+  }
+
+  getTranslate(): void {
+    this.translateService.getTranslate()
+      .subscribe(tgt => this.tgt = tgt);
   }
 }
