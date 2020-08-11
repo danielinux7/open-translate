@@ -12,6 +12,7 @@ export class TranslateComponent implements OnInit {
   selectedSrcLang: Lang;
   selectedTgtLang: Lang;
   temp: Lang;
+  tempText: string;
   src: string;
   tgt: string;
   data: string;
@@ -50,8 +51,11 @@ export class TranslateComponent implements OnInit {
 
   onSwap() {
     this.temp = this.selectedSrcLang
+    this.tempText = this.src
     this.selectedSrcLang = this.selectedTgtLang;
     this.selectedTgtLang = this.temp;
+    this.src = this.tgt
+    this.tgt = this.tempText
   }
 
   onTranslate() {
