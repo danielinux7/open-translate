@@ -14,6 +14,7 @@ export class TranslateComponent implements OnInit {
   temp: Lang;
   src: string;
   tgt: string;
+  data: string;
   placeholderTgt = "Аиҭагара"
   isReadOnlyTgt = true
   // regular expression for lines with only white spaces
@@ -74,7 +75,8 @@ export class TranslateComponent implements OnInit {
   }
 
   getTranslate(): void {
-    this.translateService.getTranslate()
-      .subscribe(tgt => this.tgt = tgt);
+    this.data = "langSrc=" + this.selectedSrcLang.id + "&langTgt=" + this.selectedTgtLang.id + "&source=" + this.src
+    this.translateService.getTranslate(this.data)
+      .subscribe(data => this.tgt = data["target"]);
   }
 }
