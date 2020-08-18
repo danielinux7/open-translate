@@ -1,3 +1,4 @@
+![Build and Deploy](https://github.com/danielinux7/Open-Translate/workflows/Build%20and%20Deploy/badge.svg)
 # Gui
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.4.
