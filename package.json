@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --prod"
+    "deploy": "ng build --prod --base-href=/Open-Translate/"
   },
   "private": true,
   "dependencies": {
