@@ -16,7 +16,6 @@ body {
 
 .header {
   background-color: #fff;
-  margin-bottom: 4em;
 }
 
 .rounded-left-0 {
@@ -49,10 +48,6 @@ body {
 
 .no-resize {
   resize: none !important;
-}
-
-.active {
-  border-bottom: .25em solid rgb(40, 167, 69);
 }
 
 .swap {

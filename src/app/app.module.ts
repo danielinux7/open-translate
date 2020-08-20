@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TranslateComponent } from './translate/translate.component';
 import { FooterComponent } from './footer/footer.component';
+import { TranslateTypeComponent } from './translate-type/translate-type.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     TranslateComponent,
-    FooterComponent
+    FooterComponent,
+    TranslateTypeComponent
   ],
   imports: [
     BrowserModule,

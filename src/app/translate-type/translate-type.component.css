@@ -1,0 +1,42 @@
+.mr-12px {
+  margin-right: 12px;
+}
+
+.translate-type {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.translate-type button {
+  border: 1px solid #dadce0;
+  background-color: #fff;
+  color: rgb(40, 167, 69);
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.translate-type .active {
+  background-color: rgb(40, 167, 69, 0.2);
+}
+
+.btn:focus {
+  box-shadow: none;
+}
+
+.material-icons {
+  padding-right: 5px;
+}
+
+.material-icons.md-22 {
+  font-size: 22px;
+}
+
+@media screen and (min-width: 1200px) {
+  .translate-type {
+    padding-left: 0;
+    transition: .6s all cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

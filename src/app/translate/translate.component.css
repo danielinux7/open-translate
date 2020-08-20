@@ -1,3 +1,7 @@
 #target {
   height: 100%;
 }
+
+.active {
+  border-bottom: .25em solid rgb(40, 167, 69);
+}
