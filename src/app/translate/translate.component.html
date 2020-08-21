@@ -1,5 +1,18 @@
+<div class="container-xl translate-type">
+  <button type="button" [class.active]="selectedType === 'text'" class="mr-12px btn" (click)="onSelectType('text')">
+    <span class="material-icons md-22 align-middle">
+      translate
+    </span>Аҳәоу</button>
+  <button type="button" [class.active]="selectedType === 'doc'" class="mr-12px btn" (click)="onSelectType('doc')">
+    <span class=" material-icons md-22 align-middle">
+      insert_drive_file
+    </span>Ашәҟәы</button>
+  <button type="button" [class.active]="selectedType === 'photo'" class="mr-12px btn" (click)="onSelectType('photo')">
+    <span class=" material-icons md-22 align-middle">
+      insert_photo
+    </span>Асахьа</button>
+</div>
 <div class="container-xl p-0 height-google">
-
   <div class="shadow-google bg-white">
     <div class="row m-0 border-google nav" role="navigation">
       <div class="nav col" id="lang-src">
@@ -21,16 +34,16 @@
       </div>
     </div>
     <!-- Text -->
-    <!-- <div class="row m-0 form-group">
+    <div *ngIf="selectedType==='text'" class="row m-0 form-group">
       <div class="col-sm-6 px-0">
         <textarea [(ngModel)]="src" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="source" rows="6"></textarea>
       </div>
       <div class="col-sm-6 px-0 mobile">
         <textarea [(ngModel)]="tgt" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt" placeholder="{{placeholderTgt}}"></textarea>
       </div>
-    </div> -->
+    </div>
     <!-- Document -->
-    <div class="row m-0 form-group">
+    <div *ngIf="selectedType==='doc'" class="row m-0 form-group">
       <div class="col-sm-12 px-0 select-file-section">
         <div class="choose-document-prompt">Ашәҟәы иалх</div>
         <div class="upload-filetypes-prompt">
@@ -41,7 +54,7 @@
       </div>
     </div>
     <!-- Photo -->
-    <!-- <div class="row m-0 form-group">
+    <div *ngIf="selectedType==='photo'" class="row m-0 form-group">
       <div class="col-sm-12 px-0 select-file-section">
         <div class="choose-document-prompt">Асахьа иалх</div>
         <div class="upload-filetypes-prompt">
@@ -50,7 +63,7 @@
         <input type="file" name="file" id="tlid-file-input" class="file-input">
         <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
       </div>
-    </div> -->
+    </div>
     <!--  -->
   </div>
   <div class="row m-0 justify-content-center">

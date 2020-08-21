@@ -18,6 +18,7 @@ export class TranslateComponent implements OnInit {
   data: string;
   placeholderTgt = "Аиҭагара"
   isReadOnlyTgt = true
+  selectedType: string;
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
@@ -27,6 +28,11 @@ export class TranslateComponent implements OnInit {
     this.getLangs();
     this.selectedSrcLang = this.langs[0]
     this.selectedTgtLang = this.langs[1]
+    this.selectedType = "text"
+  }
+
+  onSelectType(type: string): void {
+    this.selectedType = type
   }
 
   onSelectSrc(lang: Lang): void {
