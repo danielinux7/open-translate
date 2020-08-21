@@ -5,3 +5,51 @@
 .active {
   border-bottom: .25em solid rgb(40, 167, 69);
 }
+
+.select-file-section {
+  padding: 43px 16px 65px;
+  text-align: center;
+}
+
+.choose-document-prompt {
+  color: #000;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  opacity: .87;
+}
+
+.upload-filetypes-prompt {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.select-file-section .file-input {
+  width: .1px;
+  height: .1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.button {
+  background: rgba(40, 167, 69);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .3px;
+  line-height: 16px;
+  height: 36px;
+  padding: 10px 12px;
+  margin: 26px 16px 0;
+}

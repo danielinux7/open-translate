@@ -20,14 +20,38 @@
         <div class="lang nav-link">{{selectedTgtLang.name | uppercase}}</div>
       </div>
     </div>
-    <div class="row m-0 form-group">
+    <!-- Text -->
+    <!-- <div class="row m-0 form-group">
       <div class="col-sm-6 px-0">
         <textarea [(ngModel)]="src" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="source" rows="6"></textarea>
       </div>
       <div class="col-sm-6 px-0 mobile">
         <textarea [(ngModel)]="tgt" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt" placeholder="{{placeholderTgt}}"></textarea>
       </div>
+    </div> -->
+    <!-- Document -->
+    <div class="row m-0 form-group">
+      <div class="col-sm-12 px-0 select-file-section">
+        <div class="choose-document-prompt">Ашәҟәы иалх</div>
+        <div class="upload-filetypes-prompt">
+          Ақәҵаразы .doc, .docx, .odf, .pdf, .ppt, .pptx, .ps, .rtf, .txt, .xls, or .xlsx
+        </div>
+        <input type="file" name="file" id="tlid-file-input" class="file-input">
+        <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
+      </div>
     </div>
+    <!-- Photo -->
+    <!-- <div class="row m-0 form-group">
+      <div class="col-sm-12 px-0 select-file-section">
+        <div class="choose-document-prompt">Асахьа иалх</div>
+        <div class="upload-filetypes-prompt">
+          Ақәҵаразы .jpg, .png
+        </div>
+        <input type="file" name="file" id="tlid-file-input" class="file-input">
+        <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
+      </div>
+    </div> -->
+    <!--  -->
   </div>
   <div class="row m-0 justify-content-center">
     <div class="col-sm-10"></div>
