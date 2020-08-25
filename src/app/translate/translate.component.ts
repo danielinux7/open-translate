@@ -19,6 +19,8 @@ export class TranslateComponent implements OnInit {
   placeholderTgt = "Аиҭагара"
   isReadOnlyTgt = true
   selectedType: string;
+  file: File;
+  photo: File;
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
@@ -33,6 +35,24 @@ export class TranslateComponent implements OnInit {
 
   onSelectType(type: string): void {
     this.selectedType = type
+  }
+
+  onFileSelect(event) {
+    this.photo = null
+    if (event.target.files.length > 0) {
+      this.file = event.target.files[0];
+    }
+  }
+  onPhotoSelect(event) {
+    this.file = null
+    if (event.target.files.length > 0) {
+      this.photo = event.target.files[0];
+    }
+  }
+
+  onCancelFile() {
+    this.file = null
+    this.photo = null
   }
 
   onSelectSrc(lang: Lang): void {

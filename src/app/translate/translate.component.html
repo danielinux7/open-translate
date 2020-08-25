@@ -44,24 +44,48 @@
     </div>
     <!-- Document -->
     <div *ngIf="selectedType==='doc'" class="row m-0 form-group">
-      <div class="col-sm-12 px-0 select-file-section">
+      <div *ngIf="!file" class="col-sm-12 px-0 select-file-section">
         <div class="choose-document-prompt">Ашәҟәы иалх</div>
         <div class="upload-filetypes-prompt">
           Ақәҵаразы .doc, .docx, .odf, .pdf, .ppt, .pptx, .ps, .rtf, .txt, .xls, or .xlsx
         </div>
-        <input type="file" name="file" id="tlid-file-input" class="file-input">
+        <input type="file" name="file" id="tlid-file-input" (change)="onFileSelect($event)" class="file-input">
         <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
+      </div>
+      <div *ngIf="file" class="file-holder">
+        <span class="material-icons md-file align-top">
+          insert_drive_file
+        </span>
+        <div class="file-info">
+          <div class="file-label">{{file.name}}</div>
+          <div class="file-size">{{file.size/1000 | number:'1.0-0'}} KB</div>
+        </div>
+        <span class="cancel-file material-icons align-middle" (click)="onCancelFile()">
+          cancel
+        </span>
       </div>
     </div>
     <!-- Photo -->
     <div *ngIf="selectedType==='photo'" class="row m-0 form-group">
-      <div class="col-sm-12 px-0 select-file-section">
+      <div *ngIf="!photo" class="col-sm-12 px-0 select-file-section">
         <div class="choose-document-prompt">Асахьа иалх</div>
         <div class="upload-filetypes-prompt">
           Ақәҵаразы .jpg, .png
         </div>
-        <input type="file" name="file" id="tlid-file-input" class="file-input">
-        <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
+        <input type="file" name="file" id="tlid-photo-input" (change)="onPhotoSelect($event)" class="file-input">
+        <label for="tlid-photo-input" class="button">Укомпиутер аҟнытә иааг</label>
+      </div>
+      <div *ngIf="photo" class="file-holder">
+        <span class="material-icons md-file align-top">
+          insert_drive_file
+        </span>
+        <div class="file-info">
+          <div class="file-label">{{photo.name}}</div>
+          <div class="file-size">{{photo.size/1000 | number:'1.0-0'}} KB</div>
+        </div>
+        <span class="cancel-file material-icons align-middle" (click)="onCancelFile()">
+          cancel
+        </span>
       </div>
     </div>
     <!--  -->
