@@ -21,6 +21,7 @@ export class TranslateComponent implements OnInit {
   selectedType: string;
   file: File;
   photo: File;
+  downloadLink: string;
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
@@ -85,18 +86,27 @@ export class TranslateComponent implements OnInit {
   }
 
   onTranslate() {
-    if (!this.src || this.regexp.test(this.src)) {
-      this.placeholderTgt = "Аиҭагара";
-      this.isReadOnlyTgt = true;
-      return;
+    if (this.selectedType === "text") {
+      if (!this.src || this.regexp.test(this.src)) {
+        this.placeholderTgt = "Аиҭагара";
+        this.isReadOnlyTgt = true;
+        return;
+      }
+      if (!this.tgt)
+        this.placeholderTgt = "Аиҭагара иаҿуп";
+      else
+        this.tgt = this.tgt + "..."
+      // Here we add HTTP implementation
+      this.getTranslate()
+      this.isReadOnlyTgt = false;
     }
-    if (!this.tgt)
-      this.placeholderTgt = "Аиҭагара иаҿуп";
-    else
-      this.tgt = this.tgt + "..."
-    // Here we add HTTP implementation
-    this.getTranslate()
-    this.isReadOnlyTgt = false;
+    else if (this.selectedType === "doc") {
+      this.getFileTranslate()
+    }
+    else if (this.selectedType === "photo") {
+      this.readPhoto()
+      this.getPhotoTranslate()
+    }
   }
 
   // fucntions to call the translate services
@@ -109,4 +119,20 @@ export class TranslateComponent implements OnInit {
     this.translateService.getTranslate(this.data)
       .subscribe(data => this.tgt = data["target"]);
   }
+
+  getFileTranslate() {
+    // const formData = new FormData();
+    // formData.append('file', this.file);
+    // this.translateService.getFileTranslate(formData)
+    //   .subscribe(data => this.downloadLink = data["link"]);
+  }
+
+  readPhoto() {
+
+  }
+
+  getPhotoTranslate() {
+
+  }
+
 }
