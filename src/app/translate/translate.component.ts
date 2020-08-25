@@ -121,10 +121,10 @@ export class TranslateComponent implements OnInit {
   }
 
   getFileTranslate() {
-    // const formData = new FormData();
-    // formData.append('file', this.file);
-    // this.translateService.getFileTranslate(formData)
-    //   .subscribe(data => this.downloadLink = data["link"]);
+    const formData = new FormData();
+    formData.append('file', this.file);
+    this.translateService.getFileTranslate(formData)
+      .subscribe(data => this.downloadLink = data["downloadLink"]);
   }
 
   readPhoto() {

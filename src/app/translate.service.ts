@@ -22,4 +22,8 @@ export class TranslateService {
   getTranslate(data: string): Observable<string> {
     return this.http.post<string>(this.translateUrl, data, this.httpOptions)
   }
+
+  getFileTranslate(data: FormData): Observable<string> {
+    return this.http.post<any>(this.translateUrl, data)
+  }
 }
