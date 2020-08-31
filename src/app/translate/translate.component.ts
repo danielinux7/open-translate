@@ -101,11 +101,11 @@ export class TranslateComponent implements OnInit {
       this.isReadOnlyTgt = false;
     }
     else if (this.selectedType === "doc") {
-      this.getFileTranslate()
+      this.getTranslate()
     }
     else if (this.selectedType === "photo") {
       this.readPhoto()
-      this.getPhotoTranslate()
+      this.getTranslate()
     }
   }
 
