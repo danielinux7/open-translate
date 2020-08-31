@@ -115,24 +115,22 @@ export class TranslateComponent implements OnInit {
   }
 
   getTranslate(): void {
-    this.data = "langSrc=" + this.selectedSrcLang.id + "&langTgt=" + this.selectedTgtLang.id + "&source=" + this.src
-    this.translateService.getTranslate(this.data)
-      .subscribe(data => this.tgt = data["target"]);
-  }
-
-  getFileTranslate() {
     const formData = new FormData();
-    formData.append('file', this.file);
-    this.translateService.getFileTranslate(formData)
-      .subscribe(data => this.downloadLink = data["downloadLink"]);
+    formData.append('langSrc', this.selectedSrcLang.id);
+    formData.append('langTgt', this.selectedTgtLang.id);
+    if (this.selectedType === "text") {
+      formData.append('source', this.src);
+      this.translateService.getTranslate(formData)
+        .subscribe(data => this.tgt = data["target"]);
+    }
+    else if (this.selectedType === "doc") {
+      formData.append('file', this.file);
+      this.translateService.getTranslate(formData)
+        .subscribe(data => this.downloadLink = data["downloadLink"]);
+    }
   }
 
   readPhoto() {
 
   }
-
-  getPhotoTranslate() {
-
-  }
-
 }
