@@ -24,5 +24,12 @@ def translate():
         file = request.files['file']
         return jsonify({'downloadLink':'This is working!'})
 
+@app.route('/read', methods=['POST'])
+def read():
+    language = request.form['langSrc']
+    if 'photo' in request.files:
+        photo = request.files['photo']
+        return jsonify({'source':'Ари асахьа бзиа!'})
+
 if __name__ == '__main__':
     app.run(debug=True)

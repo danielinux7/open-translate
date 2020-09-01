@@ -39,13 +39,11 @@ export class TranslateComponent implements OnInit {
   }
 
   onFileSelect(event) {
-    this.photo = null
     if (event.target.files.length > 0) {
       this.file = event.target.files[0];
     }
   }
   onPhotoSelect(event) {
-    this.file = null
     if (event.target.files.length > 0) {
       this.photo = event.target.files[0];
     }
@@ -54,6 +52,9 @@ export class TranslateComponent implements OnInit {
   onCancelFile() {
     this.file = null
     this.downloadLink = null
+  }
+
+  onCancelPhoto() {
     this.photo = null
   }
 
@@ -102,11 +103,16 @@ export class TranslateComponent implements OnInit {
       this.isReadOnlyTgt = false;
     }
     else if (this.selectedType === "doc") {
-      this.getTranslate()
+      if (this.file) {
+        this.getTranslate()
+      }
     }
-    else if (this.selectedType === "photo") {
-      this.readPhoto()
-      this.getTranslate()
+  }
+
+  onRead() {
+    if (this.photo) {
+      this.getRead()
+      this.selectedType = "text"
     }
   }
 
@@ -131,7 +137,11 @@ export class TranslateComponent implements OnInit {
     }
   }
 
-  readPhoto() {
-
+  getRead() {
+    const formData = new FormData();
+    formData.append('langSrc', this.selectedSrcLang.id);
+    formData.append('photo', this.photo);
+    this.translateService.getRead(formData)
+      .subscribe(data => this.src = data["source"]);
   }
 }

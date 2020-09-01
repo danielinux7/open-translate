@@ -25,7 +25,7 @@
       </div>
       <div (click)="onSwap()" class="col-1 nav-link material-icons align-middle swap" id="swap-lang">swap_horiz</div>
       <div class="nav col" id="lang-tgt">
-        <div *ngFor="let lang of langs" [class.active]="lang === selectedTgtLang" (click)="onSelectTgt(lang)" class="lang nav-link">
+        <div *ngFor="let lang of langs" [class.active]="lang === selectedTgtLang && selectedType!=='photo'" (click)="onSelectTgt(lang)" class="lang nav-link">
           {{lang.name | uppercase}}
         </div>
       </div>
@@ -65,7 +65,7 @@
           <div *ngIf="downloadLink" class="downloadLink">
             Еиҭагоу ашәҟәы: <a href="#">{{downloadLink}}</a>
           </div>
-          <span class="cancel-file material-icons align-middle" (click)="onCancelFile()">
+          <span class="cancel-file material-icons" (click)="onCancelFile()">
             cancel
           </span>
         </div>
@@ -89,7 +89,7 @@
           <div class="file-label">{{photo.name}}</div>
           <div class="file-size">{{photo.size/1000 | number:'1.0-0'}} KB</div>
         </div>
-        <span class="cancel-file material-icons align-middle" (click)="onCancelFile()">
+        <span class="cancel-file material-icons" (click)="onCancelPhoto()">
           cancel
         </span>
       </div>
@@ -98,6 +98,7 @@
   </div>
   <div class="row m-0 justify-content-center">
     <div class="col-sm-10"></div>
-    <button (click)="onTranslate()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="translate">Еиҭага</button>
+    <button *ngIf="selectedType!=='photo'" (click)="onTranslate()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="translate">Еиҭага</button>
+    <button *ngIf="selectedType==='photo'" (click)="onRead()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="read">Уаԥха</button>
   </div>
 </div>
