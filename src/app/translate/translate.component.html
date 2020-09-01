@@ -52,17 +52,23 @@
         <input type="file" name="file" id="tlid-file-input" (change)="onFileSelect($event)" class="file-input">
         <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
       </div>
-      <div *ngIf="file" class="file-holder">
-        <span class="material-icons md-file align-top">
-          insert_drive_file
-        </span>
-        <div class="file-info">
-          <div class="file-label">{{file.name}}</div>
-          <div class="file-size">{{file.size/1000 | number:'1.0-0'}} KB</div>
+      <div *ngIf="file" class="file-holder row">
+        <div class="file-info col-sm-6">
+          <span class="material-icons md-file align-top">
+            insert_drive_file
+          </span>
+          <div class="file-label">{{file.name}}
+            <div class="file-size">{{file.size/1000 | number:'1.0-0'}} KB</div>
+          </div>
         </div>
-        <span class="cancel-file material-icons align-middle" (click)="onCancelFile()">
-          cancel
-        </span>
+        <div class="col-sm-6">
+          <div *ngIf="downloadLink" class="downloadLink">
+            Еиҭагоу ашәҟәы: <a href="#">{{downloadLink}}</a>
+          </div>
+          <span class="cancel-file material-icons align-middle" (click)="onCancelFile()">
+            cancel
+          </span>
+        </div>
       </div>
     </div>
     <!-- Photo -->

@@ -53,6 +53,7 @@ export class TranslateComponent implements OnInit {
 
   onCancelFile() {
     this.file = null
+    this.downloadLink = null
     this.photo = null
   }
 
