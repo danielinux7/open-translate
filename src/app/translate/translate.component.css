@@ -6,6 +6,10 @@
   border-bottom: .25em solid rgb(40, 167, 69);
 }
 
+.active-star {
+  border-bottom: .25em solid red;
+}
+
 .select-file-section {
   padding: 43px 16px 65px;
   text-align: center;
@@ -59,7 +63,7 @@
   display: inline-block;
 }
 
-.cancel-file, .clear {
+.cancel-file, .clear, .star {
   cursor: pointer;
   float: right;
 }

@@ -42,7 +42,10 @@
         </span>
       </div>
       <div class="col-sm-6 px-0 mobile">
-        <textarea [(ngModel)]="tgt" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt" placeholder="{{placeholderTgt}}"></textarea>
+        <textarea [(ngModel)]="tgt" (change)="onChangeTgt()" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt" placeholder="{{placeholderTgt}}"></textarea>
+        <span *ngIf="tgt" class="star material-icons" [class.active-star]="starred" (click)="onStarred()">
+          star
+        </span>
       </div>
     </div>
     <!-- Document -->

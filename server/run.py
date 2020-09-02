@@ -33,5 +33,18 @@ def read():
         photo = request.files['photo']
         return jsonify({'source':'Ари асахьа бзиа!'})
 
+@app.route('/star', methods=['POST'])
+def star():
+    language = request.form['langSrc'] + '-' + request.form['langTgt']
+    src_list = request.form['source'].split("\n")
+    tgt_list = request.form['target'].split("\n")
+    src_tgt_tuple_list = list(zip(src_list, tgt_list))
+    src_tgt_list = []
+    for line in src_tgt_tuple_list:
+        src_tgt_list.append("\n"+line[0]+"\t"+line[1])
+    with open(app.root_path +"/starred/"+language+".txt","a+") as file:
+        file.writelines(src_tgt_list)
+    return jsonify({'star':True})
+
 if __name__ == '__main__':
     app.run(debug=True)

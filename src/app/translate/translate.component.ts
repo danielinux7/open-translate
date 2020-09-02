@@ -18,6 +18,7 @@ export class TranslateComponent implements OnInit {
   data: string;
   placeholderTgt = "Аиҭагара"
   isReadOnlyTgt = true
+  starred = false
   selectedType: string;
   file: File;
   photo: File;
@@ -63,6 +64,12 @@ export class TranslateComponent implements OnInit {
     this.tgt = null
     this.placeholderTgt = "Аиҭагара";
     this.isReadOnlyTgt = true
+    this.starred = false
+  }
+
+  // This is not working as it should
+  onChangeTgt() {
+    this.starred = false
   }
 
   onSelectSrc(lang: Lang): void {
@@ -150,5 +157,17 @@ export class TranslateComponent implements OnInit {
     formData.append('photo', this.photo);
     this.translateService.getRead(formData)
       .subscribe(data => this.src = data["source"]);
+  }
+
+  onStarred() {
+    if (this.starred === false) {
+      const formData = new FormData();
+      formData.append('langSrc', this.selectedSrcLang.id);
+      formData.append('langTgt', this.selectedTgtLang.id);
+      formData.append('source', this.src);
+      formData.append('target', this.tgt);
+      this.translateService.setStar(formData)
+        .subscribe(data => this.starred = data["star"]);
+    }
   }
 }
