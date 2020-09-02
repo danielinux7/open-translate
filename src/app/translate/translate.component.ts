@@ -61,6 +61,8 @@ export class TranslateComponent implements OnInit {
   onClear() {
     this.src = null
     this.tgt = null
+    this.placeholderTgt = "Аиҭагара";
+    this.isReadOnlyTgt = true
   }
 
   onSelectSrc(lang: Lang): void {
