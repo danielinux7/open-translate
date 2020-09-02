@@ -37,6 +37,9 @@
     <div *ngIf="selectedType==='text'" class="row m-0 form-group">
       <div class="col-sm-6 px-0">
         <textarea [(ngModel)]="src" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="source" rows="6"></textarea>
+        <span *ngIf="src" class="clear material-icons" (click)="onClear()">
+          clear
+        </span>
       </div>
       <div class="col-sm-6 px-0 mobile">
         <textarea [(ngModel)]="tgt" class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt" placeholder="{{placeholderTgt}}"></textarea>

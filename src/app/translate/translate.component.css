@@ -59,7 +59,7 @@
   display: inline-block;
 }
 
-.cancel-file {
+.cancel-file, .clear {
   cursor: pointer;
   float: right;
 }

@@ -58,6 +58,11 @@ export class TranslateComponent implements OnInit {
     this.photo = null
   }
 
+  onClear() {
+    this.src = null
+    this.tgt = null
+  }
+
   onSelectSrc(lang: Lang): void {
     if (lang === this.selectedTgtLang) {
       this.temp = this.selectedSrcLang
