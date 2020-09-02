@@ -21,6 +21,7 @@ def translate():
         tgt_list = process.translate(src_list,sp_path_src,sp_path_tgt,model_path)
         return jsonify({'target':"\n".join(tgt_list)})
     elif 'file' in request.files:
+        # File translation should be implemented here
         file = request.files['file']
         return jsonify({'downloadLink':'This is working!'})
 
@@ -28,6 +29,7 @@ def translate():
 def read():
     language = request.form['langSrc']
     if 'photo' in request.files:
+        # OCR should be implemented here
         photo = request.files['photo']
         return jsonify({'source':'Ари асахьа бзиа!'})
 
