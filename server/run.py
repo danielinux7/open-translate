@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-import util.process as process
+from importlib import import_module
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -13,8 +13,9 @@ def index():
 def translate():
     tgt_list = None
     language = request.form['langSrc'] + '-' + request.form['langTgt']
-    sp_path_src = app.root_path +"/models/"+language+"/src.model"
-    sp_path_tgt = app.root_path +"/models/"+language+"/tgt.model"
+    process = import_module('util.'+language+'.process')
+    sp_path_src = app.root_path +"/sentencepiece/"+request.form['langSrc']+".model"
+    sp_path_tgt = app.root_path +"/sentencepiece/"+request.form['langTgt']+".model"
     model_path = app.root_path +"/models/"+language
     if 'source' in request.form:
         src_list = request.form['source'].split("\n")
