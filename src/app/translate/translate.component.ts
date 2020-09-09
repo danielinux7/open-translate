@@ -67,8 +67,7 @@ export class TranslateComponent implements OnInit {
     this.starred = false
   }
 
-  // This is not working as it should
-  onChangeTgt() {
+  onChangeText() {
     this.starred = false
   }
 

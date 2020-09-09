@@ -7,7 +7,7 @@
 }
 
 .active-star {
-  border-bottom: .25em solid red;
+  color: #ffbf00;
 }
 
 .select-file-section {
@@ -63,9 +63,16 @@
   display: inline-block;
 }
 
-.cancel-file, .clear, .star {
+.cancel-file {
   cursor: pointer;
   float: right;
+}
+
+.clear, .star {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 0px;
 }
 
 .downloadLink {
