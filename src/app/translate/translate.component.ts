@@ -18,6 +18,11 @@ export class TranslateComponent implements OnInit {
   data: string;
   placeholderTgt = "Аиҭагара"
   isReadOnlyTgt = true
+  starred = false
+  selectedType: string;
+  file: File;
+  photo: File;
+  downloadLink: string;
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
@@ -27,6 +32,43 @@ export class TranslateComponent implements OnInit {
     this.getLangs();
     this.selectedSrcLang = this.langs[0]
     this.selectedTgtLang = this.langs[1]
+    this.selectedType = "text"
+  }
+
+  onSelectType(type: string): void {
+    this.selectedType = type
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      this.file = event.target.files[0];
+    }
+  }
+  onPhotoSelect(event) {
+    if (event.target.files.length > 0) {
+      this.photo = event.target.files[0];
+    }
+  }
+
+  onCancelFile() {
+    this.file = null
+    this.downloadLink = null
+  }
+
+  onCancelPhoto() {
+    this.photo = null
+  }
+
+  onClear() {
+    this.src = null
+    this.tgt = null
+    this.placeholderTgt = "Аиҭагара";
+    this.isReadOnlyTgt = true
+    this.starred = false
+  }
+
+  onChangeText() {
+    this.starred = false
   }
 
   onSelectSrc(lang: Lang): void {
@@ -59,18 +101,32 @@ export class TranslateComponent implements OnInit {
   }
 
   onTranslate() {
-    if (!this.src || this.regexp.test(this.src)) {
-      this.placeholderTgt = "Аиҭагара";
-      this.isReadOnlyTgt = true;
-      return;
+    if (this.selectedType === "text") {
+      if (!this.src || this.regexp.test(this.src)) {
+        this.placeholderTgt = "Аиҭагара";
+        this.isReadOnlyTgt = true;
+        return;
+      }
+      if (!this.tgt)
+        this.placeholderTgt = "Аиҭагара иаҿуп";
+      else
+        this.tgt = this.tgt + "..."
+      // Here we add HTTP implementation
+      this.getTranslate()
+      this.isReadOnlyTgt = false;
     }
-    if (!this.tgt)
-      this.placeholderTgt = "Аиҭагара иаҿуп";
-    else
-      this.tgt = this.tgt + "..."
-    // Here we add HTTP implementation
-    this.getTranslate()
-    this.isReadOnlyTgt = false;
+    else if (this.selectedType === "doc") {
+      if (this.file) {
+        this.getTranslate()
+      }
+    }
+  }
+
+  onRead() {
+    if (this.photo) {
+      this.getRead()
+      this.selectedType = "text"
+    }
   }
 
   // fucntions to call the translate services
@@ -79,8 +135,38 @@ export class TranslateComponent implements OnInit {
   }
 
   getTranslate(): void {
-    this.data = "langSrc=" + this.selectedSrcLang.id + "&langTgt=" + this.selectedTgtLang.id + "&source=" + this.src
-    this.translateService.getTranslate(this.data)
-      .subscribe(data => this.tgt = data["target"]);
+    const formData = new FormData();
+    formData.append('langSrc', this.selectedSrcLang.id);
+    formData.append('langTgt', this.selectedTgtLang.id);
+    if (this.selectedType === "text") {
+      formData.append('source', this.src);
+      this.translateService.getTranslate(formData)
+        .subscribe(data => this.tgt = data["target"]);
+    }
+    else if (this.selectedType === "doc") {
+      formData.append('file', this.file);
+      this.translateService.getTranslate(formData)
+        .subscribe(data => this.downloadLink = data["downloadLink"]);
+    }
+  }
+
+  getRead() {
+    const formData = new FormData();
+    formData.append('langSrc', this.selectedSrcLang.id);
+    formData.append('photo', this.photo);
+    this.translateService.getRead(formData)
+      .subscribe(data => this.src = data["source"]);
+  }
+
+  onStarred() {
+    if (this.starred === false) {
+      const formData = new FormData();
+      formData.append('langSrc', this.selectedSrcLang.id);
+      formData.append('langTgt', this.selectedTgtLang.id);
+      formData.append('source', this.src);
+      formData.append('target', this.tgt);
+      this.translateService.setStar(formData)
+        .subscribe(data => this.starred = data["star"]);
+    }
   }
 }
