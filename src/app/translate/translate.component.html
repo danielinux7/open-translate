@@ -70,7 +70,7 @@
         </div>
         <div class="col-sm-6">
           <div *ngIf="downloadLink" class="downloadLink">
-            Еиҭагоу ашәҟәы: <a [href]="downloadLink" [download]="downloadLink">{{downloadLink}}</a>
+            Еиҭагоу ашәҟәы: <a [href]="downloadLink.url" target="_blank">{{downloadLink.filename}}</a>
           </div>
           <span class="cancel-file material-icons" (click)="onCancelFile()">
             cancel

@@ -146,7 +146,7 @@ export class TranslateComponent implements OnInit {
     else if (this.selectedType === "doc") {
       formData.append('file', this.file);
       this.translateService.getTranslate(formData)
-        .subscribe(data => this.downloadLink = data["downloadLink"]);
+        .subscribe(data => this.downloadLink = data);
     }
   }
 

@@ -57,4 +57,4 @@ def translateFile(file,sp_path_src,sp_path_tgt,ct_path):
         with open("./downloads/"+file.filename[:-4]+"_еиҭаганы.txt","w+")as f:
             f.writelines(tgt_list)
         download = {'url':'/downloads/'+file.filename[:-4]+'_еиҭаганы.txt','filename':file.filename[:-4]+'_еиҭаганы.txt'}
-        return '/downloads/'+file.filename[:-4]+'_еиҭаганы.txt'
+        return download
