@@ -24,7 +24,8 @@ def translate():
     elif 'file' in request.files:
         # File translation should be implemented here
         file = request.files['file']
-        return jsonify({'downloadLink':'This is working!'})
+        downloadLink = process.translateFile(file,sp_path_src,sp_path_tgt,model_path)
+        return jsonify({'downloadLink':downloadLink})
 
 @app.route('/read', methods=['POST'])
 def read():

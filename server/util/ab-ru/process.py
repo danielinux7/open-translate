@@ -47,3 +47,14 @@ def translate(src_list,sp_path_src,sp_path_tgt,ct_path):
         i = i + length
     tgt_list = temp
     return tgt_list
+
+def translateFile(file,sp_path_src,sp_path_tgt,ct_path):
+    if file.filename[-4:] == ".txt":
+        def decode(line):
+            return line.decode("utf-8")
+        src_list = list(map(decode,file.readlines()))
+        tgt_list = translate(src_list,sp_path_src,sp_path_tgt,ct_path)
+        with open("./downloads/"+file.filename[:-4]+"_еиҭаганы.txt","w+")as f:
+            f.writelines(tgt_list)
+        download = {'url':'/downloads/'+file.filename[:-4]+'_еиҭаганы.txt','filename':file.filename[:-4]+'_еиҭаганы.txt'}
+        return '/downloads/'+file.filename[:-4]+'_еиҭаганы.txt'

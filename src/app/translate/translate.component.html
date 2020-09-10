@@ -53,7 +53,8 @@
       <div *ngIf="!file" class="col-sm-12 px-0 select-file-section">
         <div class="choose-document-prompt">Ашәҟәы иалх</div>
         <div class="upload-filetypes-prompt">
-          Ақәҵаразы .doc, .docx, .odf, .pdf, .ppt, .pptx, .ps, .rtf, .txt, .xls, or .xlsx
+          <!-- We should support .doc, .docx, .odf, .pdf, .ppt, .pptx, .ps, .rtf, .xls, or .xlsx -->
+          Ақәҵаразы .txt
         </div>
         <input type="file" name="file" id="tlid-file-input" (change)="onFileSelect($event)" class="file-input">
         <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
@@ -69,7 +70,7 @@
         </div>
         <div class="col-sm-6">
           <div *ngIf="downloadLink" class="downloadLink">
-            Еиҭагоу ашәҟәы: <a href="#">{{downloadLink}}</a>
+            Еиҭагоу ашәҟәы: <a [href]="downloadLink" [download]="downloadLink">{{downloadLink}}</a>
           </div>
           <span class="cancel-file material-icons" (click)="onCancelFile()">
             cancel
