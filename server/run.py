@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request
 from importlib import import_module
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='downloads')
 CORS(app)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -25,7 +25,7 @@ def translate():
         # File translation should be implemented here
         file = request.files['file']
         downloadLink = process.translateFile(file,sp_path_src,sp_path_tgt,model_path)
-        return jsonify({'downloadLink':downloadLink})
+        return jsonify({'downloadLink':'http://' + request.host + downloadLink})
 
 @app.route('/read', methods=['POST'])
 def read():
