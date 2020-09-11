@@ -2,6 +2,7 @@ import sentencepiece as spm
 from mosestokenizer import *
 import ctranslate2
 import re
+import easyocr
 
 def translate(src_list,sp_path_src,sp_path_tgt,ct_path):
     tokenize = MosesTokenizer('ru')
@@ -58,3 +59,10 @@ def translateFile(file,sp_path_src,sp_path_tgt,ct_path):
             f.writelines(tgt_list)
         download = {'url':'/downloads/'+file.filename[:-4]+'_еиҭаганы.txt','filename':file.filename[:-4]+'_еиҭаганы.txt'}
         return download
+
+def readPhoto(photo,lang):
+    if photo.filename[-4:] == ".jpg" or photo.filename[-4:] == ".png":
+        # This should be later replaced with lang
+        reader = easyocr.Reader(['ru'])
+        result = reader.readtext(photo.read(), detail = 0)
+        return '\n'.join(result)

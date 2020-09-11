@@ -153,6 +153,7 @@ export class TranslateComponent implements OnInit {
   getRead() {
     const formData = new FormData();
     formData.append('langSrc', this.selectedSrcLang.id);
+    formData.append('langTgt', this.selectedTgtLang.id);
     formData.append('photo', this.photo);
     this.translateService.getRead(formData)
       .subscribe(data => this.src = data["source"]);

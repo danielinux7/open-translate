@@ -11,7 +11,6 @@ def index():
 
 @app.route('/translate', methods=['POST'])
 def translate():
-    tgt_list = None
     language = request.form['langSrc'] + '-' + request.form['langTgt']
     process = import_module('util.'+language+'.process')
     sp_path_src = app.root_path +"/sentencepiece/"+request.form['langSrc']+".model"
@@ -22,7 +21,6 @@ def translate():
         tgt_list = process.translate(src_list,sp_path_src,sp_path_tgt,model_path)
         return jsonify({'target':"\n".join(tgt_list)})
     elif 'file' in request.files:
-        # File translation should be implemented here
         file = request.files['file']
         download = process.translateFile(file,sp_path_src,sp_path_tgt,model_path)
         download['url'] = 'http://' + request.host + download['url']
@@ -30,11 +28,14 @@ def translate():
 
 @app.route('/read', methods=['POST'])
 def read():
-    language = request.form['langSrc']
+    language = request.form['langSrc'] + '-' + request.form['langTgt']
+    process = import_module('util.'+language+'.process')
+    lang = request.form['langSrc']
     if 'photo' in request.files:
         # OCR should be implemented here
         photo = request.files['photo']
-        return jsonify({'source':'Ари асахьа бзиа!'})
+        text = process.readPhoto(photo,lang)
+        return jsonify({'source':text})
 
 @app.route('/star', methods=['POST'])
 def star():
