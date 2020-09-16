@@ -9,9 +9,9 @@ import { Lang } from './language';
 })
 export class TranslateService {
   // private translateUrl = 'https://nartlinux.pythonanywhere.com/translate';  // URL to web api
-  private translateUrl = 'http://127.0.0.1:5000/translate';  // URL to web api
-  private readUrl = 'http://127.0.0.1:5000/read';  // URL to web api
-  private starUrl = 'http://127.0.0.1:5000/star';  // URL to web api
+  private translateUrl = 'https://nartlinux.pythonanywhere.com/translate';  // URL to web api
+  private readUrl = 'https://nartlinux.pythonanywhere.com/read';  // URL to web api
+  private starUrl = 'https://nartlinux.pythonanywhere.com/star';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
