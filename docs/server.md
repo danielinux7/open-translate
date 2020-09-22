@@ -13,4 +13,4 @@ To run everything, you would need to install the the python packages in [require
 [easyOCR]: https://github.com/JaidedAI/EasyOCR
 [sentencepiece]: https://github.com/google/sentencepiece
 [mosestokenizer]: https://github.com/luismsgomes/mosestokenizer
-[requirements]: https://github.com/danielinux7/Open-Translate/blob/master/requirements.txt
+[requirements]: https://github.com/danielinux7/Open-Translate/blob/master/server/requirements.txt
