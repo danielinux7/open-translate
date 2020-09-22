@@ -3,5 +3,9 @@
 [![GitHub issues](https://img.shields.io/github/issues/danielinux7/Open-Translate)](https://github.com/danielinux7/Open-Translate/issues)
 [![GitHub license](https://img.shields.io/github/license/danielinux7/Open-Translate)](https://github.com/danielinux7/Open-Translate/blob/master/LICENSE)
 
-User interface for machine translation
+User interface for machine translation, and restful api implementaion.\
+This repo is an angular project, you can build and setup the frontend following these [guidelines][angular_setup].\
+The server folder were added for the backend implementation, you can build and setup the backend following these [guidelines][server].
 
+[angular_setup]: https://github.com/danielinux7/Open-Translate/blob/master/docs/angular_setup.md
+[server]: https://github.com/danielinux7/Open-Translate/blob/master/docs/server.md
