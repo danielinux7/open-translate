@@ -204,8 +204,4 @@ body {
   #lang-tgt-sm {
     display: none;
   }
-
-  #source {
-    overflow: auto hidden;
-  }
 }

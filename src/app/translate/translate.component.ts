@@ -23,6 +23,7 @@ export class TranslateComponent implements OnInit {
   file: File;
   photo: File;
   downloadLink: string;
+  height = "172px"
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
@@ -65,10 +66,13 @@ export class TranslateComponent implements OnInit {
     this.placeholderTgt = "Аиҭагара";
     this.isReadOnlyTgt = true
     this.starred = false
+    this.height = "172px"
   }
 
-  onChangeText() {
+  onChangeText(element) {
     this.starred = false
+    element.style.height = "0"
+    this.height = element.scrollHeight + "px"
   }
 
   onSelectSrc(lang: Lang): void {
