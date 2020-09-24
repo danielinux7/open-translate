@@ -11,4 +11,4 @@ The server folder were added for the backend implementation, you can build and s
 [server]: https://github.com/danielinux7/Open-Translate/blob/master/docs/server.md
 
 ## Server:
-To add a language to the server, you should add your ctranslate2 model under the models/<source langauge code-target language code>/ folder(i.e /models/en-fr/ for english and frensh), this should also map to the frontend in angular as shown in the anguler guideline.
+To add a new language to the server, you should include your ctranslate2 model under the /models/{source langauge code-target language code}/ folder (i.e /models/en-fr/ for english and frensh), this should also map to the frontend in angular as shown in the anguler guideline.
