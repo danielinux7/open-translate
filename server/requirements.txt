@@ -4,7 +4,7 @@ docopt==0.6.2
 Flask==1.1.2
 Flask-Cors==3.0.9
 itsdangerous==1.1.0
-Jinja2==2.11.2
+Jinja2==2.11.3
 MarkupSafe==1.1.1
 mosestokenizer==1.1.0
 numpy==1.19.2
