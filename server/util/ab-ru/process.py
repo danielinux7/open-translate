@@ -1,68 +1,51 @@
-import sentencepiece as spm
-from mosestokenizer import *
-import ctranslate2
-import re
-import easyocr
+import os
+import tensorflow as tf
+import sentencepiece as sp
 
-def translate(src_list,sp_path_src,sp_path_tgt,ct_path):
-    tokenize = MosesTokenizer('ru')
-    sp_src = spm.SentencePieceProcessor()
-    sp_src.load(sp_path_src)
-    lengths = []
-    temp = []
-    p_big = re.compile('Ҧ')
-    g_big = re.compile('Ҕ')
-    p_small = re.compile('ҧ')
-    g_small = re.compile('ҕ')
-    for text in src_list:
-        text = p_big.sub('Ԥ', text)
-        text = g_big.sub('Ӷ', text)
-        text = p_small.sub('ԥ', text)
-        text = g_small.sub('ӷ', text)
-        if text != '':
-            with MosesSentenceSplitter('ru') as splitsents:
-                text = splitsents([text])
-        lengths.append(len(text))
-        temp.extend(text)
-    src_list = temp
-    for i, text in enumerate(src_list):
-        text = ' '.join(tokenize(text)).lower()
-        text = sp_src.encode(text, out_type=str)
-        src_list[i] = text
-    translator = ctranslate2.Translator(ct_path)
-    tgt_list = translator.translate_batch(src_list)
-    for i, text in enumerate(tgt_list):
-        detokenize = MosesDetokenizer('ru')
-        sp_tgt = spm.SentencePieceProcessor()
-        sp_tgt.load(sp_path_tgt)
-        text = sp_tgt.decode(text[0]['tokens'])
-        text = detokenize(text.split(' '))
-        tgt_list[i] = text
-    temp = []
-    i = 0
-    for length in lengths:
-        text = ''
-        for jw in range(length):
-            text = text + tgt_list[i+jw] + ' '
-        temp.append(text.strip())
-        i = i + length
-    tgt_list = temp
+
+class Translator(object):
+    def __init__(self, export_dir):
+        imported = tf.saved_model.load(export_dir)
+        self._translate_fn = imported.signatures["serving_default"]
+        self._tokenizer = sp.SentencePieceProcessor()
+        self._tokenizer.load(os.path.join(export_dir, "assets", "src.model"))
+
+    def translate(self, texts):
+        """Translates a batch of texts."""
+        inputs = self._preprocess(texts)
+        outputs = self._translate_fn(**inputs)
+        return self._postprocess(outputs)
+
+    def _preprocess(self, texts):
+        all_tokens = []
+        lengths = []
+        max_length = 0
+        for text in texts:
+            tokens = self._tokenizer.encode(text, out_type=str)
+            length = len(tokens)
+            all_tokens.append(tokens)
+            lengths.append(length)
+            max_length = max(max_length, length)
+        for tokens, length in zip(all_tokens, lengths):
+            if length < max_length:
+                tokens += [""] * (max_length - length)
+
+        inputs = {
+            "tokens": tf.constant(all_tokens, dtype=tf.string),
+            "length": tf.constant(lengths, dtype=tf.int32),
+        }
+
+        return inputs
+
+    def _postprocess(self, outputs):
+        texts = []
+        for tokens, length in zip(outputs["tokens"].numpy(), outputs["length"].numpy()):
+            tokens = tokens[0][: length[0]].tolist()
+            tokens = "".join([token.decode("utf-8") for token in tokens])
+            tokens = tokens.replace("▁"," ").strip()
+            texts.append(tokens)
+        return texts
+
+def translate(src_list,sm_path):
+    tgt_list = Translator(sm_path).translate(src_list)
     return tgt_list
-
-def translateFile(file,sp_path_src,sp_path_tgt,ct_path):
-    if file.filename[-4:] == ".txt":
-        def decode(line):
-            return line.decode("utf-8")
-        src_list = list(map(decode,file.readlines()))
-        tgt_list = translate(src_list,sp_path_src,sp_path_tgt,ct_path)
-        with open("./downloads/"+file.filename[:-4]+"_еиҭаганы.txt","w+")as f:
-            f.writelines(tgt_list)
-        download = {'url':'/downloads/'+file.filename[:-4]+'_еиҭаганы.txt','filename':file.filename[:-4]+'_еиҭаганы.txt'}
-        return download
-
-def readPhoto(photo,lang):
-    if photo.filename[-4:] == ".jpg" or photo.filename[-4:] == ".png":
-        # This should be later replaced with lang
-        reader = easyocr.Reader(['ru'])
-        result = reader.readtext(photo.read(), detail = 0)
-        return '\n'.join(result)

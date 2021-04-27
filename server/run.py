@@ -13,12 +13,10 @@ def index():
 def translate():
     language = request.form['langSrc'] + '-' + request.form['langTgt']
     process = import_module('util.'+language+'.process')
-    sp_path_src = app.root_path +"/sentencepiece/"+request.form['langSrc']+".model"
-    sp_path_tgt = app.root_path +"/sentencepiece/"+request.form['langTgt']+".model"
     model_path = app.root_path +"/models/"+language
     if 'source' in request.form:
         src_list = request.form['source'].split("\n")
-        tgt_list = process.translate(src_list,sp_path_src,sp_path_tgt,model_path)
+        tgt_list = process.translate(src_list,model_path)
         return jsonify({'target':"\n".join(tgt_list)})
     elif 'file' in request.files:
         file = request.files['file']
