@@ -22,6 +22,8 @@ class Translator(object):
         max_length = 0
         for text in texts:
             tokens = self._tokenizer.encode(text, out_type=str)
+            tokens.insert(0,"<v7>")
+            tokens.insert(0,"<ru>")
             length = len(tokens)
             all_tokens.append(tokens)
             lengths.append(length)
