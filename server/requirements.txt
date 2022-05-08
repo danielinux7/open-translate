@@ -7,7 +7,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 MarkupSafe==1.1.1
 mosestokenizer==1.1.0
-numpy==1.19.2
+numpy==1.21.0
 openfile==0.0.7
 sentencepiece==0.1.91
 six==1.15.0
