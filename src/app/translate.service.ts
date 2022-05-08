@@ -19,7 +19,7 @@ export class TranslateService {
     return LANGS;
   }
 
-  getTranslate(data: FormData): Observable<string> {
+  getTranslate(data: FormData): Observable<any> {
     return this.http.post<any>(this.translateUrl, data)
   }
 

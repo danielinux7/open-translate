@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Lang } from '../language';
+import { Lang, Dlink } from '../language';
 import { TranslateService } from '../translate.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class TranslateComponent implements OnInit {
   selectedType: string;
   file: File;
   photo: File;
-  downloadLink: string;
+  downloadLink: Dlink;
   height = "172px"
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
