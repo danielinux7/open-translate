@@ -9,7 +9,7 @@ import { Lang } from './language';
 })
 export class TranslateService {
   // private translateUrl = 'https://nartlinux.pythonanywhere.com/translate';  // URL to web api
-  private translateUrl = 'https://big-oxygen-281010.uc.r.appspot.com/translate';  // URL to web api
+  private translateUrl = 'http://127.0.0.1:5000/translate';  // URL to web api
   private readUrl = 'https://nartlinux.pythonanywhere.com/read';  // URL to web api
   private starUrl = 'https://nartlinux.pythonanywhere.com/star';  // URL to web api
 
