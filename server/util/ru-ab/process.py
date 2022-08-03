@@ -23,6 +23,8 @@ class Translator(object):
         tokenize = MosesTokenizer('ru')
         temp = []
         for text in texts:
+           if text == '\r' or text == '':
+             text = "▁"
            with MosesSentenceSplitter('ru') as splitsents:
               text = splitsents([text])
            count.append(len(text))
