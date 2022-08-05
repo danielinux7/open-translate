@@ -12,8 +12,8 @@ def index():
 @app.route('/translate', methods=['POST'])
 def translate():
     language = request.form['langSrc'] + '-' + request.form['langTgt']
-    process = import_module('tfx.process')
-    model_path = app.root_path +"/models/"+language
+    process = import_module('util_tfx.'+language+'.process')
+    model_path = app.root_path +"/models/"+language+"/1"
     if 'source' in request.form:
         src_list = request.form['source'].split("\n")
         tgt_list = process.translate(src_list,model_path)

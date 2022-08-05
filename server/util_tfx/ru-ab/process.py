@@ -1,7 +1,6 @@
 import os
 import json
 import requests
-#import tensorflow as tf
 import sentencepiece as sp
 from mosestokenizer import *
 
@@ -9,12 +8,10 @@ class Translator(object):
     
     
     def __init__(self, export_dir):
- #       imported = tf.saved_model.load(export_dir)
-  #      self._translate_fn = imported.signatures["serving_default"]
         self._tokenizer = sp.SentencePieceProcessor()
         self._detokenizer = sp.SentencePieceProcessor()
-        self._tokenizer.load(os.path.join(export_dir, "1/assets", "src.model"))
-        self._detokenizer.load(os.path.join(export_dir, "1/assets", "tgt.model"))
+        self._tokenizer.load(os.path.join(export_dir, "assets", "src.model"))
+        self._detokenizer.load(os.path.join(export_dir, "assets", "tgt.model"))
 
     def translate(self, texts):
         """Translates a batch of texts."""
