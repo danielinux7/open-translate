@@ -16,7 +16,7 @@ export class TranslateComponent implements OnInit {
   src: string;
   tgt: string;
   data: string;
-  placeholderTgt = "Аиҭагара"
+  placeholderTgt = "Аиҭага"
   isReadOnlyTgt = true
   starred = false
   selectedType: string;
@@ -63,7 +63,7 @@ export class TranslateComponent implements OnInit {
   onClear() {
     this.src = null
     this.tgt = null
-    this.placeholderTgt = "Аиҭагара";
+    this.placeholderTgt = "Аиҭага";
     this.isReadOnlyTgt = true
     this.starred = false
     this.height = "172px"
@@ -109,7 +109,7 @@ export class TranslateComponent implements OnInit {
   onTranslate() {
     if (this.selectedType === "text") {
       if (!this.src || this.regexp.test(this.src)) {
-        this.placeholderTgt = "Аиҭагара";
+        this.placeholderTgt = "Аиҭага";
         this.isReadOnlyTgt = true;
         return;
       }
