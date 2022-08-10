@@ -12,7 +12,7 @@ def index():
 @app.route('/translate', methods=['POST'])
 def translate():
     language = request.form['langSrc'] + '-' + request.form['langTgt']
-    process = import_module('util_tfx.'+language+'.process')
+    process = import_module('util.'+language+'.process')
     model_path = app.root_path +"/models/"+language+"/1"
     if 'source' in request.form:
         src_list = request.form['source'].split("\n")
@@ -48,5 +48,5 @@ def star():
         file.writelines(src_tgt_list)
     return jsonify({'star':True})
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def start():
+   return app
