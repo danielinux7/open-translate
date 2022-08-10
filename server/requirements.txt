@@ -4,4 +4,3 @@ setuptools
 importlib
 mosestokenizer
 sentencepiece
-tensorflow
