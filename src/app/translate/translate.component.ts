@@ -71,8 +71,10 @@ export class TranslateComponent implements OnInit {
 
   onChangeText(element) {
     this.starred = false
-    element.style.height = "0"
     this.height = element.scrollHeight + "px"
+    if (this.src === "") {
+      this.onClear()
+    }
   }
 
   onSelectSrc(lang: Lang): void {
