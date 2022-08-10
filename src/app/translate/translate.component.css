@@ -75,6 +75,13 @@
   right: 0px;
 }
 
+.copy {
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+}
+
 .downloadLink {
   display: inline-block;
 }
