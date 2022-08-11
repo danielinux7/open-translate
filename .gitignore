@@ -1,5 +1,16 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+#savedmodels
+models
+
+#flask
+__pycache__
+*.log
+
+#angular 
+.angular
+package-lock.json
+
 # compiled output
 /dist
 /tmp
