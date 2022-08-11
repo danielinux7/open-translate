@@ -16,7 +16,7 @@ def translate():
     model_path = app.root_path +"/models/"+language+"/1"
     if 'source' in request.form:
         src_list = request.form['source'].split("\n")
-        tgt_list = process.translate(src_list,model_path)
+        tgt_list = process.translate(src_list,model_path,language)
         return jsonify({'target':"\n".join(tgt_list)})
     elif 'file' in request.files:
         file = request.files['file']

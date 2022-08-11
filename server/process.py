@@ -7,18 +7,20 @@ from mosestokenizer import *
 class Translator(object):
     
     
-    def __init__(self, export_dir):
+    def __init__(self, export_dir, language):
         self._tokenizer = sp.SentencePieceProcessor()
         self._detokenizer = sp.SentencePieceProcessor()
         self._tokenizer.load(os.path.join(export_dir, "assets", "src.model"))
         self._detokenizer.load(os.path.join(export_dir, "assets", "tgt.model"))
-
+        self.lang = language
+        
     def translate(self, texts):
         """Translates a batch of texts."""
         inputs, count = self._preprocess(texts)
         data = json.dumps({"inputs": inputs})
         headers = {"content-type": "application/json"}
-        json_response = requests.post('http://localhost:8501/v1/models/ru-ab_model:predict', data=data, headers=headers)
+        model_url = 'http://localhost:8501/v1/models/'+self.lang+':predict'
+        json_response = requests.post(model_url, data=data, headers=headers)
         outputs = json.loads(json_response.text)['outputs']
         return self._postprocess(outputs,count)
 
@@ -42,7 +44,10 @@ class Translator(object):
         for text in texts:
             tokens = self._tokenizer.encode(text.lower(), out_type=str)
             tokens.insert(0,"<v7>")
-            tokens.insert(0,"<ru>")
+            if self.lang == "ab-ru":
+               tokens.insert(0,"<ab>")
+            if self.lang == "ru-ab":
+               tokens.insert(0,"<ru>")            
             length = len(tokens)
             all_tokens.append(tokens)
             lengths.append(length)
@@ -74,6 +79,6 @@ class Translator(object):
         texts = temp
         return texts
 
-def translate(src_list,sm_path):
-    tgt_list = Translator(sm_path).translate(src_list)
+def translate(src_list,sm_path,language):
+    tgt_list = Translator(sm_path,language).translate(src_list)
     return tgt_list
