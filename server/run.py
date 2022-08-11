@@ -12,7 +12,7 @@ def index():
 @app.route('/translate', methods=['POST'])
 def translate():
     language = request.form['langSrc'] + '-' + request.form['langTgt']
-    process = import_module('models.'+language+'.process')
+    process = import_module('process')
     model_path = app.root_path +"/models/"+language+"/1"
     if 'source' in request.form:
         src_list = request.form['source'].split("\n")
@@ -50,3 +50,6 @@ def star():
 
 def start():
    return app
+   
+if __name__ == '__main__':
+    app.run(debug=True)

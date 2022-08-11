@@ -27,6 +27,7 @@ class Translator(object):
         tokenize = MosesTokenizer('ru')
         temp = []
         for text in texts:
+           text = text.replace("-","- ")
            if text == '\r' or text == '':
              text = "▁"
            with MosesSentenceSplitter('ru') as splitsents:
