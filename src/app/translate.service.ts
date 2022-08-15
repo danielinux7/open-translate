@@ -8,7 +8,7 @@ import { Lang } from './language';
   providedIn: 'root'
 })
 export class TranslateService {
-  private translateUrl = 'http://localhost:5000/translate';  // URL to web api
+  private translateUrl = 'http://185.178.47.230:5000/translate';  // URL to web api
   private readUrl = 'http://185.178.47.230:5000/read';  // URL to web api
   private starUrl = 'http://185.178.47.230:5000/star';  // URL to web api
 
