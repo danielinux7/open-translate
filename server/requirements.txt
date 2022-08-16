@@ -5,3 +5,4 @@ setuptools
 importlib
 mosestokenizer
 sentencepiece
+python-docx
