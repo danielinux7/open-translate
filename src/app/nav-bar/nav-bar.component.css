@@ -4,13 +4,13 @@ header {
 
 .text-green {
     color: rgb(40, 167, 69);
-    font-size: 2rem;
+    font-size: 1.2rem;
 }
 
 @media (max-width: 465px) {
 
 .text-green {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 }
 
