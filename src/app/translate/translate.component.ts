@@ -127,6 +127,12 @@ export class TranslateComponent implements OnInit {
       }
     }
   }
+  
+  onConv() {
+    if (this.file) {
+      this.getConv()
+    }
+  }
 
   onRead() {
     if (this.photo) {
@@ -154,6 +160,13 @@ export class TranslateComponent implements OnInit {
       this.translateService.getTranslate(formData)
         .subscribe(data => this.downloadLink = data);
     }
+  }
+
+  getConv() {
+    const formData = new FormData();
+    formData.append('file', this.file);
+    this.translateService.getConv(formData)
+      .subscribe(data => this.downloadLink = data);
   }
 
   getRead() {

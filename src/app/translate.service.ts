@@ -9,6 +9,7 @@ import { Lang } from './language';
 })
 export class TranslateService {
   private translateUrl = 'http://185.178.47.230:5000/translate';  // URL to web api
+  private convUrl = 'http://localhost:5000/conv';  // URL to web api
   private readUrl = 'http://185.178.47.230:5000/read';  // URL to web api
   private starUrl = 'http://185.178.47.230:5000/star';  // URL to web api
 
@@ -20,6 +21,10 @@ export class TranslateService {
 
   getTranslate(data: FormData): Observable<any> {
     return this.http.post<any>(this.translateUrl, data)
+  }
+
+  getConv(data: FormData): Observable<any> {
+    return this.http.post<any>(this.convUrl, data)
   }
 
   getRead(data: FormData): Observable<string> {

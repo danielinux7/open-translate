@@ -24,6 +24,14 @@ def translate():
         download['url'] = 'http://' + request.host + download['url']
         return jsonify(download)
 
+@app.route('/conv', methods=['POST'])
+def conv():
+    process = import_module('process')
+    file = request.files['file']
+    download = process.convFile(file)
+    download['url'] = 'http://' + request.host + download['url']
+    return jsonify(download)
+
 @app.route('/read', methods=['POST'])
 def read():
     language = request.form['langSrc'] + '-' + request.form['langTgt']

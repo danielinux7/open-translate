@@ -82,3 +82,13 @@ class Translator(object):
 def translate(src_list,sm_path,language):
     tgt_list = Translator(sm_path,language).translate(src_list)
     return tgt_list
+    
+def convFile(file):
+    if file.filename[-5:] == ".docx":
+        def decode(line):
+            return line.decode("utf-8")
+        tgt_list = "here is me"
+        with open("./downloads/"+file.filename[:-5]+"_еиҭакганы.docx","w+")as f:
+            f.writelines(tgt_list)
+        download = {'url':'/downloads/'+file.filename[:-5]+'_еиҭакганы.docx','filename':file.filename[:-5]+'_еиҭакганы.docx'}
+        return download
