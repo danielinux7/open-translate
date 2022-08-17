@@ -1,3 +1,3 @@
 pkill -9 waitress-serve
 pkill -9 tensorflow_mode
-rm *.log
+rm *.log models.config
