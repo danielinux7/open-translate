@@ -105,6 +105,7 @@ def convFile(file):
                         if inline[i].font.name == "Arial Abkh":
                             text = replace(inline[i].text)
                             inline[i].text = text
+                            inline[i].font.name = "Arial"
 
             for table in doc_obj.tables:
                 for row in table.rows:
