@@ -7,6 +7,9 @@
     <span class=" material-icons md-22 align-middle">
       insert_drive_file
     </span>Ашәҟәы</button>
+  <button type="button" [class.active]="selectedType === 'conv'" class="mr-12px btn" (click)="onSelectType('conv')">
+    <span class="md-22 align-middle">
+     Ԥ Аиҭакга</span></button>
   <button hidden type="button" [class.active]="selectedType === 'photo'" class="mr-12px btn" (click)="onSelectType('photo')">
     <span class=" material-icons md-22 align-middle">
       insert_photo
@@ -14,7 +17,7 @@
 </div>
 <div class="container-xl p-0 height-google">
   <div class="shadow-google bg-white">
-    <div class="row m-0 border-google nav" role="navigation">
+    <div *ngIf="selectedType !== 'conv'" class="row m-0 border-google nav" role="navigation">
       <div class="nav col" id="lang-src">
         <div *ngFor="let lang of langs" [class.active]="lang === selectedSrcLang" (click)="onSelectSrc(lang)" class="lang nav-link">
           {{lang.name | uppercase}}
@@ -81,6 +84,35 @@
         </div>
       </div>
     </div>
+    <!-- Convertor -->
+    <div *ngIf="selectedType==='conv'" class="row m-0 form-group">
+      <div *ngIf="!file" class="col-sm-12 px-0 select-file-section">
+        <div class="choose-document-prompt">Ашәҟәы иалх</div>
+        <div class="upload-filetypes-prompt">
+          Ақәҵаразы .docx
+        </div>
+        <input type="file" name="file" id="tlid-file-input" (change)="onFileSelect($event)" class="file-input">
+        <label for="tlid-file-input" class="button">Укомпиутер аҟнытә иааг</label>
+      </div>
+      <div *ngIf="file" class="file-holder row">
+        <div class="file-info col-sm-6">
+          <span class="material-icons md-file align-top">
+            insert_drive_file
+          </span>
+          <div class="file-label">{{file.name}}
+            <div class="file-size">{{file.size/1000 | number:'1.0-0'}} KB</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div *ngIf="downloadLink" class="downloadLink">
+            Аиҭакгатә ашәҟәы: <a [href]="downloadLink.url" target="_blank">{{downloadLink.filename}}</a>
+          </div>
+          <span class="cancel-file material-icons" (click)="onCancelFile()">
+            cancel
+          </span>
+        </div>
+      </div>
+    </div>
     <!-- Photo -->
     <div *ngIf="selectedType==='photo'" class="row m-0 form-group">
       <div *ngIf="!photo" class="col-sm-12 px-0 select-file-section">
@@ -108,7 +140,8 @@
   </div>
   <div class="row m-0 justify-content-center">
     <div class="col-sm-10"></div>
-    <button *ngIf="selectedType!=='photo'" (click)="onTranslate()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="translate">Аиҭагара</button>
+    <button *ngIf="selectedType!=='photo' && selectedType!=='conv'" (click)="onTranslate()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="translate">Аиҭагара</button>
     <button *ngIf="selectedType==='photo'" (click)="onRead()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="read">Уаԥха</button>
+    <button *ngIf="selectedType==='conv'" (click)="onConv()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="conv">Аиҭакра</button>
   </div>
 </div>

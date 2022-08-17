@@ -3,6 +3,8 @@ import json
 import requests
 import sentencepiece as sp
 from mosestokenizer import *
+import re
+from docx import Document
 
 class Translator(object):
     
@@ -82,3 +84,36 @@ class Translator(object):
 def translate(src_list,sm_path,language):
     tgt_list = Translator(sm_path,language).translate(src_list)
     return tgt_list
+
+def convFile(file):
+    if file.filename[-5:] == ".docx":
+        char_ab = {'ю':'ҩ', 'Ю':'Ҩ', '7':'ҵ', '?':'Ҵ', '6':'қ', ':':'Қ', '3':'ҷ', '№':'Ҷ', 'я':'ӷ', 'Я':'Ӷ','й':'ҟ', 'Й':'Ҟ', 
+           'ё':'ӡ', 'Ё':'Ӡ', '8':'ԥ', '*':'Ԥ', '5':'џ', '%':'Џ', '0':'ҭ', ')':'Ҭ', '=':'ҿ', '+':'Ҿ', 'щ':'ҳ', 'Щ':'Ҳ', 
+           'э':'ҽ', 'Э':'Ҽ', '9':')', 'ъ':'ә', 'Ъ':'Ә', '1':'?'}
+        doc = Document(file)
+        def replace(text):
+            for key, value in char_ab.items():
+              text = text.replace(key, value)
+            return text
+
+        def docx_replace_regex(doc_obj):
+
+            for p in doc_obj.paragraphs:
+                    inline = p.runs
+                    # Loop added to work with runs (strings with same style)
+                    for i in range(len(inline)):
+                        if inline[i].font.name == "Arial Abkh":
+                            text = replace(inline[i].text)
+                            inline[i].text = text
+
+            for table in doc_obj.tables:
+                for row in table.rows:
+                    for cell in row.cells:
+                        docx_replace_regex(cell)
+                        
+        docx_replace_regex(doc)
+        doc.save("./downloads/"+file.filename[:-5]+"_еиҭакганы.docx")
+        download = {'url':'/downloads/'+file.filename[:-5]+'_еиҭакганы.docx','filename':file.filename[:-5]+'_еиҭакганы.docx'}
+        return download
+
+
