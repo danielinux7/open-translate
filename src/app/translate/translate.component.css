@@ -75,11 +75,21 @@
   right: 0px;
 }
 
+.edit {
+  cursor: pointer;
+  position: absolute;
+  top: 28px;
+  right: 0px;
+  font-size: 20px;
+}
+
+
 .copy {
   cursor: pointer;
   position: absolute;
   bottom: 5px;
   right: 0px;
+  font-size: 21px;
 }
 
 .downloadLink {

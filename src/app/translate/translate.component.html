@@ -49,6 +49,9 @@
         <span *ngIf="tgt" class="star material-icons" [class.active-star]="starred" (click)="onStarred()">
           {{starred == true ? 'star': 'star_border'}}
         </span>
+        <span *ngIf="tgt" class="edit material-icons">
+          mode_edit
+        </span>
         <span *ngIf="tgt" class="copy material-icons" [ngxClipboard]="formInputText">
         content_copy
         </span>
