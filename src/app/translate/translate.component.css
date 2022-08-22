@@ -6,8 +6,9 @@
   border-bottom: .25em solid rgb(40, 167, 69);
 }
 
-.active-star {
-  color: #ffbf00;
+.active-hand {
+  font-family: 'Material Icons';
+  color: #bd2130;
 }
 
 .select-file-section {
@@ -68,11 +69,13 @@
   float: right;
 }
 
-.clear, .star {
+.clear, .hand {
   cursor: pointer;
   position: absolute;
   top: 5px;
   right: 0px;
+  font-size: 21px;
+  padding-right: 5px;
 }
 
 .edit {
@@ -81,6 +84,7 @@
   top: 28px;
   right: 0px;
   font-size: 20px;
+  padding-right: 5px;
 }
 
 
@@ -90,6 +94,7 @@
   bottom: 5px;
   right: 0px;
   font-size: 21px;
+  padding-right: 5px;
 }
 
 .downloadLink {
@@ -165,3 +170,10 @@
     transition: .6s all cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
+
+@media screen and (max-width: 576px) {
+  .material-icons-outlined {
+     font-family: 'Material Icons';
+  }
+}
+

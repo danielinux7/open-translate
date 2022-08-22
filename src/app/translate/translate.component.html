@@ -46,13 +46,13 @@
       </div>
       <div class="col-sm-6 px-0 mobile">
         <textarea [style.height]="height" [(ngModel)]="tgt" (ngModelChange)="onChangeText(mytgt)" #mytgt class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt" placeholder="{{placeholderTgt}}" #formInputText></textarea>
-        <span *ngIf="tgt" class="star material-icons" [class.active-star]="starred" (click)="onStarred()">
-          {{starred == true ? 'star': 'star_border'}}
+        <span *ngIf="tgt" class="hand material-icons-outlined" [class.active-hand]="starred" (click)="onStarred()">
+          back_hand
         </span>
-        <span *ngIf="tgt" class="edit material-icons">
+        <span *ngIf="tgt" class="edit material-icons-outlined">
           mode_edit
         </span>
-        <span *ngIf="tgt" class="copy material-icons" [ngxClipboard]="formInputText">
+        <span *ngIf="tgt" class="copy material-icons-outlined" [ngxClipboard]="formInputText">
         content_copy
         </span>
       </div>
