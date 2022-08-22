@@ -11,6 +11,11 @@
   color: #bd2130;
 }
 
+.active-edit {
+  font-family: 'Material Icons';
+  color: #bd2130;
+}
+
 .select-file-section {
   padding: 43px 16px 65px;
   text-align: center;

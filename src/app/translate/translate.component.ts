@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Lang, Dlink } from '../language';
 import { TranslateService } from '../translate.service';
 
@@ -19,6 +19,7 @@ export class TranslateComponent implements OnInit {
   placeholderTgt = "Аиҭага"
   isReadOnlyTgt = true
   starred = false
+  edit = false
   selectedType: string;
   file: File;
   photo: File;
@@ -66,6 +67,7 @@ export class TranslateComponent implements OnInit {
     this.placeholderTgt = "Аиҭага";
     this.isReadOnlyTgt = true
     this.starred = false
+    this.edit = false
     this.height = "172px"
   }
 
@@ -119,12 +121,25 @@ export class TranslateComponent implements OnInit {
         this.tgt = this.tgt + "..."
       // Here we add HTTP implementation
       this.getTranslate()
-      this.isReadOnlyTgt = false;
     }
     else if (this.selectedType === "doc") {
       if (this.file) {
         this.getTranslate()
       }
+    }
+  }
+   
+  @ViewChild('mytgt') mytgt: ElementRef;
+  onEdit() {
+    if (this.edit === false){
+      this.starred = false
+      this.edit = true;
+      this.isReadOnlyTgt = false;
+      this.mytgt.nativeElement.focus();
+    }
+    else {
+      this.isReadOnlyTgt = true
+      this.edit = false
     }
   }
   

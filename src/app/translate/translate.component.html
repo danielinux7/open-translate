@@ -49,7 +49,7 @@
         <span *ngIf="tgt" class="hand material-icons-outlined" [class.active-hand]="starred" (click)="onStarred()">
           back_hand
         </span>
-        <span *ngIf="tgt" class="edit material-icons-outlined">
+        <span *ngIf="tgt" class="edit material-icons-outlined" [class.active-edit]="edit" (click)="onEdit()">
           mode_edit
         </span>
         <span *ngIf="tgt" class="copy material-icons-outlined" [ngxClipboard]="formInputText">
