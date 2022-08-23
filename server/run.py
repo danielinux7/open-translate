@@ -1,9 +1,11 @@
 from flask import Flask, render_template, jsonify, request
 from importlib import import_module
 from flask_cors import CORS
+from flask_talisman import Talisman
 
 app = Flask(__name__,static_folder='downloads')
 CORS(app)
+Talisman(app, content_security_policy=None)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -58,6 +60,6 @@ def star():
 
 def start():
    return app
-   
+
 if __name__ == '__main__':
     app.run(debug=True)
