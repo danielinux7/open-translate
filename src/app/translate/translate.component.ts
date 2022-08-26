@@ -195,6 +195,7 @@ export class TranslateComponent implements OnInit {
 
   onStarred() {
     if (this.starred === false) {
+      this.edit = false;
       const formData = new FormData();
       formData.append('langSrc', this.selectedSrcLang.id);
       formData.append('langTgt', this.selectedTgtLang.id);
