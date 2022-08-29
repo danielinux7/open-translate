@@ -7,6 +7,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { TranslateComponent } from './translate/translate.component';
 import { FooterComponent } from './footer/footer.component';
 import { ClipboardModule } from 'ngx-clipboard';
+import { CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ClipboardModule } from 'ngx-clipboard';
     HttpClientModule,
     ClipboardModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

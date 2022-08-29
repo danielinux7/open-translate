@@ -3,6 +3,7 @@
 #server
 models
 downloads
+starred
 __pycache__
 *.log
 models.config

@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Lang, Dlink } from '../language';
 import { TranslateService } from '../translate.service';
+import { CookieService} from 'ngx-cookie-service';
+import * as id from "uuid";
 
 @Component({
   selector: 'translate',
@@ -28,7 +30,7 @@ export class TranslateComponent implements OnInit {
   // regular expression for lines with only white spaces
   regexp: RegExp = /^[\t\r\n\s]*$/;
 
-  constructor(private translateService: TranslateService) { }
+  constructor(private translateService: TranslateService, private cookie: CookieService) { }
 
   ngOnInit(): void {
     this.getLangs();
@@ -196,11 +198,14 @@ export class TranslateComponent implements OnInit {
   onStarred() {
     if (this.starred === false) {
       this.edit = false;
+      if (this.cookie.get("UUID") === '')
+        this.cookie.set("UUID",id.v4())
       const formData = new FormData();
       formData.append('langSrc', this.selectedSrcLang.id);
       formData.append('langTgt', this.selectedTgtLang.id);
       formData.append('source', this.src);
       formData.append('target', this.tgt);
+      formData.append('UUID', this.cookie.get("UUID"));
       this.translateService.setStar(formData)
         .subscribe(data => this.starred = data["star"]);
     }
