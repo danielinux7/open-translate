@@ -147,6 +147,17 @@
     <button *ngIf="selectedType==='photo'" (click)="onRead()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="read">Уаԥха</button>
     <button *ngIf="selectedType==='conv'" (click)="onConv()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="conv">Аиҭакра</button>
   </div>
+  <div *ngIf="!tgt">
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <span class="material-icons-outlined">
+  bolt
+  </span>
+  <strong>Алҵшәа бзиақәа уоуарц азы,</strong> еиҭагатәу аҳәоу ииашоу аграмматикеи апунктуациеи амазароуп, иара убас иаламзароуп ацифрақәеи арқьаҿрақәеи.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  </div>
+  </div>
   <div *ngIf="tgt">
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <span class="material-icons-outlined">
