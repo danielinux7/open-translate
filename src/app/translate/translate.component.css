@@ -21,6 +21,10 @@
   text-align: center;
 }
 
+textarea {
+  padding-right: 1.5em;
+}
+
 .choose-document-prompt {
   color: #000;
   font-family: 'Google Sans', sans-serif;
