@@ -1,7 +1,21 @@
-<div style="text-align:center;margin-top: 200px;" >
-<button (click)="initiateRecording()" class="btn btn-primary" *ngIf="!recording" style="cursor: pointer;background-color: green;color: white;font-size: 40px;"> Start Recording </button>
-<button (click)="stopRecording()" class="btn btn-danger" *ngIf="recording" style="cursor: pointer;background-color: red;color: white;font-size: 40px;"> Stop Recording </button>
-<audio controls="" *ngIf="url">
-<source [src]="sanitize(url)" type="audio/wav">
-</audio>
-</div>
+<div class="container-xl p-0 height-google">
+    <div class="shadow-google bg-white">
+        <div class="row m-0">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section">
+                {{currentSub.sentence}}</div>
+            <div class="col-sm-12 px-0 mic-section">
+                <span *ngIf="!recording" class="material-icons-outlined" (click)="initiateRecording()">
+                    mic
+                </span>
+                <span *ngIf="recording" class="material-icons-outlined" [class.active-mic]="recording"
+                    (click)="stopRecording()">
+                    mic
+                </span>
+                <div>
+                    <audio controls="" *ngIf="url">
+                        <source [src]="sanitize(url)" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+        </div>
