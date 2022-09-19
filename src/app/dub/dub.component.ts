@@ -21,6 +21,7 @@ export class DubComponent {
   recording = false;
   currentSub: Subtitle;
   subtitles: Subtitle[];
+  subindex: number;
   url;
   error;
   constructor(private domSanitizer: DomSanitizer) { }
@@ -108,7 +109,22 @@ export class DubComponent {
   }
   ngOnInit() {
     this.subtitles = this.getSubtitles()
-    this.currentSub = this.subtitles[0]
+    this.subindex = 0;
+    this.currentSub = this.subtitles[this.subindex]
+  }
+
+  onNext() {
+    if (this.subindex < this.subtitles.length - 1){
+      this.subindex = this.subindex + 1;
+      this.currentSub = this.subtitles[this.subindex]
+    }
+  }
+
+  onPrevious() {
+    if (this.subindex > 0){
+      this.subindex = this.subindex - 1;
+      this.currentSub = this.subtitles[this.subindex]
+    }
   }
 
   getSubtitles(): Subtitle[] {
