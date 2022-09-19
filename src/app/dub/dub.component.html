@@ -3,7 +3,12 @@
         <div class="row m-0">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section">
-                {{currentSub.sentence}}</div>
+                {{currentSub.sentence}}
+            </div>
+            <div class="col-sm-4"></div>
+            <mat-progress-bar [appProgressBarColor]="progressBarColor" class="col-sm-4 audio-progress"
+                mode="determinate" [value]="progressbarValue"></mat-progress-bar>
+            <div class="col-sm-4">{{cursec}}/{{currentSub.duration}} асекундқәа</div>
             <div class="col-sm-12 px-0 mic-section">
                 <span *ngIf="!recording" class="material-icons-outlined" (click)="initiateRecording()">
                     mic
@@ -17,5 +22,9 @@
                         <source [src]="sanitize(url)" type="audio/wav">
                     </audio>
                 </div>
+            </div>
+            <div class="col-1"></div>
+            <div *ngIf="errorBar" class="col-10 alert alert-warning alert-dismissible fade show" role="alert">
+                {{errorBar}}
             </div>
         </div>

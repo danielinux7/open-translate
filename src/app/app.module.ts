@@ -10,6 +10,8 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { CookieService} from 'ngx-cookie-service';
 import { DubComponent } from './dub/dub.component';
 import { RouterModule } from '@angular/router';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {ProgressBarColor} from './dub/progress-bar-color';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { RouterModule } from '@angular/router';
     NavBarComponent,
     TranslateComponent,
     FooterComponent,
-    DubComponent
+    DubComponent,
+    ProgressBarColor
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ClipboardModule,
+    MatProgressBarModule,
     RouterModule.forRoot([
     {path: '', component: TranslateComponent},
     {path: 'dub', component: DubComponent},

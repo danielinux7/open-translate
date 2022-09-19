@@ -4,6 +4,7 @@ import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SUBTITLES } from './subtitles';
 import { Subtitle } from './subtitle';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dub',
@@ -12,11 +13,12 @@ import { Subtitle } from './subtitle';
 })
 export class DubComponent {
   title = 'micRecorder';
-  //Lets declare Record OBJ
   record;
-  //Will use this flag for toggeling recording
+  progressbarValue = 0.0;
+  cursec = 0.0;
+  errorBar = "";
+  progressBarColor = "blue";
   recording = false;
-  //URL of Blob
   currentSub: Subtitle;
   subtitles: Subtitle[];
   url;
@@ -50,7 +52,30 @@ export class DubComponent {
     var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
     this.record = new StereoAudioRecorder(stream, options);
     this.record.record();
+    this.progressBarColor = "blue";
+    this.progressbarValue = 0.0;
+    this.errorBar = "";
+    this.startTimer(this.currentSub.duration)
   }
+
+  startTimer(seconds: number) {
+    const time = seconds;
+    const timer$ = interval(100);
+    const sub = timer$.subscribe((milisec) => {
+      this.progressbarValue = (100.0/seconds)*(milisec/10.0);
+      this.cursec = milisec/10.0;
+      if ((milisec/10.0)/(seconds) >= 0.7) {
+        this.progressBarColor = "green";
+      }
+      if ((milisec/10.0)/(seconds) > 1.0) {
+        this.progressBarColor = "red";
+      }
+      if (!this.recording) {
+        sub.unsubscribe();
+      }
+    });
+  }
+
   /**
   * Stop recording.
   */
@@ -63,9 +88,17 @@ export class DubComponent {
   * @param  {any} blob Blog
   */
   processRecording(blob) {
-    this.url = URL.createObjectURL(blob);
-    console.log("blob", blob);
-    console.log("url", this.url);
+    if (this.cursec/this.currentSub.duration < 0.7) {
+      this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+    }
+    else if (this.cursec/this.currentSub.duration > 1) {
+      this.errorBar = "Анҵамҭа аура дуцәоуп!";
+    }
+    else {
+      this.url = URL.createObjectURL(blob);
+    }
+    // console.log("blob", blob);
+    // console.log("url", this.url);
   }
   /**
   * Process Error.
@@ -73,7 +106,7 @@ export class DubComponent {
   errorCallback(error) {
     this.error = 'Can not play audio in your browser';
   }
-  ngOnInit() { 
+  ngOnInit() {
     this.subtitles = this.getSubtitles()
     this.currentSub = this.subtitles[0]
   }

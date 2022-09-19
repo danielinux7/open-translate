@@ -1,23 +1,23 @@
 .active-mic {
-    font-family: 'Material Icons';
-    color: #bd2130;
-  }
+  font-family: 'Material Icons';
+  color: #bd2130;
+}
 
-  .mic-section {
-    text-align: center;
-  }
+.mic-section {
+  text-align: center;
+}
 
-  .material-icons-outlined {
-    font-size: 36px
-  }
+.material-icons-outlined {
+  font-size: 36px
+}
 
-  .sentence-section {
-    color: #000;
-    background-color: #f5f5f5;
-    font-family: 'Google Sans', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 30px;
-    opacity: .87;
-    text-align: center;
-  }
+.sentence-section {
+  color: #000;
+  background-color: #f5f5f5;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  opacity: .87;
+  text-align: center;
+}
