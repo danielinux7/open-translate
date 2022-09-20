@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
-import { SUBTITLES } from './subtitles';
+import SUBTITLES from '../../assets/yargi/1/caption.json';  
 import { Subtitle } from './subtitle';
-import { interval, Subscription } from 'rxjs';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-dub',
@@ -19,6 +19,7 @@ export class DubComponent {
   errorBar = "";
   progressBarColor = "blue";
   recording = false;
+  urlorginal = "";
   currentSub: Subtitle;
   subtitles: Subtitle[];
   subindex: number;
@@ -111,12 +112,14 @@ export class DubComponent {
     this.subtitles = this.getSubtitles()
     this.subindex = 0;
     this.currentSub = this.subtitles[this.subindex]
+    this.urlorginal = "/assets/yargi/1/"+this.currentSub["clip"]+".mp3";
   }
 
   onNext() {
     if (this.subindex < this.subtitles.length - 1){
       this.subindex = this.subindex + 1;
       this.currentSub = this.subtitles[this.subindex]
+      this.urlorginal = "/assets/yargi/1/"+this.currentSub["clip"]+".mp3";
     }
   }
 
@@ -124,6 +127,7 @@ export class DubComponent {
     if (this.subindex > 0){
       this.subindex = this.subindex - 1;
       this.currentSub = this.subtitles[this.subindex]
+      this.urlorginal = "/assets/yargi/1/"+this.currentSub["clip"]+".mp3";
     }
   }
 
