@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
-import SUBTITLES from '../../assets/yargi/1/caption.json';  
+import SUBTITLES from '../../assets/yargi/1/caption.json';
 import { Subtitle } from './subtitle';
 import { interval } from 'rxjs';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 
 @Component({
   selector: 'app-dub',
@@ -25,7 +26,7 @@ export class DubComponent {
   subindex: number;
   url;
   error;
-  constructor(private domSanitizer: DomSanitizer) { }
+  constructor(private domSanitizer: DomSanitizer, private dbService: NgxIndexedDBService) { }
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url);
   }
@@ -64,12 +65,12 @@ export class DubComponent {
     const time = seconds;
     const timer$ = interval(100);
     const sub = timer$.subscribe((milisec) => {
-      this.progressbarValue = (100.0/seconds)*(milisec/10.0);
-      this.cursec = milisec/10.0;
-      if ((milisec/10.0)/(seconds) >= 0.7) {
+      this.progressbarValue = (100.0 / seconds) * (milisec / 10.0);
+      this.cursec = milisec / 10.0;
+      if ((milisec / 10.0) / (seconds) >= 0.7) {
         this.progressBarColor = "green";
       }
-      if ((milisec/10.0)/(seconds) > 1.0) {
+      if ((milisec / 10.0) / (seconds) > 1.0) {
         this.progressBarColor = "red";
       }
       if (!this.recording) {
@@ -90,17 +91,26 @@ export class DubComponent {
   * @param  {any} blob Blog
   */
   processRecording(blob) {
-    if (this.cursec/this.currentSub.duration < 0.7) {
+    if (this.cursec / this.currentSub.duration < 0.7) {
       this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
     }
-    else if (this.cursec/this.currentSub.duration > 1) {
+    else if (this.cursec / this.currentSub.duration > 1) {
       this.errorBar = "Анҵамҭа аура дуцәоуп!";
     }
     else {
       this.url = URL.createObjectURL(blob);
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+        if (!dub) {
+          this.dbService.add('dub', { clip: blob, id: this.currentSub["clip"] })
+            .subscribe((dub) => { });
+        }
+        else {
+          this.dbService.update('dub', { clip: blob, id: this.currentSub["clip"] })
+            .subscribe((dub) => { });
+        }
+      });
+
     }
-    // console.log("blob", blob);
-    // console.log("url", this.url);
   }
   /**
   * Process Error.
@@ -112,22 +122,46 @@ export class DubComponent {
     this.subtitles = this.getSubtitles()
     this.subindex = 0;
     this.currentSub = this.subtitles[this.subindex]
-    this.urlorginal = "/assets/yargi/1/"+this.currentSub["clip"]+".mp3";
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+      if (!dub) {
+        this.url = "";
+      }
+      else {
+        this.url = URL.createObjectURL(dub["clip"]);
+      }
+    });
   }
 
   onNext() {
-    if (this.subindex < this.subtitles.length - 1){
+    if (this.subindex < this.subtitles.length - 1) {
       this.subindex = this.subindex + 1;
       this.currentSub = this.subtitles[this.subindex]
-      this.urlorginal = "/assets/yargi/1/"+this.currentSub["clip"]+".mp3";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+        if (!dub) {
+          this.url = "";
+        }
+        else {
+          this.url = URL.createObjectURL(dub["clip"]);
+        }
+      });
     }
   }
 
   onPrevious() {
-    if (this.subindex > 0){
+    if (this.subindex > 0) {
       this.subindex = this.subindex - 1;
       this.currentSub = this.subtitles[this.subindex]
-      this.urlorginal = "/assets/yargi/1/"+this.currentSub["clip"]+".mp3";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+        if (!dub) {
+          this.url = "";
+        }
+        else {
+          this.url = URL.createObjectURL(dub["clip"]);
+        }
+      });
     }
   }
 

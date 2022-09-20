@@ -37,9 +37,7 @@
             </button>
         </div>
         <div class="row m-0">
-            <audio controls="" *ngIf="url">
-                <source [src]="sanitize(url)" type="audio/wav">
-            </audio>
+            <audio controls="" *ngIf="url" [src]="sanitize(url)"></audio>
         </div>
         <div class="row m-0">
             <div *ngIf="errorBar" class="col-10 alert alert-warning alert-dismissible fade show" role="alert">
