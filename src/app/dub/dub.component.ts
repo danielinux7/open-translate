@@ -6,7 +6,7 @@ import SUBTITLES from '../../assets/yargi/1/caption.json';
 import { Subtitle } from './subtitle';
 import { interval } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
-import { saveAs } from "file-saver";
+import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
 
 @Component({
@@ -52,7 +52,6 @@ export class DubComponent {
     var options = {
       mimeType: "audio/wav",
       numberOfAudioChannels: 1,
-      sampleRate: 44000,
     };
     //Start Actuall Recording
     var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;

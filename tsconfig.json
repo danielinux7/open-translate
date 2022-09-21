@@ -30,5 +30,10 @@
     "strictTemplates": true,
     "resolveJsonModule": true,
     "esModuleInterop": true
-  }
+  },
+  "paths": {
+    "file-saver-es": [
+      "@types/file-saver"
+    ]
+  } 
 }
