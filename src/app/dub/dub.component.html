@@ -28,10 +28,10 @@
                 [value]="progressbarValue"></mat-progress-bar>
             <div class="col-2"></div>
         </div>
-        <div class="mic-section">{{cursec}}/{{currentSub.duration}} асекундқәа</div>
+        <div class="seconds">{{cursec}}/{{currentSub.duration}} асекундқәа</div>
         <div class="row m-0">
             <button (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
-                <span class="material-icons-outlined">
+                <span class="fs-36 material-icons-outlined">
                     navigate_before
                 </span>
             </button>
@@ -45,7 +45,7 @@
                 </span>
             </div>
             <button (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
-                <span class="material-icons-outlined">
+                <span class="fs-36 material-icons-outlined">
                     navigate_next
                 </span>
             </button>

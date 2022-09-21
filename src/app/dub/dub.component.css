@@ -1,5 +1,4 @@
 .active-mic {
-  font-family: 'Material Icons';
   color: #bd2130;
 }
 
@@ -7,8 +6,16 @@
   text-align: center;
 }
 
+.seconds {
+  text-align: center;
+}
+
 .right-section {
   text-align: right;
+}
+
+.right-section button {
+  color: #777;
 }
 
 .fs-30 {
@@ -28,4 +35,8 @@
   line-height: 30px;
   opacity: .87;
   text-align: center;
+  min-height: 200px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
