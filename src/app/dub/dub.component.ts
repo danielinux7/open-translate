@@ -6,6 +6,8 @@ import SUBTITLES from '../../assets/yargi/1/caption.json';
 import { Subtitle } from './subtitle';
 import { interval } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { saveAs } from "file-saver";
+import JSZip from "jszip";
 
 @Component({
   selector: 'app-dub',
@@ -99,7 +101,7 @@ export class DubComponent {
     }
     else {
       this.url = URL.createObjectURL(blob);
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"] })
             .subscribe((dub) => { });
@@ -123,7 +125,7 @@ export class DubComponent {
     this.subindex = 0;
     this.currentSub = this.subtitles[this.subindex]
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
-    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!dub) {
         this.url = "";
       }
@@ -138,7 +140,7 @@ export class DubComponent {
       this.subindex = this.subindex + 1;
       this.currentSub = this.subtitles[this.subindex]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.url = "";
         }
@@ -154,7 +156,7 @@ export class DubComponent {
       this.subindex = this.subindex - 1;
       this.currentSub = this.subtitles[this.subindex]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.url = "";
         }
@@ -172,6 +174,14 @@ export class DubComponent {
   onDownload() {
     this.dbService.getAll('dub').subscribe((dub) => {
       console.log(dub);
+      const zip = new JSZip();
+      for (let i in dub) {
+        zip.file(dub[i]["clip"]+".wav",dub[i]["audio"])
+      }
+      zip.generateAsync({ type: "blob" })
+        .then(function (content) {
+          saveAs(content, "audio.zip");
+        });
     });
   }
 }
