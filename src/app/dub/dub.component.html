@@ -1,6 +1,13 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
-        <div>{{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}</div>
+        <div class="row m-0">
+            <div class="col-6">{{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}</div>
+            <div class="col-6 download-section">
+                <button (click)="onDownload()" type="button" class="p-0 btn no-box-shadow material-icons-outlined">
+                    cloud_download
+                </button>
+            </div>
+        </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section">

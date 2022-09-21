@@ -168,4 +168,10 @@ export class DubComponent {
   getSubtitles(): Subtitle[] {
     return SUBTITLES;
   }
+
+  onDownload() {
+    this.dbService.getAll('dub').subscribe((dub) => {
+      console.log(dub);
+    });
+  }
 }

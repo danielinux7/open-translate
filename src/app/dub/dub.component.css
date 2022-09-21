@@ -7,8 +7,16 @@
   text-align: center;
 }
 
+.download-section {
+  text-align: right;
+}
+
+.download-section button{
+  font-size: 30px;
+}
+
 .material-icons-outlined {
-  font-size: 36px
+  font-size: 36px;
 }
 
 .sentence-section {
