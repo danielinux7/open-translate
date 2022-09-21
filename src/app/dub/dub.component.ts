@@ -191,4 +191,8 @@ export class DubComponent {
       this.url = "";
     });
   }
+
+  onPlay() {
+    
+  }
 }

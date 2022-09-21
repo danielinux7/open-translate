@@ -7,7 +7,8 @@
                 </span>
             </div>
             <div class="col-6 right-section">
-                <button (click)="onDownload()" type="button" class="p-0 fs-30 btn no-box-shadow material-icons-outlined">
+                <button (click)="onDownload()" type="button"
+                    class="p-0 fs-30 btn no-box-shadow material-icons-outlined">
                     cloud_download
                 </button>
                 <button (click)="onDelete()" type="button" class="p-0 fs-30 btn no-box-shadow material-icons-outlined">
@@ -35,7 +36,15 @@
                     navigate_before
                 </span>
             </button>
-            <div class="col-8 px-0 mic-section">
+            <div class="row col-8 m-0">
+            <div class="col-5">
+                <button (click)="onPlay()" type="button" class="btn no-box-shadow">
+                    <span class="red fs-36 material-icons">
+                        play_arrow
+                    </span>
+                </button>
+            </div>
+            <button class="col-2 px-0 mic-section btn no-box-shadow">
                 <span *ngIf="!recording" class="fs-36 material-icons-outlined" (click)="initiateRecording()">
                     mic
                 </span>
@@ -43,7 +52,15 @@
                     (click)="stopRecording()">
                     mic
                 </span>
+            </button>
+            <div class="col-5">
+                <button *ngIf="url" (click)="onPlay()" type="button" class="btn no-box-shadow">
+                    <span class="green fs-36 material-icons">
+                        play_arrow
+                    </span>
+                </button>
             </div>
+        </div>
             <button (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_next

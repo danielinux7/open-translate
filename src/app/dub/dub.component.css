@@ -9,6 +9,13 @@
 .seconds {
   text-align: center;
 }
+.green {
+  color: rgb(40, 167, 69);
+}
+
+.red {
+  color: #bd2130;
+}
 
 .right-section {
   text-align: right;
