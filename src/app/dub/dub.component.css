@@ -7,15 +7,15 @@
   text-align: center;
 }
 
-.download-section {
+.right-section {
   text-align: right;
 }
 
-.download-section button{
+.fs-30 {
   font-size: 30px;
 }
 
-.material-icons-outlined {
+.fs-36 {
   font-size: 36px;
 }
 

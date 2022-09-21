@@ -28,6 +28,7 @@ export class DubComponent {
   subindex: number;
   url;
   error;
+
   constructor(private domSanitizer: DomSanitizer, private dbService: NgxIndexedDBService) { }
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url);
@@ -176,12 +177,19 @@ export class DubComponent {
       console.log(dub);
       const zip = new JSZip();
       for (let i in dub) {
-        zip.file(dub[i]["clip"]+".wav",dub[i]["audio"])
+        zip.file(dub[i]["clip"] + ".wav", dub[i]["audio"])
       }
       zip.generateAsync({ type: "blob" })
         .then(function (content) {
           saveAs(content, "audio.zip");
         });
+    });
+  }
+
+  onDelete() {
+    this.dbService.clear('dub').subscribe((successDeleted) => {
+      console.log('success? ', successDeleted);
+      this.url = "";
     });
   }
 }

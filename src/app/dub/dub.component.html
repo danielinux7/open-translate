@@ -1,10 +1,17 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
         <div class="row m-0">
-            <div class="col-6">{{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}</div>
-            <div class="col-6 download-section">
-                <button (click)="onDownload()" type="button" class="p-0 btn no-box-shadow material-icons-outlined">
+            <div class="col-6">
+                <span>
+                    {{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}
+                </span>
+            </div>
+            <div class="col-6 right-section">
+                <button (click)="onDownload()" type="button" class="p-0 fs-30 btn no-box-shadow material-icons-outlined">
                     cloud_download
+                </button>
+                <button (click)="onDelete()" type="button" class="p-0 fs-30 btn no-box-shadow material-icons-outlined">
+                    delete_forever
                 </button>
             </div>
         </div>
@@ -29,10 +36,10 @@
                 </span>
             </button>
             <div class="col-8 px-0 mic-section">
-                <span *ngIf="!recording" class="material-icons-outlined" (click)="initiateRecording()">
+                <span *ngIf="!recording" class="fs-36 material-icons-outlined" (click)="initiateRecording()">
                     mic
                 </span>
-                <span *ngIf="recording" class="material-icons-outlined" [class.active-mic]="recording"
+                <span *ngIf="recording" class="fs-36 material-icons-outlined" [class.active-mic]="recording"
                     (click)="stopRecording()">
                     mic
                 </span>
