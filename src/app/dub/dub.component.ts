@@ -101,11 +101,11 @@ export class DubComponent {
       this.url = URL.createObjectURL(blob);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => { 
         if (!dub) {
-          this.dbService.add('dub', { clip: blob, id: this.currentSub["clip"] })
+          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"] })
             .subscribe((dub) => { });
         }
         else {
-          this.dbService.update('dub', { clip: blob, id: this.currentSub["clip"] })
+          this.dbService.update('dub', { audio: blob, clip: this.currentSub["clip"] })
             .subscribe((dub) => { });
         }
       });
@@ -128,7 +128,7 @@ export class DubComponent {
         this.url = "";
       }
       else {
-        this.url = URL.createObjectURL(dub["clip"]);
+        this.url = URL.createObjectURL(dub["audio"]);
       }
     });
   }
@@ -143,7 +143,7 @@ export class DubComponent {
           this.url = "";
         }
         else {
-          this.url = URL.createObjectURL(dub["clip"]);
+          this.url = URL.createObjectURL(dub["audio"]);
         }
       });
     }
@@ -159,7 +159,7 @@ export class DubComponent {
           this.url = "";
         }
         else {
-          this.url = URL.createObjectURL(dub["clip"]);
+          this.url = URL.createObjectURL(dub["audio"]);
         }
       });
     }

@@ -19,9 +19,9 @@ const dbConfig: any  = {
   version: 1,
   objectStoresMeta: [{
     store: 'dub',
-    storeConfig: { keyPath: 'id' },
+    storeConfig: { keyPath: 'clip' },
     storeSchema: [
-      { name: 'clip', keypath: 'clip' },
+      { name: 'audio', keypath: 'audio' },
     ]
   }]
 };
