@@ -1,6 +1,6 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
-        <div class="row m-0">
+        <div class="row m-0 mt-1">
             <div class="col-6">
                 <span>
                     {{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}
@@ -8,10 +8,10 @@
             </div>
             <div class="col-6 right-section">
                 <button (click)="onDownload()" type="button"
-                    class="p-0 fs-30 btn no-box-shadow material-icons-outlined">
+                    class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
                     cloud_download
                 </button>
-                <button (click)="onDelete()" type="button" class="p-0 fs-30 btn no-box-shadow material-icons-outlined">
+                <button (click)="onDelete()" type="button" class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
                     delete_forever
                 </button>
             </div>
@@ -30,43 +30,48 @@
             <div class="col-2"></div>
         </div>
         <div class="seconds">{{cursec}}/{{currentSub.duration}} асекундқәа</div>
-        <div class="row m-0">
+        <div class="row m-2 mb-3">
             <button (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_before
                 </span>
             </button>
-            <div class="row col-8 m-0">
-            <div class="col-5">
-                <button *ngIf="urlorginal" (click)="onTogglePlayOriginal()" type="button" class="btn no-box-shadow">
-                    <span *ngIf="!isPlayingOriginal||playingOriginal.paused" class="red fs-36 material-icons">
-                        play_arrow
-                    </span>
-                    <span *ngIf="isPlayingOriginal&&!playingOriginal.paused" class="red fs-36 material-icons">
-                        stop
-                    </span>
-                </button>
+            <div class="row col-8">
+                <div class="col-4 play-container">
+                    <button *ngIf="urlorginal" (click)="onTogglePlayOriginal()" type="button" class="play btn no-box-shadow">
+                        <span *ngIf="!isPlayingOriginal||playingOriginal.paused" class="red fs-36 material-icons">
+                            play_arrow
+                        </span>
+                        <span *ngIf="isPlayingOriginal&&!playingOriginal.paused" class="red fs-36 material-icons">
+                            stop
+                        </span>
+                    </button>
+                    <div *ngIf="urlorginal" class="background pink"></div>
+                </div>
+                <div class="col-4 play-container">
+                    <button class="play btn no-box-shadow">
+                        <span *ngIf="!recording" class="fs-36 material-icons-outlined" (click)="initiateRecording()">
+                            mic
+                        </span>
+                        <span *ngIf="recording" class="fs-36 material-icons-outlined" [class.active-mic]="recording"
+                            (click)="stopRecording()">
+                            mic
+                        </span>
+                    </button>
+                    <div class="background pink"></div>
+                </div>
+                <div class="col-4 play-container">
+                    <button *ngIf="url" (click)="onTogglePlay()" type="button" class="play btn no-box-shadow">
+                        <span *ngIf="!isPlaying||playing.paused" class="green fs-36 material-icons">
+                            play_arrow
+                        </span>
+                        <span *ngIf="isPlaying&&!playing.paused" class="green fs-36 material-icons">
+                            stop
+                        </span>
+                    </button>
+                    <div *ngIf="url" class="background blue"></div>
+                </div>
             </div>
-            <button class="col-2 px-0 mic-section btn no-box-shadow">
-                <span *ngIf="!recording" class="fs-36 material-icons-outlined" (click)="initiateRecording()">
-                    mic
-                </span>
-                <span *ngIf="recording" class="fs-36 material-icons-outlined" [class.active-mic]="recording"
-                    (click)="stopRecording()">
-                    mic
-                </span>
-            </button>
-            <div class="col-5">
-                <button *ngIf="url" (click)="onTogglePlay()" type="button" class="btn no-box-shadow">
-                    <span *ngIf="!isPlaying||playing.paused" class="green fs-36 material-icons">
-                        play_arrow
-                    </span>
-                    <span *ngIf="isPlaying&&!playing.paused" class="green fs-36 material-icons">
-                        stop
-                    </span>
-                </button>
-            </div>
-        </div>
             <button (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_next

@@ -25,8 +25,8 @@
   color: #777;
 }
 
-.fs-30 {
-  font-size: 30px;
+.fs-28 {
+  font-size: 28px;
 }
 
 .fs-36 {
@@ -46,4 +46,44 @@
   align-items: center;
   justify-content: center;
   display: flex;
+}
+
+.play {
+  align-items: center;
+  background: var(--white);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  height: 65px;
+  justify-content: center;
+  width: 65px;
+  z-index: 100;
+}
+
+.background {
+  border-radius: 50%;
+  filter: blur(7.6px);
+  height: 80px;
+  margin: 0 auto;
+  position: absolute;
+  transition: opacity var(--transition-duration) linear;
+  width: 80px;
+  will-change: opacity;
+}
+
+.blue {
+  background: linear-gradient(270deg,#88d1f1,#b1b5e5);
+  opacity: .5;
+}
+
+.pink {
+  background: linear-gradient(-270deg,#f89096,#b1b4e5);
+  opacity: .5;
+}
+
+.play-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
