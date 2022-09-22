@@ -1,7 +1,7 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
-        <div class="row m-0 mt-1">
-            <div class="col-6">
+        <div class="row m-1">
+            <div class="col-6 curSub">
                 <span>
                     {{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}
                 </span>
@@ -30,7 +30,7 @@
             <div class="col-2"></div>
         </div>
         <div class="seconds">{{cursec}}/{{currentSub.duration}} асекундқәа</div>
-        <div class="row m-2 mb-3">
+        <div class="row m-2 mb-3 justify-content-center">
             <button (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_before
@@ -78,8 +78,8 @@
                 </span>
             </button>
         </div>
-        <div class="row m-0">
-            <div *ngIf="errorBar" class="col-10 alert alert-warning alert-dismissible fade show" role="alert">
+        <div class="row m-0 justify-content-center">
+            <div *ngIf="errorBar" class="col-10 alert alert-warning fade show" role="alert">
                 {{errorBar}}
             </div>
         </div>

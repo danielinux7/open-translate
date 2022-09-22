@@ -87,3 +87,11 @@
   justify-content: center;
   position: relative;
 }
+
+.alert {
+  text-align: center;
+}
+
+.curSub{
+  color: #212529
+}

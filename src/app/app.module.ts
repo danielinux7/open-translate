@@ -22,6 +22,7 @@ const dbConfig: any  = {
     storeConfig: { keyPath: 'clip' },
     storeSchema: [
       { name: 'audio', keypath: 'audio' },
+      { name: 'duration', keypath: 'duration' }
     ]
   }]
 };

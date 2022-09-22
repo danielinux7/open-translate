@@ -110,11 +110,11 @@ export class DubComponent {
       this.url = URL.createObjectURL(blob);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
-          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"] })
+          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
             .subscribe((dub) => { });
         }
         else {
-          this.dbService.update('dub', { audio: blob, clip: this.currentSub["clip"] })
+          this.dbService.update('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
             .subscribe((dub) => { });
         }
       });
@@ -151,9 +151,14 @@ export class DubComponent {
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
         }
         else {
           this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
         }
       });
     }
@@ -168,9 +173,14 @@ export class DubComponent {
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
         }
         else {
           this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
         }
       });
     }
