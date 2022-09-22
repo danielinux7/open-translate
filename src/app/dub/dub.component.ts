@@ -208,6 +208,8 @@ export class DubComponent {
     this.dbService.clear('dub').subscribe((successDeleted) => {
       console.log('success? ', successDeleted);
       this.url = "";
+      this.cursec = 0.0;
+      this.progressbarValue = 0.0;
     });
   }
 
