@@ -6,14 +6,32 @@
                     {{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}
                 </span>
             </div>
-            <div class="col-6 right-section">
+            <div *ngIf="url" class="col-6 right-section">
                 <button (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
                     cloud_download
                 </button>
-                <button (click)="onDelete()" type="button" class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
+                <button data-toggle="modal" data-target="#deleteModel" type="button"
+                    class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
                     delete_forever
                 </button>
+                <!-- Modal -->
+                <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                Ианыхтәума унҵамҭақәа зегьы?
+                            </div>
+                            <div class="modal-footer row m-0">
+                                <button type="button" class="col-4 btn btn-secondary" data-dismiss="modal">Мап</button>
+                                <div class="col-3"></div>
+                                <button type="button" class="col-4 btn btn-danger" (click)="onDelete()"
+                                    data-dismiss="modal">Ааи, ианых</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row m-0">
@@ -38,7 +56,8 @@
             </button>
             <div class="row col-8">
                 <div class="col-4 play-container">
-                    <button *ngIf="urlorginal" (click)="onTogglePlayOriginal()" type="button" class="play btn no-box-shadow">
+                    <button *ngIf="urlorginal" (click)="onTogglePlayOriginal()" type="button"
+                        class="play btn no-box-shadow">
                         <span *ngIf="!isPlayingOriginal||playingOriginal.paused" class="red fs-36 material-icons">
                             play_arrow
                         </span>
