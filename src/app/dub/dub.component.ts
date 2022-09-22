@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
+import {  Injectable, Component } from '@angular/core';
 declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import SUBTITLES from '../../assets/yargi/1/caption.json';
 import { Subtitle } from './subtitle';
-import { interval } from 'rxjs';
+import { Observable,interval } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dub',
   templateUrl: './dub.component.html',
   styleUrls: ['./dub.component.css']
 })
+@Injectable()
 export class DubComponent {
   title = 'micRecorder';
   record;
@@ -22,6 +24,11 @@ export class DubComponent {
   errorBar = "";
   progressBarColor = "blue";
   recording = false;
+  playing = new Audio();
+  isPlaying = false;
+  playingOriginal = new Audio();
+  isPlayingOriginal = false;
+
   urlorginal = "";
   currentSub: Subtitle;
   subtitles: Subtitle[];
@@ -29,9 +36,9 @@ export class DubComponent {
   url;
   error;
 
-  constructor(private domSanitizer: DomSanitizer, private dbService: NgxIndexedDBService) { }
+  constructor(private domSanitizer: DomSanitizer, private dbService: NgxIndexedDBService, private http: HttpClient) { }
   sanitize(url: string) {
-    return this.domSanitizer.bypassSecurityTrustUrl(url);
+    return this.domSanitizer.bypassSecurityTrustUrl(url)["changingThisBreaksApplicationSecurity"];
   }
   /**
   * Start recording.
@@ -140,6 +147,7 @@ export class DubComponent {
       this.subindex = this.subindex + 1;
       this.currentSub = this.subtitles[this.subindex]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+      this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.url = "";
@@ -156,6 +164,7 @@ export class DubComponent {
       this.subindex = this.subindex - 1;
       this.currentSub = this.subtitles[this.subindex]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+      this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.url = "";
@@ -192,7 +201,35 @@ export class DubComponent {
     });
   }
 
-  onPlay() {
-    
+  onTogglePlay() {
+    this.playing.src = this.sanitize(this.url);
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      this.playing.load();
+      this.playing.play();
+      this.playing.onended = function() { }
+    }
+    else {
+      this.isPlaying = false;
+      this.playing.pause();
+    }
+  }
+
+  onTogglePlayOriginal() {
+    this.playingOriginal.src = this.urlorginal;
+    if (!this.isPlayingOriginal) {
+      this.isPlayingOriginal = true;
+      this.playingOriginal.load();
+      this.playingOriginal.play();
+      this.playingOriginal.onended = function() { }
+    }
+    else {
+      this.isPlayingOriginal = false;
+      this.playingOriginal.pause();
+    }
+  }
+
+  getAsset(url:any) {
+    this.http.get<any>(url);
   }
 }

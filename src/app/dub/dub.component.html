@@ -38,9 +38,12 @@
             </button>
             <div class="row col-8 m-0">
             <div class="col-5">
-                <button (click)="onPlay()" type="button" class="btn no-box-shadow">
-                    <span class="red fs-36 material-icons">
+                <button *ngIf="urlorginal" (click)="onTogglePlayOriginal()" type="button" class="btn no-box-shadow">
+                    <span *ngIf="!isPlayingOriginal||playingOriginal.paused" class="red fs-36 material-icons">
                         play_arrow
+                    </span>
+                    <span *ngIf="isPlayingOriginal&&!playingOriginal.paused" class="red fs-36 material-icons">
+                        stop
                     </span>
                 </button>
             </div>
@@ -54,9 +57,12 @@
                 </span>
             </button>
             <div class="col-5">
-                <button *ngIf="url" (click)="onPlay()" type="button" class="btn no-box-shadow">
-                    <span class="green fs-36 material-icons">
+                <button *ngIf="url" (click)="onTogglePlay()" type="button" class="btn no-box-shadow">
+                    <span *ngIf="!isPlaying||playing.paused" class="green fs-36 material-icons">
                         play_arrow
+                    </span>
+                    <span *ngIf="isPlaying&&!playing.paused" class="green fs-36 material-icons">
+                        stop
                     </span>
                 </button>
             </div>
@@ -68,15 +74,9 @@
             </button>
         </div>
         <div class="row m-0">
-            <audio controls="" *ngIf="url" [src]="sanitize(url)"></audio>
-        </div>
-        <div class="row m-0">
             <div *ngIf="errorBar" class="col-10 alert alert-warning alert-dismissible fade show" role="alert">
                 {{errorBar}}
             </div>
-        </div>
-        <div class="row m-0">
-            <audio controls="" src="{{urlorginal}}"></audio>
         </div>
     </div>
 </div>
