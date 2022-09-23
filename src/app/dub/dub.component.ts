@@ -58,7 +58,7 @@ export class DubComponent {
   successCallback(stream) {
     var options = {
       mimeType: "audio/wav",
-      numberOfAudioChannels: 1,
+      numberOfAudioChannels: 1
     };
     //Start Actuall Recording
     var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
@@ -81,6 +81,7 @@ export class DubComponent {
       }
       if ((milisec / 10.0) / (seconds) > 1.0) {
         this.progressBarColor = "red";
+        this.stopRecording();
       }
       if (!this.recording) {
         sub.unsubscribe();
