@@ -55,8 +55,8 @@
                 </span>
             </button>
             <div class="row col-8">
-                <div class="col-4 play-container">
-                    <button *ngIf="urlorginal" (click)="onTogglePlayOriginal()" type="button"
+                <div class="col-4 play-container" (click)="onTogglePlayOriginal()">
+                    <button *ngIf="urlorginal" type="button"
                         class="play btn no-box-shadow">
                         <span *ngIf="!isPlayingOriginal||playingOriginal.paused" class="red fs-36 material-icons">
                             play_arrow
@@ -79,8 +79,8 @@
                     </button>
                     <div class="background pink"></div>
                 </div>
-                <div class="col-4 play-container">
-                    <button *ngIf="url" (click)="onTogglePlay()" type="button" class="play btn no-box-shadow">
+                <div class="col-4 play-container" (click)="onTogglePlay()">
+                    <button *ngIf="url" type="button" class="play btn no-box-shadow">
                         <span *ngIf="!isPlaying||playing.paused" class="green fs-36 material-icons">
                             play_arrow
                         </span>
