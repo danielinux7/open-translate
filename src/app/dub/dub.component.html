@@ -67,13 +67,12 @@
                     </button>
                     <div *ngIf="urlorginal" class="background pink"></div>
                 </div>
-                <div class="col-4 play-container">
+                <div class="col-4 play-container" (click)="onToggleRecording()">
                     <button class="play btn no-box-shadow">
-                        <span *ngIf="!recording" class="fs-36 material-icons-outlined" (click)="initiateRecording()">
+                        <span *ngIf="!recording" class="fs-36 material-icons-outlined">
                             mic
                         </span>
-                        <span *ngIf="recording" class="fs-36 material-icons-outlined" [class.active-mic]="recording"
-                            (click)="stopRecording()">
+                        <span *ngIf="recording" class="fs-36 material-icons-outlined" [class.active-mic]="recording">
                             mic
                         </span>
                     </button>

@@ -213,6 +213,15 @@ export class DubComponent {
     });
   }
 
+  onToggleRecording() {
+    if (!this.recording) {
+      this.initiateRecording();
+    }
+    else {
+      this.stopRecording();
+    }
+  }
+
   onTogglePlay() {
     this.playing.src = this.sanitize(this.url);
     if (!this.isPlaying) {
