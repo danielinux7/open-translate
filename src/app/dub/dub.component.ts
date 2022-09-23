@@ -67,20 +67,23 @@ export class DubComponent {
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
-    this.startTimer(this.currentSub.duration)
+  //   this.record.setRecordingDuration(this.currentSub.duration*1000, function() {
+  //     this.processRecording(this.getBlob());
+  //  });
+    this.startTimer();
   }
 
-  startTimer(seconds: number) {
-    const time = seconds;
+  startTimer() {
+    let seconds = this.currentSub.duration;
     const timer$ = interval(100);
     const sub = timer$.subscribe((milisec) => {
-      this.progressbarValue = (100.0 / seconds) * (milisec / 10.0);
       this.cursec = milisec / 10.0;
-      if ((milisec / 10.0) / (seconds) >= 0.7) {
+      this.progressbarValue = (100.0 / seconds) * this.cursec;
+      if (this.cursec / seconds >= 0.7) {
         this.progressBarColor = "green";
       }
-      if ((milisec / 10.0) / (seconds) > 1.0) {
-        this.progressBarColor = "red";
+      if (Math.floor(this.cursec / seconds) == 1.0) {
+        this.progressBarColor = "green";
         this.stopRecording();
       }
       if (!this.recording) {
@@ -94,7 +97,12 @@ export class DubComponent {
   */
   stopRecording() {
     this.recording = false;
-    this.record.stop(this.processRecording.bind(this));
+    if (!this.record) {
+      this.errorBar = "Амикрофон ԥшаам";
+    }
+    else {
+      this.record.stop(this.processRecording.bind(this));
+    }
   }
   /**
   * processRecording Do what ever you want with blob
@@ -103,9 +111,6 @@ export class DubComponent {
   processRecording(blob) {
     if (this.cursec / this.currentSub.duration < 0.7) {
       this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
-    }
-    else if (this.cursec / this.currentSub.duration > 1) {
-      this.errorBar = "Анҵамҭа аура дуцәоуп!";
     }
     else {
       this.url = URL.createObjectURL(blob);
