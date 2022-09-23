@@ -24,6 +24,7 @@ export class DubComponent {
   errorBar = "";
   progressBarColor = "blue";
   recording = false;
+  dubEmpty = true;
   playing = new Audio();
   isPlaying = false;
   playingOriginal = new Audio();
@@ -117,11 +118,11 @@ export class DubComponent {
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
           this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
-            .subscribe((dub) => { });
+            .subscribe((dub) => { this.dubEmpty = false; });
         }
         else {
           this.dbService.update('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
-            .subscribe((dub) => { });
+            .subscribe((dub) => { this.dubEmpty = false; });
         }
       });
 
@@ -147,6 +148,12 @@ export class DubComponent {
         this.progressBarColor = "green";
         this.cursec = dub["duration"];
         this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
+      }
+    });
+    this.dbService.count('dub').subscribe((count) => {
+      console.log(count);
+      if (count > 0) {
+        this.dubEmpty = false;
       }
     });
   }
@@ -215,7 +222,7 @@ export class DubComponent {
 
   onDelete() {
     this.dbService.clear('dub').subscribe((successDeleted) => {
-      console.log('success? ', successDeleted);
+      this.dubEmpty = true;
       this.url = "";
       this.cursec = 0.0;
       this.progressbarValue = 0.0;

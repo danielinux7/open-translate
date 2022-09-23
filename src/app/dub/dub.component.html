@@ -6,7 +6,7 @@
                     {{subtitles.indexOf(currentSub)+1}}/{{subtitles.length}}
                 </span>
             </div>
-            <div *ngIf="url" class="col-6 right-section">
+            <div *ngIf="!dubEmpty" class="col-6 right-section">
                 <button (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
                     cloud_download
