@@ -54,20 +54,20 @@
   border: none;
   border-radius: 50%;
   display: flex;
-  height: 65px;
+  height: 60px;
   justify-content: center;
-  width: 65px;
+  width: 60px;
   z-index: 100;
 }
 
 .background {
   border-radius: 50%;
   filter: blur(7.6px);
-  height: 80px;
+  height: 75px;
   margin: 0 auto;
   position: absolute;
   transition: opacity var(--transition-duration) linear;
-  width: 80px;
+  width: 75px;
   will-change: opacity;
 }
 
