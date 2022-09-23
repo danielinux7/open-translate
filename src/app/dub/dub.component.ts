@@ -144,6 +144,9 @@ export class DubComponent {
       }
       else {
         this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
       }
     });
   }
