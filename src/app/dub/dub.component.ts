@@ -9,6 +9,7 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
 import { HttpClient } from '@angular/common/http';
+import { CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dub',
@@ -37,7 +38,10 @@ export class DubComponent {
   url;
   error;
 
-  constructor(private domSanitizer: DomSanitizer, private dbService: NgxIndexedDBService, private http: HttpClient) { }
+  constructor(private domSanitizer: DomSanitizer, 
+              private dbService: NgxIndexedDBService, 
+              private http: HttpClient, 
+              private cookie: CookieService) { }
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url)["changingThisBreaksApplicationSecurity"];
   }
@@ -137,6 +141,8 @@ export class DubComponent {
   ngOnInit() {
     this.subtitles = this.getSubtitles()
     this.subindex = 0;
+    if (this.cookie.check('subindex'))
+      this.subindex = parseInt(this.cookie.get("subindex"));
     this.currentSub = this.subtitles[this.subindex]
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -161,6 +167,7 @@ export class DubComponent {
   onNext() {
     if (this.subindex < this.subtitles.length - 1) {
       this.subindex = this.subindex + 1;
+      this.cookie.set("subindex", this.subindex.toString())
       this.currentSub = this.subtitles[this.subindex]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
       this.getAsset(this.urlorginal);
@@ -183,6 +190,7 @@ export class DubComponent {
   onPrevious() {
     if (this.subindex > 0) {
       this.subindex = this.subindex - 1;
+      this.cookie.set("subindex", this.subindex.toString())
       this.currentSub = this.subtitles[this.subindex]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
       this.getAsset(this.urlorginal);
