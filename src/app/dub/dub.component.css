@@ -111,3 +111,10 @@
   top: 25%;
   width: 90%;
 }
+
+.cursub {
+  border-radius: 15%;
+  border:1px solid black;
+  width: 43px;
+  text-align: center;
+}

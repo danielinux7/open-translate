@@ -27,6 +27,7 @@ export class DubComponent {
   recording = false;
   dubEmpty = true;
   dubCount: number;
+  inputSub: number;
   playing = new Audio();
   isPlaying = false;
   playingOriginal = new Audio();
@@ -145,6 +146,7 @@ export class DubComponent {
     if (this.cookie.check('subindex'))
       this.subindex = parseInt(this.cookie.get("subindex"));
     this.currentSub = this.subtitles[this.subindex]
+    this.inputSub = this.subtitles.indexOf(this.currentSub)+1;
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!dub) {
@@ -170,6 +172,7 @@ export class DubComponent {
       this.subindex = this.subindex + 1;
       this.cookie.set("subindex", this.subindex.toString())
       this.currentSub = this.subtitles[this.subindex]
+      this.inputSub = this.subtitles.indexOf(this.currentSub)+1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
       this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -193,6 +196,7 @@ export class DubComponent {
       this.subindex = this.subindex - 1;
       this.cookie.set("subindex", this.subindex.toString())
       this.currentSub = this.subtitles[this.subindex]
+      this.inputSub = this.subtitles.indexOf(this.currentSub)+1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
       this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -278,5 +282,29 @@ export class DubComponent {
 
   getAsset(url:any) {
     this.http.get<any>(url);
+  }
+
+  onChangeSub() {
+    let tempNum = this.inputSub - 1;
+    if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
+      this.subindex = tempNum;
+      this.cookie.set("subindex", this.subindex.toString())
+      this.currentSub = this.subtitles[this.subindex]
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+      this.getAsset(this.urlorginal);
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!dub) {
+          this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+        }
+        else {
+          this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
+        }
+      });
+    }
   }
 }
