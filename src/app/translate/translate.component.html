@@ -3,14 +3,16 @@
     <span class="material-icons md-22 align-middle">
       translate
     </span>Аҳәоу</button>
-  <button hidden type="button" [class.active]="selectedType === 'doc'" class="mr-12px btn" (click)="onSelectType('doc')">
+  <button hidden type="button" [class.active]="selectedType === 'doc'" class="mr-12px btn"
+    (click)="onSelectType('doc')">
     <span class=" material-icons md-22 align-middle">
       insert_drive_file
     </span>Ашәҟәы</button>
   <button type="button" [class.active]="selectedType === 'conv'" class="mr-12px btn" (click)="onSelectType('conv')">
     <span class="md-22 align-middle">
-     Ԥ Аиҭакга</span></button>
-  <button hidden type="button" [class.active]="selectedType === 'photo'" class="mr-12px btn" (click)="onSelectType('photo')">
+      Ԥ Аиҭакга</span></button>
+  <button hidden type="button" [class.active]="selectedType === 'photo'" class="mr-12px btn"
+    (click)="onSelectType('photo')">
     <span class=" material-icons md-22 align-middle">
       insert_photo
     </span>Асахьа</button>
@@ -19,7 +21,8 @@
   <div class="shadow-google bg-white">
     <div *ngIf="selectedType !== 'conv'" class="row m-0 border-google nav" role="navigation">
       <div class="nav col" id="lang-src">
-        <div *ngFor="let lang of langs" [class.active]="lang === selectedSrcLang" (click)="onSelectSrc(lang)" class="lang nav-link">
+        <div *ngFor="let lang of langs" [class.active]="lang === selectedSrcLang" (click)="onSelectSrc(lang)"
+          class="lang nav-link">
           {{lang.name | uppercase}}
         </div>
       </div>
@@ -28,7 +31,8 @@
       </div>
       <div (click)="onSwap()" class="col-1 nav-link material-icons align-middle swap" id="swap-lang">swap_horiz</div>
       <div class="nav col" id="lang-tgt">
-        <div *ngFor="let lang of langs" [class.active]="lang === selectedTgtLang && selectedType!=='photo'" (click)="onSelectTgt(lang)" class="lang nav-link">
+        <div *ngFor="let lang of langs" [class.active]="lang === selectedTgtLang && selectedType!=='photo'"
+          (click)="onSelectTgt(lang)" class="lang nav-link">
           {{lang.name | uppercase}}
         </div>
       </div>
@@ -39,13 +43,16 @@
     <!-- Text -->
     <div *ngIf="selectedType==='text'" class="row m-0 form-group">
       <div class="col-sm-6 px-0">
-        <textarea [style.height]="height" [(ngModel)]="src" (ngModelChange)="onChangeText(mysrc)" #mysrc class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="source" rows="6"></textarea>
+        <textarea [style.height]="height" [(ngModel)]="src" (ngModelChange)="onChangeText(mysrc)" #mysrc
+          class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="source" rows="6"></textarea>
         <span *ngIf="src" class="clear material-icons" (click)="onClear()">
           clear
         </span>
       </div>
       <div class="col-sm-6 px-0 mobile">
-        <textarea [style.height]="height" [(ngModel)]="tgt" (ngModelChange)="onChangeText(mytgt)" #mytgt class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt" placeholder="{{placeholderTgt}}" #formInputText></textarea>
+        <textarea [style.height]="height" [(ngModel)]="tgt" (ngModelChange)="onChangeText(mytgt)" #mytgt
+          class="form-control rounded-0 mb-3 no-resize no-box-shadow" id="target" [readonly]="isReadOnlyTgt"
+          placeholder="{{placeholderTgt}}" #formInputText></textarea>
         <span *ngIf="tgt" class="hand material-icons-outlined" [class.active-hand]="starred" (click)="onStarred()">
           front_hand
         </span>
@@ -53,7 +60,7 @@
           mode_edit
         </span>
         <span *ngIf="tgt" class="copy material-icons-outlined" [ngxClipboard]="formInputText">
-        content_copy
+          content_copy
         </span>
       </div>
     </div>
@@ -143,39 +150,54 @@
   </div>
   <div class="row m-0 mb-3 justify-content-center">
     <div class="col-sm-10"></div>
-    <button *ngIf="selectedType!=='photo' && selectedType!=='conv'" (click)="onTranslate()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="translate">Аиҭагара</button>
-    <button *ngIf="selectedType==='photo'" (click)="onRead()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="read">Уаԥха</button>
-    <button *ngIf="selectedType==='conv'" (click)="onConv()" type="button" class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="conv">Аиҭакра</button>
+    <button *ngIf="selectedType!=='photo' && selectedType!=='conv'" (click)="onTranslate()" type="button"
+      class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="translate">Аиҭагара</button>
+    <button *ngIf="selectedType==='photo'" (click)="onRead()" type="button"
+      class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="read">Уаԥха</button>
+    <button *ngIf="selectedType==='conv'" (click)="onConv()" type="button"
+      class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="conv">Аиҭакра</button>
   </div>
-  <div *ngIf="!tgt">
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <span class="material-icons-outlined">
-  bolt
-  </span>
-  <strong>Алҵшәа бзиақәа уоуарц азы,</strong> еиҭагатәу аҳәоу ииашоу аграмматикеи апунктуациеи амазароуп, иара убас иаламзароуп ацифрақәеи арқьаҿрақәеи.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <div *ngIf="!tgt&&selectedType === 'text'">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span class="material-icons-outlined">
+        bolt
+      </span>
+      <strong>Алҵшәа бзиақәа уоуарц азы,</strong> еиҭагатәу аҳәоу ииашоу аграмматикеи апунктуациеи амазароуп, иара убас
+      иаламзароуп ацифрақәеи арқьаҿрақәеи.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   </div>
+  <div *ngIf="tgt&&selectedType === 'text'">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span class="material-icons-outlined">
+        mode_edit
+      </span>
+      <strong>Акарандашь уанақәыӷәӷәалак,</strong> уара иулшоит аиҭага аредакциа азура.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span class="material-icons-outlined">
+        front_hand
+      </span>
+      <strong>Анапы уанақәыӷәӷәалак ашҭахь,</strong> аиҭага ҳауеит.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   </div>
-  <div *ngIf="tgt">
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <span class="material-icons-outlined">
-          mode_edit
-  </span>
-  <strong>Акарандашь уанақәыӷәӷәалак,</strong> уара иулшоит аиҭага аредакциа азура.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  </div>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <span class="material-icons-outlined">
-          front_hand
-  </span>
-  <strong>Анапы уанақәыӷәӷәалак ашҭахь,</strong> аиҭага ҳауеит.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  </div>
+  <div *ngIf="selectedType === 'conv'">
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span class="material-icons-outlined">
+        bolt
+      </span>
+      Ари ажәытәтәи ашрифт иҿыцу истандарту ашрифт ахь еиҭакразы.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   </div>
 </div>
