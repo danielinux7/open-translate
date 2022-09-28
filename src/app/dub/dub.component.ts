@@ -213,6 +213,7 @@ export class DubComponent {
   }
 
   getSubtitles(): Subtitle[] {
+    // SUBTITLES.filter(sub => sub["gender"] === "f");
     return SUBTITLES;
   }
 
@@ -303,5 +304,10 @@ export class DubComponent {
         }
       });
     }
+  }
+
+  onChangeGender(gender) {
+    console.log(gender.value)
+
   }
 }

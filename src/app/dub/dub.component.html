@@ -1,11 +1,36 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
         <div class="row mb-0 mt-1 ml-1 mr-1">
-            <div class="col-6 curSub">
+            <div class="col-8 curSub">
                 <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number"/>
                 <span> /{{dubCount}}/{{subtitles.length}}</span>
+                <div class="gender" (click)="onChangeGender(gender)" #gender>
+                    <input hidden type="radio" class="btn-check" name="options-outlined" id="male-outlined" autocomplete="off">
+                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="male-outlined">
+                        <div class="male">
+                            male
+                        </div>
+                    </label>
+                    
+                    <input hidden type="radio" class="btn-check" name="options-outlined" id="female-outlined" autocomplete="off">
+                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="female-outlined">
+                        <div class="female">
+                            female
+                        </div>
+                    </label>
+
+                    <input hidden type="radio" class="btn-check" name="options-outlined" id="wc-outlined" autocomplete="off" checked>
+                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="wc-outlined">
+                        <div class="male">
+                            male
+                        </div>
+                        <div class="female">
+                            female
+                        </div>
+                    </label>
+                </div>
             </div>
-            <div *ngIf="!dubEmpty" class="col-6 right-section">
+            <div *ngIf="!dubEmpty" class="col-4 right-section">
                 <button (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
                     cloud_download

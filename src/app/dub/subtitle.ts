@@ -3,4 +3,5 @@ export interface Subtitle {
   sentence: string;
   start_sec: number;
   duration: number;
+  gender: string;
 }

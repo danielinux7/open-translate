@@ -118,3 +118,41 @@
   width: 43px;
   text-align: center;
 }
+
+.gender {
+  display: inline-block;
+}
+
+.male {
+  color: dodgerblue;
+  display: inline-block;
+}
+
+.female {
+  color: hotpink;
+  display: inline-block;
+}
+
+.btn-check:checked+.female {
+  color: #fff;
+  background-color: hotpink;
+  border-color: hotpink;
+}
+
+.btn-check:checked+.male {
+  color: #fff;
+  background-color: dodgerblue;
+  border-color: dodgerblue;
+}
+
+.btn-check:checked+.wc .female{
+  color: #fff;
+  background-color: hotpink;
+  border-color: hotpink;
+}
+
+.btn-check:checked+.wc .male{
+  color: #fff;
+  background-color: dodgerblue;
+  border-color: dodgerblue;
+}
