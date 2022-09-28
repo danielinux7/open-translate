@@ -1,15 +1,15 @@
-import {  Injectable, Component } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import SUBTITLES from '../../assets/yargi/1/caption.json';
 import { Subtitle } from './subtitle';
-import { Observable,interval } from 'rxjs';
+import { Observable, interval } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
 import { HttpClient } from '@angular/common/http';
-import { CookieService} from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dub',
@@ -30,6 +30,7 @@ export class DubComponent {
   inputSub: number;
   playing = new Audio();
   isPlaying = false;
+  timeout;
   playingOriginal = new Audio();
   isPlayingOriginal = false;
 
@@ -40,10 +41,10 @@ export class DubComponent {
   url;
   error;
 
-  constructor(private domSanitizer: DomSanitizer, 
-              private dbService: NgxIndexedDBService, 
-              private http: HttpClient, 
-              private cookie: CookieService) { }
+  constructor(private domSanitizer: DomSanitizer,
+    private dbService: NgxIndexedDBService,
+    private http: HttpClient,
+    private cookie: CookieService) { }
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url)["changingThisBreaksApplicationSecurity"];
   }
@@ -67,17 +68,15 @@ export class DubComponent {
       mimeType: "audio/wav",
       numberOfAudioChannels: 1
     };
-    //Start Actuall Recording
+    //Start Actual Recording
     var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
     this.record = new StereoAudioRecorder(stream, options);
     this.record.record();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
-  //   this.record.setRecordingDuration(this.currentSub.duration*1000, function() {
-  //     this.processRecording(this.getBlob());
-  //  });
     this.startTimer();
+    this.timeout = setTimeout(this.stopRecording.bind(this), this.currentSub.duration * 1000)
   }
 
   startTimer() {
@@ -86,12 +85,8 @@ export class DubComponent {
     const sub = timer$.subscribe((milisec) => {
       this.cursec = milisec / 10.0;
       this.progressbarValue = (100.0 / seconds) * this.cursec;
-      if (this.cursec / seconds >= 0.7) {
+      if (parseFloat((this.cursec / seconds).toFixed(1)) >= 0.7) {
         this.progressBarColor = "green";
-      }
-      if (Math.floor(this.cursec / seconds) == 1.0) {
-        this.progressBarColor = "green";
-        this.stopRecording();
       }
       if (!this.recording) {
         sub.unsubscribe();
@@ -103,6 +98,7 @@ export class DubComponent {
   * Stop recording.
   */
   stopRecording() {
+    clearTimeout(this.timeout);
     this.recording = false;
     if (!this.record) {
       this.errorBar = "Амикрофон ԥшаам";
@@ -116,18 +112,19 @@ export class DubComponent {
   * @param  {any} blob Blog
   */
   processRecording(blob) {
-    if (this.cursec / this.currentSub.duration < 0.7) {
+    if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
       this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
     }
     else {
+      let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
       this.url = URL.createObjectURL(blob);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!dub) {
-          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
-            .subscribe((dub) => { this.dubEmpty = false; this.dubCount++;});
+          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
+            .subscribe((dub) => { this.dubEmpty = false; this.dubCount++; });
         }
         else {
-          this.dbService.update('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
+          this.dbService.update('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
             .subscribe((dub) => { this.dubEmpty = false; });
         }
       });
@@ -146,7 +143,7 @@ export class DubComponent {
     if (this.cookie.check('subindex'))
       this.subindex = parseInt(this.cookie.get("subindex"));
     this.currentSub = this.subtitles[this.subindex]
-    this.inputSub = this.subtitles.indexOf(this.currentSub)+1;
+    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!dub) {
@@ -156,7 +153,7 @@ export class DubComponent {
         this.url = URL.createObjectURL(dub["audio"]);
         this.progressBarColor = "green";
         this.cursec = dub["duration"];
-        this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
     });
     this.dbService.count('dub').subscribe((count) => {
@@ -172,7 +169,7 @@ export class DubComponent {
       this.subindex = this.subindex + 1;
       this.cookie.set("subindex", this.subindex.toString())
       this.currentSub = this.subtitles[this.subindex]
-      this.inputSub = this.subtitles.indexOf(this.currentSub)+1;
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
       this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -185,7 +182,7 @@ export class DubComponent {
           this.url = URL.createObjectURL(dub["audio"]);
           this.progressBarColor = "green";
           this.cursec = dub["duration"];
-          this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
         }
       });
     }
@@ -196,7 +193,7 @@ export class DubComponent {
       this.subindex = this.subindex - 1;
       this.cookie.set("subindex", this.subindex.toString())
       this.currentSub = this.subtitles[this.subindex]
-      this.inputSub = this.subtitles.indexOf(this.currentSub)+1;
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
       this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -209,7 +206,7 @@ export class DubComponent {
           this.url = URL.createObjectURL(dub["audio"]);
           this.progressBarColor = "green";
           this.cursec = dub["duration"];
-          this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
         }
       });
     }
@@ -258,7 +255,7 @@ export class DubComponent {
       this.isPlaying = true;
       this.playing.load();
       this.playing.play();
-      this.playing.onended = function() { }
+      this.playing.onended = function () { }
     }
     else {
       this.isPlaying = false;
@@ -272,7 +269,7 @@ export class DubComponent {
       this.isPlayingOriginal = true;
       this.playingOriginal.load();
       this.playingOriginal.play();
-      this.playingOriginal.onended = function() { }
+      this.playingOriginal.onended = function () { }
     }
     else {
       this.isPlayingOriginal = false;
@@ -280,7 +277,7 @@ export class DubComponent {
     }
   }
 
-  getAsset(url:any) {
+  getAsset(url: any) {
     this.http.get<any>(url);
   }
 
@@ -302,7 +299,7 @@ export class DubComponent {
           this.url = URL.createObjectURL(dub["audio"]);
           this.progressBarColor = "green";
           this.cursec = dub["duration"];
-          this.progressbarValue = (this.cursec/this.currentSub["duration"])*100;
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
         }
       });
     }

@@ -46,7 +46,7 @@
                 [value]="progressbarValue"></mat-progress-bar>
             <div class="col-2"></div>
         </div>
-        <div class="seconds">{{cursec}}/{{currentSub.duration}} асекундқәа</div>
+        <div class="seconds">{{cursec | number : '1.1-1'}}/{{currentSub.duration | number : '1.1-1'}} асекундқәа</div>
         <div class="row m-2 mb-3 justify-content-center">
             <button [disabled]="recording" (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
