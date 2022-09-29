@@ -2,30 +2,32 @@
     <div class="shadow-google bg-white">
         <div class="row mb-0 mt-1 ml-1 mr-1">
             <div class="col-8 curSub">
-                <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number"/>
-                <span> /{{dubCount}}/{{subtitles.length}}</span>
-                <div class="gender" (click)="onChangeGender(gender)" #gender>
-                    <input hidden type="radio" class="btn-check" name="options-outlined" id="male-outlined" autocomplete="off">
-                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="male-outlined">
+                <div class="count">
+                    <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number"/>
+                    <span> /{{dubCount}}/{{subtitles.length}}</span>
+                </div>
+                <div class="ml-1 gender">
+                    <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender" value="male" id="male">
+                    <label class=" p-0 btn m no-box-shadow material-icons-outlined" for="male">
                         <div class="male">
-                            male
+                            man
                         </div>
                     </label>
                     
-                    <input hidden type="radio" class="btn-check" name="options-outlined" id="female-outlined" autocomplete="off">
-                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="female-outlined">
+                    <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender" value="female" id="female">
+                    <label class=" p-0 btn f no-box-shadow material-icons-outlined" for="female">
                         <div class="female">
-                            female
+                            woman
                         </div>
                     </label>
 
-                    <input hidden type="radio" class="btn-check" name="options-outlined" id="wc-outlined" autocomplete="off" checked>
-                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="wc-outlined">
+                    <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender" value="all" id="all">
+                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="all">
                         <div class="male">
-                            male
+                            accessibility
                         </div>
                         <div class="female">
-                            female
+                            accessibility
                         </div>
                     </label>
                 </div>

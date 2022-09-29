@@ -133,13 +133,13 @@
   display: inline-block;
 }
 
-.btn-check:checked+.female {
+.btn-check:checked+.f .female {
   color: #fff;
   background-color: hotpink;
   border-color: hotpink;
 }
 
-.btn-check:checked+.male {
+.btn-check:checked+.m .male {
   color: #fff;
   background-color: dodgerblue;
   border-color: dodgerblue;
@@ -155,4 +155,16 @@
   color: #fff;
   background-color: dodgerblue;
   border-color: dodgerblue;
+}
+
+.wc .female {
+  width: 12px;
+  margin-left: -24px;
+  color: rgb(39, 39, 39);
+  display: inline-block;
+}
+
+.count {
+  display: inline-block;
+  min-width: 120px;
 }

@@ -33,7 +33,6 @@ export class DubComponent {
   timeout;
   playingOriginal = new Audio();
   isPlayingOriginal = false;
-
   urlorginal = "";
   currentSub: Subtitle;
   subtitles: Subtitle[];
@@ -213,7 +212,6 @@ export class DubComponent {
   }
 
   getSubtitles(): Subtitle[] {
-    // SUBTITLES.filter(sub => sub["gender"] === "f");
     return SUBTITLES;
   }
 
@@ -307,7 +305,11 @@ export class DubComponent {
   }
 
   onChangeGender(gender) {
-    console.log(gender.value)
-
+    if (gender.value === "male")
+      this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "m");
+    else if (gender.value === "female")
+      this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "f");
+    else
+      this.subtitles = SUBTITLES;
   }
 }
