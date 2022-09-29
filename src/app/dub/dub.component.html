@@ -7,21 +7,21 @@
                     <span> /{{dubCount}}/{{subtitles.length}}</span>
                 </div>
                 <div class="ml-1 gender">
-                    <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender" value="male" id="male">
+                    <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender" value="male" id="male" [checked]="subindex[0]=='male'">
                     <label class=" p-0 btn m no-box-shadow material-icons-outlined" for="male">
                         <div class="male">
                             man
                         </div>
                     </label>
                     
-                    <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender" value="female" id="female">
+                    <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender" value="female" id="female" [checked]="subindex[0]=='female'">
                     <label class=" p-0 btn f no-box-shadow material-icons-outlined" for="female">
                         <div class="female">
                             woman
                         </div>
                     </label>
 
-                    <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender" value="all" id="all">
+                    <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender" value="all" id="all" [checked]="subindex[0]=='all'">
                     <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="all">
                         <div class="male">
                             accessibility
