@@ -150,6 +150,8 @@ ngOnInit() {
   this.subindex = ["all", { "all": [0,0], "male": [0,0], "female": [0,0] }];
   if (this.cookie.check('subindex'))
     this.subindex = JSON.parse(this.cookie.get("subindex"));
+  else 
+    this.cookie.set("subindex", JSON.stringify(this.subindex),5000)
   this.subtitles = this.getSubtitles()
   this.dubCount = this.subindex[1][this.subindex[0]][1];
   if (this.dubCount > 0)

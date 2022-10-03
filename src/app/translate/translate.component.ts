@@ -199,7 +199,7 @@ export class TranslateComponent implements OnInit {
     if (this.starred === false) {
       this.edit = false;
       if (this.cookie.get("UUID") === '')
-        this.cookie.set("UUID",id.v4())
+        this.cookie.set("UUID",id.v4(),5000)
       const formData = new FormData();
       formData.append('langSrc', this.selectedSrcLang.id);
       formData.append('langTgt', this.selectedTgtLang.id);
