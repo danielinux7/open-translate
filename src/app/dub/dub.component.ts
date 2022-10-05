@@ -307,7 +307,6 @@ onTogglePlay() {
 onTogglePlayOriginal() {
   if (!this.isPlayingOriginal) {
     this.isPlayingOriginal = true;
-    this.playingOriginal.load();
     this.playingOriginal.play();
     this.playingOriginal.onended = (function () { 
       this.isPlayingOriginal = false;    
