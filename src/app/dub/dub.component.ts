@@ -31,7 +31,7 @@ export class DubComponent {
   playing = new Audio();
   isPlaying = false;
   timeout;
-  playingOriginal = new Audio();
+  playingOriginal;
   isPlayingOriginal = false;
   urlorginal = "";
   currentSub: Subtitle;
@@ -158,7 +158,8 @@ ngOnInit() {
     this.dubEmpty = false;
   this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
   this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-  this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+  this.playingOriginal =  document.getElementById('video');
+  this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
   this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
     if (!dub) {
       this.url = "";
@@ -178,7 +179,7 @@ onNext() {
     this.cookie.set("subindex", JSON.stringify(this.subindex))
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
     this.getAsset(this.urlorginal);
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!dub) {
@@ -202,7 +203,7 @@ onPrevious() {
     this.cookie.set("subindex", JSON.stringify(this.subindex))
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
     this.getAsset(this.urlorginal);
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!dub) {
@@ -226,7 +227,7 @@ onChangeSub() {
     this.subindex[1][this.subindex[0]][0] = tempNum;
     this.cookie.set("subindex", JSON.stringify(this.subindex))
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
     this.getAsset(this.urlorginal);
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!dub) {
@@ -304,12 +305,12 @@ onTogglePlay() {
 }
 
 onTogglePlayOriginal() {
-  this.playingOriginal.src = this.urlorginal;
   if (!this.isPlayingOriginal) {
     this.isPlayingOriginal = true;
-    this.playingOriginal.load();
     this.playingOriginal.play();
-    this.playingOriginal.onended = function () { }
+    this.playingOriginal.onended = (function () { 
+      this.isPlayingOriginal = false;    
+    }).bind(this);
   }
   else {
     this.isPlayingOriginal = false;
@@ -342,7 +343,7 @@ onChangeGender(gender) {
   }
   this.dubCount = this.subindex[1][this.subindex[0]][1]
   this.cookie.set("subindex", JSON.stringify(this.subindex))
-  this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp3";
+  this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
   this.getAsset(this.urlorginal);
   this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
     if (!dub) {

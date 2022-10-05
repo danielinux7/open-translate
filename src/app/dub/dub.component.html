@@ -62,6 +62,13 @@
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
+            <div class="col-sm-8 px-0 ml-3 mr-3 mt-3 video-section">
+                <video width="100%" id="video" [src]="urlorginal"></video>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+        <div class="row m-0">
+            <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section">
                 {{currentSub.sentence}}
             </div>
@@ -84,10 +91,10 @@
                 <div class="col-4 play-container" (click)="onTogglePlayOriginal()">
                     <button *ngIf="urlorginal" type="button"
                         class="play btn no-box-shadow">
-                        <span *ngIf="!isPlayingOriginal||playingOriginal.paused" class="red fs-36 material-icons">
+                        <span *ngIf="!isPlayingOriginal" class="red fs-36 material-icons">
                             play_arrow
                         </span>
-                        <span *ngIf="isPlayingOriginal&&!playingOriginal.paused" class="red fs-36 material-icons">
+                        <span *ngIf="isPlayingOriginal" class="red fs-36 material-icons">
                             stop
                         </span>
                     </button>
