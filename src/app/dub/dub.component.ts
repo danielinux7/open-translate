@@ -272,12 +272,18 @@ onDownload() {
 
 onDelete() {
   this.dbService.clear('dub').subscribe((successDeleted) => {
+    this.subindex = ["all", { "all": [0,0], "male": [0,0], "female": [0,0] }];
     this.dubEmpty = true;
     this.dubCount = 0;
     this.url = "";
     this.cursec = 0.0;
     this.progressbarValue = 0.0;
-    this.cookie.delete("subindex");
+    this.cookie.set("subindex", JSON.stringify(this.subindex))
+    this.subtitles = this.getSubtitles()
+    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
+    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+    this.playingOriginal =  document.getElementById('video');
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
   });
 }
 
