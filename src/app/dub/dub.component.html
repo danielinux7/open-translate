@@ -32,10 +32,14 @@
                     </label>
                 </div>
             </div>
-            <div *ngIf="!dubEmpty" class="col-4 right-section">
-                <button (click)="onDownload()" type="button"
+            <div *ngIf="!dubEmpty" class="col-4 pl-0 right-section">
+                <button *ngIf="!progressdownloadValue" (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow material-icons-outlined">
                     cloud_download
+                </button>
+                <button *ngIf="progressdownloadValue" class="p-0 btn no-box-shadow download-btn" type="button">
+                    <span class="fs-28 download material-icons"> cloud_download </span>
+                    <span class="progress-download">{{progressdownloadValue}}%</span>
                 </button>
                 <button data-toggle="modal" data-target="#deleteModel" type="button"
                     class="p-0 fs-28 btn no-box-shadow material-icons-outlined">

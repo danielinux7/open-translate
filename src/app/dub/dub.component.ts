@@ -20,6 +20,7 @@ export class DubComponent {
   title = 'micRecorder';
   record;
   progressbarValue = 0.0;
+  progressdownloadValue = 0;
   cursec = 0.0;
   errorBar: string;
   progressBarColor = "blue";
@@ -286,17 +287,32 @@ export class DubComponent {
   }
 
   onDownload() {
-    this.dbService.getAll('dub').subscribe((dub) => {
-      console.log(dub);
+    let db;
+    let count;
+    indexedDB.open('dubDB').onsuccess = (event) => {
+      db = event.target["result"];
+      count = 0;
+      this.progressdownloadValue = 0;
       const zip = new JSZip();
-      for (let i in dub) {
-        zip.file(dub[i]["clip"] + ".wav", dub[i]["audio"])
-      }
-      zip.generateAsync({ type: "blob" })
-        .then(function (content) {
-          saveAs(content, "audio.zip");
-        });
-    });
+      const transaction = db.transaction("dub", "readonly");
+      const objectStore = transaction.objectStore("dub");
+      objectStore.openCursor().onsuccess = (event) => {
+        const cursor = event.target.result;
+        if (cursor) {
+          zip.file(cursor.value["clip"] + ".wav", cursor.value["audio"])
+          count++;
+          this.progressdownloadValue = Math.round((count*100)/this.dubCount);
+          cursor.continue();
+        }
+        else {
+          zip.generateAsync({ type: "blob" })
+            .then(function (content) {
+              saveAs(content, "audio.zip");
+              this.progressdownloadValue = 0;
+            }.bind(this));
+        }
+      };
+    };
   }
 
   onDelete() {
