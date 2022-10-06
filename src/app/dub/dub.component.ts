@@ -21,7 +21,7 @@ export class DubComponent {
   record;
   progressbarValue = 0.0;
   cursec = 0.0;
-  errorBar = "";
+  errorBar: string;
   progressBarColor = "blue";
   recording = false;
   dubEmpty = true;
@@ -110,14 +110,46 @@ export class DubComponent {
   * @param  {any} blob Blog
   */
   processRecording(blob) {
-    if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
-      this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
-    }
-    else {
-      let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
-      this.url = URL.createObjectURL(blob);
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-        if (!dub) {
+    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+      if (dub) {
+        this.dbService.deleteByKey('dub', this.currentSub["clip"]).subscribe((deleted) => {
+          if (deleted) {
+            if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
+              this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+              if (this.currentSub["gender"] === "f")
+                this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
+              else if (this.currentSub["gender"] === "m")
+                this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
+              this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
+              this.dubCount = this.subindex[1][this.subindex[0]][1];
+              if (this.subindex[1]["all"][1] == 0)
+                this.dubEmpty = true;
+              localStorage.setItem("subindex", JSON.stringify(this.subindex));
+            }
+            else {
+              let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
+              this.url = URL.createObjectURL(blob);
+              this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
+                .subscribe((dub) => {
+                  this.dubEmpty = false;
+                  if (this.currentSub["gender"] === "f")
+                    this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
+                  else if (this.currentSub["gender"] === "m")
+                    this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
+                  this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
+                  this.dubCount = this.subindex[1][this.subindex[0]][1]
+                  localStorage.setItem("subindex", JSON.stringify(this.subindex));
+                });
+            }
+          }
+        });
+      }
+      else {
+        if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7)
+          this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+        else {
+          let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
+          this.url = URL.createObjectURL(blob);
           this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
             .subscribe((dub) => {
               this.dubEmpty = false;
@@ -129,238 +161,240 @@ export class DubComponent {
               this.dubCount = this.subindex[1][this.subindex[0]][1]
               localStorage.setItem("subindex", JSON.stringify(this.subindex));
             });
-    }
-        else {
-      this.dbService.update('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
-        .subscribe((dub) => { this.dubEmpty = false; });
-    }
-  });
-
-}
-  }
-/**
-* Process Error.
-*/
-errorCallback(error) {
-  this.error = 'Can not play audio in your browser';
-}
-ngOnInit() {
-  this.subindex = ["all", { "all": [0,0], "male": [0,0], "female": [0,0] }];
-  if (localStorage.getItem("subindex"))
-    this.subindex = JSON.parse(localStorage.getItem("subindex"));
-  else 
-    localStorage.setItem("subindex", JSON.stringify(this.subindex));
-  this.subtitles = this.getSubtitles()
-  this.dubCount = this.subindex[1][this.subindex[0]][1];
-  if (this.dubCount > 0)
-    this.dubEmpty = false;
-  this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
-  this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-  this.playingOriginal =  document.getElementById('video');
-  this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-  this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-    if (!dub) {
-      this.url = "";
-    }
-    else {
-      this.url = URL.createObjectURL(dub["audio"]);
-      this.progressBarColor = "green";
-      this.cursec = dub["duration"];
-      this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-    }
-  });
-}
-
-onNext() {
-  if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
-    this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
-    localStorage.setItem("subindex", JSON.stringify(this.subindex));
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-    this.getAsset(this.urlorginal);
-    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-      if (!dub) {
-        this.url = "";
-        this.progressbarValue = 0.0;
-        this.cursec = 0.0;
-      }
-      else {
-        this.url = URL.createObjectURL(dub["audio"]);
-        this.progressBarColor = "green";
-        this.cursec = dub["duration"];
-        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        }
       }
     });
   }
-}
-
-onPrevious() {
-  if (this.subindex[1][this.subindex[0]][0] > 0) {
-    this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
-    localStorage.setItem("subindex", JSON.stringify(this.subindex));
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-    this.getAsset(this.urlorginal);
-    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-      if (!dub) {
-        this.url = "";
-        this.progressbarValue = 0.0;
-        this.cursec = 0.0;
-      }
-      else {
-        this.url = URL.createObjectURL(dub["audio"]);
-        this.progressBarColor = "green";
-        this.cursec = dub["duration"];
-        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-      }
-    });
+  /**
+  * Process Error.
+  */
+  errorCallback(error) {
+    this.error = 'Can not play audio in your browser';
   }
-}
-
-onChangeSub() {
-  let tempNum = this.inputSub - 1;
-  if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
-    this.subindex[1][this.subindex[0]][0] = tempNum;
-    localStorage.setItem("subindex", JSON.stringify(this.subindex));
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-    this.getAsset(this.urlorginal);
-    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-      if (!dub) {
-        this.url = "";
-        this.progressbarValue = 0.0;
-        this.cursec = 0.0;
-      }
-      else {
-        this.url = URL.createObjectURL(dub["audio"]);
-        this.progressBarColor = "green";
-        this.cursec = dub["duration"];
-        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-      }
-    });
-  }
-}
-
-getSubtitles(): Subtitle[] {
-  let sub;
-  if (this.subindex[0] === "male")
-    sub = SUBTITLES.filter(sub => sub["gender"] === "m")
-  else if (this.subindex[0] === "female")
-    sub = SUBTITLES.filter(sub => sub["gender"] === "f")
-  else 
-    sub = SUBTITLES;
-  return sub;
-}
-
-onDownload() {
-  this.dbService.getAll('dub').subscribe((dub) => {
-    console.log(dub);
-    const zip = new JSZip();
-    for (let i in dub) {
-      zip.file(dub[i]["clip"] + ".wav", dub[i]["audio"])
-    }
-    zip.generateAsync({ type: "blob" })
-      .then(function (content) {
-        saveAs(content, "audio.zip");
-      });
-  });
-}
-
-onDelete() {
-  this.dbService.clear('dub').subscribe((successDeleted) => {
-    this.subindex = ["all", { "all": [0,0], "male": [0,0], "female": [0,0] }];
-    this.dubEmpty = true;
-    this.dubCount = 0;
-    this.url = "";
-    this.cursec = 0.0;
-    this.progressbarValue = 0.0;
-    localStorage.setItem("subindex", JSON.stringify(this.subindex));
+  ngOnInit() {
+    this.errorBar = "";
+    this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
+    if (localStorage.getItem("subindex"))
+      this.subindex = JSON.parse(localStorage.getItem("subindex"));
+    else
+      localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.subtitles = this.getSubtitles()
+    this.dubCount = this.subindex[1][this.subindex[0]][1];
+    if (this.dubCount > 0)
+      this.dubEmpty = false;
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    this.playingOriginal =  document.getElementById('video');
+    this.playingOriginal = document.getElementById('video');
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-  });
-}
+    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+      if (!dub) {
+        this.url = "";
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
+    });
+  }
 
-onToggleRecording() {
-  if (!this.recording) {
-    this.initiateRecording();
+  onNext() {
+    if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
+      this.errorBar = "";
+      this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
+      localStorage.setItem("subindex", JSON.stringify(this.subindex));
+      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
+      this.getAsset(this.urlorginal);
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!dub) {
+          this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+        }
+        else {
+          this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        }
+      });
+    }
   }
-  else {
-    this.stopRecording();
-  }
-}
 
-onTogglePlay() {
-  this.playing.src = this.sanitize(this.url);
-  if (!this.isPlaying) {
-    this.isPlaying = true;
-    this.playing.load();
-    this.playing.play();
-    this.playing.onended = function () { }
+  onPrevious() {
+    if (this.subindex[1][this.subindex[0]][0] > 0) {
+      this.errorBar = "";
+      this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
+      localStorage.setItem("subindex", JSON.stringify(this.subindex));
+      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
+      this.getAsset(this.urlorginal);
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!dub) {
+          this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+        }
+        else {
+          this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        }
+      });
+    }
   }
-  else {
-    this.isPlaying = false;
-    this.playing.pause();
-  }
-}
 
-onTogglePlayOriginal() {
-  if (!this.isPlayingOriginal) {
-    this.isPlayingOriginal = true;
-    this.playingOriginal.play();
-    this.playingOriginal.onended = (function () { 
-      this.isPlayingOriginal = false;    
-    }).bind(this);
+  onChangeSub() {
+    let tempNum = this.inputSub - 1;
+    if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
+      this.errorBar = "";
+      this.subindex[1][this.subindex[0]][0] = tempNum;
+      localStorage.setItem("subindex", JSON.stringify(this.subindex));
+      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
+      this.getAsset(this.urlorginal);
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!dub) {
+          this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+        }
+        else {
+          this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        }
+      });
+    }
   }
-  else {
-    this.isPlayingOriginal = false;
-    this.playingOriginal.pause();
-  }
-}
 
-getAsset(url: any) {
-  this.http.get<any>(url);
-}
+  getSubtitles(): Subtitle[] {
+    let sub;
+    if (this.subindex[0] === "male")
+      sub = SUBTITLES.filter(sub => sub["gender"] === "m")
+    else if (this.subindex[0] === "female")
+      sub = SUBTITLES.filter(sub => sub["gender"] === "f")
+    else
+      sub = SUBTITLES;
+    return sub;
+  }
 
-onChangeGender(gender) {
-  if (gender.value === "male") {
-    this.subindex[0] = "male";
-    this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "m");
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+  onDownload() {
+    this.dbService.getAll('dub').subscribe((dub) => {
+      console.log(dub);
+      const zip = new JSZip();
+      for (let i in dub) {
+        zip.file(dub[i]["clip"] + ".wav", dub[i]["audio"])
+      }
+      zip.generateAsync({ type: "blob" })
+        .then(function (content) {
+          saveAs(content, "audio.zip");
+        });
+    });
   }
-  else if (gender.value === "female") {
-    this.subindex[0] = "female";
-    this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "f");
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-  }
-  else {
-    this.subindex[0] = "all";
-    this.subtitles = SUBTITLES;
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-  }
-  this.dubCount = this.subindex[1][this.subindex[0]][1]
-  localStorage.setItem("subindex", JSON.stringify(this.subindex));
-  this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-  this.getAsset(this.urlorginal);
-  this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-    if (!dub) {
+
+  onDelete() {
+    this.dbService.clear('dub').subscribe((successDeleted) => {
+      this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
+      this.dubEmpty = true;
+      this.dubCount = 0;
       this.url = "";
-      this.progressbarValue = 0.0;
+      this.errorBar = "";
       this.cursec = 0.0;
+      this.progressbarValue = 0.0;
+      localStorage.setItem("subindex", JSON.stringify(this.subindex));
+      this.subtitles = this.getSubtitles()
+      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+      this.playingOriginal = document.getElementById('video');
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
+    });
+  }
+
+  onToggleRecording() {
+    if (!this.recording) {
+      this.initiateRecording();
     }
     else {
-      this.url = URL.createObjectURL(dub["audio"]);
-      this.progressBarColor = "green";
-      this.cursec = dub["duration"];
-      this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      this.stopRecording();
     }
-  });
-}
+  }
+
+  onTogglePlay() {
+    this.playing.src = this.sanitize(this.url);
+    if (!this.isPlaying) {
+      this.isPlaying = true;
+      this.playing.load();
+      this.playing.play();
+      this.playing.onended = function () { }
+    }
+    else {
+      this.isPlaying = false;
+      this.playing.pause();
+    }
+  }
+
+  onTogglePlayOriginal() {
+    this.errorBar = "";
+    if (!this.isPlayingOriginal) {
+      this.isPlayingOriginal = true;
+      this.playingOriginal.play();
+      this.playingOriginal.onended = (function () {
+        this.isPlayingOriginal = false;
+      }).bind(this);
+    }
+    else {
+      this.isPlayingOriginal = false;
+      this.playingOriginal.pause();
+    }
+  }
+
+  getAsset(url: any) {
+    this.http.get<any>(url);
+  }
+
+  onChangeGender(gender) {
+    this.errorBar = "";
+    if (gender.value === "male") {
+      this.subindex[0] = "male";
+      this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "m");
+      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+    }
+    else if (gender.value === "female") {
+      this.subindex[0] = "female";
+      this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "f");
+      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+    }
+    else {
+      this.subindex[0] = "all";
+      this.subtitles = SUBTITLES;
+      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+    }
+    this.dubCount = this.subindex[1][this.subindex[0]][1]
+    localStorage.setItem("subindex", JSON.stringify(this.subindex));
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
+    this.getAsset(this.urlorginal);
+    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
+    });
+  }
 }
