@@ -9,7 +9,6 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
 import { HttpClient } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dub',
@@ -43,8 +42,7 @@ export class DubComponent {
 
   constructor(private domSanitizer: DomSanitizer,
     private dbService: NgxIndexedDBService,
-    private http: HttpClient,
-    private cookie: CookieService) { }
+    private http: HttpClient) { }
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url)["changingThisBreaksApplicationSecurity"];
   }
@@ -129,7 +127,7 @@ export class DubComponent {
                 this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
               this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
               this.dubCount = this.subindex[1][this.subindex[0]][1]
-              this.cookie.set("subindex", JSON.stringify(this.subindex))
+              localStorage.setItem("subindex", JSON.stringify(this.subindex));
             });
     }
         else {
@@ -148,10 +146,10 @@ errorCallback(error) {
 }
 ngOnInit() {
   this.subindex = ["all", { "all": [0,0], "male": [0,0], "female": [0,0] }];
-  if (this.cookie.check('subindex'))
-    this.subindex = JSON.parse(this.cookie.get("subindex"));
+  if (localStorage.getItem("subindex"))
+    this.subindex = JSON.parse(localStorage.getItem("subindex"));
   else 
-    this.cookie.set("subindex", JSON.stringify(this.subindex),5000)
+    localStorage.setItem("subindex", JSON.stringify(this.subindex));
   this.subtitles = this.getSubtitles()
   this.dubCount = this.subindex[1][this.subindex[0]][1];
   if (this.dubCount > 0)
@@ -176,7 +174,7 @@ ngOnInit() {
 onNext() {
   if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
     this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
-    this.cookie.set("subindex", JSON.stringify(this.subindex))
+    localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
@@ -200,7 +198,7 @@ onNext() {
 onPrevious() {
   if (this.subindex[1][this.subindex[0]][0] > 0) {
     this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
-    this.cookie.set("subindex", JSON.stringify(this.subindex))
+    localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
@@ -225,7 +223,7 @@ onChangeSub() {
   let tempNum = this.inputSub - 1;
   if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
     this.subindex[1][this.subindex[0]][0] = tempNum;
-    this.cookie.set("subindex", JSON.stringify(this.subindex))
+    localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
     this.getAsset(this.urlorginal);
@@ -278,7 +276,7 @@ onDelete() {
     this.url = "";
     this.cursec = 0.0;
     this.progressbarValue = 0.0;
-    this.cookie.set("subindex", JSON.stringify(this.subindex))
+    localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.subtitles = this.getSubtitles()
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
@@ -348,7 +346,7 @@ onChangeGender(gender) {
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
   }
   this.dubCount = this.subindex[1][this.subindex[0]][1]
-  this.cookie.set("subindex", JSON.stringify(this.subindex))
+  localStorage.setItem("subindex", JSON.stringify(this.subindex));
   this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
   this.getAsset(this.urlorginal);
   this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
