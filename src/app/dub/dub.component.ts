@@ -217,7 +217,6 @@ export class DubComponent {
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-      this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
           URL.revokeObjectURL(this.url);
@@ -244,7 +243,6 @@ export class DubComponent {
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-      this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
           URL.revokeObjectURL(this.url);
@@ -271,7 +269,6 @@ export class DubComponent {
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-      this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
           URL.revokeObjectURL(this.url);
@@ -388,10 +385,6 @@ export class DubComponent {
     }
   }
 
-  getAsset(url: any) {
-    this.http.get<any>(url);
-  }
-
   onChangeGender(gender) {
     this.errorBar = "";
     if (gender.value === "male") {
@@ -415,7 +408,6 @@ export class DubComponent {
     this.dubCount = this.subindex[1][this.subindex[0]][1]
     localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
-    this.getAsset(this.urlorginal);
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!this.url)
         URL.revokeObjectURL(this.url);
