@@ -52,6 +52,8 @@ export class DubComponent {
   */
   initiateRecording() {
     this.recording = true;
+    if (!this.url)
+      URL.revokeObjectURL(this.url);
     this.url = null;
     let mediaConstraints = {
       video: false,
@@ -129,6 +131,8 @@ export class DubComponent {
             }
             else {
               let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
+              if (!this.url)
+                 URL.revokeObjectURL(this.url);
               this.url = URL.createObjectURL(blob);
               this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
                 .subscribe((dub) => {
@@ -150,6 +154,8 @@ export class DubComponent {
           this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
         else {
           let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
+          if (!this.url)
+            URL.revokeObjectURL(this.url);
           this.url = URL.createObjectURL(blob);
           this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
             .subscribe((dub) => {
@@ -164,6 +170,7 @@ export class DubComponent {
             });
         }
       }
+      this.record.clearRecordedData();
     });
   }
   /**
@@ -188,6 +195,8 @@ export class DubComponent {
     this.playingOriginal = document.getElementById('video');
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
       if (!dub) {
         this.url = "";
       }
@@ -210,6 +219,8 @@ export class DubComponent {
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
       this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
         if (!dub) {
           this.url = "";
           this.progressbarValue = 0.0;
@@ -235,6 +246,8 @@ export class DubComponent {
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
       this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
         if (!dub) {
           this.url = "";
           this.progressbarValue = 0.0;
@@ -260,6 +273,8 @@ export class DubComponent {
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
       this.getAsset(this.urlorginal);
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
         if (!dub) {
           this.url = "";
           this.progressbarValue = 0.0;
@@ -320,6 +335,8 @@ export class DubComponent {
       this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
       this.dubEmpty = true;
       this.dubCount = 0;
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
       this.url = "";
       this.errorBar = "";
       this.cursec = 0.0;
@@ -400,6 +417,8 @@ export class DubComponent {
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".mp4";
     this.getAsset(this.urlorginal);
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
       if (!dub) {
         this.url = "";
         this.progressbarValue = 0.0;
