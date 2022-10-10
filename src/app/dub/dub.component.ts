@@ -135,16 +135,7 @@ export class DubComponent {
                  URL.revokeObjectURL(this.url);
               this.url = URL.createObjectURL(blob);
               this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
-                .subscribe((dub) => {
-                  this.dubEmpty = false;
-                  if (this.currentSub["gender"] === "f")
-                    this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
-                  else if (this.currentSub["gender"] === "m")
-                    this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
-                  this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
-                  this.dubCount = this.subindex[1][this.subindex[0]][1]
-                  localStorage.setItem("subindex", JSON.stringify(this.subindex));
-                });
+                .subscribe(() => { });
             }
           }
         });
