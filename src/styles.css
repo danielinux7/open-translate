@@ -8,6 +8,64 @@ body {
   overflow-x: hidden;
 }
 
+.dark {
+  background-color: #444444;
+  color: #f5f5f5;
+}
+
+.dark app-root nav-bar header {
+  background-color: rgb(3, 3, 3);
+  color: #fff;
+}
+
+.dark div.bg-white{
+  background-color: rgb(3, 3, 3)!important;
+  color: #fff;
+}
+
+.dark span.material-icons-outlined {
+  color: #fff;
+}
+
+.dark div.curSub {
+  color: #fff;
+}
+
+.dark .wc .female{
+  color: aqua!important;
+}
+
+.dark .btn-check:checked+.wc .female{
+  color: #fff!important;
+}
+
+.dark input {
+  background-color: #444444;
+  color: #fff;
+}
+
+.dark .play-container button.btn {
+  background-color: #000;
+}
+
+.dark .play-container button.play {
+  color: #fff;
+}
+
+.dark div.sentence-section {
+  background-color: #444444;
+  color: #fff;
+}
+
+.dark a.text-green {
+  color: #fff;
+}
+
+.dark i.logo {
+  background-color: rgb(3, 3, 3);
+  background-image: url('assets/images/logo-dark.png');
+}
+
 #target {
   white-space: pre-wrap;
 }
