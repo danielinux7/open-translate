@@ -1,5 +1,5 @@
 .active-mic {
-  color: #bd2130;
+  color: #FF4F5E;
 }
 
 .mic-section {
@@ -10,11 +10,11 @@
   text-align: center;
 }
 .green {
-  color: rgb(40, 167, 69);
+  color: #59cbb7;
 }
 
 .red {
-  color: #bd2130;
+  color: #FF4F5E;
 }
 
 .right-section {
@@ -125,37 +125,37 @@
 }
 
 .male {
-  color: dodgerblue;
+  color: #59cbb7;
   display: inline-block;
 }
 
 .female {
-  color: hotpink;
+  color: #FF4F5E;
   display: inline-block;
 }
 
 .btn-check:checked+.f .female {
   color: #fff;
-  background-color: hotpink;
-  border-color: hotpink;
+  background-color: #FF4F5E;
+  border-color: #FF4F5E;
 }
 
 .btn-check:checked+.m .male {
   color: #fff;
-  background-color: dodgerblue;
-  border-color: dodgerblue;
+  background-color: #59cbb7;
+  border-color: #59cbb7;
 }
 
 .btn-check:checked+.wc .female{
   color: #fff;
-  background-color: hotpink;
-  border-color: hotpink;
+  background-color: #FF4F5E;
+  border-color: #FF4F5E;
 }
 
 .btn-check:checked+.wc .male{
   color: #fff;
-  background-color: dodgerblue;
-  border-color: dodgerblue;
+  background-color: #59cbb7;
+  border-color: #59cbb7;
 }
 
 .wc .female {

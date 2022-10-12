@@ -32,7 +32,7 @@ body {
 }
 
 .dark .wc .female{
-  color: aqua!important;
+  color: #d2e264!important;
 }
 
 .dark .btn-check:checked+.wc .female{
