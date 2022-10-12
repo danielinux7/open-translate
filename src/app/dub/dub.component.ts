@@ -1,10 +1,9 @@
 import { Injectable, Component } from '@angular/core';
 declare var $: any;
-import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import SUBTITLES from '../../assets/yargi/1/caption.json';
 import { Subtitle } from './subtitle';
-import { Observable, interval } from 'rxjs';
+import { interval } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
@@ -66,13 +65,11 @@ export class DubComponent {
   */
   successCallback(stream) {
     var options = {
-      mimeType: "audio/wav",
-      numberOfAudioChannels: 1
+      mimeType: "audio/webm",
     };
     //Start Actual Recording
-    var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
-    this.record = new StereoAudioRecorder(stream, options);
-    this.record.record();
+    this.record = new MediaRecorder(stream,options);
+    this.record.start();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
@@ -105,7 +102,10 @@ export class DubComponent {
       this.errorBar = "Амикрофон ԥшаам";
     }
     else {
-      this.record.stop(this.processRecording.bind(this));
+      this.record.stop();
+      this.record.addEventListener('dataavailable', event => {
+          this.processRecording(event.data)
+        });
     }
   }
   /**
@@ -161,7 +161,6 @@ export class DubComponent {
             });
         }
       }
-      this.record.clearRecordedData();
     });
   }
   /**
@@ -302,7 +301,7 @@ export class DubComponent {
       objectStore.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
-          zip.file(cursor.value["clip"] + ".wav", cursor.value["audio"])
+          zip.file(cursor.value["clip"] + ".webm", cursor.value["audio"])
           count++;
           this.progressdownloadValue = Math.round((count*100)/this.dubCount);
           cursor.continue();
