@@ -202,6 +202,14 @@ export class DubComponent {
   onNext() {
     if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
       this.errorBar = "";
+      if (this.isPlayingOriginal) {
+        this.playingOriginal.pause();
+        this.isPlayingOriginal = false;
+      }
+      if (this.isPlaying) {
+        this.playing.pause();
+        this.isPlaying = false;
+      }
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
@@ -228,6 +236,14 @@ export class DubComponent {
   onPrevious() {
     if (this.subindex[1][this.subindex[0]][0] > 0) {
       this.errorBar = "";
+      if (this.isPlayingOriginal) {
+        this.playingOriginal.pause();
+        this.isPlayingOriginal = false;
+      }
+      if (this.isPlaying) {
+        this.playing.pause();
+        this.isPlaying = false;
+      }
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
@@ -255,6 +271,14 @@ export class DubComponent {
     let tempNum = this.inputSub - 1;
     if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
       this.errorBar = "";
+      if (this.isPlayingOriginal) {
+        this.playingOriginal.pause();
+        this.isPlayingOriginal = false;
+      }
+      if (this.isPlaying) {
+        this.playing.pause();
+        this.isPlaying = false;
+      }
       this.subindex[1][this.subindex[0]][0] = tempNum;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
@@ -377,6 +401,14 @@ export class DubComponent {
 
   onChangeGender(gender) {
     this.errorBar = "";
+    if (this.isPlayingOriginal) {
+      this.playingOriginal.pause();
+      this.isPlayingOriginal = false;
+    }
+    if (this.isPlaying) {
+      this.playing.pause();
+      this.isPlaying = false;
+    }
     if (gender.value === "male") {
       this.subindex[0] = "male";
       this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "m");
