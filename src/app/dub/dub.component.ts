@@ -66,6 +66,7 @@ export class DubComponent {
   successCallback(stream) {
     var options = {
       mimeType: "audio/webm",
+      audioBitsPerSecond : 124000
     };
     //Start Actual Recording
     this.record = new MediaRecorder(stream,options);
