@@ -334,8 +334,10 @@ export class DubComponent {
         else {
           zip.generateAsync({ type: "blob" })
             .then(function (content) {
-              saveAs(content, "audio.zip");
-              this.progressdownloadValue = 0;
+              setTimeout((() => {
+                saveAs(content, "audio.zip");
+                this.progressdownloadValue = 0;
+              }).bind(this),500);
             }.bind(this));
         }
       };

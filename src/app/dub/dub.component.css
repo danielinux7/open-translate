@@ -184,10 +184,7 @@
 
 .progress-download {
   position: absolute;
-  right: 0px;
+  right: -4px;
   font-size: 10px;
-}
-
-.download-btn {
-  line-height: 0;
+  top: -4px;
 }
