@@ -3,25 +3,28 @@
         <div class="row mb-0 mt-1 ml-1 mr-1">
             <div class="col-8 curSub">
                 <div class="count">
-                    <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number"/>
+                    <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span> /{{dubCount}}/{{subtitles.length}}</span>
                 </div>
                 <div class="ml-1 gender">
-                    <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender" value="male" id="male" [checked]="subindex[0]=='male'">
+                    <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
+                        value="male" id="male" [checked]="subindex[0]=='male'">
                     <label class=" p-0 btn m no-box-shadow material-icons-outlined" for="male">
                         <div class="male">
                             man
                         </div>
                     </label>
-                    
-                    <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender" value="female" id="female" [checked]="subindex[0]=='female'">
+
+                    <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender"
+                        value="female" id="female" [checked]="subindex[0]=='female'">
                     <label class=" p-0 btn f no-box-shadow material-icons-outlined" for="female">
                         <div class="female">
                             woman
                         </div>
                     </label>
 
-                    <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender" value="all" id="all" [checked]="subindex[0]=='all'">
+                    <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender"
+                        value="all" id="all" [checked]="subindex[0]=='all'">
                     <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="all">
                         <div class="male">
                             accessibility
@@ -67,7 +70,9 @@
         <div class="row m-0">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 ml-3 mr-3 mt-3 video-section">
-                <video width="100%" height="100%" id="video" [src]="urlorginal"></video>
+                <video width="100%" height="100%" id="video" preload="auto">
+                    <source [src]="urlorginal" type="video/mp4">
+                </video>
             </div>
             <div class="col-sm-2"></div>
         </div>
@@ -93,8 +98,7 @@
             </button>
             <div class="row col-8">
                 <div class="col-4 play-container" (click)="onTogglePlayOriginal()">
-                    <button *ngIf="urlorginal" type="button"
-                        class="play btn no-box-shadow">
+                    <button *ngIf="urlorginal" type="button" class="play btn no-box-shadow">
                         <span *ngIf="!isPlayingOriginal" class="red fs-36 material-icons">
                             play_arrow
                         </span>
