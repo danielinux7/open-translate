@@ -142,11 +142,10 @@ export class DubComponent {
               this.cursec = 0.0;
             }
             else {
-              let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
               if (!this.url)
                  URL.revokeObjectURL(this.url);
               this.url = URL.createObjectURL(blob);
-              this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
+              this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
                 .subscribe(() => { });
             }
           }
@@ -156,11 +155,10 @@ export class DubComponent {
         if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7)
           this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
         else {
-          let duration = parseFloat((this.record.length / this.record.sampleRate).toFixed(3));
           if (!this.url)
             URL.revokeObjectURL(this.url);
           this.url = URL.createObjectURL(blob);
-          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: duration })
+          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
             .subscribe((dub) => {
               this.dubEmpty = false;
               if (this.currentSub["gender"] === "f")
