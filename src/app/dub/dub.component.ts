@@ -225,7 +225,7 @@ export class DubComponent {
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
-      this.loadSource();
+      this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
           URL.revokeObjectURL(this.url);
@@ -262,7 +262,7 @@ export class DubComponent {
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
-      this.loadSource();
+      this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
           URL.revokeObjectURL(this.url);
@@ -299,7 +299,7 @@ export class DubComponent {
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
-      this.loadSource();
+      this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
           URL.revokeObjectURL(this.url);
@@ -380,7 +380,7 @@ export class DubComponent {
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.playingOriginal = document.getElementById('video');
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
-      this.loadSource();
+      this.playingOriginal.load();
     });
   }
 
@@ -460,7 +460,7 @@ export class DubComponent {
     this.dubCount = this.subindex[1][this.subindex[0]][1]
     localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
-    this.loadSource();
+    this.playingOriginal.load();
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!this.url)
         URL.revokeObjectURL(this.url);
@@ -478,10 +478,5 @@ export class DubComponent {
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
     });
-  }
-
-  loadSource() {
-    let vid = document.getElementById("video") as HTMLMediaElement;
-    vid.load();
   }
 }
