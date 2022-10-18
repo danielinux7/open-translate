@@ -71,6 +71,9 @@ export class DubComponent {
     };
     //Start Actual Recording
     this.record = new MediaRecorder(stream,options);
+    this.playingOriginal.muted = true;
+    this.playingOriginal.load();
+    this.playingOriginal.play();
     this.record.start();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
@@ -104,6 +107,7 @@ export class DubComponent {
       this.errorBar = "Амикрофон ԥшаам";
     }
     else {
+      this.playingOriginal.pause();
       this.record.stop();
       this.record.addEventListener('dataavailable', event => {
           this.processRecording(event.data)
@@ -130,7 +134,6 @@ export class DubComponent {
               if (this.subindex[1]["all"][1] == 0)
                 this.dubEmpty = true;
               localStorage.setItem("subindex", JSON.stringify(this.subindex));
-              this.allowRecording = false;
               this.progressbarValue = 0.0;
               this.cursec = 0.0;
             }
