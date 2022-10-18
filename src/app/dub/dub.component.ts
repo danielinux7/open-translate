@@ -81,11 +81,11 @@ export class DubComponent {
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
-    this.startTimer();
+    this.startTimer("record");
     this.timeout = setTimeout(this.stopRecording.bind(this), this.currentSub.duration * 1000)
   }
 
-  startTimer() {
+  startTimer(type) {
     let seconds = this.currentSub.duration;
     const timer$ = interval(100);
     const sub = timer$.subscribe((milisec) => {
@@ -94,7 +94,13 @@ export class DubComponent {
       if (parseFloat((this.cursec / seconds).toFixed(1)) >= 0.7) {
         this.progressBarColor = "green";
       }
-      if (!this.recording) {
+      if (type === "record" && !this.recording) {
+        sub.unsubscribe();
+      }
+      else if (type === "play" && !this.isPlaying) {
+        sub.unsubscribe();
+      }
+      else if (type === "playOriginal" && !this.isPlayingOriginal) {
         sub.unsubscribe();
       }
     });
@@ -413,9 +419,14 @@ export class DubComponent {
         this.playingOriginal.muted = true;
         this.playingOriginal.load();
         this.playingOriginal.play();
+        this.startTimer("play");
+
       }
       this.playing.play();
-      this.playing.onended = function () { this.playingOriginal.pause(); }.bind(this);
+      this.playing.onended = function () { 
+        this.playingOriginal.pause(); 
+        this.isPlaying = false;
+      }.bind(this);
     }
     else {
       this.isPlaying = false;
@@ -431,6 +442,7 @@ export class DubComponent {
       this.playingOriginal.muted = false;
       this.playingOriginal.load();
       this.playingOriginal.play();
+      this.startTimer("playOriginal");
       this.playingOriginal.onended = (function () {
         this.isPlayingOriginal = false;
         this.allowRecording = true;
