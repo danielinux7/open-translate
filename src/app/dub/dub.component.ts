@@ -394,13 +394,17 @@ export class DubComponent {
     this.playing.src = this.sanitize(this.url);
     if (!this.isPlaying) {
       this.isPlaying = true;
+      this.playingOriginal.muted = true;
+      this.playingOriginal.load();
       this.playing.load();
       this.playing.play();
-      this.playing.onended = function () { }
+      this.playingOriginal.play();
+      this.playing.onended = function () { this.playingOriginal.pause(); }.bind(this);
     }
     else {
       this.isPlaying = false;
       this.playing.pause();
+      this.playingOriginal.pause();
     }
   }
 
@@ -408,6 +412,8 @@ export class DubComponent {
     this.errorBar = "";
     if (!this.isPlayingOriginal) {
       this.isPlayingOriginal = true;
+      this.playingOriginal.muted = false;
+      this.playingOriginal.load();
       this.playingOriginal.play();
       this.playingOriginal.onended = (function () {
         this.isPlayingOriginal = false;
