@@ -31,14 +31,6 @@ body {
   color: #fff;
 }
 
-.dark .wc .female{
-  color: #d2e264!important;
-}
-
-.dark .btn-check:checked+.wc .female{
-  color: #fff!important;
-}
-
 .dark input {
   background-color: #444444;
   color: #fff;
@@ -49,6 +41,10 @@ body {
 }
 
 .dark .play-container button.play {
+  color: #fff;
+}
+
+.dark .voiceover, .dark .female, .dark .male {
   color: #fff;
 }
 

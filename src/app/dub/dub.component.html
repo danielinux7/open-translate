@@ -1,7 +1,7 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
         <div class="row mb-0 mt-1 ml-1 mr-1">
-            <div class="col-8 curSub">
+            <div class="p-0 col-10 curSub">
                 <div class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span> /{{dubCount}}/{{subtitles.length}}</span>
@@ -29,13 +29,28 @@
                         <div class="male">
                             accessibility
                         </div>
-                        <div class="female">
-                            accessibility
+                    </label>
+                </div>
+
+                <div class="pl-3 voiceover">
+                    <input hidden type="radio" (click)="onToggleVoiceover(audioOver)" #audioOver class="btn-check"
+                        name="voiceover" value="audio" id="audioOver" [checked]="!isVoiceover">
+                    <label class=" p-0 btn no-box-shadow material-icons-outlined" for="audioOver">
+                        <div class="voiceover">
+                            videocam
+                        </div>
+                    </label>
+
+                    <input hidden type="radio" (click)="onToggleVoiceover(videoOver)" #videoOver class="btn-check"
+                        name="voiceover" value="video" id="videoOver" [checked]="isVoiceover">
+                    <label class=" p-0 btn no-box-shadow material-icons-outlined" for="videoOver">
+                        <div class="voiceover">
+                            music_note
                         </div>
                     </label>
                 </div>
             </div>
-            <div *ngIf="!dubEmpty" class="col-4 pl-0 right-section">
+            <div *ngIf="!dubEmpty" class="col-2 p-0 right-section">
                 <button *ngIf="!progressdownloadValue" (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow">
                     <span class="material-icons-outlined">cloud_download</span>

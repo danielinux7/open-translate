@@ -39,6 +39,7 @@ export class DubComponent {
   gender: string;
   url;
   allowRecording: Boolean;
+  isVoiceover: Boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
@@ -71,9 +72,11 @@ export class DubComponent {
     };
     //Start Actual Recording
     this.record = new MediaRecorder(stream,options);
-    this.playingOriginal.muted = true;
-    this.playingOriginal.load();
-    this.playingOriginal.play();
+    if (!this.isVoiceover) {
+      this.playingOriginal.muted = true;
+      this.playingOriginal.load();
+      this.playingOriginal.play();
+    }
     this.record.start();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
@@ -184,13 +187,22 @@ export class DubComponent {
       this.subindex = JSON.parse(localStorage.getItem("subindex"));
     else
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
+    let voiceover = JSON.parse(localStorage.getItem("voiceover"));
+    if (voiceover === "audio")
+      this.isVoiceover = true;
+    else if (voiceover === "video")
+      this.isVoiceover = false;
+    else {
+      localStorage.setItem("voiceover", JSON.stringify("audio"));
+      this.isVoiceover = true;
+    }
     this.subtitles = this.getSubtitles()
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
       this.dubEmpty = false;
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    this.playingOriginal = document.getElementById('video');
+    this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
     this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!this.url)
@@ -378,7 +390,7 @@ export class DubComponent {
       this.subtitles = this.getSubtitles()
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      this.playingOriginal = document.getElementById('video');
+      this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
       this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
       this.playingOriginal.load();
     });
@@ -397,11 +409,13 @@ export class DubComponent {
     this.playing.src = this.sanitize(this.url);
     if (!this.isPlaying) {
       this.isPlaying = true;
-      this.playingOriginal.muted = true;
-      this.playingOriginal.load();
       this.playing.load();
+      if (!this.isVoiceover) {
+        this.playingOriginal.muted = true;
+        this.playingOriginal.load();
+        this.playingOriginal.play();
+      }
       this.playing.play();
-      this.playingOriginal.play();
       this.playing.onended = function () { this.playingOriginal.pause(); }.bind(this);
     }
     else {
@@ -478,5 +492,17 @@ export class DubComponent {
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
     });
+  }
+
+  onToggleVoiceover(voiceover) {
+    if (voiceover.value === "audio") {
+      this.isVoiceover = false;
+      localStorage.setItem("voiceover", JSON.stringify("video"));
+    }
+    else if (voiceover.value === "video") {
+      this.isVoiceover = true;
+      localStorage.setItem("voiceover", JSON.stringify("audio"));
+    }
+
   }
 }
