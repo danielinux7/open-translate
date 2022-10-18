@@ -112,6 +112,7 @@ export class DubComponent {
     else {
       this.playingOriginal.pause();
       this.record.stop();
+      this.record.stream.getAudioTracks()[0].stop();
       this.record.addEventListener('dataavailable', event => {
           this.processRecording(event.data)
         });
