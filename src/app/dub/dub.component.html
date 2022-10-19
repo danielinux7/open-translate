@@ -88,6 +88,11 @@
                 <video width="100%" height="100%" id="video" preload="auto">
                     <source [src]="urlorginal" type="video/webm">
                 </video>
+                <div *ngIf="isVoiceover" class="background-voiceover">
+                    <span class="material-icons-outlined">
+                        music_note
+                    </span>
+                </div>
             </div>
             <div class="col-sm-2"></div>
         </div>

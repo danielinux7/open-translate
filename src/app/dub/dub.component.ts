@@ -72,11 +72,9 @@ export class DubComponent {
     };
     //Start Actual Recording
     this.record = new MediaRecorder(stream,options);
-    if (!this.isVoiceover) {
-      this.playingOriginal.muted = true;
-      this.playingOriginal.load();
-      this.playingOriginal.play();
-    }
+    this.playingOriginal.muted = true;
+    this.playingOriginal.load();
+    this.playingOriginal.play();
     this.record.start();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
@@ -415,14 +413,11 @@ export class DubComponent {
     if (!this.isPlaying) {
       this.isPlaying = true;
       this.playing.load();
-      if (!this.isVoiceover) {
-        this.playingOriginal.muted = true;
-        this.playingOriginal.load();
-        this.playingOriginal.play();
-        this.startTimer("play");
-
-      }
+      this.playingOriginal.muted = true;
+      this.playingOriginal.load();
+      this.playingOriginal.play();
       this.playing.play();
+      this.startTimer("play");
       this.playing.onended = function () { 
         this.playingOriginal.pause(); 
         this.isPlaying = false;
