@@ -1,4 +1,4 @@
-import { Injectable, Component } from '@angular/core';
+import { Injectable, Component, ViewChild, ElementRef } from '@angular/core';
 declare var $: any;
 import { DomSanitizer } from '@angular/platform-browser';
 import SUBTITLES from '../../assets/yargi/1/caption.json';
@@ -40,6 +40,8 @@ export class DubComponent {
   url;
   allowRecording: Boolean;
   isVoiceover: Boolean;
+  isReadOnlysen: Boolean;
+  isSubtitlesSaved: Boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
@@ -185,6 +187,8 @@ export class DubComponent {
   }
   ngOnInit() {
     this.errorBar = "";
+    this.isReadOnlysen = true;
+    this.isSubtitlesSaved = true;
     this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
     if (localStorage.getItem("subindex"))
       this.subindex = JSON.parse(localStorage.getItem("subindex"));
@@ -512,5 +516,27 @@ export class DubComponent {
       localStorage.setItem("voiceover", JSON.stringify("audio"));
     }
 
+  }
+
+  @ViewChild('sentence') sentence: ElementRef;
+  onEdit() {
+    if (this.isReadOnlysen === true){
+      this.isReadOnlysen = false;
+      this.sentence.nativeElement.focus();
+    }
+    else {
+      this.isReadOnlysen = true
+    }
+  }
+
+  onChangeText() {
+    this.isSubtitlesSaved = false;
+  }
+
+  onSave() {
+    if (this.isSubtitlesSaved === false){
+      this.isSubtitlesSaved = true;
+      console.log("work saved!")
+    }
   }
 }

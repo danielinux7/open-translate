@@ -98,8 +98,16 @@
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
-            <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section">
-                {{currentSub.sentence}}
+            <div class="col-sm-8 px-0 m-3 shadow-google">
+                <textarea [(ngModel)]="currentSub.sentence" (ngModelChange)="onChangeText()" #sentence
+                    class="sentence-section form-control no-resize no-box-shadow" id="sentence" [readonly]="isReadOnlysen"
+                    placeholder="{{currentSub.sentence}}" #formInputText></textarea>
+                <span class="edit material-icons-outlined" [class.active-edit]="!isReadOnlysen" (click)="onEdit()">
+                    mode_edit
+                </span>
+                <span *ngIf="!isReadOnlysen" class="save material-icons-outlined" [class.active-save]="!isSubtitlesSaved" (click)="onSave()">
+                    save
+                </span>
             </div>
             <div class="col-sm-2"></div>
         </div>

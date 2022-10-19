@@ -48,7 +48,7 @@ body {
   color: #fff;
 }
 
-.dark div.sentence-section {
+.dark textarea.sentence-section {
   background-color: #444444;
   color: #fff;
 }

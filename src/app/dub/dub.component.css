@@ -47,6 +47,35 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  border-radius: 10px;
+}
+
+.edit {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  font-size: 20px;
+  padding-right: 5px;
+}
+
+.active-edit {
+  font-family: 'Material Icons';
+  color: #ffd740!important;
+}
+
+.save {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  font-size: 20px;
+  padding-right: 5px;
+}
+
+.active-save {
+  font-family: 'Material Icons';
+  color: #ffd740!important;
 }
 
 .play {
