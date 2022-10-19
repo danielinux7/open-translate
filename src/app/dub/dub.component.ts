@@ -389,7 +389,9 @@ export class DubComponent {
       this.cursec = 0.0;
       this.allowRecording = false;
       this.progressbarValue = 0.0;
+      this.isVoiceover = true;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
+      localStorage.setItem("voiceover", JSON.stringify("audio"));
       this.subtitles = this.getSubtitles()
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;

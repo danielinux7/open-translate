@@ -9,9 +9,8 @@ export class NavBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if (!localStorage.getItem("darkMode"))
-      localStorage.setItem("darkMode", "");
-    document.body.classList.add(localStorage.getItem("darkMode"));
+    if (localStorage.getItem("darkMode"))
+      document.body.classList.add("dark");
   }
 
   toggleDarkMode() {
@@ -20,7 +19,7 @@ export class NavBarComponent implements OnInit {
       localStorage.setItem("darkMode", "dark");
     }
     else {
-      localStorage.setItem("darkMode", "");
+      localStorage.removeItem("darkMode");
     }
   }
 
