@@ -513,4 +513,25 @@ export class DubComponent {
     }
 
   }
+
+  onUpload() {
+    let file = document.getElementById("file") as HTMLInputElement;
+      JSZip.loadAsync(file.files[0])
+         .then(function(zip: JSZip) {
+          let files= [];
+          let keys = [];
+          zip.forEach(function (relativePath,entry) {
+            keys.push(entry.name.slice(0,-5));
+            entry.async('blob').then(blob => {
+              blob = new Blob([blob], { type: "audio/webm;codecs=opus" });
+              files.push({"clip":entry.name.slice(0,-5), "audio":blob, "duration":0})
+            })
+          });
+          this.dbService.bulkDelete('dub', keys).subscribe(() => {
+            this.dbService.bulkAdd('dub', files).subscribe(() => {
+              console.log("it works!");
+            });
+          });
+         }.bind(this), function() {this.error = "Иашам ZIP афаил"}.bind(this)); 
+    };
 }

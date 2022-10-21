@@ -1,7 +1,7 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
         <div class="row mb-0 mt-1 ml-1 mr-1">
-            <div class="p-0 col-10 curSub">
+            <div class="p-0 col-9 curSub">
                 <div class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span> /{{dubCount}}/{{subtitles.length}}</span>
@@ -50,15 +50,34 @@
                     </label>
                 </div>
             </div>
-            <div *ngIf="!dubEmpty" class="col-2 p-0 right-section">
+            <div class="col-3 p-0 right-section">
                 <button *ngIf="!progressdownloadValue" (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow">
-                    <span class="material-icons-outlined">cloud_download</span>
+                    <span class="material-icons-outlined">download</span>
                 </button>
                 <button *ngIf="progressdownloadValue" class="p-0 fs-28 btn no-box-shadow" type="button">
-                    <span class="download material-icons"> cloud_download </span>
+                    <span class="download material-icons">download</span>
                     <span class="progress-download">{{progressdownloadValue}}%</span>
                 </button>
+                <button data-toggle="modal" data-target="#uploadModel" type="button" class="p-0 fs-28 btn no-box-shadow">
+                    <span class="material-icons-outlined">upload</span>
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="uploadModel" tabindex="-1" role="dialog" aria-labelledby="uploadModelLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <input type=file id=file>
+                            </div>
+                            <div class="modal-footer row m-0">
+                                <button type="button" class="col-4 btn btn-secondary" data-dismiss="modal">Мап</button>
+                                <div class="col-3"></div>
+                                <button type="button" class="col-4 btn btn-danger" (click)="onUpload()" data-dismiss="modal">Аҭагалара</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <button data-toggle="modal" data-target="#deleteModel" type="button"
                     class="p-0 fs-28 btn no-box-shadow">
                     <span class="material-icons-outlined">delete_forever</span>
