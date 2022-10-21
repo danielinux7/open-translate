@@ -40,6 +40,8 @@ export class DubComponent {
   url;
   allowRecording: Boolean;
   isVoiceover: Boolean;
+  isReadOnlysen: Boolean;
+  isSubtitlesSaved: Boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
@@ -185,6 +187,8 @@ export class DubComponent {
   }
   ngOnInit() {
     this.errorBar = "";
+    this.isReadOnlysen = true;
+    this.isSubtitlesSaved = true;
     this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
     if (localStorage.getItem("subindex"))
       this.subindex = JSON.parse(localStorage.getItem("subindex"));
@@ -533,5 +537,30 @@ export class DubComponent {
             });
           });
          }.bind(this), function() {this.error = "Иашам ZIP афаил"}.bind(this)); 
-    };
+    }
+
+  onEdit() {
+    let divTextarea = document.getElementById("sentence");
+    if (this.isReadOnlysen === true) {
+      this.isReadOnlysen = false;
+      divTextarea.contentEditable = 'true';
+      divTextarea.focus();
+    }
+    else {
+      this.isReadOnlysen = true
+      divTextarea.contentEditable = 'false';
+    }
+  }
+
+  onChangeText(sentence) {
+    this.isSubtitlesSaved = false;
+    this.currentSub.sentence = sentence.textContent;
+  }
+
+  onSave() {
+    if (this.isSubtitlesSaved === false) {
+      this.isSubtitlesSaved = true;
+      console.log("work saved!")
+    }
+  }
 }
