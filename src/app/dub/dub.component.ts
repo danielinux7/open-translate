@@ -1,4 +1,4 @@
-import { Injectable, Component, ViewChild, ElementRef } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 declare var $: any;
 import { DomSanitizer } from '@angular/platform-browser';
 import SUBTITLES from '../../assets/yargi/1/caption.json';
@@ -518,19 +518,22 @@ export class DubComponent {
 
   }
 
-  @ViewChild('sentence') sentence: ElementRef;
   onEdit() {
+    let divTextarea = document.getElementById("sentence");
     if (this.isReadOnlysen === true){
       this.isReadOnlysen = false;
-      this.sentence.nativeElement.focus();
+      divTextarea.contentEditable = 'true';
+      divTextarea.focus();
     }
     else {
       this.isReadOnlysen = true
+      divTextarea.contentEditable = 'false';
     }
   }
 
-  onChangeText() {
+  onChangeText(sentence) {
     this.isSubtitlesSaved = false;
+    this.currentSub.sentence = sentence.textContent;
   }
 
   onSave() {
