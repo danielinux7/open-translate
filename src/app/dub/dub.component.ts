@@ -345,7 +345,7 @@ export class DubComponent {
   getSubtitles(): Subtitle[] {
     let sub;
     if (!localStorage.getItem("subtitle"))
-      localStorage.setItem("subtitle", JSON.stringify(SUBTITLES));
+      localStorage.setItem("subtitle", JSON.stringify(SUBTITLES,null,2));
     sub = JSON.parse(localStorage.getItem("subtitle"));
     if (this.subindex[0] === "male")
       sub = sub.filter(sub => sub["gender"] === "m")
@@ -363,6 +363,7 @@ export class DubComponent {
       count = 0;
       this.progressdownloadValue = 0;
       const zip = new JSZip();
+      zip.file("subtitle.json",localStorage.getItem("subtitle"));
       const transaction = db.transaction("dub", "readonly");
       const objectStore = transaction.objectStore("dub");
       objectStore.openCursor().onsuccess = (event) => {
@@ -533,16 +534,24 @@ export class DubComponent {
           let files= [];
           let keys = [];
           zip.forEach(function (relativePath,entry) {
-            keys.push(entry.name.slice(0,-5));
-            entry.async('blob').then(blob => {
-              blob = new Blob([blob], { type: "audio/webm;codecs=opus" });
-              files.push({"clip":entry.name.slice(0,-5), "audio":blob, "duration":0})
-            })
-          });
+            if (entry.name === "subtitle.json"){
+              entry.async('string').then(json => {
+                localStorage.setItem("subtitle", json);
+                this.subtitles = this.getSubtitles()
+                this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+                this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+              });
+            }
+            else {
+              keys.push(entry.name.slice(0,-5));
+              entry.async('blob').then(blob => {
+                blob = new Blob([blob], { type: "audio/webm;codecs=opus" });
+                files.push({"clip":entry.name.slice(0,-5), "audio":blob, "duration":0})
+              });
+            }
+          }.bind(this));
           this.dbService.bulkDelete('dub', keys).subscribe(() => {
-            this.dbService.bulkAdd('dub', files).subscribe(() => {
-              console.log("it works!");
-            });
+            this.dbService.bulkAdd('dub', files).subscribe(() => { });
           });
          }.bind(this), function() {this.error = "Иашам ZIP афаил"}.bind(this)); 
     }
@@ -578,9 +587,8 @@ export class DubComponent {
       this.currentSub.sentence = divTextarea.textContent;
       let i = parseInt(this.currentSub["clip"])-1;
       sub[i]["sentence"] = this.currentSub.sentence;
-      localStorage.setItem("subtitle", JSON.stringify(sub));
+      localStorage.setItem("subtitle", JSON.stringify(sub,null,2));
       this.isSubtitlesSaved = true;
-      console.log("work saved!")
     }
   }
 }
