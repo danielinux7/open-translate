@@ -203,10 +203,10 @@ export class DubComponent {
       localStorage.setItem("voiceover", JSON.stringify("audio"));
       this.isVoiceover = true;
     }
-    this.subtitles = this.getSubtitles()
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
       this.dubEmpty = false;
+    this.subtitles = this.getSubtitles()
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
@@ -231,6 +231,7 @@ export class DubComponent {
   onNext() {
     if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
       this.errorBar = "";
+      this.saveSubtitle();
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
         this.isPlayingOriginal = false;
@@ -268,6 +269,7 @@ export class DubComponent {
   onPrevious() {
     if (this.subindex[1][this.subindex[0]][0] > 0) {
       this.errorBar = "";
+      this.saveSubtitle();
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
         this.isPlayingOriginal = false;
@@ -306,6 +308,7 @@ export class DubComponent {
     let tempNum = this.inputSub - 1;
     if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
       this.errorBar = "";
+      this.saveSubtitle();
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
         this.isPlayingOriginal = false;
@@ -341,18 +344,20 @@ export class DubComponent {
 
   getSubtitles(): Subtitle[] {
     let sub;
+    if (!localStorage.getItem("subtitle"))
+      localStorage.setItem("subtitle", JSON.stringify(SUBTITLES));
+    sub = JSON.parse(localStorage.getItem("subtitle"));
     if (this.subindex[0] === "male")
-      sub = SUBTITLES.filter(sub => sub["gender"] === "m")
+      sub = sub.filter(sub => sub["gender"] === "m")
     else if (this.subindex[0] === "female")
-      sub = SUBTITLES.filter(sub => sub["gender"] === "f")
-    else
-      sub = SUBTITLES;
+      sub = sub.filter(sub => sub["gender"] === "f")
     return sub;
   }
 
   onDownload() {
     let db;
     let count;
+    this.saveSubtitle();
     indexedDB.open('dubDB').onsuccess = (event) => {
       db = event.target["result"];
       count = 0;
@@ -394,6 +399,7 @@ export class DubComponent {
       this.allowRecording = false;
       this.progressbarValue = 0.0;
       this.isVoiceover = true;
+      localStorage.clear();
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       localStorage.setItem("voiceover", JSON.stringify("audio"));
       this.subtitles = this.getSubtitles()
@@ -457,6 +463,8 @@ export class DubComponent {
 
   onChangeGender(gender) {
     this.errorBar = "";
+    this.saveSubtitle();
+    let sub = JSON.parse(localStorage.getItem("subtitle"));
     if (this.isPlayingOriginal) {
       this.playingOriginal.pause();
       this.isPlayingOriginal = false;
@@ -467,19 +475,19 @@ export class DubComponent {
     }
     if (gender.value === "male") {
       this.subindex[0] = "male";
-      this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "m");
+      this.subtitles = sub.filter(sub => sub["gender"] === "m");
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     }
     else if (gender.value === "female") {
       this.subindex[0] = "female";
-      this.subtitles = SUBTITLES.filter(sub => sub["gender"] === "f");
+      this.subtitles = sub.filter(sub => sub["gender"] === "f");
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     }
     else {
       this.subindex[0] = "all";
-      this.subtitles = SUBTITLES;
+      this.subtitles = sub;
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     }
@@ -544,21 +552,33 @@ export class DubComponent {
     if (this.isReadOnlysen === true) {
       this.isReadOnlysen = false;
       divTextarea.contentEditable = 'true';
+      // const selection = window.getSelection();
+      // const range = document.createRange();
+      // selection.removeAllRanges();
+      // range.selectNodeContents(divTextarea);
+      // range.collapse(false);
+      // selection.addRange(range);
       divTextarea.focus();
     }
     else {
       this.isReadOnlysen = true
       divTextarea.contentEditable = 'false';
+      this.saveSubtitle();
     }
   }
 
-  onChangeText(sentence) {
-    this.isSubtitlesSaved = false;
-    this.currentSub.sentence = sentence.textContent;
+  onChangeText() {
+        this.isSubtitlesSaved = false;
   }
-
-  onSave() {
+  
+  saveSubtitle() {
     if (this.isSubtitlesSaved === false) {
+      let divTextarea = document.getElementById("sentence");
+      let sub = JSON.parse(localStorage.getItem("subtitle"));
+      this.currentSub.sentence = divTextarea.textContent;
+      let i = parseInt(this.currentSub["clip"])-1;
+      sub[i]["sentence"] = this.currentSub.sentence;
+      localStorage.setItem("subtitle", JSON.stringify(sub));
       this.isSubtitlesSaved = true;
       console.log("work saved!")
     }

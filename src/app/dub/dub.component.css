@@ -49,6 +49,10 @@
   display: flex;
 }
 
+.active-sentence {
+  border: 1px solid #ffd740;
+}
+
 .edit {
   cursor: pointer;
   position: absolute;
