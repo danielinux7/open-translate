@@ -551,7 +551,50 @@ export class DubComponent {
             }
           }.bind(this));
           this.dbService.bulkDelete('dub', keys).subscribe(() => {
-            this.dbService.bulkAdd('dub', files).subscribe(() => { });
+            this.dbService.bulkAdd('dub', files).subscribe(() => { 
+              indexedDB.open('dubDB').onsuccess = (event) => {
+                let db = event.target["result"];
+                let transaction = db.transaction("dub", "readonly");
+                let dub = transaction.objectStore("dub");
+                let keysRequest = dub.getAllKeys();
+                dub.getAllKeys().onsuccess = () => {
+                  let subs = JSON.parse(localStorage.getItem("subtitle"));
+                  let keys = keysRequest.result;
+                  let countm = 0;
+                  let countf = 0;
+                  subs.forEach(function(sub){
+                    if (keys.includes(sub["clip"])) {
+                      if (sub["gender"] ==="f") { countf++ }
+                      else if (sub["gender"] ==="m") { countm++ }
+                    }
+                  });
+                  this.subindex[1]["male"][1] = countm;
+                  this.subindex[1]["female"][1] = countf;
+                  this.subindex[1]["all"][1] = countm+countf;
+                  localStorage.setItem("subindex", JSON.stringify(this.subindex));
+                  this.dubCount = this.subindex[1][this.subindex[0]][1];
+                  file.value = ""
+                  $("#uploadModel").modal('hide');
+                }
+              };
+              this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+                if (!this.url)
+                  URL.revokeObjectURL(this.url);
+                if (!dub) {
+                  this.url = "";
+                  this.progressbarValue = 0.0;
+                  this.cursec = 0.0;
+                  this.allowRecording = false;
+                }
+                else {
+                  this.url = URL.createObjectURL(dub["audio"]);
+                  this.progressBarColor = "green";
+                  this.cursec = dub["duration"];
+                  this.allowRecording = true;
+                  this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+                }
+              });
+            });
           });
          }.bind(this), function() {this.error = "Иашам ZIP афаил"}.bind(this)); 
     }
@@ -561,12 +604,12 @@ export class DubComponent {
     if (this.isReadOnlysen === true) {
       this.isReadOnlysen = false;
       divTextarea.contentEditable = 'true';
-      // const selection = window.getSelection();
-      // const range = document.createRange();
-      // selection.removeAllRanges();
-      // range.selectNodeContents(divTextarea);
-      // range.collapse(false);
-      // selection.addRange(range);
+      const selection = window.getSelection();
+      const range = document.createRange();
+      selection.removeAllRanges();
+      range.selectNodeContents(divTextarea);
+      range.collapse(false);
+      selection.addRange(range);
       divTextarea.focus();
     }
     else {
