@@ -3,10 +3,18 @@
         <div class="row mb-0 mt-1 ml-1 mr-1">
             <div class="p-0 col-9 curSub">
                 <div class="count">
-                    <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
+                    <input [disabled]="isFilter" [class.active-filter]="isFilter" class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span> /{{dubCount}}/{{subtitles.length}}</span>
                 </div>
-                <div class="ml-1 gender">
+                <div class="ml-1 filter" (click)="onToggleFilter()">
+                        <div *ngIf="isFilter" class="filter material-icons-outlined">
+                            filter_list
+                        </div>
+                        <div *ngIf="!isFilter" class="filter material-icons-outlined">
+                            filter_list_off
+                        </div>
+                </div>
+                <div class="gender">
                     <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
                         value="male" id="male" [checked]="subindex[0]=='male'">
                     <label class=" p-0 btn m no-box-shadow material-icons-outlined" for="male">
@@ -32,7 +40,7 @@
                     </label>
                 </div>
 
-                <div class="pl-3 voiceover">
+                <div class="voiceover">
                     <input hidden type="radio" (click)="onToggleVoiceover(audioOver)" #audioOver class="btn-check"
                         name="voiceover" value="audio" id="audioOver" [checked]="!isVoiceover">
                     <label class=" p-0 btn no-box-shadow material-icons-outlined" for="audioOver">

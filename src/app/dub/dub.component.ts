@@ -42,6 +42,7 @@ export class DubComponent {
   isVoiceover: Boolean;
   isReadOnlysen: Boolean;
   isSubtitlesSaved: Boolean;
+  isFilter: boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
@@ -203,6 +204,7 @@ export class DubComponent {
       localStorage.setItem("voiceover", JSON.stringify("audio"));
       this.isVoiceover = true;
     }
+    this.isFilter = false;
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
       this.dubEmpty = false;
@@ -632,6 +634,15 @@ export class DubComponent {
       sub[i]["sentence"] = this.currentSub.sentence;
       localStorage.setItem("subtitle", JSON.stringify(sub,null,2));
       this.isSubtitlesSaved = true;
+    }
+  }
+
+  onToggleFilter() {
+    if (this.isFilter === true){
+      this.isFilter = false;
+    }
+    else {
+      this.isFilter = true;
     }
   }
 }
