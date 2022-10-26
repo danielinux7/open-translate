@@ -27,6 +27,10 @@ body {
   color: #fff;
 }
 
+.dark .active-filter.material-icons-outlined {
+  color: #d2e264;
+}
+
 .dark div.curSub {
   color: #fff;
 }

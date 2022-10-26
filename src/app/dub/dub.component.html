@@ -5,15 +5,12 @@
                 <div *ngIf="!isFilter" class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span>/{{dubCount}}/{{subtitles.length}}</span>
+                    <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
                 <div *ngIf="isFilter" class="count">
-                    <input class="cursub filter" [(ngModel)]="indexFilter" type="number" />
+                    <input class="cursub filter-bg" [(ngModel)]="indexFilter" type="number" />
                     <span>/{{dubCountFilter}}/{{subtitlesFilter.length}}</span>
-                </div>
-                <div class="ml-1 filter" (click)="onToggleFilter()">
-                        <div [class.active-filter]="isFilter" class="filter material-icons-outlined">
-                            filter_list
-                        </div>
+                    <span class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
                 <div class="gender">
                     <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"

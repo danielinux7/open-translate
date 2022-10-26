@@ -171,8 +171,14 @@
   display: inline-block;
 }
 
-.filter {
+.filter-bg {
   background-color: rgb(3, 3, 3);
+}
+
+.filter {
+  font-size: 12px;
+  top: 0px;
+  position: absolute;
 }
 
 .active-filter {
@@ -195,7 +201,7 @@
 
 .count {
   display: inline-block;
-  min-width: 120px;
+  min-width: 130px;
 }
 
 .video-section {
