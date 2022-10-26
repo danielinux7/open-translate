@@ -275,7 +275,7 @@ export class DubComponent {
   }
 
   onNextFilter() {
-    if (this.indexFilter < this.subtitlesFilter.length) {
+    if (this.indexFilter < this.subtitlesFilter.length-1) {
       this.errorBar = "";
       this.saveSubtitle();
       if (this.isPlayingOriginal) {
@@ -349,7 +349,7 @@ export class DubComponent {
   }
 
   onPreviousFilter() {
-    if (this.indexFilter > 1) {
+    if (this.indexFilter > 0) {
       this.errorBar = "";
       this.saveSubtitle();
       if (this.isPlayingOriginal) {
@@ -724,7 +724,7 @@ export class DubComponent {
     else {
       this.isFilter = true;
       this.dubCountFilter = 0;
-      this.indexFilter = 1;
+      this.indexFilter = 0;
       indexedDB.open('dubDB').onsuccess = (event) => {
         let db = event.target["result"];
         let transaction = db.transaction("dub", "readonly");

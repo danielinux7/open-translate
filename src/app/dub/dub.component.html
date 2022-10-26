@@ -8,7 +8,7 @@
                     <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
                 <div *ngIf="isFilter" class="count">
-                    <input class="cursub filter-bg" [(ngModel)]="indexFilter" type="number" />
+                    <input class="cursub filter-bg" ngModel="{{indexFilter+1}}" type="number" />
                     <span>/{{dubCountFilter}}/{{subtitlesFilter.length}}</span>
                     <span class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
