@@ -171,8 +171,12 @@
   display: inline-block;
 }
 
-.active-filter {
+.filter {
   background-color: rgb(3, 3, 3);
+}
+
+.active-filter {
+  color: #d2e264;
 }
 
 .male {
