@@ -454,7 +454,9 @@ export class DubComponent {
       objectStore.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
-          zip.file(cursor.value["clip"] + ".webm", cursor.value["audio"])
+          let fileExt = ".webm"
+          if (cursor.value["audio"].type.includes("mp4")) fileExt = ".mp4";
+          zip.file(cursor.value["clip"] + fileExt, cursor.value["audio"])
           count++;
           this.progressdownloadValue = Math.round((count*100)/this.dubCount);
           cursor.continue();
@@ -629,9 +631,12 @@ export class DubComponent {
               });
             }
             else {
-              keys.push(entry.name.slice(0,-5));
+              if (entry.name.includes("mp4")) keys.push(entry.name.slice(0,-4));
+              else if (entry.name.includes("webm")) keys.push(entry.name.slice(0,-5));
               entry.async('blob').then(blob => {
-                blob = new Blob([blob], { type: "audio/webm;codecs=opus" });
+                let type = "audio/webm;codecs=opus"
+                if (entry.name.includes("mp4")) type = "audio/mp4";
+                blob = new Blob([blob], { type: type });
                 files.push({"clip":entry.name.slice(0,-5), "audio":blob, "duration":0})
               });
             }
