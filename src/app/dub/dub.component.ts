@@ -72,8 +72,11 @@ export class DubComponent {
   * Will be called automatically.
   */
   successCallback(stream) {
+    let mimeType = "audio/webm";
+    if (!MediaRecorder.isTypeSupported("audio/webm") && MediaRecorder.isTypeSupported("audio/mp4"))
+      mimeType = "audio/mp4";
     var options = {
-      mimeType: "audio/webm",
+      mimeType: mimeType,
       audioBitsPerSecond : 128000
     };
     //Start Actual Recording
