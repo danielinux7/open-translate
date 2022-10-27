@@ -180,8 +180,8 @@
                     </button>
                     <div class="background pink"></div>
                 </div>
-                <div class="col-4 play-container" (click)="onTogglePlay()">
-                    <button *ngIf="url" type="button" class="play btn no-box-shadow">
+                <div *ngIf="url" class="col-4 play-container" (click)="onTogglePlay()">
+                    <button type="button" class="play btn no-box-shadow">
                         <span *ngIf="!isPlaying||playing.paused" class="green fs-36 material-icons">
                             play_arrow
                         </span>
