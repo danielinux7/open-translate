@@ -243,7 +243,16 @@ export class DubComponent {
     if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
       this.errorBar = "";
       this.saveSubtitle();
-      if (this.isReadOnlysen === false) document.getElementById("sentence").focus();
+      if (this.isReadOnlysen === false) {
+        let divTextarea = document.getElementById("sentence");
+        const selection = window.getSelection();
+        const range = document.createRange();
+        selection.removeAllRanges();
+        range.selectNodeContents(divTextarea);
+        range.collapse(false);
+        selection.addRange(range);
+        divTextarea.focus();
+      }
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
         this.isPlayingOriginal = false;
@@ -318,7 +327,16 @@ export class DubComponent {
     if (this.subindex[1][this.subindex[0]][0] > 0) {
       this.errorBar = "";
       this.saveSubtitle();
-      if (this.isReadOnlysen === false) document.getElementById("sentence").focus();
+      if (this.isReadOnlysen === false) {
+        let divTextarea = document.getElementById("sentence");
+        const selection = window.getSelection();
+        const range = document.createRange();
+        selection.removeAllRanges();
+        range.selectNodeContents(divTextarea);
+        range.collapse(false);
+        selection.addRange(range);
+        divTextarea.focus();
+      } 
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
         this.isPlayingOriginal = false;
