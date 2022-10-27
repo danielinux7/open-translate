@@ -111,7 +111,8 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 ml-3 mr-3 mt-3 video-section">
                 <video width="100%" height="100%" id="video" preload="auto" playsinline>
-                    <source [src]="urlorginal" type="video/webm">
+                    <source [src]="urlorginal+'.webm'" type="video/webm">
+                    <source [src]="urlorginal+'.mp4'" type="video/mp4">
                 </video>
                 <div *ngIf="isVoiceover" class="background-voiceover">
                     <span class="material-icons-outlined">

@@ -218,7 +218,7 @@ export class DubComponent {
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!this.url)
         URL.revokeObjectURL(this.url);
@@ -252,7 +252,7 @@ export class DubComponent {
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -288,7 +288,7 @@ export class DubComponent {
       }
       this.indexFilter++;
       this.currentSub = this.subtitlesFilter[this.indexFilter];
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -326,7 +326,7 @@ export class DubComponent {
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -362,7 +362,7 @@ export class DubComponent {
       }
       this.indexFilter--;
       this.currentSub = this.subtitlesFilter[this.indexFilter]
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -400,7 +400,7 @@ export class DubComponent {
       this.subindex[1][this.subindex[0]][0] = tempNum;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -487,7 +487,7 @@ export class DubComponent {
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
       this.playingOriginal.load();
     });
   }
@@ -575,7 +575,7 @@ export class DubComponent {
     }
     this.dubCount = this.subindex[1][this.subindex[0]][1]
     localStorage.setItem("subindex", JSON.stringify(this.subindex));
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
     this.playingOriginal.load();
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!this.url)
@@ -741,7 +741,7 @@ export class DubComponent {
               subs = subs.filter(sub => sub["gender"] === "m");
             this.subtitlesFilter = subs;
             this.currentSub = this.subtitlesFilter[0]
-            this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"] + ".webm";
+            this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
             this.playingOriginal.load();
             this.url = "";
             this.progressbarValue = 0.0;
