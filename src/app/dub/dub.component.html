@@ -15,7 +15,7 @@
                 <div class="gender">
                     <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
                         value="male" id="male" [checked]="subindex[0]=='male'">
-                    <label class=" p-0 btn m no-box-shadow material-icons-outlined" for="male">
+                    <label class="m-0 p-0 btn m no-box-shadow material-icons-outlined" for="male">
                         <div class="male">
                             man
                         </div>
@@ -23,7 +23,7 @@
 
                     <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender"
                         value="female" id="female" [checked]="subindex[0]=='female'">
-                    <label class=" p-0 btn f no-box-shadow material-icons-outlined" for="female">
+                    <label class="m-0 p-0 btn f no-box-shadow material-icons-outlined" for="female">
                         <div class="female">
                             woman
                         </div>
@@ -31,7 +31,7 @@
 
                     <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender"
                         value="all" id="all" [checked]="subindex[0]=='all'">
-                    <label class=" p-0 btn wc no-box-shadow material-icons-outlined" for="all">
+                    <label class="m-0 p-0 btn wc no-box-shadow material-icons-outlined" for="all">
                         <div class="male">
                             accessibility
                         </div>
@@ -41,7 +41,7 @@
                 <div class="voiceover">
                     <input hidden type="radio" (click)="onToggleVoiceover(audioOver)" #audioOver class="btn-check"
                         name="voiceover" value="audio" id="audioOver" [checked]="!isVoiceover">
-                    <label class=" p-0 btn no-box-shadow material-icons-outlined" for="audioOver">
+                    <label class="m-0 p-0 btn no-box-shadow material-icons-outlined" for="audioOver">
                         <div class="voiceover">
                             videocam
                         </div>
@@ -49,7 +49,7 @@
 
                     <input hidden type="radio" (click)="onToggleVoiceover(videoOver)" #videoOver class="btn-check"
                         name="voiceover" value="video" id="videoOver" [checked]="isVoiceover">
-                    <label class=" p-0 btn no-box-shadow material-icons-outlined" for="videoOver">
+                    <label class="m-0 p-0 btn no-box-shadow material-icons-outlined" for="videoOver">
                         <div class="voiceover">
                             music_note
                         </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
-            <div class="col-sm-8 px-0 ml-3 mr-3 mt-3 video-section">
+            <div class="col-sm-8 px-0 ml-3 mr-3 video-section">
                 <video width="100%" height="100%" id="video" preload="auto" playsinline>
                     <source [src]="urlorginal+'.webm'" type="video/webm">
                     <source [src]="urlorginal+'.mp4'" type="video/mp4">
