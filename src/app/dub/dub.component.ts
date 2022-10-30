@@ -7,6 +7,7 @@ import { interval } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
+import * as RecordRTC from 'recordrtc';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -18,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 export class DubComponent {
   title = 'micRecorder';
   record;
+  stream;
   progressbarValue = 0.0;
   progressdownloadValue = 0;
   cursec = 0.0;
@@ -72,19 +74,18 @@ export class DubComponent {
   * Will be called automatically.
   */
   successCallback(stream) {
-    let mimeType = "audio/webm";
-    if (!MediaRecorder.isTypeSupported("audio/webm") && MediaRecorder.isTypeSupported("audio/mp4"))
-      mimeType = "audio/mp4";
+    this.stream = stream;
     var options = {
-      mimeType: mimeType,
-      audioBitsPerSecond : 128000
-    };
-    //Start Actual Recording
-    this.record = new MediaRecorder(stream,options);
+      mimeType: "audio/wav",
+      numberOfAudioChannels: 1,
+      sampleRate: 48000,
+      };
+    var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
+    this.record = new StereoAudioRecorder(stream, options);
     this.playingOriginal.muted = true;
     this.playingOriginal.load();
     this.playingOriginal.play();
-    this.record.start();
+    this.record.record();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
@@ -124,11 +125,7 @@ export class DubComponent {
     }
     else {
       this.playingOriginal.pause();
-      this.record.stop();
-      this.record.stream.getAudioTracks()[0].stop();
-      this.record.addEventListener('dataavailable', event => {
-          this.processRecording(event.data)
-        });
+      this.record.stop(this.processRecording.bind(this));
     }
   }
   /**
@@ -160,7 +157,9 @@ export class DubComponent {
                  URL.revokeObjectURL(this.url);
               this.url = URL.createObjectURL(blob);
               this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
-                .subscribe(() => { });
+                .subscribe(() => { 
+                  this.stream.getAudioTracks()[0].stop();
+                  this.record.clearRecordedData(); });
             }
           }
         });
@@ -183,6 +182,8 @@ export class DubComponent {
               this.dubCount = this.subindex[1][this.subindex[0]][1]
               this.dubCountFilter++;
               localStorage.setItem("subindex", JSON.stringify(this.subindex));
+              this.stream.getAudioTracks()[0].stop();
+              this.record.clearRecordedData();
             });
         }
       }
@@ -472,9 +473,7 @@ export class DubComponent {
       objectStore.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
-          let fileExt = ".webm"
-          if (cursor.value["audio"].type.includes("mp4")) fileExt = ".mp4";
-          zip.file(cursor.value["clip"] + fileExt, cursor.value["audio"])
+          zip.file(cursor.value["clip"] + ".wav", cursor.value["audio"])
           count++;
           this.progressdownloadValue = Math.round((count*100)/this.dubCount);
           cursor.continue();
@@ -532,6 +531,7 @@ export class DubComponent {
       this.isPlaying = true;
       this.playing.load();
       this.playingOriginal.muted = true;
+      this.playingOriginal.load();
       this.playingOriginal.play();
       this.playing.play();
       this.startTimer("play");
@@ -647,13 +647,10 @@ export class DubComponent {
               });
             }
             else {
-              if (entry.name.includes("mp4")) keys.push(entry.name.slice(0,-4));
-              else if (entry.name.includes("webm")) keys.push(entry.name.slice(0,-5));
+              keys.push(entry.name.slice(0,-4));
               entry.async('blob').then(blob => {
-                let type = "audio/webm;codecs=opus"
-                if (entry.name.includes("mp4")) type = "audio/mp4";
-                blob = new Blob([blob], { type: type });
-                files.push({"clip":entry.name.slice(0,-5), "audio":blob, "duration":0})
+                blob = new Blob([blob], { type: "audio/wav" });
+                files.push({"clip":entry.name.slice(0,-4), "audio":blob, "duration":0})
               });
             }
           }.bind(this));
