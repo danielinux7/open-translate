@@ -464,13 +464,20 @@ export class DubComponent {
     this.saveSubtitle();
     indexedDB.open('dubDB').onsuccess = (event) => {
       db = event.target["result"];
+      let transaction = db.transaction("dub", "readonly");
+      let dub = transaction.objectStore("dub");
       count = 0;
       this.progressdownloadValue = 0;
-      const zip = new JSZip();
+      let zip = new JSZip();
       zip.file("subtitle.json",localStorage.getItem("subtitle"));
-      const transaction = db.transaction("dub", "readonly");
-      const objectStore = transaction.objectStore("dub");
-      objectStore.openCursor().onsuccess = (event) => {
+      let subs = JSON.parse(localStorage.getItem("subtitle"));
+      let keysRequest = dub.getAllKeys();
+      dub.getAllKeys().onsuccess = () => {
+        let keys = keysRequest.result;
+        subs = subs.filter(sub => !keys.includes(sub["clip"]));
+        zip.file("subtitle-no-record.json",JSON.stringify(subs,null,2));
+      }
+      dub.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
           let fileExt = ".wav"
@@ -648,7 +655,7 @@ export class DubComponent {
                 this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
               });
             }
-            else {
+            else if (entry.name.split(".")[1] !== "json") {
               keys.push(entry.name.split(".")[0]);
               entry.async('blob').then(blob => {
                 blob = new Blob([blob], { type: "audio/"+entry.name.split(".")[1] });
