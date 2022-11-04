@@ -5,3 +5,5 @@ curl https://storage.googleapis.com/tensorflow-serving-apt/tensorflow-serving.re
 sudo apt update
 sudo apt-get install tensorflow-model-server
 sudo pip3 install -r requirements.txt
+sudo apt-get install certbot
+sudo certbot certonly -d server.bagrat.space -n --standalone
