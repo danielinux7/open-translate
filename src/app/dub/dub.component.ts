@@ -713,37 +713,43 @@ export class DubComponent {
     }
 
   onEdit() {
-    let divTextarea = document.getElementById("sentence");
     if (this.isReadOnlysen === true) {
       this.isReadOnlysen = false;
-      divTextarea.contentEditable = 'true';
+      $("#sentence")[0].contentEditable = 'true';
       const selection = window.getSelection();
       const range = document.createRange();
       selection.removeAllRanges();
-      range.selectNodeContents(divTextarea);
+      range.selectNodeContents($("#sentence")[0]);
       range.collapse(false);
       selection.addRange(range);
-      divTextarea.focus();
+      $("#sentence")[0].focus();
     }
     else {
       this.isReadOnlysen = true
-      divTextarea.contentEditable = 'false';
+      $("#sentence")[0].contentEditable = 'false';
       this.saveSubtitle();
     }
   }
 
   onChangeText() {
-        this.isSubtitlesSaved = false;
+    this.isSubtitlesSaved = false;
+    if ($("#sentence").text().length > this.currentSub.length) {
+      // $("#sentence").text(this.currentSub.sentence)
+      const selection = window.getSelection();
+      const range = document.createRange();
+      selection.removeAllRanges();
+      range.selectNodeContents($("#sentence")[0]);
+      range.collapse(false);
+      selection.addRange(range);
+    }
   }
   
   saveSubtitle() {
     if (this.isSubtitlesSaved === false) {
-      let divTextarea = document.getElementById("sentence");
-      let sub = JSON.parse(localStorage.getItem("subtitle"));
-      this.currentSub.sentence = divTextarea.textContent;
+      this.subtitles = JSON.parse(localStorage.getItem("subtitle"));
       let i = parseInt(this.currentSub["clip"])-1;
-      sub[i]["sentence"] = this.currentSub.sentence;
-      localStorage.setItem("subtitle", JSON.stringify(sub,null,2));
+      this.subtitles[i]["sentence"] = $("#sentence").text();
+      localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
       this.isSubtitlesSaved = true;
     }
   }

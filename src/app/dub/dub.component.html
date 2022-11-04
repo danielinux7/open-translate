@@ -126,10 +126,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section" [class.active-sentence]="!isReadOnlysen">
                 <div [(ngModel)]="currentSub.sentence" ngDefaultControl (ngModelChange)="onChangeText()"
-                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">
-                    {{currentSub.sentence}}
-                </div>
-                <span class="edit material-icons-outlined" [class.active-edit]="!isReadOnlysen" (click)="onEdit()">
+                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">{{currentSub.sentence}}</div>               <span class="edit material-icons-outlined" [class.active-edit]="!isReadOnlysen" (click)="onEdit()">
                     mode_edit
                 </span>
                 <!-- <span *ngIf="!isReadOnlysen" class="save material-icons-outlined" [class.active-save]="!isSubtitlesSaved"
