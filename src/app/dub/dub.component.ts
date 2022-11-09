@@ -562,6 +562,7 @@ export class DubComponent {
     if (!this.isPlayingOriginal) {
       this.isPlayingOriginal = true;
       this.playingOriginal.muted = false;
+      this.playingOriginal.load();
       this.playingOriginal.play();
       this.startTimer("playOriginal");
       this.playingOriginal.onended = (function () {
