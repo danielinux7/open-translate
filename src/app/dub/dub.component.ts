@@ -46,6 +46,7 @@ export class DubComponent {
   allowRecording: Boolean;
   isVoiceover: Boolean;
   isReadOnlysen: Boolean;
+  isWarning: Boolean;
   isSubtitlesSaved: Boolean;
   isFilter: boolean;
   error;
@@ -739,6 +740,9 @@ export class DubComponent {
     }
     if (length >= this.currentSub.length || e.code == "Enter") {
       e.preventDefault();
+      this.isWarning = true;
+      setTimeout((() => { this.isWarning = false;
+      }).bind(this),500);
     }
     else {
       this.currentSub.sentence = $("#sentence").text();

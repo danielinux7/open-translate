@@ -47,10 +47,15 @@
   align-items: center;
   justify-content: center;
   display: flex;
+  border: 2px solid rgba(255, 255, 255, 0);
 }
 
 .active-sentence {
-  border: 1px solid #ffd740;
+  border: 2px solid #ffd740;
+}
+
+.active-warning {
+  border: 2px solid #FF4F5E;
 }
 
 .edit {
@@ -65,6 +70,11 @@
 .active-edit {
   font-family: 'Material Icons';
   color: #ffd740!important;
+}
+
+.active-edit-warning {
+  font-family: 'Material Icons';
+  color: #FF4F5E!important;
 }
 
 .save {

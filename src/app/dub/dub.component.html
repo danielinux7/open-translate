@@ -124,11 +124,12 @@
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
-            <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section" [class.active-sentence]="!isReadOnlysen">
-                <div (keydown)="onChangeText($event)" onpaste="return false;"
-                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">{{currentSub.sentence}}</div>               <span class="edit material-icons-outlined" [class.active-edit]="!isReadOnlysen" (click)="onEdit()">
-                    mode_edit
-                </span>
+            <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section" [class.active-sentence]="!isReadOnlysen" [class.active-warning]="isWarning">
+                <div (keydown)="onChangeText($event)" onpaste="return false;" 
+                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">{{currentSub.sentence}}</div>               
+                    <span class="edit material-icons-outlined" [class.active-edit]="!isReadOnlysen" [class.active-edit-warning]="isWarning" (click)="onEdit()">
+                        mode_edit
+                    </span>
                 <!-- <span *ngIf="!isReadOnlysen" class="save material-icons-outlined" [class.active-save]="!isSubtitlesSaved"
                     (click)="saveSubtitle()">
                     save
