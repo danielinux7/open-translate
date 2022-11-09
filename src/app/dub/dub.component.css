@@ -58,6 +58,14 @@
   border: 2px solid #FF4F5E;
 }
 
+.edit-gender {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  font-size: 20px;
+  padding-right: 5px;
+}
+
 .edit {
   cursor: pointer;
   position: absolute;

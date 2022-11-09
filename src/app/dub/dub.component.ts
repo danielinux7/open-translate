@@ -630,6 +630,14 @@ export class DubComponent {
     });
   }
 
+  editGender(gender) {
+    this.isSubtitlesSaved = false;
+    if (gender == "male") 
+      this.currentSub.gender = "m";
+    else if (gender == "female") 
+      this.currentSub.gender = "f";
+  }
+
   onToggleVoiceover(voiceover) {
     if (voiceover.value === "audio") {
       this.isVoiceover = false;
@@ -760,7 +768,8 @@ export class DubComponent {
     if (this.isSubtitlesSaved === false) {
       this.subtitles = JSON.parse(localStorage.getItem("subtitle"));
       let i = parseInt(this.currentSub["clip"])-1;
-      this.subtitles[i]["sentence"] = $("#sentence").text();
+      this.subtitles[i]["sentence"] = this.currentSub.sentence;
+      this.subtitles[i]["gender"] = this.currentSub.gender;
       localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
       this.isSubtitlesSaved = true;
     }
