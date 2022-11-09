@@ -731,17 +731,24 @@ export class DubComponent {
     }
   }
 
-  onChangeText() {
+  onChangeText(e) {
     this.isSubtitlesSaved = false;
-    if ($("#sentence").text().length > this.currentSub.length) {
-      // $("#sentence").text(this.currentSub.sentence)
-      const selection = window.getSelection();
-      const range = document.createRange();
-      selection.removeAllRanges();
-      range.selectNodeContents($("#sentence")[0]);
-      range.collapse(false);
-      selection.addRange(range);
+    let length = $("#sentence").text().length;
+    if (e.code == "Delete" || e.code == "Backspace") {
+      length--;
     }
+    if (length >= this.currentSub.length || e.code == "Enter") {
+      e.preventDefault();
+    }
+    else {
+      this.currentSub.sentence = $("#sentence").text();
+    }
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents($("#sentence")[0]);
+    range.collapse(false);
+    selection.addRange(range);
   }
   
   saveSubtitle() {
