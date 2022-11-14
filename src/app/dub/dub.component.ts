@@ -7,7 +7,6 @@ import { interval } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
-import * as RecordRTC from 'recordrtc';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -18,7 +17,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class DubComponent {
   title = 'micRecorder';
-  record;
+  record: MediaRecorder;
   stream;
   progressbarValue = 0.0;
   progressdownloadValue = 0;
@@ -67,8 +66,11 @@ export class DubComponent {
     this.url = null;
     let mediaConstraints = {
       video: false,
-      audio: true
-    };
+      audio: {
+        echoCancellation: false,
+        autoGainControl: false,
+        noiseSuppression: false,
+      }     };
     navigator.mediaDevices.getUserMedia(mediaConstraints).then(this.successCallback.bind(this), this.errorCallback.bind(this));
   }
   /**
@@ -77,16 +79,13 @@ export class DubComponent {
   successCallback(stream) {
     this.stream = stream;
     var options = {
-      mimeType: "audio/wav",
-      numberOfAudioChannels: 1,
-      sampleRate: 48000,
-      };
-    var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
-    this.record = new StereoAudioRecorder(stream, options);
+      audioBitsPerSecond: 128000
+    };
+    this.record = new MediaRecorder(stream, options);
     this.playingOriginal.muted = true;
     this.playingOriginal.load();
     this.playingOriginal.play();
-    this.record.record();
+    this.record.start();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
@@ -126,7 +125,10 @@ export class DubComponent {
     }
     else {
       this.playingOriginal.pause();
-      this.record.stop(this.processRecording.bind(this));
+      this.record.stop();
+      this.record.ondataavailable = (e) => {
+        this.processRecording(e.data)
+      }
     }
   }
   /**
@@ -160,7 +162,7 @@ export class DubComponent {
               this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
                 .subscribe(() => { 
                   this.stream.getAudioTracks()[0].stop();
-                  this.record.clearRecordedData(); });
+                   });
             }
           }
         });
@@ -184,7 +186,6 @@ export class DubComponent {
               this.dubCountFilter++;
               localStorage.setItem("subindex", JSON.stringify(this.subindex));
               this.stream.getAudioTracks()[0].stop();
-              this.record.clearRecordedData();
             });
         }
       }
@@ -481,9 +482,7 @@ export class DubComponent {
       dub.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
         if (cursor) {
-          let fileExt = ".wav"
-          if (cursor.value["audio"].type.includes("webm")) fileExt = ".webm";
-          zip.file(cursor.value["clip"] + fileExt, cursor.value["audio"])
+          zip.file(cursor.value["clip"], cursor.value["audio"])
           count++;
           this.progressdownloadValue = Math.round((count*100)/this.dubCount);
           cursor.continue();
@@ -666,10 +665,10 @@ export class DubComponent {
               });
             }
             else if (entry.name.split(".")[1] !== "json") {
-              keys.push(entry.name.split(".")[0]);
+              keys.push(entry.name);
               entry.async('blob').then(blob => {
-                blob = new Blob([blob], { type: "audio/"+entry.name.split(".")[1] });
-                files.push({"clip":entry.name.split(".")[0], "audio":blob, "duration":0})
+                blob = new Blob([blob], { type: blob.type });
+                files.push({"clip":entry.name, "audio":blob, "duration":0})
               });
             }
           }.bind(this));
