@@ -580,53 +580,55 @@ export class DubComponent {
     this.isFilter = false;
     this.saveSubtitle();
     let sub = JSON.parse(localStorage.getItem("subtitle"));
-    if (this.isPlayingOriginal) {
-      this.playingOriginal.pause();
-      this.isPlayingOriginal = false;
-    }
-    if (this.isPlaying) {
-      this.playing.pause();
-      this.isPlaying = false;
-    }
-    if (gender.value === "male") {
-      this.subindex[0] = "male";
-      this.subtitles = sub.filter(sub => sub["gender"] === "m");
-      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    }
-    else if (gender.value === "female") {
-      this.subindex[0] = "female";
-      this.subtitles = sub.filter(sub => sub["gender"] === "f");
-      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    }
-    else {
-      this.subindex[0] = "all";
-      this.subtitles = sub;
-      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    }
-    this.dubCount = this.subindex[1][this.subindex[0]][1]
-    localStorage.setItem("subindex", JSON.stringify(this.subindex));
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
-    this.playingOriginal.load();
-    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-      if (!this.url)
-        URL.revokeObjectURL(this.url);
-      if (!dub) {
-        this.url = "";
-        this.progressbarValue = 0.0;
-        this.cursec = 0.0;
-        this.allowRecording = false;
+    if (sub.filter(sub => sub["gender"] === gender.value).length > 0 || gender.value == "all") {
+      if (this.isPlayingOriginal) {
+        this.playingOriginal.pause();
+        this.isPlayingOriginal = false;
+      }
+      if (this.isPlaying) {
+        this.playing.pause();
+        this.isPlaying = false;
+      }
+      if (gender.value === "m") {
+        this.subindex[0] = "male";
+        this.subtitles = sub.filter(sub => sub["gender"] === "m");
+        this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+        this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+      }
+      else if (gender.value === "f") {
+        this.subindex[0] = "female";
+        this.subtitles = sub.filter(sub => sub["gender"] === "f");
+        this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+        this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       }
       else {
-        this.url = URL.createObjectURL(dub["audio"]);
-        this.progressBarColor = "green";
-        this.cursec = dub["duration"];
-        this.allowRecording = true;
-        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        this.subindex[0] = "all";
+        this.subtitles = sub;
+        this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+        this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       }
-    });
+      this.dubCount = this.subindex[1][this.subindex[0]][1]
+      localStorage.setItem("subindex", JSON.stringify(this.subindex));
+      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      this.playingOriginal.load();
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
+        if (!dub) {
+          this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+          this.allowRecording = false;
+        }
+        else {
+          this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.allowRecording = true;
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        }
+      });
+    }
   }
 
   editGender(gender) {
