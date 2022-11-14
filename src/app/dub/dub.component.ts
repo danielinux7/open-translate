@@ -767,7 +767,7 @@ export class DubComponent {
     if (this.isSubtitlesSaved === false) {
       this.subtitles = JSON.parse(localStorage.getItem("subtitle"));
       let i = parseInt(this.currentSub["clip"])-1;
-      this.subtitles[i]["sentence"] = this.currentSub.sentence;
+      this.subtitles[i]["sentence"] = $("#sentence").text();
       this.subtitles[i]["gender"] = this.currentSub.gender;
       localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
       this.isSubtitlesSaved = true;
