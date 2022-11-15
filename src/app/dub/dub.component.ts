@@ -68,7 +68,7 @@ export class DubComponent {
       video: false,
       audio: {
         echoCancellation: false,
-        autoGainControl: false,
+        autoGainControl: true,
         noiseSuppression: false,
       }     };
     navigator.mediaDevices.getUserMedia(mediaConstraints).then(this.successCallback.bind(this), this.errorCallback.bind(this));
