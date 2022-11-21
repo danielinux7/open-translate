@@ -1,9 +1,8 @@
 import { Injectable, Component } from '@angular/core';
 declare var $: any;
 import { DomSanitizer } from '@angular/platform-browser';
-import SUBTITLES from '../../assets/yargi/1/caption.json';
 import { Subtitle } from './subtitle';
-import { interval } from 'rxjs';
+import { interval, firstValueFrom } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
@@ -36,8 +35,9 @@ export class DubComponent {
   playingOriginal;
   isPlayingOriginal = false;
   urlorginal = "";
-  currentSub: Subtitle;
-  subtitles: Subtitle[];
+  currentSub =  <Subtitle>{"sentence":""};
+  subtitles = <Subtitle[]>[];
+  initSub: Subtitle[];
   subtitlesFilter: Subtitle[];
   subindex;
   gender: string;
@@ -52,10 +52,16 @@ export class DubComponent {
 
   constructor(private domSanitizer: DomSanitizer,
     private dbService: NgxIndexedDBService,
-    private http: HttpClient) { }
+    private http: HttpClient) {}
+
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url)["changingThisBreaksApplicationSecurity"];
   }
+
+  getAsset(url){
+    return firstValueFrom(this.http.get<any>(url));
+  }
+
   /**
   * Start recording.
   */
@@ -197,7 +203,7 @@ export class DubComponent {
   errorCallback(error) {
     this.error = 'Can not play audio in your browser';
   }
-  ngOnInit() {
+  async ngOnInit() {
     this.errorBar = "";
     this.isReadOnlysen = true;
     this.isSubtitlesSaved = true;
@@ -220,6 +226,7 @@ export class DubComponent {
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
       this.dubEmpty = false;
+    this.initSub = await this.getAsset("/assets/yargi/1/caption.json");
     this.subtitles = this.getSubtitles()
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
@@ -451,7 +458,7 @@ export class DubComponent {
   getSubtitles(): Subtitle[] {
     let sub;
     if (!localStorage.getItem("subtitle"))
-      localStorage.setItem("subtitle", JSON.stringify(SUBTITLES,null,2));
+      localStorage.setItem("subtitle", JSON.stringify(this.initSub,null,2));
     sub = JSON.parse(localStorage.getItem("subtitle"));
     if (this.subindex[0] === "male")
       sub = sub.filter(sub => sub["gender"] === "m")
