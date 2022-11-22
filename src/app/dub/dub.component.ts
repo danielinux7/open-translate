@@ -34,8 +34,8 @@ export class DubComponent {
   timeout;
   playingOriginal;
   isPlayingOriginal = false;
-  urlorginal = "";
-  currentSub =  <Subtitle>{"sentence":""};
+  urlorginal = "/assets/yargi/1/1";
+  currentSub =  <Subtitle>{"source":""};
   subtitles = <Subtitle[]>[];
   initSub: Subtitle[];
   subtitlesFilter: Subtitle[];
@@ -762,7 +762,7 @@ export class DubComponent {
       }).bind(this),500);
     }
     else {
-      this.currentSub.sentence = $("#sentence").text();
+      this.currentSub.target = $("#sentence").text();
     }
     const selection = window.getSelection();
     const range = document.createRange();
@@ -776,7 +776,7 @@ export class DubComponent {
     if (this.isSubtitlesSaved === false) {
       this.subtitles = JSON.parse(localStorage.getItem("subtitle"));
       let i = parseInt(this.currentSub["clip"])-1;
-      this.subtitles[i]["sentence"] = $("#sentence").text();
+      this.subtitles[i]["target"] = $("#sentence").text();
       this.subtitles[i]["gender"] = this.currentSub.gender;
       localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
       this.isSubtitlesSaved = true;

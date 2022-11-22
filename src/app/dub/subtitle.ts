@@ -1,6 +1,7 @@
 export interface Subtitle {
   clip: string;
-  sentence: string;
+  source: string;
+  target: string;
   start_sec: number;
   duration: number;
   gender: string;
