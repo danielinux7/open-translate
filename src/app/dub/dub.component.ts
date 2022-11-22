@@ -48,6 +48,7 @@ export class DubComponent {
   isWarning: Boolean;
   isSubtitlesSaved: Boolean;
   isFilter: boolean;
+  isSource: boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
@@ -744,9 +745,22 @@ export class DubComponent {
     }
     else {
       this.isReadOnlysen = true
+      this.isSource = false;
       $("#sentence")[0].contentEditable = 'false';
       this.saveSubtitle();
     }
+  }
+
+  showSource() {
+    this.isSource?this.isSource=false:this.isSource=true;
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents($("#sentence")[0]);
+    range.collapse(false);
+    selection.addRange(range);
+    $("#sentence")[0].focus();
+
   }
 
   onChangeText(e) {

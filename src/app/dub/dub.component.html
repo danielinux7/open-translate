@@ -127,7 +127,8 @@
             <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section" [class.active-sentence]="!isReadOnlysen"
                 [class.active-warning]="isWarning">
                 <div (keydown)="onChangeText($event)" onpaste="return false;"
-                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">{{currentSub.target?currentSub.target:currentSub.source}}</div>
+                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">{{currentSub.target||!isReadOnlysen?currentSub.target:currentSub.source}}</div>
+                <div *ngIf="isSource&&!isReadOnlysen" class="sentence-section source m-0 p-3 form-control no-resize no-box-shadow">{{currentSub.source}}</div>
                 <span class="edit material-icons-outlined" [class.active-edit]="!isReadOnlysen"
                     [class.active-edit-warning]="isWarning" (click)="onEdit()">
                     mode_edit
@@ -140,10 +141,10 @@
                         woman
                     </span>
                 </div>
-                <!-- <span *ngIf="!isReadOnlysen" class="save material-icons-outlined" [class.active-save]="!isSubtitlesSaved"
-                                (click)="saveSubtitle()">
-                                save
-                            </span> -->
+                <span *ngIf="!isReadOnlysen" class="show-source material-icons-outlined" [class.active-edit]="isSource" (click)="showSource()">
+                    change_circle
+                </span>
+
             </div>
             <div class="col-sm-2"></div>
         </div>

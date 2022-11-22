@@ -66,6 +66,18 @@
   padding-right: 5px;
 }
 
+.show-source {
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  font-size: 20px;
+  padding-right: 5px;
+}
+
+.sentence-section.source {
+  position: absolute;
+}
+
 .edit {
   cursor: pointer;
   position: absolute;
