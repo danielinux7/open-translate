@@ -52,7 +52,6 @@ export class DubComponent {
   isFilter: boolean;
   isSource: boolean;
   isTranslate: boolean;
-  isCopy: boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
@@ -790,33 +789,23 @@ export class DubComponent {
     if (this.isTranslate == true) {
       this.getTranslate();
     }
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents($("#sentence")[0]);
+    range.collapse(false);
+    selection.addRange(range);
+    $("#sentence")[0].focus();
   }
 
   async getTranslate() {
+    this.isSubtitlesSaved = false;
     const formData = new FormData();
     formData.append('langSrc', "ru");
     formData.append('langTgt', "ab");
     formData.append('source', this.currentSub.source);
     let translate = await this.translateService.getTranslateDub(formData)
     this.translation = translate["target"];
-  }
-
-  copyTranslate() {
-    if (this.isTranslate == true) {
-      this.isCopy = true;
-      setTimeout((() => { 
-        this.currentSub.target = this.translation;
-        this.isSource = false;
-        this.isCopy = false;
-        const selection = window.getSelection();
-        const range = document.createRange();
-        selection.removeAllRanges();
-        range.selectNodeContents($("#sentence")[0]);
-        range.collapse(false);
-        selection.addRange(range);
-        $("#sentence")[0].focus();
-      }).bind(this),500);
-    }
   }
 
   onChangeText(e) {
