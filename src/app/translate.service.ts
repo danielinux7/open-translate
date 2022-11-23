@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LANGS } from './languages';
 import { Lang } from './language';
@@ -21,6 +21,10 @@ export class TranslateService {
 
   getTranslate(data: FormData): Observable<any> {
     return this.http.post<any>(this.translateUrl, data)
+  }
+
+  getTranslateDub(data: FormData) {
+    return firstValueFrom(this.http.post<any>(this.translateUrl, data))
   }
 
   getConv(data: FormData): Observable<any> {

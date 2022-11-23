@@ -58,6 +58,10 @@
   border: 2px solid #FF4F5E;
 }
 
+.active-copy {
+  color: #ffd740!important;
+}
+
 .edit-gender {
   cursor: pointer;
   position: absolute;
@@ -70,6 +74,24 @@
   cursor: pointer;
   position: absolute;
   bottom: 5px;
+  font-size: 20px;
+  padding-right: 5px;
+}
+
+.show-translate {
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+.show-copy {
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
   font-size: 20px;
   padding-right: 5px;
 }

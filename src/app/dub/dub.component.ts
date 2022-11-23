@@ -7,6 +7,7 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '../translate.service';
 
 @Component({
   selector: 'app-dub',
@@ -22,6 +23,7 @@ export class DubComponent {
   progressdownloadValue = 0;
   cursec = 0.0;
   errorBar: string;
+  translation: string;
   progressBarColor = "blue";
   recording = false;
   dubEmpty = true;
@@ -34,7 +36,7 @@ export class DubComponent {
   timeout;
   playingOriginal;
   isPlayingOriginal = false;
-  urlorginal = "/assets/yargi/1/1";
+  urlorginal = "/assets/home/1";
   currentSub =  <Subtitle>{"source":""};
   subtitles = <Subtitle[]>[];
   initSub: Subtitle[];
@@ -49,11 +51,14 @@ export class DubComponent {
   isSubtitlesSaved: Boolean;
   isFilter: boolean;
   isSource: boolean;
+  isTranslate: boolean;
+  isCopy: boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
     private dbService: NgxIndexedDBService,
-    private http: HttpClient) {}
+    private http: HttpClient,
+    private translateService: TranslateService) {}
 
   sanitize(url: string) {
     return this.domSanitizer.bypassSecurityTrustUrl(url)["changingThisBreaksApplicationSecurity"];
@@ -227,12 +232,12 @@ export class DubComponent {
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
       this.dubEmpty = false;
-    this.initSub = await this.getAsset("/assets/yargi/1/caption.json");
+    this.initSub = await this.getAsset("/assets/home/caption.json");
     this.subtitles = this.getSubtitles()
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
-    this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+    this.urlorginal = "/assets/home/" + this.currentSub["clip"];
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!this.url)
         URL.revokeObjectURL(this.url);
@@ -275,8 +280,11 @@ export class DubComponent {
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      if (this.isTranslate == true) {
+        this.getTranslate();
+      }
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -312,7 +320,10 @@ export class DubComponent {
       }
       this.indexFilter++;
       this.currentSub = this.subtitlesFilter[this.indexFilter];
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      if (this.isTranslate == true) {
+        this.getTranslate();
+      }
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -359,8 +370,11 @@ export class DubComponent {
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      if (this.isTranslate == true) {
+        this.getTranslate();
+      }
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -396,7 +410,10 @@ export class DubComponent {
       }
       this.indexFilter--;
       this.currentSub = this.subtitlesFilter[this.indexFilter]
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      if (this.isTranslate == true) {
+        this.getTranslate();
+      }
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -434,7 +451,10 @@ export class DubComponent {
       this.subindex[1][this.subindex[0]][0] = tempNum;
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      if (this.isTranslate == true) {
+        this.getTranslate();
+      }
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -528,7 +548,7 @@ export class DubComponent {
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
     });
   }
@@ -615,9 +635,12 @@ export class DubComponent {
         this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
         this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       }
+      if (this.isTranslate == true) {
+        this.getTranslate();
+      }
       this.dubCount = this.subindex[1][this.subindex[0]][1]
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
-      this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
         if (!this.url)
@@ -760,7 +783,40 @@ export class DubComponent {
     range.collapse(false);
     selection.addRange(range);
     $("#sentence")[0].focus();
+  }
 
+  showTranslate() {
+    this.isTranslate?this.isTranslate=false:this.isTranslate=true;
+    if (this.isTranslate == true) {
+      this.getTranslate();
+    }
+  }
+
+  async getTranslate() {
+    const formData = new FormData();
+    formData.append('langSrc', "ru");
+    formData.append('langTgt', "ab");
+    formData.append('source', this.currentSub.source);
+    let translate = await this.translateService.getTranslateDub(formData)
+    this.translation = translate["target"];
+  }
+
+  copyTranslate() {
+    if (this.isTranslate == true) {
+      this.isCopy = true;
+      setTimeout((() => { 
+        this.currentSub.target = this.translation;
+        this.isSource = false;
+        this.isCopy = false;
+        const selection = window.getSelection();
+        const range = document.createRange();
+        selection.removeAllRanges();
+        range.selectNodeContents($("#sentence")[0]);
+        range.collapse(false);
+        selection.addRange(range);
+        $("#sentence")[0].focus();
+      }).bind(this),500);
+    }
   }
 
   onChangeText(e) {
@@ -822,7 +878,7 @@ export class DubComponent {
               subs = subs.filter(sub => sub["gender"] === "m");
             this.subtitlesFilter = subs;
             this.currentSub = this.subtitlesFilter[0]
-            this.urlorginal = "/assets/yargi/1/" + this.currentSub["clip"];
+            this.urlorginal = "/assets/home/" + this.currentSub["clip"];
             this.playingOriginal.load();
             this.url = "";
             this.progressbarValue = 0.0;
