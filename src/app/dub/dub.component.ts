@@ -52,6 +52,8 @@ export class DubComponent {
   isFilter: boolean;
   isSource: boolean;
   isTranslate: boolean;
+  isCopy: boolean;
+  isSaved: boolean;
   error;
 
   constructor(private domSanitizer: DomSanitizer,
@@ -789,6 +791,26 @@ export class DubComponent {
     if (this.isTranslate == true) {
       this.getTranslate();
     }
+    else {
+      this.translation = "";
+      const selection = window.getSelection();
+      const range = document.createRange();
+      selection.removeAllRanges();
+      range.selectNodeContents($("#sentence")[0]);
+      range.collapse(false);
+      selection.addRange(range);
+      $("#sentence")[0].focus();
+    }
+  }
+
+  saveCurrent() {
+    this.isSaved?this.isSaved=false:this.isSaved=true;
+    if (this.isSaved == true) {
+      setTimeout((() => {
+        this.saveSubtitle();    
+        this.isSaved = false;
+      }).bind(this), 500);
+    }
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
@@ -804,31 +826,46 @@ export class DubComponent {
     formData.append('langSrc', "ru");
     formData.append('langTgt', "ab");
     formData.append('source', this.currentSub.source);
+    this.translation = "";
     let translate = await this.translateService.getTranslateDub(formData)
     this.translation = translate["target"];
   }
 
-  onChangeText(e) {
-    this.isSubtitlesSaved = false;
-    let length = $("#sentence").text().length;
-    if (e.code == "Delete" || e.code == "Backspace") {
-      length--;
-    }
-    if (length >= this.currentSub.length || e.code == "Enter") {
-      e.preventDefault();
-      this.isWarning = true;
-      setTimeout((() => { this.isWarning = false;
-      }).bind(this),500);
-    }
-    else {
-      this.currentSub.target = $("#sentence").text();
-    }
+  makeCopy() {
+    this.isCopy = true;
+    this.isTranslate = false;
+    setTimeout((() => {
+      this.isCopy = false;
+    }).bind(this), 500);
+    this.currentSub.target = this.translation;
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
     range.selectNodeContents($("#sentence")[0]);
     range.collapse(false);
     selection.addRange(range);
+    $("#sentence")[0].focus();
+  }
+
+  onChangeText(e) {
+    if (this.isTranslate == true){
+      e.preventDefault();
+    }
+    else {
+      this.isSubtitlesSaved = false;
+      let length = $("#sentence").text().length;
+      if (e.code == "Enter") {
+        e.preventDefault();
+      }
+      console.log(length,this.currentSub.length)
+      console.log($("#sentence").text(),this.currentSub.source)
+      if (length >= this.currentSub.length+1)  {
+      this.isWarning = true;   
+        setTimeout((() => {
+          this.isWarning = false
+        }).bind(this), 500);
+      }
+    }
   }
   
   saveSubtitle() {

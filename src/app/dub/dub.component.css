@@ -74,6 +74,15 @@
   padding-right: 5px;
 }
 
+.show-save {
+  cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 0px;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
 .show-translate {
   cursor: pointer;
   position: absolute;
@@ -81,6 +90,15 @@
   left: 0px;
   font-size: 20px;
   padding-left: 5px;
+}
+
+.show-copy {
+  cursor: pointer;
+  position: absolute;
+  bottom: 5px;
+  font-size: 20px;
+  right: 0px;
+  padding-right: 5px;
 }
 
 .sentence-section.source {
@@ -104,6 +122,10 @@
 .active-edit-warning {
   font-family: 'Material Icons';
   color: #FF4F5E!important;
+}
+
+.active-copy {
+  color: #ffd740!important;
 }
 
 .save {
