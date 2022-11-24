@@ -770,6 +770,7 @@ export class DubComponent {
     else {
       this.isReadOnlysen = true
       this.isSource = false;
+      this.isTranslate = false;
       $("#sentence")[0].contentEditable = 'false';
       this.saveSubtitle();
     }
