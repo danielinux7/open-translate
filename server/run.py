@@ -23,7 +23,7 @@ def translate():
     elif 'file' in request.files:
         file = request.files['file']
         download = process.translateFile(file,sp_path_src,sp_path_tgt,model_path)
-        download['url'] = 'http://' + request.host + download['url']
+        download['url'] = 'https://' + request.host + download['url']
         return jsonify(download)
 
 @app.route('/conv', methods=['POST'])
@@ -31,7 +31,7 @@ def conv():
     process = import_module('process')
     file = request.files['file']
     download = process.convFile(file)
-    download['url'] = 'http://' + request.host + download['url']
+    download['url'] = 'https://' + request.host + download['url']
     return jsonify(download)
 
 @app.route('/read', methods=['POST'])
