@@ -284,6 +284,7 @@ export class DubComponent {
       if (this.isTranslate == true) {
         this.getTranslate();
       }
+      $("#sentence").text(this.currentSub.target);
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
@@ -324,6 +325,7 @@ export class DubComponent {
       if (this.isTranslate == true) {
         this.getTranslate();
       }
+      $("#sentence").text(this.currentSub.target);
       this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -374,6 +376,7 @@ export class DubComponent {
       if (this.isTranslate == true) {
         this.getTranslate();
       }
+      $("#sentence").text(this.currentSub.target);
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
@@ -414,6 +417,7 @@ export class DubComponent {
       if (this.isTranslate == true) {
         this.getTranslate();
       }
+      $("#sentence").text(this.currentSub.target);
       this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -455,6 +459,7 @@ export class DubComponent {
       if (this.isTranslate == true) {
         this.getTranslate();
       }
+      $("#sentence").text(this.currentSub.target);
       this.urlorginal = "/assets/home/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -639,6 +644,7 @@ export class DubComponent {
       if (this.isTranslate == true) {
         this.getTranslate();
       }
+      $("#sentence").text(this.currentSub.target);
       this.dubCount = this.subindex[1][this.subindex[0]][1]
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
       this.urlorginal = "/assets/home/" + this.currentSub["clip"];
@@ -773,6 +779,7 @@ export class DubComponent {
       this.isTranslate = false;
       $("#sentence")[0].contentEditable = 'false';
       this.saveSubtitle();
+      this.currentSub.target = $("#sentence").text();
     }
   }
 
@@ -844,6 +851,7 @@ export class DubComponent {
         this.isCopy = false;
       }).bind(this), 500);
       this.currentSub.target = this.translation;
+      $("#sentence").text(this.translation);
     }
     const selection = window.getSelection();
     const range = document.createRange();
