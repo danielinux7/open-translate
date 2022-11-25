@@ -778,6 +778,8 @@ export class DubComponent {
 
   showSource() {
     this.isSource?this.isSource=false:this.isSource=true;
+    if (this.isSource == true)
+      this.isTranslate = false;
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
@@ -790,18 +792,19 @@ export class DubComponent {
   showTranslate() {
     this.isTranslate?this.isTranslate=false:this.isTranslate=true;
     if (this.isTranslate == true) {
+      this.isSource = false;
       this.getTranslate();
     }
     else {
       this.translation = "";
-      const selection = window.getSelection();
-      const range = document.createRange();
-      selection.removeAllRanges();
-      range.selectNodeContents($("#sentence")[0]);
-      range.collapse(false);
-      selection.addRange(range);
-      $("#sentence")[0].focus();
     }
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents($("#sentence")[0]);
+    range.collapse(false);
+    selection.addRange(range);
+    $("#sentence")[0].focus();
   }
 
   saveCurrent() {
@@ -833,12 +836,15 @@ export class DubComponent {
   }
 
   makeCopy() {
-    this.isCopy = true;
-    this.isTranslate = false;
-    setTimeout((() => {
-      this.isCopy = false;
-    }).bind(this), 500);
-    this.currentSub.target = this.translation;
+    if (this.isTranslate == true) {
+      this.isCopy = true;
+      this.isTranslate = false;
+      this.isSaved = true;
+      setTimeout((() => {
+        this.isCopy = false;
+      }).bind(this), 500);
+      this.currentSub.target = this.translation;
+    }
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
@@ -858,8 +864,6 @@ export class DubComponent {
       if (e.code == "Enter") {
         e.preventDefault();
       }
-      console.log(length,this.currentSub.length)
-      console.log($("#sentence").text(),this.currentSub.source)
       if (length >= this.currentSub.length+1)  {
       this.isWarning = true;   
         setTimeout((() => {
@@ -877,6 +881,7 @@ export class DubComponent {
       this.subtitles[i]["gender"] = this.currentSub.gender;
       localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
       this.isSubtitlesSaved = true;
+      this.isSaved = false;
     }
   }
 
