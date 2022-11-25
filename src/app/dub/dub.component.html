@@ -109,10 +109,10 @@
         </div>
 
         <ul class="nav nav-pills">
-            <li class="nav-item bc">
+            <li class="green nav-item bc">
                 <span>иаргы</span>
             </li>
-            <li class="nav-item bc" [class.active-item]="true">
+            <li class="green nav-item bc" [class.active-item]="true">
                 аҩны
             </li>
         </ul>
@@ -161,8 +161,8 @@
                 <span *ngIf="!isReadOnlysen" class="show-translate material-icons-outlined" [class.active-edit]="isTranslate" (click)="showTranslate()">
                     translate
                 </span>
-                <span *ngIf="!isReadOnlysen" class="show-save material-icons-outlined" [class.active-edit]="isSaved" (click)="saveCurrent()">
-                    save
+                <span *ngIf="!isReadOnlysen" class="show-save yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                    {{inputSub}}
                 </span>
             </div>
             <div class="col-sm-2"></div>

@@ -860,6 +860,7 @@ export class DubComponent {
     }
     else {
       this.isSubtitlesSaved = false;
+      this.isSaved = true;
       let length = $("#sentence").text().length;
       if (e.code == "Enter") {
         e.preventDefault();
