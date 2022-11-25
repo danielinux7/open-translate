@@ -136,8 +136,9 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 m-3 p-3 shadow-google sentence-section" [class.active-sentence]="!isReadOnlysen"
                 [class.active-warning]="isWarning">
-                <div *ngIf="!isSource||!isTranslate" (keydown)="onChangeText($event)" onpaste="return false;"
-                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">{{currentSub.target||!isReadOnlysen?currentSub.target:currentSub.source}}</div>
+                <div display="(!isSource||!isTranslate)&&!isReadOnlysen" (keydown)="onChangeText($event)" onpaste="return false;"
+                    class="sentence-section m-0 p-0 form-control no-resize no-box-shadow" id="sentence">{{currentSub.target}}</div>
+                <div *ngIf="isReadOnlysen" class="sentence-section source m-0 p-3 form-control no-resize no-box-shadow">{{currentSub.target?currentSub.target:currentSub.source}}</div>     
                 <div *ngIf="isSource&&!isReadOnlysen" class="sentence-section source m-0 p-3 form-control no-resize no-box-shadow">{{currentSub.source}}</div>
                 <div *ngIf="isTranslate&&!isReadOnlysen" class="sentence-section translation source m-0 p-3 form-control no-resize no-box-shadow">{{translation}}</div>
                 <span class="edit material-icons-outlined" [class.active-edit]="!isReadOnlysen"

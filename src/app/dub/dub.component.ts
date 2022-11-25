@@ -855,22 +855,17 @@ export class DubComponent {
   }
 
   onChangeText(e) {
-    if (this.isTranslate == true){
+    this.isSubtitlesSaved = false;
+    this.isSaved = true;
+    let length = $("#sentence").text().length;
+    if (e.code == "Enter") {
       e.preventDefault();
     }
-    else {
-      this.isSubtitlesSaved = false;
-      this.isSaved = true;
-      let length = $("#sentence").text().length;
-      if (e.code == "Enter") {
-        e.preventDefault();
-      }
-      if (length >= this.currentSub.length+1)  {
-      this.isWarning = true;   
-        setTimeout((() => {
-          this.isWarning = false
-        }).bind(this), 500);
-      }
+    if (length >= this.currentSub.length + 1) {
+      this.isWarning = true;
+      setTimeout((() => {
+        this.isWarning = false
+      }).bind(this), 500);
     }
   }
   
