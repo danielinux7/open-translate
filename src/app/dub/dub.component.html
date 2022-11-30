@@ -37,24 +37,6 @@
                         </div>
                     </label>
                 </div>
-
-                <div class="voiceover">
-                    <input hidden type="radio" (click)="onToggleVoiceover(audioOver)" #audioOver class="btn-check"
-                        name="voiceover" value="audio" id="audioOver" [checked]="!isVoiceover">
-                    <label class="m-0 p-0 btn no-box-shadow material-icons-outlined" for="audioOver">
-                        <div class="voiceover">
-                            videocam
-                        </div>
-                    </label>
-
-                    <input hidden type="radio" (click)="onToggleVoiceover(videoOver)" #videoOver class="btn-check"
-                        name="voiceover" value="video" id="videoOver" [checked]="isVoiceover">
-                    <label class="m-0 p-0 btn no-box-shadow material-icons-outlined" for="videoOver">
-                        <div class="voiceover">
-                            music_note
-                        </div>
-                    </label>
-                </div>
             </div>
             <div class="col-3 p-0 right-section">
                 <button *ngIf="!progressdownloadValue" (click)="onDownload()" type="button"
@@ -124,11 +106,6 @@
                     <!-- <source [src]="urlorginal+'.webm'" type="video/webm"> -->
                     <source [src]="urlorginal+'.mp4'" type="video/mp4">
                 </video>
-                <div *ngIf="isVoiceover" class="background-voiceover">
-                    <span class="material-icons-outlined">
-                        music_note
-                    </span>
-                </div>
             </div>
             <div class="col-sm-2"></div>
         </div>

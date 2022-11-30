@@ -45,7 +45,6 @@ export class DubComponent {
   gender: string;
   url;
   allowRecording: Boolean;
-  isVoiceover: Boolean;
   isReadOnlysen: Boolean;
   isWarning: Boolean;
   isSubtitlesSaved: Boolean;
@@ -220,15 +219,6 @@ export class DubComponent {
       this.subindex = JSON.parse(localStorage.getItem("subindex"));
     else
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
-    let voiceover = JSON.parse(localStorage.getItem("voiceover"));
-    if (voiceover === "audio")
-      this.isVoiceover = true;
-    else if (voiceover === "video")
-      this.isVoiceover = false;
-    else {
-      localStorage.setItem("voiceover", JSON.stringify("audio"));
-      this.isVoiceover = true;
-    }
     this.isFilter = false;
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
@@ -546,10 +536,8 @@ export class DubComponent {
       this.cursec = 0.0;
       this.allowRecording = false;
       this.progressbarValue = 0.0;
-      this.isVoiceover = true;
       localStorage.clear();
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
-      localStorage.setItem("voiceover", JSON.stringify("audio"));
       this.subtitles = this.getSubtitles()
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
@@ -675,18 +663,6 @@ export class DubComponent {
       this.currentSub.gender = "m";
     else if (gender == "female") 
       this.currentSub.gender = "f";
-  }
-
-  onToggleVoiceover(voiceover) {
-    if (voiceover.value === "audio") {
-      this.isVoiceover = false;
-      localStorage.setItem("voiceover", JSON.stringify("video"));
-    }
-    else if (voiceover.value === "video") {
-      this.isVoiceover = true;
-      localStorage.setItem("voiceover", JSON.stringify("audio"));
-    }
-
   }
 
   onUpload() {

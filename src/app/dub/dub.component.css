@@ -169,21 +169,6 @@
   will-change: opacity;
 }
 
-.background-voiceover {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background: #444444;
-}
-
-.background-voiceover span {
-  font-size: 10em;
-  color: #eee;
-}
-
 .blue {
   background: linear-gradient(270deg,#88d1f1,#b1b5e5);
   opacity: .5;
@@ -232,7 +217,7 @@
   text-align: center;
 }
 
-.gender, .voiceover , .filter{
+.gender, .filter{
   display: inline-block;
 }
 
