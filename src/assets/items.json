@@ -2,24 +2,24 @@
     {
         "label": "Аҩны",
         "description": "Аҩны",
-        "active": true,
-        "labelColor": "red",
+        "active": false,
+        "labelColor": "green",
         "subindex": ["all",{"all": [0,0],"male": [0,0],"female": [0,0]}],
         "path": "home"
     },
     {
         "label": "Иаргы",
         "description": "Иаргы",
-        "active": false,
+        "active": true,
         "labelColor": "green",
         "path": "yargi",
         "collection": [
             {
                 "label": "1",
-                "description": "1",
+                "description": "Иаргы 1",
                 "active": true,
                 "subindex": ["all",{"all": [0,0],"male": [0,0],"female": [0,0]}],
-                "path": "1"
+                "path": "yargi/1"
             }
         ]
     }

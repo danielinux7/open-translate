@@ -14,7 +14,7 @@
                 </div>
                 <div class="gender">
                     <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
-                        value="m" id="male" [checked]="subindex[0]=='male'">
+                        value="m" id="male" [checked]="subindex?subindex[0]=='male':false">
                     <label class="m-0 p-0 btn m no-box-shadow material-icons-outlined" for="male">
                         <div class="male">
                             man
@@ -22,7 +22,7 @@
                     </label>
 
                     <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender"
-                        value="f" id="female" [checked]="subindex[0]=='female'">
+                        value="f" id="female" [checked]="subindex?subindex[0]=='female':false">
                     <label class="m-0 p-0 btn f no-box-shadow material-icons-outlined" for="female">
                         <div class="female">
                             woman
@@ -30,7 +30,7 @@
                     </label>
 
                     <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender"
-                        value="all" id="all" [checked]="subindex[0]=='all'">
+                        value="all" id="all" [checked]="subindex?subindex[0]=='all':false">
                     <label class="m-0 p-0 btn wc no-box-shadow material-icons-outlined" for="all">
                         <div class="male">
                             accessibility
@@ -95,7 +95,7 @@
                     <span>{{item.label}}</span>
                 </li>
             </ul>
-            <div class="item"><span>{{curItem.description}}</span></div>
+            <div class="item"><span>{{curItem?.description}}</span></div>
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>

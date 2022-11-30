@@ -165,13 +165,7 @@ export class DubComponent {
               this.dubCountFilter--;
               if (this.subindex[1]["all"][1] == 0)
                 this.dubEmpty = true;
-                let items = this.items.map(item => {
-                  if (item == this.curItem){
-                    item.subindex =  this.subindex;
-                  }
-                  return item;
-                });
-                localStorage.setItem("items", JSON.stringify(items));
+              localStorage.setItem("items", JSON.stringify(this.items));
               this.progressbarValue = 0.0;
               this.cursec = 0.0;
             }
@@ -205,13 +199,7 @@ export class DubComponent {
               this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
               this.dubCount = this.subindex[1][this.subindex[0]][1]
               this.dubCountFilter++;
-              let items = this.items.map(item => {
-                if (item == this.curItem){
-                  item.subindex =  this.subindex;
-                }
-                return item;
-              });
-              localStorage.setItem("items", JSON.stringify(items));
+              localStorage.setItem("items", JSON.stringify(this.items));
               this.stream.getAudioTracks()[0].stop();
             });
         }
@@ -235,7 +223,11 @@ export class DubComponent {
       this.items = await this.getAsset("/assets/items.json");
       localStorage.setItem("items", JSON.stringify(this.items));
     }
-    this.curItem = this.items.filter(item => item["active"] === true)[0];
+    let item = this.items.filter(item => item["active"] === true)[0];
+    if (item.collection)
+      this.curItem = item.collection.filter(item => item["active"] === true)[0];
+    else
+      this.curItem = item;
     this.subindex = this.curItem.subindex;
     this.isFilter = false;
     this.dubCount = this.subindex[1][this.subindex[0]][1];
@@ -247,6 +239,7 @@ export class DubComponent {
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
+    this.playingOriginal.load();
     this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
       if (!this.url)
         URL.revokeObjectURL(this.url);
@@ -287,13 +280,7 @@ export class DubComponent {
         this.isPlaying = false;
       }
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
-      let items = this.items.map(item => {
-        if (item == this.curItem){
-          item.subindex =  this.subindex;
-        }
-        return item;
-      });
-      localStorage.setItem("items", JSON.stringify(items));
+      localStorage.setItem("items", JSON.stringify(this.items));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       if (this.isTranslate == true) {
         this.getTranslate();
@@ -385,13 +372,7 @@ export class DubComponent {
         this.isPlaying = false;
       }
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
-      let items = this.items.map(item => {
-        if (item == this.curItem){
-          item.subindex =  this.subindex;
-        }
-        return item;
-      });
-      localStorage.setItem("items", JSON.stringify(items));
+      localStorage.setItem("items", JSON.stringify(this.items));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       if (this.isTranslate == true) {
         this.getTranslate();
@@ -474,13 +455,7 @@ export class DubComponent {
         this.isPlaying = false;
       }
       this.subindex[1][this.subindex[0]][0] = tempNum;
-      let items = this.items.map(item => {
-        if (item == this.curItem){
-          item.subindex =  this.subindex;
-        }
-        return item;
-      });
-      localStorage.setItem("items", JSON.stringify(items));
+      localStorage.setItem("items", JSON.stringify(this.items));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       if (this.isTranslate == true) {
         this.getTranslate();
@@ -573,13 +548,7 @@ export class DubComponent {
       this.allowRecording = false;
       this.progressbarValue = 0.0;
       localStorage.clear();
-      let items = this.items.map(item => {
-        if (item == this.curItem){
-          item.subindex =  this.subindex;
-        }
-        return item;
-      });
-      localStorage.setItem("items", JSON.stringify(items));
+      localStorage.setItem("items", JSON.stringify(this.items));
       this.subtitles = this.getSubtitles()
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
@@ -676,13 +645,7 @@ export class DubComponent {
       }
       $("#sentence").text(this.currentSub.target);
       this.dubCount = this.subindex[1][this.subindex[0]][1]
-      let items = this.items.map(item => {
-        if (item == this.curItem){
-          item.subindex =  this.subindex;
-        }
-        return item;
-      });
-      localStorage.setItem("items", JSON.stringify(items));
+      localStorage.setItem("items", JSON.stringify(this.items));
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
@@ -757,13 +720,7 @@ export class DubComponent {
                   this.subindex[1]["male"][1] = countm;
                   this.subindex[1]["female"][1] = countf;
                   this.subindex[1]["all"][1] = countm+countf;
-                  let items = this.items.map(item => {
-                    if (item == this.curItem){
-                      item.subindex =  this.subindex;
-                    }
-                    return item;
-                  });
-                  localStorage.setItem("items", JSON.stringify(items));
+                  localStorage.setItem("items", JSON.stringify(this.items));
                   this.dubCount = this.subindex[1][this.subindex[0]][1];
                   file.value = ""
                   $("#uploadModel").modal('hide');
