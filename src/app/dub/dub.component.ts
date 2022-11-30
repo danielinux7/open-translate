@@ -173,6 +173,7 @@ export class DubComponent {
               this.url = URL.createObjectURL(blob);
               this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
                 .subscribe(() => { 
+                  this.dubEmpty = false;
                   this.stream.getAudioTracks()[0].stop();
                    });
             }
