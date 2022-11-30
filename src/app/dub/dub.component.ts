@@ -485,9 +485,9 @@ export class DubComponent {
 
   getSubtitles(): Subtitle[] {
     let sub;
-    if (!localStorage.getItem("subtitle"))
-      localStorage.setItem("subtitle", JSON.stringify(this.initSub,null,2));
-    sub = JSON.parse(localStorage.getItem("subtitle"));
+    if (!localStorage.getItem(this.curItem.path))
+      localStorage.setItem(this.curItem.path, JSON.stringify(this.initSub,null,2));
+    sub = JSON.parse(localStorage.getItem(this.curItem.path));
     if (this.subindex[0] === "male")
       sub = sub.filter(sub => sub["gender"] === "m")
     else if (this.subindex[0] === "female")
@@ -506,13 +506,13 @@ export class DubComponent {
       count = 0;
       this.progressdownloadValue = 0;
       let zip = new JSZip();
-      zip.file("subtitle.json",localStorage.getItem("subtitle"));
-      let subs = JSON.parse(localStorage.getItem("subtitle"));
+      zip.file(this.curItem.path+".json",localStorage.getItem(this.curItem.path));
+      let subs = JSON.parse(localStorage.getItem(this.curItem.path));
       let keysRequest = dub.getAllKeys();
       dub.getAllKeys().onsuccess = () => {
         let keys = keysRequest.result;
         subs = subs.filter(sub => !keys.includes(sub["clip"]));
-        zip.file("subtitle-no-record.json",JSON.stringify(subs,null,2));
+        zip.file(this.curItem.path+"-no-record.json",JSON.stringify(subs,null,2));
       }
       dub.openCursor().onsuccess = (event) => {
         const cursor = event.target.result;
@@ -526,7 +526,7 @@ export class DubComponent {
           zip.generateAsync({ type: "blob" })
             .then(function (content) {
               setTimeout((() => {
-                saveAs(content, "audio.zip");
+                saveAs(content, this.curItem.path+".zip");
                 this.progressdownloadValue = 0;
               }).bind(this),500);
             }.bind(this));
@@ -612,7 +612,7 @@ export class DubComponent {
     this.errorBar = "";
     this.isFilter = false;
     this.saveSubtitle();
-    let sub = JSON.parse(localStorage.getItem("subtitle"));
+    let sub = JSON.parse(localStorage.getItem(this.curItem.path));
     if (sub.filter(sub => sub["gender"] === gender.value).length > 0 || gender.value == "all") {
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
@@ -683,9 +683,9 @@ export class DubComponent {
           let files= [];
           let keys = [];
           zip.forEach(function (relativePath,entry) {
-            if (entry.name === "subtitle.json"){
+            if (entry.name === this.curItem.path+".json"){
               entry.async('string').then(json => {
-                localStorage.setItem("subtitle", json);
+                localStorage.setItem(this.curItem.path, json);
                 this.subtitles = this.getSubtitles()
                 this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
                 this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
@@ -707,7 +707,7 @@ export class DubComponent {
                 let dub = transaction.objectStore("dub");
                 let keysRequest = dub.getAllKeys();
                 dub.getAllKeys().onsuccess = () => {
-                  let subs = JSON.parse(localStorage.getItem("subtitle"));
+                  let subs = JSON.parse(localStorage.getItem(this.curItem.path));
                   let keys = keysRequest.result;
                   let countm = 0;
                   let countf = 0;
@@ -866,11 +866,11 @@ export class DubComponent {
   
   saveSubtitle() {
     if (this.isSubtitlesSaved === false) {
-      this.subtitles = JSON.parse(localStorage.getItem("subtitle"));
+      this.subtitles = JSON.parse(localStorage.getItem(this.curItem.path));
       let i = parseInt(this.currentSub["clip"])-1;
       this.subtitles[i]["target"] = $("#sentence").text();
       this.subtitles[i]["gender"] = this.currentSub.gender;
-      localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
+      localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
       this.isSubtitlesSaved = true;
       this.isSaved = false;
     }
@@ -891,7 +891,7 @@ export class DubComponent {
         let dub = transaction.objectStore("dub");
         let keysRequest = dub.getAllKeys();
         dub.getAllKeys().onsuccess = () => {
-          let subs = JSON.parse(localStorage.getItem("subtitle"));
+          let subs = JSON.parse(localStorage.getItem(this.curItem.path));
           let keys = keysRequest.result;
           subs = subs.filter(sub => !keys.includes(sub["clip"]));
           if (subs) {
