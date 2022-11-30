@@ -7,3 +7,13 @@ export interface Subtitle {
   gender: string;
   length: number;
 }
+
+export interface Item {
+  label: string;
+  labelColor: string;
+  description: string;
+  active: boolean;
+  collection?: [];
+  subindex?: [];
+  path: string;
+}

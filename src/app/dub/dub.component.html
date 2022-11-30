@@ -89,16 +89,14 @@
                 </div>
             </div>
         </div>
-
-        <ul class="nav nav-pills">
-            <li class="green nav-item bc">
-                <span>иаргы</span>
-            </li>
-            <li class="green nav-item bc" [class.active-item]="true">
-                аҩны
-            </li>
-        </ul>
-
+        <div>
+            <ul class="nav nav-pills">
+                <li *ngFor="let item of items" class="{{item.labelColor}} nav-item bc" [class.active-item]="item.active">
+                    <span>{{item.label}}</span>
+                </li>
+            </ul>
+            <div class="item"><span>{{curItem.description}}</span></div>
+        </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 ml-3 mr-3 video-section">
