@@ -50,6 +50,7 @@ export class DubComponent {
   isWarning: Boolean;
   isSubtitlesSaved: Boolean;
   isFilter: boolean;
+  isSubFilter: boolean;
   isSource: boolean;
   isTranslate: boolean;
   isCopy: boolean;
@@ -222,6 +223,7 @@ export class DubComponent {
     else
       localStorage.setItem("subindex", JSON.stringify(this.subindex));
     this.isFilter = false;
+    this.isSubFilter = false;
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
       this.dubEmpty = false;
@@ -602,7 +604,6 @@ export class DubComponent {
 
   onChangeGender(gender) {
     this.errorBar = "";
-    this.isFilter = false;
     this.saveSubtitle();
     let sub = JSON.parse(localStorage.getItem("subtitle"));
     if (sub.filter(sub => sub["gender"] === gender.value).length > 0 || gender.value == "all") {
@@ -866,6 +867,7 @@ export class DubComponent {
   }
 
   onToggleFilter() {
+    this.isSubFilter = false;
     if (this.isFilter === true){
       this.isFilter = false;
       this.onChangeGender({"value":this.subindex[0]});
@@ -889,7 +891,8 @@ export class DubComponent {
             else if (this.subindex[0] === "male")
               subs = subs.filter(sub => sub["gender"] === "m");
             this.subtitlesFilter = subs;
-            this.currentSub = this.subtitlesFilter[0]
+            this.currentSub = this.subtitlesFilter[0];
+            $("#sentence").text(this.currentSub.target);
             this.urlorginal = "/assets/home/" + this.currentSub["clip"];
             this.playingOriginal.load();
             this.url = "";
@@ -899,6 +902,42 @@ export class DubComponent {
           }
         }
       };
+    }
+  }
+
+  onToggleSubFilter() {
+    this.isFilter = false;
+    if (this.isSubFilter === true){
+      this.isSubFilter = false;
+      this.onChangeGender({"value":this.subindex[0]});
+    }
+    else {
+      this.isSubFilter = true;
+      this.dubCountFilter = 0;
+      this.indexFilter = 0;
+      let subs = this.subtitles.filter(sub => !sub.target);
+      this.subtitlesFilter = subs;
+      this.currentSub = this.subtitlesFilter[0];
+      $("#sentence").text(this.currentSub.target);
+      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
+      this.playingOriginal.load();
+      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
+        if (!dub) {
+          this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+          this.allowRecording = false;
+        }
+        else {
+          this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.allowRecording = true;
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        }
+      });
     }
   }
 }

@@ -2,12 +2,12 @@
     <div class="shadow-google bg-white">
         <div class="row mb-0 mt-1 ml-1 mr-1">
             <div class="p-0 col-9 curSub">
-                <div *ngIf="!isFilter" class="count">
+                <div *ngIf="!isFilter&&!isSubFilter" class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span>/{{dubCount}}/{{subtitles.length}}</span>
                     <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
-                <div *ngIf="isFilter" class="count">
+                <div *ngIf="isFilter||isSubFilter" class="count">
                     <input class="cursub filter-bg" ngModel="{{indexFilter+1}}" type="number" />
                     <span>/{{dubCountFilter}}/{{subtitlesFilter.length}}</span>
                     <span class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
@@ -139,10 +139,13 @@
                 <span *ngIf="!isReadOnlysen" class="show-translate material-icons-outlined" [class.active-edit]="isTranslate" (click)="showTranslate()">
                     translate
                 </span>
-                <span *ngIf="!isReadOnlysen" class="show-save yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                    {{inputSub}}/{{subCount}}
-                </span>
-            </div>
+                <div class="show-save">
+                    <span *ngIf="!isReadOnlysen" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                        {{inputSub}}/{{subCount}}
+                    </span>
+                    <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
+                </div>
+          </div>
             <div class="col-sm-2"></div>
         </div>
         <div class="row m-0">
@@ -153,12 +156,12 @@
         </div>
         <div class="seconds">{{cursec | number : '1.1-1'}}/{{currentSub.duration | number : '1.1-1'}} асекундқәа</div>
         <div class="row m-2 mb-5 justify-content-center">
-            <button *ngIf="!isFilter" [disabled]="recording" (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="!isFilter&&!isSubFilter" [disabled]="recording" (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_before
                 </span>
             </button>
-            <button *ngIf="isFilter" [disabled]="recording" (click)="onPreviousFilter()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="isFilter||isSubFilter" [disabled]="recording" (click)="onPreviousFilter()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_before
                 </span>
@@ -198,12 +201,12 @@
                     <div *ngIf="url" class="background blue"></div>
                 </div>
             </div>
-            <button *ngIf="!isFilter" [disabled]="recording" (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="!isFilter&&!isSubFilter" [disabled]="recording" (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_next
                 </span>
             </button>
-            <button *ngIf="isFilter" [disabled]="recording" (click)="onNextFilter()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="isFilter||isSubFilter" [disabled]="recording" (click)="onNextFilter()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_next
                 </span>

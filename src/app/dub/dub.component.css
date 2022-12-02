@@ -231,6 +231,12 @@
   position: absolute;
 }
 
+.sub-filter {
+  font-size: 12px;
+  top: 0px;
+  position: absolute;
+}
+
 .active-filter {
   color: #d2e264;
 }
