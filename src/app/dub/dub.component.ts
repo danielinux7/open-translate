@@ -28,6 +28,7 @@ export class DubComponent {
   recording = false;
   dubEmpty = true;
   dubCount: number;
+  subCount: number;
   dubCountFilter: number;
   indexFilter: number;
   inputSub: number;
@@ -226,6 +227,7 @@ export class DubComponent {
       this.dubEmpty = false;
     this.initSub = await this.getAsset("/assets/home/caption.json");
     this.subtitles = this.getSubtitles()
+    this.subCount = this.subtitles.filter(sub => sub.target).length;
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
@@ -793,12 +795,8 @@ export class DubComponent {
 
   saveCurrent() {
     this.isSaved?this.isSaved=false:this.isSaved=true;
-    if (this.isSaved == true) {
-      setTimeout((() => {
-        this.saveSubtitle();    
-        this.isSaved = false;
-      }).bind(this), 500);
-    }
+    if (this.isSaved == false)
+      this.saveSubtitle();    
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
@@ -861,6 +859,7 @@ export class DubComponent {
       this.subtitles[i]["target"] = $("#sentence").text();
       this.subtitles[i]["gender"] = this.currentSub.gender;
       localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
+      this.subCount = this.subtitles.filter(sub => sub.target).length;
       this.isSubtitlesSaved = true;
       this.isSaved = false;
     }
