@@ -101,6 +101,14 @@
   padding-right: 5px;
 }
 
+.show-note {
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  right: 0px;
+  padding-right: 5px;
+}
+
 .sentence-section.source {
   position: absolute;
 }
@@ -226,6 +234,12 @@
 }
 
 .filter {
+  font-size: 12px;
+  top: 0px;
+  position: absolute;
+}
+
+.sub-filter {
   font-size: 12px;
   top: 0px;
   position: absolute;

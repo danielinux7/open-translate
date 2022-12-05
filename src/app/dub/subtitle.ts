@@ -6,14 +6,5 @@ export interface Subtitle {
   duration: number;
   gender: string;
   length: number;
-}
-
-export interface Item {
-  label: string;
-  labelColor: string;
-  description: string;
-  active: boolean;
-  collection?: [];
-  subindex?: [];
-  path: string;
+  edit: boolean;
 }

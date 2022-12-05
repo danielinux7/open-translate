@@ -128,6 +128,9 @@
                         woman
                     </span>
                 </div>
+                <span *ngIf="!isReadOnlysen" class="show-note material-icons-outlined" [class.active-edit]="currentSub.edit" (click)="makeNote()">
+                    edit_notifications
+                </span>
                 <span *ngIf="!isReadOnlysen" class="show-copy material-icons-outlined" [class.active-copy]="isCopy" (click)="makeCopy()">
                     copy
                 </span>
@@ -137,10 +140,16 @@
                 <span *ngIf="!isReadOnlysen" class="show-translate material-icons-outlined" [class.active-edit]="isTranslate" (click)="showTranslate()">
                     translate
                 </span>
-                <span *ngIf="!isReadOnlysen" class="show-save yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                    {{inputSub}}
-                </span>
-            </div>
+                <div class="show-save">
+                    <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                        {{inputSub}}/{{subCount}}/{{subtitles.length}}
+                    </span>
+                    <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                        {{indexFilter+1}}/{{dubCountFilter}}/{{subtitlesFilter.length}}
+                    </span>
+                    <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
+                </div>
+          </div>
             <div class="col-sm-2"></div>
         </div>
         <div class="row m-0">
@@ -151,12 +160,12 @@
         </div>
         <div class="seconds">{{cursec | number : '1.1-1'}}/{{currentSub.duration | number : '1.1-1'}} асекундқәа</div>
         <div class="row m-2 mb-5 justify-content-center">
-            <button *ngIf="!isFilter" [disabled]="recording" (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="!isFilter&&!isSubFilter" [disabled]="recording" (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_before
                 </span>
             </button>
-            <button *ngIf="isFilter" [disabled]="recording" (click)="onPreviousFilter()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="isFilter||isSubFilter" [disabled]="recording" (click)="onPreviousFilter()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_before
                 </span>
@@ -196,12 +205,12 @@
                     <div *ngIf="url" class="background blue"></div>
                 </div>
             </div>
-            <button *ngIf="!isFilter" [disabled]="recording" (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="!isFilter&&!isSubFilter" [disabled]="recording" (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_next
                 </span>
             </button>
-            <button *ngIf="isFilter" [disabled]="recording" (click)="onNextFilter()" type="button" class="col-2 btn no-box-shadow">
+            <button *ngIf="isFilter||isSubFilter" [disabled]="recording" (click)="onNextFilter()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
                     navigate_next
                 </span>
