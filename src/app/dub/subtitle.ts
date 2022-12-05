@@ -8,3 +8,13 @@ export interface Subtitle {
   length: number;
   edit: boolean;
 }
+
+export interface Item {
+  label: string;
+  labelColor: string;
+  description: string;
+  active: boolean;
+  collection?: [];
+  subindex?: [];
+  path: string;
+}
