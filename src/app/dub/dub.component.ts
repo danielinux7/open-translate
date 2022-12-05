@@ -54,6 +54,7 @@ export class DubComponent {
   isSource: boolean;
   isTranslate: boolean;
   isCopy: boolean;
+  isNote: boolean;
   isSaved: boolean;
   error;
 
@@ -838,6 +839,14 @@ export class DubComponent {
     $("#sentence")[0].focus();
   }
 
+  makeNote() {
+    this.isNote?this.isNote=false:this.isNote=true;
+    if (this.isNote == true) {
+      
+    }
+
+  }
+
   onChangeText(e) {
     this.isSubtitlesSaved = false;
     this.isSaved = true;
@@ -861,6 +870,7 @@ export class DubComponent {
       this.subtitles[i]["gender"] = this.currentSub.gender;
       localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
       this.subCount = this.subtitles.filter(sub => sub.target).length;
+      this.dubCountFilter++;
       this.isSubtitlesSaved = true;
       this.isSaved = false;
     }

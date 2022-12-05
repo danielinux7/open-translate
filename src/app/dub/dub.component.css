@@ -101,6 +101,14 @@
   padding-right: 5px;
 }
 
+.show-note {
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  right: 0px;
+  padding-right: 5px;
+}
+
 .sentence-section.source {
   position: absolute;
 }

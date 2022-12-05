@@ -2,12 +2,12 @@
     <div class="shadow-google bg-white">
         <div class="row mb-0 mt-1 ml-1 mr-1">
             <div class="p-0 col-9 curSub">
-                <div *ngIf="!isFilter&&!isSubFilter" class="count">
+                <div *ngIf="!isFilter" class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span>/{{dubCount}}/{{subtitles.length}}</span>
                     <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
-                <div *ngIf="isFilter||isSubFilter" class="count">
+                <div *ngIf="isFilter" class="count">
                     <input class="cursub filter-bg" ngModel="{{indexFilter+1}}" type="number" />
                     <span>/{{dubCountFilter}}/{{subtitlesFilter.length}}</span>
                     <span class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
@@ -130,6 +130,9 @@
                         woman
                     </span>
                 </div>
+                <span *ngIf="!isReadOnlysen" class="show-note material-icons-outlined" [class.active-edit]="isNote" (click)="makeNote()">
+                    edit_notifications
+                </span>
                 <span *ngIf="!isReadOnlysen" class="show-copy material-icons-outlined" [class.active-copy]="isCopy" (click)="makeCopy()">
                     copy
                 </span>
@@ -140,8 +143,11 @@
                     translate
                 </span>
                 <div class="show-save">
-                    <span *ngIf="!isReadOnlysen" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{inputSub}}/{{subCount}}
+                    <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                        {{inputSub}}/{{subCount}}/{{subtitles.length}}
+                    </span>
+                    <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                        {{indexFilter+1}}/{{dubCountFilter}}/{{subtitlesFilter.length}}
                     </span>
                     <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
                 </div>
