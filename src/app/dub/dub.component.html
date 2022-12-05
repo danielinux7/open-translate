@@ -130,7 +130,7 @@
                         woman
                     </span>
                 </div>
-                <span *ngIf="!isReadOnlysen" class="show-note material-icons-outlined" [class.active-edit]="isNote" (click)="makeNote()">
+                <span *ngIf="!isReadOnlysen" class="show-note material-icons-outlined" [class.active-edit]="currentSub.edit" (click)="makeNote()">
                     edit_notifications
                 </span>
                 <span *ngIf="!isReadOnlysen" class="show-copy material-icons-outlined" [class.active-copy]="isCopy" (click)="makeCopy()">

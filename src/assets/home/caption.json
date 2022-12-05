@@ -3,8 +3,8 @@
         "clip": "1",
         "start_sec": 0.0,
         "duration": 20.0,
-        "source": "...АУАДА АБЖЬЫ 1...",
-        "target": "",
+        "source": "...ГОЛОС КОМНАТЫ 2...",
+        "target": "...АУАДА АБЖЬЫ 1...",
         "gender": "m",
         "length": 19
     },
@@ -12,8 +12,8 @@
         "clip": "2",
         "start_sec": 0.0,
         "duration": 20.0,
-        "source": "...АУАДА АБЖЬЫ 2...",
-        "target": "",
+        "source": "...ГОЛОС КОМНАТЫ 2...",
+        "target": "...АУАДА АБЖЬЫ 2...",
         "gender": "f",
         "length": 19
     },

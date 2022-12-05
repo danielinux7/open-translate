@@ -6,4 +6,5 @@ export interface Subtitle {
   duration: number;
   gender: string;
   length: number;
+  edit: boolean;
 }

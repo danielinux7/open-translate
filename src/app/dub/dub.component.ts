@@ -54,7 +54,6 @@ export class DubComponent {
   isSource: boolean;
   isTranslate: boolean;
   isCopy: boolean;
-  isNote: boolean;
   isSaved: boolean;
   error;
 
@@ -840,11 +839,8 @@ export class DubComponent {
   }
 
   makeNote() {
-    this.isNote?this.isNote=false:this.isNote=true;
-    if (this.isNote == true) {
-      
-    }
-
+    this.currentSub.edit?this.currentSub.edit=false:this.currentSub.edit=true;
+    this.isSubtitlesSaved = false;
   }
 
   onChangeText(e) {
@@ -868,8 +864,9 @@ export class DubComponent {
       let i = parseInt(this.currentSub["clip"])-1;
       this.subtitles[i]["target"] = $("#sentence").text();
       this.subtitles[i]["gender"] = this.currentSub.gender;
+      this.subtitles[i]["edit"] = this.currentSub.edit;
       localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
-      this.subCount = this.subtitles.filter(sub => sub.target).length;
+      this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
       this.dubCountFilter++;
       this.isSubtitlesSaved = true;
       this.isSaved = false;
@@ -925,7 +922,7 @@ export class DubComponent {
       this.isSubFilter = true;
       this.dubCountFilter = 0;
       this.indexFilter = 0;
-      let subs = this.subtitles.filter(sub => !sub.target);
+      let subs = this.subtitles.filter(sub => !sub.target || sub.edit == true);
       this.subtitlesFilter = subs;
       this.currentSub = this.subtitlesFilter[0];
       $("#sentence").text(this.currentSub.target);
