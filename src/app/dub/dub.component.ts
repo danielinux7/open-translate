@@ -3,11 +3,11 @@ declare var $: any;
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subtitle, Item } from './subtitle';
 import { interval, firstValueFrom } from 'rxjs';
-import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
 import { HttpClient } from '@angular/common/http';
 import { TranslateService } from '../translate.service';
+import { openDB, deleteDB, wrap, unwrap } from 'idb';
 
 @Component({
   selector: 'app-dub',
@@ -58,9 +58,9 @@ export class DubComponent {
   isCopy: boolean;
   isSaved: boolean;
   error;
+  dbService;
 
   constructor(private domSanitizer: DomSanitizer,
-    private dbService: NgxIndexedDBService,
     private http: HttpClient,
     private translateService: TranslateService) {}
 
@@ -151,62 +151,57 @@ export class DubComponent {
   * processRecording Do what ever you want with blob
   * @param  {any} blob Blog
   */
-  processRecording(blob) {
-    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-      if (dub) {
-        this.dbService.deleteByKey('dub', this.currentSub["clip"]).subscribe((deleted) => {
-          if (deleted) {
-            if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
-              this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
-              if (this.currentSub["gender"] === "f")
-                this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
-              else if (this.currentSub["gender"] === "m")
-                this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
-              this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
-              this.dubCount = this.subindex[1][this.subindex[0]][1];
-              this.dubCountFilter--;
-              if (this.subindex[1]["all"][1] == 0)
-                this.dubEmpty = true;
-              localStorage.setItem("items", JSON.stringify(this.items));
-              this.progressbarValue = 0.0;
-              this.cursec = 0.0;
-            }
-            else {
-              if (!this.url)
-                 URL.revokeObjectURL(this.url);
-              this.url = URL.createObjectURL(blob);
-              this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
-                .subscribe(() => { 
-                  this.dubEmpty = false;
-                  this.stream.getAudioTracks()[0].stop();
-                   });
-            }
-          }
-        });
-      }
-      else {
-        if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7)
+  async processRecording(blob) {
+    let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
+    let dub = await store.get(this.currentSub["clip"]);
+    if (dub) {
+      let deleted = await store.delete(this.currentSub["clip"]);
+      if (deleted) {
+        if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
           this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+          if (this.currentSub["gender"] === "f")
+            this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
+          else if (this.currentSub["gender"] === "m")
+            this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
+          this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
+          this.dubCount = this.subindex[1][this.subindex[0]][1];
+          this.dubCountFilter--;
+          if (this.subindex[1]["all"][1] == 0)
+            this.dubEmpty = true;
+          localStorage.setItem("items", JSON.stringify(this.items));
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+        }
         else {
           if (!this.url)
             URL.revokeObjectURL(this.url);
           this.url = URL.createObjectURL(blob);
-          this.dbService.add('dub', { audio: blob, clip: this.currentSub["clip"], duration: this.cursec })
-            .subscribe((dub) => {
-              this.dubEmpty = false;
-              if (this.currentSub["gender"] === "f")
-                this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
-              else if (this.currentSub["gender"] === "m")
-                this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
-              this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
-              this.dubCount = this.subindex[1][this.subindex[0]][1]
-              this.dubCountFilter++;
-              localStorage.setItem("items", JSON.stringify(this.items));
-              this.stream.getAudioTracks()[0].stop();
-            });
+          await store.add({ audio: blob, clip: this.currentSub["clip"], duration: this.cursec });
+          this.dubEmpty = false;
+          this.stream.getAudioTracks()[0].stop();
         }
       }
-    });
+    }
+    else {
+      if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7)
+        this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+      else {
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
+        this.url = URL.createObjectURL(blob);
+        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: this.cursec });
+        this.dubEmpty = false;
+        if (this.currentSub["gender"] === "f")
+          this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
+        else if (this.currentSub["gender"] === "m")
+          this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
+        this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
+        this.dubCount = this.subindex[1][this.subindex[0]][1]
+        this.dubCountFilter++;
+        localStorage.setItem("items", JSON.stringify(this.items));
+        this.stream.getAudioTracks()[0].stop();
+      }
+    }
   }
   /**
   * Process Error.
@@ -244,24 +239,38 @@ export class DubComponent {
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
     this.playingOriginal.load();
-    this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-      if (!this.url)
-        URL.revokeObjectURL(this.url);
-      if (!dub) {
-        this.url = "";
-        this.allowRecording = false;
-      }
-      else {
-        this.url = URL.createObjectURL(dub["audio"]);
-        this.progressBarColor = "green";
-        this.cursec = dub["duration"];
-        this.allowRecording = true;
-        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-      }
-    });
+    let db = await openDB('dubDB');
+    if (!db.objectStoreNames.contains(this.curItem.path)) {
+      let ver = db.version+1;
+      db.close();
+      // I need to pass this to upgrade inorder to have a dynamic curItem.path!
+      db = await openDB('dubDB', ver, {
+        upgrade(db) {
+          let store = db.createObjectStore('yargi/1', { keyPath: 'clip' });
+          store.createIndex('audio', 'audio');
+          store.createIndex('duration', 'duration');
+        }
+      });
+    }
+    this.dbService = db;
+    let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+    let dub = await store.get(this.currentSub["clip"]);
+    if (!this.url)
+      URL.revokeObjectURL(this.url);
+    if (!dub) {
+      this.url = "";
+      this.allowRecording = false;
+    }
+    else {
+      this.url = URL.createObjectURL(dub["audio"]);
+      this.progressBarColor = "green";
+      this.cursec = dub["duration"];
+      this.allowRecording = true;
+      this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+    }
   }
 
-  onNext() {
+  async onNext() {
     if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
       this.errorBar = "";
       this.saveSubtitle();
@@ -293,27 +302,27 @@ export class DubComponent {
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        if (!dub) {
-          this.url = "";
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-          this.allowRecording = false;
-        }
-        else {
-          this.url = URL.createObjectURL(dub["audio"]);
-          this.progressBarColor = "green";
-          this.cursec = dub["duration"];
-          this.allowRecording = true;
-          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-        }
-      });
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let dub = await store.get(this.currentSub["clip"]);
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.allowRecording = true;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
     }
   }
 
-  onNextFilter() {
+  async onNextFilter() {
     if (this.indexFilter < this.subtitlesFilter.length-1) {
       this.errorBar = "";
       this.saveSubtitle();
@@ -333,7 +342,8 @@ export class DubComponent {
       $("#sentence").text(this.currentSub.target);
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let dub = await store.get(this.currentSub["clip"]);
         if (!this.url)
           URL.revokeObjectURL(this.url);
         if (!dub) {
@@ -349,11 +359,10 @@ export class DubComponent {
           this.allowRecording = true;
           this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
         }
-      });
     }
   }
 
-  onPrevious() {
+  async onPrevious() {
     if (this.subindex[1][this.subindex[0]][0] > 0) {
       this.errorBar = "";
       this.saveSubtitle();
@@ -385,27 +394,27 @@ export class DubComponent {
       this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        if (!dub) {
-          this.url = "";
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-          this.allowRecording = false;
-        }
-        else {
-          this.url = URL.createObjectURL(dub["audio"]);
-          this.progressBarColor = "green";
-          this.cursec = dub["duration"];
-          this.allowRecording = true;
-          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-        }
-      });
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let dub = await store.get(this.currentSub["clip"]);
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.allowRecording = true;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
     }
   }
 
-  onPreviousFilter() {
+  async onPreviousFilter() {
     if (this.indexFilter > 0) {
       this.errorBar = "";
       this.saveSubtitle();
@@ -425,7 +434,8 @@ export class DubComponent {
       $("#sentence").text(this.currentSub.target);
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let dub = await store.getByKey(this.currentSub["clip"]);
         if (!this.url)
           URL.revokeObjectURL(this.url);
         if (!dub) {
@@ -441,11 +451,10 @@ export class DubComponent {
           this.allowRecording = true;
           this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
         }
-      });
     }
   }
 
-  onChangeSub() {
+  async onChangeSub() {
     let tempNum = this.inputSub - 1;
     if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
       this.errorBar = "";
@@ -467,23 +476,23 @@ export class DubComponent {
       $("#sentence").text(this.currentSub.target);
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        if (!dub) {
-          this.url = "";
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-          this.allowRecording = false;
-        }
-        else {
-          this.url = URL.createObjectURL(dub["audio"]);
-          this.progressBarColor = "green";
-          this.cursec = dub["duration"];
-          this.allowRecording = true;
-          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-        }
-      });
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let dub = await store.get(this.currentSub["clip"]);
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.allowRecording = true;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
     }
   }
 
@@ -499,67 +508,56 @@ export class DubComponent {
     return sub;
   }
 
-  onDownload() {
+  async onDownload() {
     let db;
     let count;
     this.saveSubtitle();
-    indexedDB.open('dubDB').onsuccess = (event) => {
-      db = event.target["result"];
-      let transaction = db.transaction("dub", "readonly");
-      let dub = transaction.objectStore("dub");
-      count = 0;
-      this.progressdownloadValue = 0;
-      let zip = new JSZip();
-      zip.file(this.curItem.path+".json",localStorage.getItem(this.curItem.path));
-      let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-      let keysRequest = dub.getAllKeys();
-      dub.getAllKeys().onsuccess = () => {
-        let keys = keysRequest.result;
-        subs = subs.filter(sub => !keys.includes(sub["clip"]));
-        zip.file(this.curItem.path+"-no-record.json",JSON.stringify(subs,null,2));
-      }
-      dub.openCursor().onsuccess = (event) => {
-        const cursor = event.target.result;
-        if (cursor) {
-          zip.file(cursor.value["clip"], cursor.value["audio"])
-          count++;
-          this.progressdownloadValue = Math.round((count*100)/this.dubCount);
-          cursor.continue();
-        }
-        else {
-          zip.generateAsync({ type: "blob" })
-            .then(function (content) {
-              setTimeout((() => {
-                saveAs(content, this.curItem.path+".zip");
-                this.progressdownloadValue = 0;
-              }).bind(this),500);
-            }.bind(this));
-        }
-      };
-    };
+    let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+    count = 0;
+    this.progressdownloadValue = 0;
+    let zip = new JSZip();
+    zip.file(this.curItem.path + ".json", localStorage.getItem(this.curItem.path));
+    let subs = JSON.parse(localStorage.getItem(this.curItem.path));
+    let keys = await store.getAllKeys();
+    subs = subs.filter(sub => !keys.includes(sub["clip"]));
+    zip.file(this.curItem.path + "-no-record.json", JSON.stringify(subs, null, 2));
+    let cursor = await store.openCursor();
+    while (cursor) {
+      zip.file(cursor.key, cursor.value.audio);
+      count++;
+      this.progressdownloadValue = Math.round((count * 100) / this.dubCount);
+      cursor = await cursor.continue();
+    }
+    zip.generateAsync({ type: "blob" })
+      .then(function (content) {
+        setTimeout((() => {
+          saveAs(content, this.curItem.path + ".zip");
+          this.progressdownloadValue = 0;
+        }).bind(this), 500);
+      }.bind(this));
   }
 
-  onDelete() {
-    this.dbService.clear('dub').subscribe((successDeleted) => {
-      this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
-      this.dubEmpty = true;
-      this.dubCount = 0;
-      if (!this.url)
-        URL.revokeObjectURL(this.url);
-      this.url = "";
-      this.errorBar = "";
-      this.cursec = 0.0;
-      this.allowRecording = false;
-      this.progressbarValue = 0.0;
-      localStorage.clear();
-      localStorage.setItem("items", JSON.stringify(this.items));
-      this.subtitles = this.getSubtitles()
-      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
-      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
-      this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
-      this.playingOriginal.load();
-    });
+  async onDelete() {
+    let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
+    await store.clear();
+    this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
+    this.dubEmpty = true;
+    this.dubCount = 0;
+    if (!this.url)
+      URL.revokeObjectURL(this.url);
+    this.url = "";
+    this.errorBar = "";
+    this.cursec = 0.0;
+    this.allowRecording = false;
+    this.progressbarValue = 0.0;
+    localStorage.clear();
+    localStorage.setItem("items", JSON.stringify(this.items));
+    this.subtitles = this.getSubtitles()
+    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
+    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+    this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
+    this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
+    this.playingOriginal.load();
   }
 
   onToggleRecording() {
@@ -612,7 +610,7 @@ export class DubComponent {
     }
   }
 
-  onChangeGender(gender) {
+  async onChangeGender(gender) {
     this.errorBar = "";
     this.saveSubtitle();
     let sub = JSON.parse(localStorage.getItem(this.curItem.path));
@@ -651,23 +649,23 @@ export class DubComponent {
       localStorage.setItem("items", JSON.stringify(this.items));
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        if (!dub) {
-          this.url = "";
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-          this.allowRecording = false;
-        }
-        else {
-          this.url = URL.createObjectURL(dub["audio"]);
-          this.progressBarColor = "green";
-          this.cursec = dub["duration"];
-          this.allowRecording = true;
-          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-        }
-      });
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let dub = await store.get(this.currentSub["clip"]);
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.allowRecording = true;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
     }
   }
 
@@ -679,10 +677,10 @@ export class DubComponent {
       this.currentSub.gender = "f";
   }
 
-  onUpload() {
+  async onUpload() {
     let file = document.getElementById("file") as HTMLInputElement;
       JSZip.loadAsync(file.files[0])
-         .then(function(zip: JSZip) {
+         .then(async function(zip: JSZip) {
           let files= [];
           let keys = [];
           zip.forEach(function (relativePath,entry) {
@@ -702,53 +700,46 @@ export class DubComponent {
               });
             }
           }.bind(this));
-          this.dbService.bulkDelete('dub', keys).subscribe(() => {
-            this.dbService.bulkAdd('dub', files).subscribe(() => { 
-              indexedDB.open('dubDB').onsuccess = (event) => {
-                let db = event.target["result"];
-                let transaction = db.transaction("dub", "readonly");
-                let dub = transaction.objectStore("dub");
-                let keysRequest = dub.getAllKeys();
-                dub.getAllKeys().onsuccess = () => {
-                  let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-                  let keys = keysRequest.result;
-                  let countm = 0;
-                  let countf = 0;
-                  subs.forEach(function(sub){
-                    if (keys.includes(sub["clip"])) {
-                      if (sub["gender"] ==="f") { countf++ }
-                      else if (sub["gender"] ==="m") { countm++ }
-                    }
-                  });
-                  this.subindex[1]["male"][1] = countm;
-                  this.subindex[1]["female"][1] = countf;
-                  this.subindex[1]["all"][1] = countm+countf;
-                  localStorage.setItem("items", JSON.stringify(this.items));
-                  this.dubCount = this.subindex[1][this.subindex[0]][1];
-                  file.value = ""
-                  $("#uploadModel").modal('hide');
-                }
-              };
-              this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-                if (!this.url)
-                  URL.revokeObjectURL(this.url);
-                if (!dub) {
-                  this.url = "";
-                  this.progressbarValue = 0.0;
-                  this.cursec = 0.0;
-                  this.allowRecording = false;
-                }
-                else {
-                  this.url = URL.createObjectURL(dub["audio"]);
-                  this.progressBarColor = "green";
-                  this.cursec = dub["duration"];
-                  this.allowRecording = true;
-                  this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-                }
-              });
-            });
+          // ToDo I need to have the files list ready for the next step!
+
+          let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
+          files.forEach(async (file) => {
+            await store.put(file)
           });
-         }.bind(this), function() {this.error = "Иашам ZIP афаил"}.bind(this)); 
+           keys = await store.getAllKeys();
+           let countm = 0;
+           let countf = 0;
+           let subs = JSON.parse(localStorage.getItem(this.curItem.path));
+           subs.forEach(function (sub) {
+             if (keys.includes(sub["clip"])) {
+               if (sub["gender"] === "f") { countf++ }
+               else if (sub["gender"] === "m") { countm++ }
+             }
+           });
+           this.subindex[1]["male"][1] = countm;
+           this.subindex[1]["female"][1] = countf;
+           this.subindex[1]["all"][1] = countm + countf;
+           localStorage.setItem("items", JSON.stringify(this.items));
+           this.dubCount = this.subindex[1][this.subindex[0]][1];
+           file.value = ""
+           $("#uploadModel").modal('hide');
+           let dub = await store.get(this.currentSub["clip"]);
+           if (!this.url)
+             URL.revokeObjectURL(this.url);
+           if (!dub) {
+             this.url = "";
+             this.progressbarValue = 0.0;
+             this.cursec = 0.0;
+             this.allowRecording = false;
+           }
+           else {
+             this.url = URL.createObjectURL(dub["audio"]);
+             this.progressBarColor = "green";
+             this.cursec = dub["duration"];
+             this.allowRecording = true;
+             this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+           }
+         }.bind(this), function () { this.error = "Иашам ZIP афаил" }.bind(this)); 
     }
 
   onEdit() {
@@ -883,7 +874,7 @@ export class DubComponent {
     }
   }
 
-  onToggleFilter() {
+  async onToggleFilter() {
     this.isSubFilter = false;
     if (this.isFilter === true){
       this.isFilter = false;
@@ -893,36 +884,29 @@ export class DubComponent {
       this.isFilter = true;
       this.dubCountFilter = 0;
       this.indexFilter = 0;
-      indexedDB.open('dubDB').onsuccess = (event) => {
-        let db = event.target["result"];
-        let transaction = db.transaction("dub", "readonly");
-        let dub = transaction.objectStore("dub");
-        let keysRequest = dub.getAllKeys();
-        dub.getAllKeys().onsuccess = () => {
-          let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-          let keys = keysRequest.result;
-          subs = subs.filter(sub => !keys.includes(sub["clip"]));
-          if (subs) {
-            if (this.subindex[0] === "female")
-              subs = subs.filter(sub => sub["gender"] === "f");
-            else if (this.subindex[0] === "male")
-              subs = subs.filter(sub => sub["gender"] === "m");
-            this.subtitlesFilter = subs;
-            this.currentSub = this.subtitlesFilter[0];
-            $("#sentence").text(this.currentSub.target);
-            this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
-            this.playingOriginal.load();
-            this.url = "";
-            this.progressbarValue = 0.0;
-            this.cursec = 0.0;
-            this.allowRecording = false;
-          }
-        }
-      };
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let keys = await store.getAllKeys();
+      let subs = JSON.parse(localStorage.getItem(this.curItem.path));
+      subs = subs.filter(sub => !keys.includes(sub["clip"]));
+      if (subs) {
+        if (this.subindex[0] === "female")
+          subs = subs.filter(sub => sub["gender"] === "f");
+        else if (this.subindex[0] === "male")
+          subs = subs.filter(sub => sub["gender"] === "m");
+        this.subtitlesFilter = subs;
+        this.currentSub = this.subtitlesFilter[0];
+        $("#sentence").text(this.currentSub.target);
+        this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
+        this.playingOriginal.load();
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
     }
   }
 
-  onToggleSubFilter() {
+  async onToggleSubFilter() {
     this.isFilter = false;
     if (this.isSubFilter === true){
       this.isSubFilter = false;
@@ -936,25 +920,25 @@ export class DubComponent {
       this.subtitlesFilter = subs;
       this.currentSub = this.subtitlesFilter[0];
       $("#sentence").text(this.currentSub.target);
-      this.urlorginal = "/assets/home/" + this.currentSub["clip"];
+      this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
       this.playingOriginal.load();
-      this.dbService.getByKey('dub', this.currentSub["clip"]).subscribe((dub) => {
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        if (!dub) {
-          this.url = "";
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-          this.allowRecording = false;
-        }
-        else {
-          this.url = URL.createObjectURL(dub["audio"]);
-          this.progressBarColor = "green";
-          this.cursec = dub["duration"];
-          this.allowRecording = true;
-          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-        }
-      });
+      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+      let dub = await store.get(this.curItem.path, this.currentSub["clip"]);
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.allowRecording = true;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
     }
   }
 }

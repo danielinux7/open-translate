@@ -12,20 +12,6 @@ import { DubComponent } from './dub/dub.component';
 import { RouterModule } from '@angular/router';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {ProgressBarColor} from './dub/progress-bar-color';
-import { NgxIndexedDBModule } from 'ngx-indexed-db';
-
-const dbConfig: any  = {
-  name: 'dubDB',
-  version: 1,
-  objectStoresMeta: [{
-    store: 'dub',
-    storeConfig: { keyPath: 'clip' },
-    storeSchema: [
-      { name: 'audio', keypath: 'audio' },
-      { name: 'duration', keypath: 'duration' }
-    ]
-  }]
-};
 
 @NgModule({
   declarations: [
@@ -46,8 +32,7 @@ const dbConfig: any  = {
     {path: '', component: TranslateComponent},
     {path: 'dub', component: DubComponent},
     {path: '**', redirectTo: '', pathMatch: 'full'}
-    ]),
-    NgxIndexedDBModule.forRoot(dbConfig)
+    ])
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
