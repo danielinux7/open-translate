@@ -250,14 +250,6 @@ export class DubComponent {
         store.createIndex("duration", "duration", { unique: false });
         db.close();
       };
-      // I need to pass this to upgrade inorder to have a dynamic curItem.path!
-      // db = await openDB('dubDB', ver, {
-      //   upgrade(db) {
-      //     let store = db.createObjectStore('yargi/1', { keyPath: 'clip' });
-      //     store.createIndex('audio', 'audio');
-      //     store.createIndex('duration', 'duration');
-      //   }
-      // });
     }
     db = await openDB('dubDB');
     this.dbService = db;
@@ -708,8 +700,8 @@ export class DubComponent {
               });
             }
           }.bind(this));
-          // ToDo I need to have the files list ready for the next step!
-
+          // ToDo I need to wait untill the files object is ready
+          setTimeout((async () => {
           let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
           files.forEach(async (file) => {
             await store.put(file)
@@ -747,6 +739,7 @@ export class DubComponent {
              this.allowRecording = true;
              this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
            }
+          }), 500);
          }.bind(this), function () { this.error = "Иашам ZIP афаил" }.bind(this)); 
     }
 
