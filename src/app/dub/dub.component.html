@@ -91,8 +91,13 @@
         </div>
         <div>
             <ul class="nav nav-pills">
-                <li *ngFor="let item of items" class="{{item.labelColor}} nav-item bc" [class.active-item]="item.active">
+                <li *ngFor="let item of items" class="{{item.labelColor}} nav-item bc" [class.active-item]="item.active" (click)="setCurItem(item)">
                     <span>{{item.label}}</span>
+                </li>
+            </ul>
+            <ul *ngIf="curParItem" class="nav nav-pills">
+                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} nav-item bc" [class.active-item]="item['active']" (click)="setCurItemCol(item)">
+                    <span>{{item['label']}}</span>
                 </li>
             </ul>
             <div class="item"><span>{{curItem?.description}}</span></div>

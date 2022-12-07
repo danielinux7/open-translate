@@ -39,6 +39,7 @@ export class DubComponent {
   isPlayingOriginal = false;
   urlorginal = "/assets/home/1";
   curItem: Item;
+  curParItem: Item;
   currentSub =  <Subtitle>{"source":""};
   subtitles = <Subtitle[]>[];
   items = <Item[]>[];
@@ -220,11 +221,25 @@ export class DubComponent {
       this.items = await this.getAsset("/assets/items.json");
       localStorage.setItem("items", JSON.stringify(this.items));
     }
-    let item = this.items.filter(item => item["active"] === true)[0];
-    if (item.collection)
+    let item = this.items.filter(item => {
+      if (item.collection)
+        if (item.collection.filter(item => item["active"] === true))
+          return true;  
+        else 
+          return false;  
+      if (item["active"] === true)
+        return true;
+      else 
+        return false;
+    })[0];
+    if (item.collection) {
+      this.curParItem = item;
       this.curItem = item.collection.filter(item => item["active"] === true)[0];
-    else
+    }
+    else {
+      this.curParItem = undefined;
       this.curItem = item;
+    }
     this.subindex = this.curItem.subindex;
     this.isFilter = false;
     this.isSubFilter = false;
@@ -239,6 +254,7 @@ export class DubComponent {
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
     this.playingOriginal.load();
+    this.dbService?.close();
     let db = await openDB('dubDB');
     if (!db.objectStoreNames.contains(this.curItem.path)) {
       let ver = db.version+1;
@@ -941,5 +957,32 @@ export class DubComponent {
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
     }
+  }
+
+  async setCurItem(item) {
+    if (this.curParItem)
+      this.curParItem.active = false;
+    else {
+      this.curItem.active = false;
+    }
+    if (item.collection) {
+      this.curParItem = item;
+      this.curParItem.active = true;
+      this.curItem = item.collection.filter(item => item["active"] === true)[0]; 
+    }
+    else {
+      this.curItem = item;
+    }
+    this.curItem.active = true;
+    localStorage.setItem("items", JSON.stringify(this.items));
+    this.ngOnInit();
+  }
+
+  async setCurItemCol(item) {
+    this.curItem.active = false;
+    this.curItem = item;
+    this.curItem.active = true;
+    localStorage.setItem("items", JSON.stringify(this.items));
+    this.ngOnInit();
   }
 }
