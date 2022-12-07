@@ -243,15 +243,23 @@ export class DubComponent {
     if (!db.objectStoreNames.contains(this.curItem.path)) {
       let ver = db.version+1;
       db.close();
+      indexedDB.open('dubDB',ver).onupgradeneeded = (event) => {
+        let db = event.target["result"];
+        let store = db.createObjectStore(this.curItem.path, { keyPath: 'clip' });
+        store.createIndex("audio", "audio", { unique: false });
+        store.createIndex("duration", "duration", { unique: false });
+        db.close();
+      };
       // I need to pass this to upgrade inorder to have a dynamic curItem.path!
-      db = await openDB('dubDB', ver, {
-        upgrade(db) {
-          let store = db.createObjectStore('yargi/1', { keyPath: 'clip' });
-          store.createIndex('audio', 'audio');
-          store.createIndex('duration', 'duration');
-        }
-      });
+      // db = await openDB('dubDB', ver, {
+      //   upgrade(db) {
+      //     let store = db.createObjectStore('yargi/1', { keyPath: 'clip' });
+      //     store.createIndex('audio', 'audio');
+      //     store.createIndex('duration', 'duration');
+      //   }
+      // });
     }
+    db = await openDB('dubDB');
     this.dbService = db;
     let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
     let dub = await store.get(this.currentSub["clip"]);
