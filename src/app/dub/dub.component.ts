@@ -896,11 +896,11 @@ export class DubComponent {
   saveSubtitle() {
     if (this.isSubtitlesSaved === false) {
       this.subtitles = JSON.parse(localStorage.getItem(this.curItem.path));
-      let i = parseInt(this.currentSub["clip"])-1;
+      let i = this.subtitles.findIndex((sub => sub["clip"] == this.currentSub["clip"]));
       this.subtitles[i]["target"] = $("#sentence").text();
       this.subtitles[i]["gender"] = this.currentSub.gender;
       this.subtitles[i]["edit"] = this.currentSub.edit;
-      localStorage.setItem("subtitle", JSON.stringify(this.subtitles,null,2));
+      localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
       this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
       this.dubCountFilter++;
       this.isSubtitlesSaved = true;
