@@ -700,6 +700,7 @@ export class DubComponent {
            if (zip.files[this.curItem.path + ".json"]) {
              let files = [];
              let keys = [];
+             let numbers = /^[0-9]+$/;
              zip.forEach(function (relativePath, entry) {
                if (entry.name === this.curItem.path + ".json") {
                  entry.async('string').then(json => {
@@ -709,7 +710,7 @@ export class DubComponent {
                    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
                  });
                }
-               else if (entry.name.split(".")[1] !== "json") {
+               else if (entry.name.match(numbers)) {
                  keys.push(entry.name);
                  entry.async('blob').then(blob => {
                    blob = new Blob([blob], { type: blob.type });
