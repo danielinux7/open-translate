@@ -691,6 +691,13 @@ export class DubComponent {
       this.currentSub.gender = "m";
     else if (gender == "female") 
       this.currentSub.gender = "f";
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents($("#sentence")[0]);
+    range.collapse(false);
+    selection.addRange(range);
+    $("#sentence")[0].focus();
   }
 
   async onUpload() {
