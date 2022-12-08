@@ -95,13 +95,13 @@
             </div>
         </div>
         <div>
-            <ul class="nav nav-pills">
-                <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} nav-item bc" [class.active-item]="item.active" (click)="setCurItem(item)">
+            <ul class="mb-0 nav-all nav-pills">
+                <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} nav-item nav-item-all bc" [class.active-item]="item.active" (click)="setCurItem(item)">
                     <span>{{item.label}}</span>
                 </li>
             </ul>
             <ul *ngIf="curParItem" class="nav nav-pills">
-                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} nav-item bc" [class.active-item]="item['active']" (click)="setCurItemCol(item)">
+                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} nav-item nav-item-col bc" [class.active-item]="item['active']" (click)="setCurItemCol(item)">
                     <span>{{item['label']}}</span>
                 </li>
             </ul>
