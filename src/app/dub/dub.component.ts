@@ -697,65 +697,67 @@ export class DubComponent {
     let file = document.getElementById("file") as HTMLInputElement;
       JSZip.loadAsync(file.files[0])
          .then(async function(zip: JSZip) {
-          let files= [];
-          let keys = [];
-          zip.forEach(function (relativePath,entry) {
-            if (entry.name === this.curItem.path+".json"){
-              entry.async('string').then(json => {
-                localStorage.setItem(this.curItem.path, json);
-                this.subtitles = this.getSubtitles()
-                this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-                this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-              });
-            }
-            else if (entry.name.split(".")[1] !== "json") {
-              keys.push(entry.name);
-              entry.async('blob').then(blob => {
-                blob = new Blob([blob], { type: blob.type });
-                files.push({"clip":entry.name, "audio":blob, "duration":0})
-              });
-            }
-          }.bind(this));
-          // ToDo I need to wait untill the files object is ready
-          setTimeout((async () => {
-          let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
-          files.forEach(async (file) => {
-            await store.put(file)
-          });
-           keys = await store.getAllKeys();
-           let countm = 0;
-           let countf = 0;
-           let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-           subs.forEach(function (sub) {
-             if (keys.includes(sub["clip"])) {
-               if (sub["gender"] === "f") { countf++ }
-               else if (sub["gender"] === "m") { countm++ }
-             }
-           });
-           this.subindex[1]["male"][1] = countm;
-           this.subindex[1]["female"][1] = countf;
-           this.subindex[1]["all"][1] = countm + countf;
-           localStorage.setItem("items", JSON.stringify(this.items));
-           this.dubCount = this.subindex[1][this.subindex[0]][1];
-           file.value = ""
-           $("#uploadModel").modal('hide');
-           let dub = await store.get(this.currentSub["clip"]);
-           if (!this.url)
-             URL.revokeObjectURL(this.url);
-           if (!dub) {
-             this.url = "";
-             this.progressbarValue = 0.0;
-             this.cursec = 0.0;
-             this.allowRecording = false;
+           if (zip.files[this.curItem.path + ".json"]) {
+             let files = [];
+             let keys = [];
+             zip.forEach(function (relativePath, entry) {
+               if (entry.name === this.curItem.path + ".json") {
+                 entry.async('string').then(json => {
+                   localStorage.setItem(this.curItem.path, json);
+                   this.subtitles = this.getSubtitles()
+                   this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+                   this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+                 });
+               }
+               else if (entry.name.split(".")[1] !== "json") {
+                 keys.push(entry.name);
+                 entry.async('blob').then(blob => {
+                   blob = new Blob([blob], { type: blob.type });
+                   files.push({ "clip": entry.name, "audio": blob, "duration": 0 })
+                 });
+               }
+             }.bind(this));
+             // ToDo I need to wait untill the files object is ready
+             setTimeout((async () => {
+               let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
+               files.forEach(async (file) => {
+                 await store.put(file)
+               });
+               keys = await store.getAllKeys();
+               let countm = 0;
+               let countf = 0;
+               let subs = JSON.parse(localStorage.getItem(this.curItem.path));
+               subs.forEach(function (sub) {
+                 if (keys.includes(sub["clip"])) {
+                   if (sub["gender"] === "f") { countf++ }
+                   else if (sub["gender"] === "m") { countm++ }
+                 }
+               });
+               this.subindex[1]["male"][1] = countm;
+               this.subindex[1]["female"][1] = countf;
+               this.subindex[1]["all"][1] = countm + countf;
+               localStorage.setItem("items", JSON.stringify(this.items));
+               this.dubCount = this.subindex[1][this.subindex[0]][1];
+               file.value = ""
+               $("#uploadModel").modal('hide');
+               let dub = await store.get(this.currentSub["clip"]);
+               if (!this.url)
+                 URL.revokeObjectURL(this.url);
+               if (!dub) {
+                 this.url = "";
+                 this.progressbarValue = 0.0;
+                 this.cursec = 0.0;
+                 this.allowRecording = false;
+               }
+               else {
+                 this.url = URL.createObjectURL(dub["audio"]);
+                 this.progressBarColor = "green";
+                 this.cursec = dub["duration"];
+                 this.allowRecording = true;
+                 this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+               }
+             }), 500);
            }
-           else {
-             this.url = URL.createObjectURL(dub["audio"]);
-             this.progressBarColor = "green";
-             this.cursec = dub["duration"];
-             this.allowRecording = true;
-             this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-           }
-          }), 500);
          }.bind(this), function () { this.error = "Иашам ZIP афаил" }.bind(this)); 
     }
 
