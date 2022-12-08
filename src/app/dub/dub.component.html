@@ -151,7 +151,7 @@
                     translate
                 </span>
                 <div class="show-save">
-                    <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                    <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
                         {{inputSub}}/{{subCount}}/{{subtitles.length}}
                     </span>
                     <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
