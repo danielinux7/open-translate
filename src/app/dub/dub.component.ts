@@ -250,6 +250,7 @@ export class DubComponent {
     this.subtitles = this.getSubtitles()
     this.subCount = this.subtitles.filter(sub => sub.target).length;
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
+    $("#sentence").text(this.currentSub.target);
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
