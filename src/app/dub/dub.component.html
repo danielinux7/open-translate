@@ -1,7 +1,7 @@
 <div class="container-xl p-0 height-google">
     <div class="shadow-google bg-white">
         <div class="row mb-0 mt-1 ml-1 mr-1">
-            <div class="p-0 col-9 curSub">
+            <div class="p-0 col-8 curSub">
                 <div *ngIf="!isFilter" class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
                     <span>/{{dubCount}}/{{subtitles.length}}</span>
@@ -38,7 +38,10 @@
                     </label>
                 </div>
             </div>
-            <div class="col-3 p-0 right-section">
+            <div class="col-4 p-0 right-section">
+                <button type="button" class="p-0 fs-28 btn no-box-shadow" (click)="onNoise()">
+                    <span class="material-icons-outlined" [class.active-noise]="curItem?.path == 'noise'">noise_aware</span>
+                </button>
                 <button *ngIf="!progressdownloadValue" (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow">
                     <span class="material-icons-outlined">download</span>
@@ -66,6 +69,7 @@
                         </div>
                     </div>
                 </div>
+                <!--  -->
                 <button data-toggle="modal" data-target="#deleteModel" type="button"
                     class="p-0 fs-28 btn no-box-shadow">
                     <span class="material-icons-outlined">delete_forever</span>
@@ -87,11 +91,12 @@
                         </div>
                     </div>
                 </div>
+                <!--  -->
             </div>
         </div>
         <div>
             <ul class="nav nav-pills">
-                <li *ngFor="let item of items" class="{{item.labelColor}} nav-item bc" [class.active-item]="item.active" (click)="setCurItem(item)">
+                <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} nav-item bc" [class.active-item]="item.active" (click)="setCurItem(item)">
                     <span>{{item.label}}</span>
                 </li>
             </ul>

@@ -999,4 +999,9 @@ export class DubComponent {
     localStorage.setItem("items", JSON.stringify(this.items));
     this.ngOnInit();
   }
+
+  onNoise() {
+    let item =  this.items.filter(item => item["path"] === "noise")[0]; 
+    this.setCurItem(item);
+  }
 }

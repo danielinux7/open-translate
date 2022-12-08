@@ -1,5 +1,13 @@
 [
     {
+        "label": "noise",
+        "description": "Ауада Абжьы Мацара",
+        "active": false,
+        "labelColor": "green",
+        "subindex": ["all",{"all": [0,0],"male": [0,0],"female": [0,0]}],
+        "path": "noise"
+    },
+    {
         "label": "Аҩны",
         "description": "Аҩны",
         "active": false,

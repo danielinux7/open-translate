@@ -245,8 +245,8 @@
   position: absolute;
 }
 
-.active-filter {
-  color: #d2e264;
+.active-filter, .active-noise {
+  color: #ffd740!important;
 }
 
 .male {
@@ -259,8 +259,8 @@
 
 .btn-check:checked+label div {
   color: #000;
-  background-color: #d2e264;
-  border-color: #d2e264;
+  background-color: #ffd740;
+  border-color: #ffd740;
 }
 
 .count {
