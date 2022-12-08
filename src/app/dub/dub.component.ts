@@ -859,6 +859,13 @@ export class DubComponent {
   makeNote() {
     this.currentSub.edit?this.currentSub.edit=false:this.currentSub.edit=true;
     this.isSubtitlesSaved = false;
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents($("#sentence")[0]);
+    range.collapse(false);
+    selection.addRange(range);
+    $("#sentence")[0].focus();
   }
 
   onChangeText(e) {
@@ -957,6 +964,13 @@ export class DubComponent {
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
     }
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents($("#sentence")[0]);
+    range.collapse(false);
+    selection.addRange(range);
+    $("#sentence")[0].focus();
   }
 
   async setCurItem(item) {
