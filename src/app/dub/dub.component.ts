@@ -526,13 +526,13 @@ export class DubComponent {
   }
 
   async onDownload() {
-    let db;
     let count;
     this.saveSubtitle();
     let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
     count = 0;
     this.progressdownloadValue = 0;
     let zip = new JSZip();
+    zip.file("subtitle.json", localStorage.getItem("subtitle.json"));
     zip.file(this.curItem.path + ".json", localStorage.getItem(this.curItem.path));
     let subs = JSON.parse(localStorage.getItem(this.curItem.path));
     let keys = await store.getAllKeys();
