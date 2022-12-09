@@ -569,6 +569,7 @@ export class DubComponent {
     this.progressbarValue = 0.0;
     localStorage.clear();
     localStorage.setItem("items", JSON.stringify(this.items));
+    this.initSub = await this.getAsset("/assets/"+this.curItem.path+"/caption.json");
     this.subtitles = this.getSubtitles()
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
