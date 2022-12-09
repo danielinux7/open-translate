@@ -610,6 +610,15 @@ export class DubComponent {
 
   onTogglePlayOriginal() {
     this.errorBar = "";
+    if (!this.isReadOnlysen) {
+      const selection = window.getSelection();
+      const range = document.createRange();
+      selection.removeAllRanges();
+      range.selectNodeContents($("#sentence")[0]);
+      range.collapse(false);
+      selection.addRange(range);
+      $("#sentence")[0].focus();
+    }
     if (!this.isPlayingOriginal) {
       this.isPlayingOriginal = true;
       this.playingOriginal.muted = false;
