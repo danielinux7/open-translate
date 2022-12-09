@@ -2,7 +2,7 @@
     {
         "label": "noise",
         "description": "Ауада Абжьы Мацара",
-        "active": false,
+        "active": true,
         "labelColor": "green",
         "subindex": ["all",{"all": [0,0],"male": [0,0],"female": [0,0]}],
         "path": "noise"
@@ -18,7 +18,7 @@
     {
         "label": "Иаргы",
         "description": "Иаргы",
-        "active": true,
+        "active": false,
         "labelColor": "green",
         "path": "yargi",
         "collection": [
@@ -26,14 +26,6 @@
                 "label": "1",
                 "description": "Иаргы 1",
                 "active": true,
-                "labelColor": "red",
-                "subindex": ["all",{"all": [0,0],"male": [0,0],"female": [0,0]}],
-                "path": "yargi/1"
-            },
-                        {
-                "label": "2",
-                "description": "Иаргы 2",
-                "active": false,
                 "labelColor": "red",
                 "subindex": ["all",{"all": [0,0],"male": [0,0],"female": [0,0]}],
                 "path": "yargi/1"
