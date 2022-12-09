@@ -1,23 +1,5 @@
 [
     {
-        "clip": "1",
-        "start_sec": 0.0,
-        "duration": 20.0,
-        "source": "...ГОЛОС КОМНАТЫ 2...",
-        "target": "...АУАДА АБЖЬЫ 1...",
-        "gender": "m",
-        "length": 19
-    },
-    {
-        "clip": "2",
-        "start_sec": 0.0,
-        "duration": 20.0,
-        "source": "...ГОЛОС КОМНАТЫ 2...",
-        "target": "...АУАДА АБЖЬЫ 2...",
-        "gender": "f",
-        "length": 19
-    },
-    {
         "clip": "3",
         "start_sec": 13.53,
         "duration": 6.789,
