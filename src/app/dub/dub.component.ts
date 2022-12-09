@@ -532,7 +532,7 @@ export class DubComponent {
     count = 0;
     this.progressdownloadValue = 0;
     let zip = new JSZip();
-    zip.file("subtitle.json", localStorage.getItem("subtitle.json"));
+    zip.file("subtitle.json", localStorage.getItem("subtitle"));
     zip.file(this.curItem.path + ".json", localStorage.getItem(this.curItem.path));
     let subs = JSON.parse(localStorage.getItem(this.curItem.path));
     let keys = await store.getAllKeys();
