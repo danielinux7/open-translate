@@ -154,7 +154,7 @@
                     <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
                         {{inputSub}}/{{subCount}}/{{subtitles.length}}
                     </span>
-                    <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
+                    <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
                         {{indexFilter+1}}/{{dubCountFilter}}/{{subtitlesFilter.length}}
                     </span>
                     <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>

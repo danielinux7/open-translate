@@ -471,6 +471,7 @@ export class DubComponent {
   }
 
   async onChangeSub() {
+    this.isSubFilter = false;
     let tempNum = this.inputSub - 1;
     if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
       this.errorBar = "";
