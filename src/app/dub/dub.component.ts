@@ -156,31 +156,30 @@ export class DubComponent {
     let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
     let dub = await store.get(this.currentSub["clip"]);
     if (dub) {
-      let deleted = await store.delete(this.currentSub["clip"]);
-      if (deleted) {
-        if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
-          this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
-          if (this.currentSub["gender"] === "f")
-            this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
-          else if (this.currentSub["gender"] === "m")
-            this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
-          this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
-          this.dubCount = this.subindex[1][this.subindex[0]][1];
-          this.dubCountFilter--;
-          if (this.subindex[1]["all"][1] == 0)
-            this.dubEmpty = true;
-          localStorage.setItem("items", JSON.stringify(this.items));
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-        }
-        else {
-          if (!this.url)
-            URL.revokeObjectURL(this.url);
-          this.url = URL.createObjectURL(blob);
-          await store.add({ audio: blob, clip: this.currentSub["clip"], duration: this.cursec });
-          this.dubEmpty = false;
-          this.stream.getAudioTracks()[0].stop();
-        }
+      await store.delete(this.currentSub["clip"]);
+      if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
+        this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+        if (this.currentSub["gender"] === "f")
+          this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
+        else if (this.currentSub["gender"] === "m")
+          this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
+        this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
+        this.dubCount = this.subindex[1][this.subindex[0]][1];
+        this.dubCountFilter--;
+        if (this.subindex[1]["all"][1] == 0)
+          this.dubEmpty = true;
+        this.curItem.subindex = this.subindex;
+        localStorage.setItem("items", JSON.stringify(this.items));
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+      }
+      else {
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
+        this.url = URL.createObjectURL(blob);
+        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: this.cursec });
+        this.dubEmpty = false;
+        this.stream.getAudioTracks()[0].stop();
       }
     }
     else {
@@ -566,7 +565,8 @@ export class DubComponent {
     this.cursec = 0.0;
     this.allowRecording = false;
     this.progressbarValue = 0.0;
-    localStorage.clear();
+    localStorage.removeItem(this.curItem.path);
+    this.curItem.subindex = this.subindex;
     localStorage.setItem("items", JSON.stringify(this.items));
     this.initSub = await this.getAsset("/assets/"+this.curItem.path+"/caption.json");
     this.subtitles = this.getSubtitles()
