@@ -46,6 +46,7 @@ export class DubComponent {
   initSub: Subtitle[];
   subtitlesFilter: Subtitle[];
   subindex;
+  subindexList = {};
   gender: string;
   url;
   allowRecording: Boolean;
@@ -168,7 +169,7 @@ export class DubComponent {
         this.dubCountFilter--;
         if (this.subindex[1]["all"][1] == 0)
           this.dubEmpty = true;
-        this.curItem.subindex = this.subindex;
+        localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
         localStorage.setItem("items", JSON.stringify(this.items));
         this.progressbarValue = 0.0;
         this.cursec = 0.0;
@@ -198,6 +199,7 @@ export class DubComponent {
         this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
         this.dubCount = this.subindex[1][this.subindex[0]][1]
         this.dubCountFilter++;
+        localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
         localStorage.setItem("items", JSON.stringify(this.items));
         this.stream.getAudioTracks()[0].stop();
       }
@@ -239,7 +241,16 @@ export class DubComponent {
       this.curParItem = undefined;
       this.curItem = item;
     }
-    this.subindex = this.curItem.subindex;
+    if (localStorage.getItem("subindexlist")) {
+      this.subindexList = JSON.parse(localStorage.getItem("subindexlist"));
+      if (!this.subindexList[this.curItem.path])
+        this.subindexList[this.curItem.path] = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
+    }
+    else {
+      this.subindexList[this.curItem.path] = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
+    }
+    localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
+    this.subindex = this.subindexList[this.curItem.path];
     this.isFilter = false;
     this.isSubFilter = false;
     this.dubCount = this.subindex[1][this.subindex[0]][1];
@@ -309,6 +320,7 @@ export class DubComponent {
         this.isPlaying = false;
       }
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
+      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
       localStorage.setItem("items", JSON.stringify(this.items));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       if (this.isTranslate == true) {
@@ -401,6 +413,7 @@ export class DubComponent {
         this.isPlaying = false;
       }
       this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
+      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
       localStorage.setItem("items", JSON.stringify(this.items));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       if (this.isTranslate == true) {
@@ -485,6 +498,7 @@ export class DubComponent {
         this.isPlaying = false;
       }
       this.subindex[1][this.subindex[0]][0] = tempNum;
+      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
       localStorage.setItem("items", JSON.stringify(this.items));
       this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       if (this.isTranslate == true) {
@@ -556,26 +570,13 @@ export class DubComponent {
   async onDelete() {
     let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
     await store.clear();
-    this.subindex = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
-    this.dubEmpty = true;
-    this.dubCount = 0;
-    if (!this.url)
-      URL.revokeObjectURL(this.url);
-    this.url = "";
-    this.errorBar = "";
-    this.cursec = 0.0;
-    this.allowRecording = false;
-    this.progressbarValue = 0.0;
     localStorage.removeItem(this.curItem.path);
-    this.curItem.subindex = this.subindex;
+    this.subindexList[this.curItem.path] = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
+    this.subindex = this.subindexList[this.curItem.path];
+    localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
+    this.items = await this.getAsset("/assets/items.json");
     localStorage.setItem("items", JSON.stringify(this.items));
-    this.initSub = await this.getAsset("/assets/"+this.curItem.path+"/caption.json");
-    this.subtitles = this.getSubtitles()
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
-    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-    this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
-    this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
-    this.playingOriginal.load();
+    this.ngOnInit();
   }
 
   onToggleRecording() {
@@ -673,6 +674,7 @@ export class DubComponent {
       }
       $("#sentence").text(this.currentSub.target);
       this.dubCount = this.subindex[1][this.subindex[0]][1]
+      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
       localStorage.setItem("items", JSON.stringify(this.items));
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
@@ -755,6 +757,7 @@ export class DubComponent {
                this.subindex[1]["male"][1] = countm;
                this.subindex[1]["female"][1] = countf;
                this.subindex[1]["all"][1] = countm + countf;
+               localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
                localStorage.setItem("items", JSON.stringify(this.items));
                this.dubCount = this.subindex[1][this.subindex[0]][1];
                file.value = ""

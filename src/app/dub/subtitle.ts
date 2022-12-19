@@ -15,6 +15,5 @@ export interface Item {
   description: string;
   active: boolean;
   collection?: [];
-  subindex?: [];
   path: string;
 }
