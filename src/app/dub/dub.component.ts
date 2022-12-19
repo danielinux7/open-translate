@@ -222,23 +222,13 @@ export class DubComponent {
       this.items = await this.getAsset("/assets/items.json");
       localStorage.setItem("items", JSON.stringify(this.items));
     }
-    let item = this.items.filter(item => {
-      if (item.collection)
-        if (item.collection.filter(item => item["active"] === true))
-          return true;  
-        else 
-          return false;  
-      if (item["active"] === true)
-        return true;
-      else 
-        return false;
-    })[0];
+    let item = this.items.filter(item => item["active"] === true)[0];
     if (item.collection) {
       this.curParItem = item;
       this.curItem = item.collection.filter(item => item["active"] === true)[0];
     }
     else {
-      this.curParItem = undefined;
+      this.curParItem = null;
       this.curItem = item;
     }
     if (localStorage.getItem("subindexlist")) {
@@ -998,20 +988,24 @@ export class DubComponent {
   }
 
   async setCurItem(item) {
-    if (this.curParItem)
-      this.curParItem.active = false;
-    else {
-      this.curItem.active = false;
+    let itemIndex
+    if (this.curParItem) {
+      itemIndex = this.items.findIndex(item => item.path == this.curParItem.path);
     }
+    else {
+      itemIndex = this.items.findIndex(item => item.path == this.curItem.path)
+    }
+    this.items[itemIndex].active = false;
     if (item.collection) {
       this.curParItem = item;
       this.curParItem.active = true;
       this.curItem = item.collection.filter(item => item["active"] === true)[0]; 
     }
     else {
+      this.curParItem = null;
       this.curItem = item;
+      this.curItem.active = true;
     }
-    this.curItem.active = true;
     localStorage.setItem("items", JSON.stringify(this.items));
     this.ngOnInit();
   }
