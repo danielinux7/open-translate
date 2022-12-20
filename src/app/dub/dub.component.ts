@@ -213,6 +213,8 @@ export class DubComponent {
   }
   async ngOnInit() {
     this.errorBar = "";
+    this.isTranslate = false;
+    this.isSource = false;
     this.isReadOnlysen = true;
     this.isSubtitlesSaved = true;
     this.subtitlesFilter = [];
