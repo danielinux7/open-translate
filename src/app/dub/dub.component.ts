@@ -344,6 +344,16 @@ export class DubComponent {
     if (this.indexFilter < this.subtitlesFilter.length-1) {
       this.errorBar = "";
       this.saveSubtitle();
+      if (this.isReadOnlysen === false) {
+        let divTextarea = document.getElementById("sentence");
+        const selection = window.getSelection();
+        const range = document.createRange();
+        selection.removeAllRanges();
+        range.selectNodeContents(divTextarea);
+        range.collapse(false);
+        selection.addRange(range);
+        divTextarea.focus();
+      }
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
         this.isPlayingOriginal = false;
@@ -437,6 +447,16 @@ export class DubComponent {
     if (this.indexFilter > 0) {
       this.errorBar = "";
       this.saveSubtitle();
+      if (this.isReadOnlysen === false) {
+        let divTextarea = document.getElementById("sentence");
+        const selection = window.getSelection();
+        const range = document.createRange();
+        selection.removeAllRanges();
+        range.selectNodeContents(divTextarea);
+        range.collapse(false);
+        selection.addRange(range);
+        divTextarea.focus();
+      }
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
         this.isPlayingOriginal = false;
@@ -947,7 +967,16 @@ export class DubComponent {
   }
 
   async onToggleSubFilter() {
+    this.isTranslate = false;
     this.isFilter = false;
+    let divTextarea = document.getElementById("sentence");
+    const selection = window.getSelection();
+    const range = document.createRange();
+    selection.removeAllRanges();
+    range.selectNodeContents(divTextarea);
+    range.collapse(false);
+    selection.addRange(range);
+    divTextarea.focus();
     if (this.isSubFilter === true){
       this.isSubFilter = false;
       this.onChangeGender({"value":this.subindex[0]});
@@ -980,13 +1009,6 @@ export class DubComponent {
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
     }
-    const selection = window.getSelection();
-    const range = document.createRange();
-    selection.removeAllRanges();
-    range.selectNodeContents($("#sentence")[0]);
-    range.collapse(false);
-    selection.addRange(range);
-    $("#sentence")[0].focus();
   }
 
   async setCurItem(item) {
