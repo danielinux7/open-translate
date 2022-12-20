@@ -248,7 +248,7 @@ export class DubComponent {
       this.dubEmpty = false;
     this.initSub = await this.getAsset("/assets/"+this.curItem.path+"/caption.json");
     this.subtitles = this.getSubtitles()
-    this.subCount = this.subtitles.filter(sub => sub.target).length;
+    this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
     this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
     $("#sentence").text(this.currentSub.target);
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
@@ -716,8 +716,10 @@ export class DubComponent {
                  entry.async('string').then(json => {
                    localStorage.setItem(this.curItem.path, json);
                    this.subtitles = this.getSubtitles()
-                   this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+                   this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
                    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+                   this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
+                   $("#sentence").text(this.currentSub.target);
                  });
                }
                else if (entry.name.match(numbers)) {
