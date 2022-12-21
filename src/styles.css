@@ -51,6 +51,14 @@ body {
   border: 1px solid #dadce0!important;
 }
 
+.dark .translate-type .active {
+  background-color: rgba(255, 0, 0, 0.2)!important;
+}
+
+.dark translate button a {
+  background-color: #444444!important;
+  color: #f5f5f5!important;
+}
 
 .dark span.material-icons-outlined {
   color: #fff;

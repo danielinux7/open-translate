@@ -110,13 +110,14 @@ textarea {
   display: inline-block;
 }
 
-.downloadLink a {
+a, .downloadLink a {
   color: rgb(40, 167, 69);
   display: inline-block;
 }
 
-.downloadLink a:hover {
+a:hover, .downloadLink a:hover {
   color: #218838;
+  text-decoration: none;
 }
 
 .button {
