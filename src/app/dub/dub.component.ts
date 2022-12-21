@@ -564,12 +564,20 @@ export class DubComponent {
     subs = subs.filter(sub => !keys.includes(sub["clip"]));
     zip.file(this.curItem.path + "-no-record.json", JSON.stringify(subs, null, 2));
     let cursor = await store.openCursor();
+    let singleFile = false;
+    let blobs = [];
     while (cursor) {
-      zip.file(cursor.key, cursor.value.audio);
+      if (singleFile) {
+        blobs.push(cursor.value.audio);
+      }
+      else
+        zip.file(cursor.key, cursor.value.audio);
       count++;
       this.progressdownloadValue = Math.round((count * 100) / this.dubCount);
       cursor = await cursor.continue();
     }
+    if (singleFile)
+      zip.file(this.curItem.path,blobs.reduce((a, b)=> new Blob([a, b], {type: a.type})));
     zip.generateAsync({ type: "blob" })
       .then(function (content) {
         setTimeout((() => {
