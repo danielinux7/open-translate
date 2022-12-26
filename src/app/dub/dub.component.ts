@@ -59,6 +59,7 @@ export class DubComponent {
   isTranslate: boolean;
   isCopy: boolean;
   isSaved: boolean;
+  isFont: boolean;
   error;
   dbService;
 
@@ -212,6 +213,7 @@ export class DubComponent {
     this.error = 'Can not play audio in your browser';
   }
   async ngOnInit() {
+    window.onload = () => {this.isFont = true;}
     this.errorBar = "";
     this.isTranslate = false;
     this.isSource = false;
@@ -556,7 +558,7 @@ export class DubComponent {
     this.saveSubtitle();
     let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
     count = 0;
-    this.progressdownloadValue = 0;
+    this.progressdownloadValue = 1;
     let zip = new JSZip();
     zip.file(this.curItem.path + ".json", localStorage.getItem(this.curItem.path));
     let subs = JSON.parse(localStorage.getItem(this.curItem.path));

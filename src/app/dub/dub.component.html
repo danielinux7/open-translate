@@ -10,12 +10,12 @@
                 <div *ngIf="isFilter" class="count">
                     <input class="cursub filter-bg" ngModel="{{indexFilter+1}}" type="number" />
                     <span>/{{dubCountFilter}}/{{subtitlesFilter.length}}</span>
-                    <span class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                    <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
                 <div class="gender">
                     <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
                         value="m" id="male" [checked]="subindex?subindex[0]=='male':false">
-                    <label class="m-0 p-0 btn m no-box-shadow material-icons-outlined" for="male">
+                    <label *ngIf="isFont" class="m-0 p-0 btn m no-box-shadow material-icons-outlined" for="male">
                         <div class="male">
                             man
                         </div>
@@ -23,7 +23,7 @@
 
                     <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender"
                         value="f" id="female" [checked]="subindex?subindex[0]=='female':false">
-                    <label class="m-0 p-0 btn f no-box-shadow material-icons-outlined" for="female">
+                    <label *ngIf="isFont" class="m-0 p-0 btn f no-box-shadow material-icons-outlined" for="female">
                         <div class="female">
                             woman
                         </div>
@@ -31,7 +31,7 @@
 
                     <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender"
                         value="all" id="all" [checked]="subindex?subindex[0]=='all':false">
-                    <label class="m-0 p-0 btn wc no-box-shadow material-icons-outlined" for="all">
+                    <label *ngIf="isFont" class="m-0 p-0 btn wc no-box-shadow material-icons-outlined" for="all">
                         <div class="male">
                             accessibility
                         </div>
@@ -40,18 +40,18 @@
             </div>
             <div class="col-4 p-0 right-section">
                 <button type="button" class="p-0 fs-28 btn no-box-shadow" (click)="onNoise()">
-                    <span class="material-icons-outlined" [class.active-noise]="curItem?.path == 'noise'">noise_aware</span>
+                    <span *ngIf="isFont" class="material-icons-outlined" [class.active-noise]="curItem?.path == 'noise'">noise_aware</span>
                 </button>
                 <button *ngIf="!progressdownloadValue" (click)="onDownload()" type="button"
                     class="p-0 fs-28 btn no-box-shadow">
-                    <span class="material-icons-outlined">download</span>
+                    <span *ngIf="isFont" class="material-icons-outlined">download</span>
                 </button>
                 <button *ngIf="progressdownloadValue" class="p-0 fs-28 btn no-box-shadow" type="button">
                     <span class="download material-icons">download</span>
                     <span class="progress-download">{{progressdownloadValue}}%</span>
                 </button>
                 <button data-toggle="modal" data-target="#uploadModel" type="button" class="p-0 fs-28 btn no-box-shadow">
-                    <span class="material-icons-outlined">upload</span>
+                    <span *ngIf="isFont" class="material-icons-outlined">upload</span>
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="uploadModel" tabindex="-1" role="dialog" aria-labelledby="uploadModelLabel"
@@ -72,7 +72,7 @@
                 <!--  -->
                 <button data-toggle="modal" data-target="#deleteModel" type="button"
                     class="p-0 fs-28 btn no-box-shadow">
-                    <span class="material-icons-outlined">delete_forever</span>
+                    <span *ngIf="isFont" class="material-icons-outlined">delete_forever</span>
                 </button>
                 <!-- Modal -->
                 <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
