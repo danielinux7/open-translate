@@ -374,21 +374,21 @@ export class DubComponent {
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
       let dub = await store.get(this.currentSub["clip"]);
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        if (!dub) {
-          this.url = "";
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-          this.allowRecording = false;
-        }
-        else {
-          this.url = URL.createObjectURL(dub["audio"]);
-          this.progressBarColor = "green";
-          this.cursec = dub["duration"];
-          this.allowRecording = true;
-          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-        }
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.allowRecording = true;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
     }
   }
 
@@ -476,22 +476,22 @@ export class DubComponent {
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.getByKey(this.currentSub["clip"]);
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        if (!dub) {
-          this.url = "";
-          this.progressbarValue = 0.0;
-          this.cursec = 0.0;
-          this.allowRecording = false;
-        }
-        else {
-          this.url = URL.createObjectURL(dub["audio"]);
-          this.progressBarColor = "green";
-          this.cursec = dub["duration"];
-          this.allowRecording = true;
-          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-        }
+      let dub = await store.get(this.currentSub["clip"]);
+      if (!this.url)
+        URL.revokeObjectURL(this.url);
+      if (!dub) {
+        this.url = "";
+        this.progressbarValue = 0.0;
+        this.cursec = 0.0;
+        this.allowRecording = false;
+      }
+      else {
+        this.url = URL.createObjectURL(dub["audio"]);
+        this.progressBarColor = "green";
+        this.cursec = dub["duration"];
+        this.allowRecording = true;
+        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      }
     }
   }
 
