@@ -60,6 +60,9 @@
                         <div class="modal-content">
                             <div class="modal-body">
                                 <input class="form-control-sm" type=file id=file>
+                                <div *ngIf="error" class="mt-4 mb-0 alert alert-warning fade show" role="alert">
+                                    {{error}}
+                                </div>
                             </div>
                             <div class="modal-footer row m-0">
                                 <button type="button" class="col-4 btn btn-secondary" data-dismiss="modal">Мап</button>

@@ -737,6 +737,7 @@ export class DubComponent {
 
   async onUpload() {
     let file = document.getElementById("file") as HTMLInputElement;
+    this.error = "";
       JSZip.loadAsync(file.files[0])
          .then(async function(zip: JSZip) {
            if (zip.files[this.curItem.path + ".json"]) {
@@ -803,6 +804,9 @@ export class DubComponent {
                  this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
                }
              }), 500);
+           }
+           else {
+            this.error = "Иашам ZIP афаил";
            }
          }.bind(this), function () { this.error = "Иашам ZIP афаил" }.bind(this)); 
     }
