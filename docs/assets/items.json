@@ -22,10 +22,17 @@
         "collection": [
             {
                 "label": "1",
-                "description": "Иаргы 1",
+                "description": "Аӡбарҭа 1",
                 "active": true,
                 "labelColor": "red",
                 "path": "yargi/1"
+            },
+                        {
+                "label": "2",
+                "description": "Аӡбарҭа 2",
+                "active": true,
+                "labelColor": "red",
+                "path": "yargi/2"
             }
         ]
     },
