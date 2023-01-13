@@ -155,11 +155,12 @@ export class DubComponent {
   * @param  {any} blob Blog
   */
   async processRecording(blob) {
+    let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
     let dub = await store.get(this.currentSub["clip"]);
     if (dub) {
       await store.delete(this.currentSub["clip"]);
-      if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7) {
+      if (parseFloat((duration / this.currentSub.duration).toFixed(1)) < 0.6) {
         this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
         if (this.currentSub["gender"] === "f")
           this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
@@ -179,19 +180,19 @@ export class DubComponent {
         if (!this.url)
           URL.revokeObjectURL(this.url);
         this.url = URL.createObjectURL(blob);
-        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: this.cursec });
+        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: duration });
         this.dubEmpty = false;
         this.stream.getAudioTracks()[0].stop();
       }
     }
     else {
-      if (parseFloat((this.cursec / this.currentSub.duration).toFixed(1)) < 0.7)
+      if (parseFloat((duration / this.currentSub.duration).toFixed(1)) < 0.6)
         this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
       else {
         if (!this.url)
           URL.revokeObjectURL(this.url);
         this.url = URL.createObjectURL(blob);
-        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: this.cursec });
+        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: duration });
         this.dubEmpty = false;
         if (this.currentSub["gender"] === "f")
           this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
