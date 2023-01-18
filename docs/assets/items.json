@@ -34,6 +34,14 @@
                 "labelColor": "red",
                 "path": "yargi/2"
             }
+            ,
+                        {
+                "label": "3",
+                "description": "Аӡбарҭа 3",
+                "active": true,
+                "labelColor": "red",
+                "path": "yargi/3"
+            }
         ]
     },
     {
