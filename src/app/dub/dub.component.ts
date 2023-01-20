@@ -157,6 +157,9 @@ export class DubComponent {
   async processRecording(blob) {
     let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
+    if (!this.url)
+      URL.revokeObjectURL(this.url);
+    this.url = URL.createObjectURL(blob);
     store.get(this.currentSub["clip"]).then(async (dub) => {
       if (dub) {
         await store.delete(this.currentSub["clip"]);
@@ -175,6 +178,9 @@ export class DubComponent {
           localStorage.setItem("items", JSON.stringify(this.items));
           this.progressbarValue = 0.0;
           this.cursec = 0.0;
+          if (!this.url)
+            URL.revokeObjectURL(this.url);
+          this.url = "";
         }
         else {
           if (!this.url)
