@@ -118,7 +118,7 @@ export class DubComponent {
     const sub = timer$.subscribe((milisec) => {
       this.cursec = milisec / 10.0;
       this.progressbarValue = (100.0 / seconds) * this.cursec;
-      if (parseFloat((this.cursec / seconds).toFixed(1)) >= 0.7) {
+      if (parseFloat((this.cursec / seconds).toFixed(1)) >= 0.6) {
         this.progressBarColor = "green";
       }
       if (type === "record" && !this.recording) {
@@ -157,55 +157,56 @@ export class DubComponent {
   async processRecording(blob) {
     let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
-    let dub = await store.get(this.currentSub["clip"]);
-    if (dub) {
-      await store.delete(this.currentSub["clip"]);
-      if (parseFloat((duration / this.currentSub.duration).toFixed(1)) < 0.6) {
-        this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
-        if (this.currentSub["gender"] === "f")
-          this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
-        else if (this.currentSub["gender"] === "m")
-          this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
-        this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
-        this.dubCount = this.subindex[1][this.subindex[0]][1];
-        this.dubCountFilter--;
-        if (this.subindex[1]["all"][1] == 0)
-          this.dubEmpty = true;
-        localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-        localStorage.setItem("items", JSON.stringify(this.items));
-        this.progressbarValue = 0.0;
-        this.cursec = 0.0;
+    store.get(this.currentSub["clip"]).then(async (dub) => {
+      if (dub) {
+        await store.delete(this.currentSub["clip"]);
+        if (parseFloat((duration / this.currentSub.duration).toFixed(1)) < 0.6) {
+          this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+          if (this.currentSub["gender"] === "f")
+            this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
+          else if (this.currentSub["gender"] === "m")
+            this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
+          this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
+          this.dubCount = this.subindex[1][this.subindex[0]][1];
+          this.dubCountFilter--;
+          if (this.subindex[1]["all"][1] == 0)
+            this.dubEmpty = true;
+          localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
+          localStorage.setItem("items", JSON.stringify(this.items));
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+        }
+        else {
+          if (!this.url)
+            URL.revokeObjectURL(this.url);
+          this.url = URL.createObjectURL(blob);
+          await store.add({ audio: blob, clip: this.currentSub["clip"], duration: duration });
+          this.dubEmpty = false;
+          this.stream.getAudioTracks()[0].stop();
+        }
       }
       else {
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        this.url = URL.createObjectURL(blob);
-        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: duration });
-        this.dubEmpty = false;
-        this.stream.getAudioTracks()[0].stop();
+        if (parseFloat((duration / this.currentSub.duration).toFixed(1)) < 0.6)
+          this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
+        else {
+          if (!this.url)
+            URL.revokeObjectURL(this.url);
+          this.url = URL.createObjectURL(blob);
+          await store.add({ audio: blob, clip: this.currentSub["clip"], duration: duration });
+          this.dubEmpty = false;
+          if (this.currentSub["gender"] === "f")
+            this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
+          else if (this.currentSub["gender"] === "m")
+            this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
+          this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
+          this.dubCount = this.subindex[1][this.subindex[0]][1]
+          this.dubCountFilter++;
+          localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
+          localStorage.setItem("items", JSON.stringify(this.items));
+          this.stream.getAudioTracks()[0].stop();
+        }
       }
-    }
-    else {
-      if (parseFloat((duration / this.currentSub.duration).toFixed(1)) < 0.6)
-        this.errorBar = "Анҵамҭа аура кьаҿцәоуп!";
-      else {
-        if (!this.url)
-          URL.revokeObjectURL(this.url);
-        this.url = URL.createObjectURL(blob);
-        await store.add({ audio: blob, clip: this.currentSub["clip"], duration: duration });
-        this.dubEmpty = false;
-        if (this.currentSub["gender"] === "f")
-          this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
-        else if (this.currentSub["gender"] === "m")
-          this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
-        this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
-        this.dubCount = this.subindex[1][this.subindex[0]][1]
-        this.dubCountFilter++;
-        localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-        localStorage.setItem("items", JSON.stringify(this.items));
-        this.stream.getAudioTracks()[0].stop();
-      }
-    }
+    });
   }
   /**
   * Process Error.
