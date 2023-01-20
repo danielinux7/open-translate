@@ -3,7 +3,7 @@
         "clip": "3",
         "start_sec": 12.856,
         "duration": 5.33,
-        "source": "\"Аӡбаҩцәа рыблақәа рыла ауп ашьҩы ишибо» Ф. [ru]",
+        "source": "«Аӡбаҩцәа зегьы рыблақәа рҟынтә ашьаҩык дыԥшуеит» Ф.",
         "target": "",
         "gender": "m",
         "length": 50
@@ -12,8 +12,8 @@
         "clip": "4",
         "start_sec": 19.16,
         "duration": 2.558,
-        "source": "1-тәи [ru]",
-        "target": "1-тәи [ab]",
+        "source": "1-тәи",
+        "target": "1-тәи",
         "gender": "m",
         "length": 11
     },
