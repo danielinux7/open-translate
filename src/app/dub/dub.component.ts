@@ -145,12 +145,12 @@ export class DubComponent {
     }
   }
 
-  async deleteClip() {
+  deleteClip() {
     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-    await store.delete(this.currentSub["clip"]);
+    store.delete(this.currentSub["clip"]);
     if (!this.url)
       URL.revokeObjectURL(this.url);
-    this.url = null;
+    this.url = "";
     if (this.currentSub["gender"] === "f")
       this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
     else if (this.currentSub["gender"] === "m")
@@ -166,12 +166,10 @@ export class DubComponent {
     this.cursec = 0.0;
   }
 
-  async processRecording(blob) {
+  processRecording(blob) {
     let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-    URL.revokeObjectURL(this.url);
-    this.url = URL.createObjectURL(blob);
-    await store.put({ audio: blob, clip: this.currentSub["clip"], duration: duration });
+    store.put({ audio: blob, clip: this.currentSub["clip"], duration: duration });
     if (!this.url){
       if (this.currentSub["gender"] === "f")
         this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
@@ -182,8 +180,10 @@ export class DubComponent {
       this.dubCountFilter++;
       localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
     }
+    URL.revokeObjectURL(this.url);
+    this.url = URL.createObjectURL(blob);
     this.dubEmpty = false;
-    this.stream.getAudioTracks()[0].stop();  
+    this.stream.getAudioTracks()[0].stop();
   }
   /**
   * Process Error.
