@@ -239,7 +239,7 @@ export class DubComponent {
     this.playingOriginal.onended = (function () {
       this.isPlayingOriginal = false;
       this.allowRecording = true;
-      if (this.recording)
+      if (this.recording && this.curItem.path != "noise")
         this.stopRecording();
     }).bind(this);
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
