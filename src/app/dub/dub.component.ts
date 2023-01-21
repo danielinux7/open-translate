@@ -34,7 +34,6 @@ export class DubComponent {
   inputSub: number;
   playing = new Audio();
   isPlaying = false;
-  timeout;
   playingOriginal;
   isPlayingOriginal = false;
   urlorginal = "/assets/home/1";
@@ -109,7 +108,6 @@ export class DubComponent {
     this.progressbarValue = 0.0;
     this.errorBar = "";
     this.startTimer("record");
-    this.timeout = setTimeout(this.stopRecording.bind(this), (this.currentSub.duration+1) * 1000)
   }
 
   startTimer(type) {
@@ -137,7 +135,6 @@ export class DubComponent {
   * Stop recording.
   */
   stopRecording() {
-    clearTimeout(this.timeout);
     this.recording = false;
     if (!this.record) {
       this.errorBar = "Амикрофон ԥшаам";
@@ -660,6 +657,8 @@ export class DubComponent {
       this.playingOriginal.onended = (function () {
         this.isPlayingOriginal = false;
         this.allowRecording = true;
+        if (this.recording)
+          this.stopRecording();
       }).bind(this);
     }
     else {
