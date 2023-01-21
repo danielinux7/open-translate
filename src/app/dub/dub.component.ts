@@ -109,7 +109,7 @@ export class DubComponent {
     this.progressbarValue = 0.0;
     this.errorBar = "";
     this.startTimer("record");
-    this.timeout = setTimeout(this.stopRecording.bind(this), this.currentSub.duration * 1000)
+    this.timeout = setTimeout(this.stopRecording.bind(this), (this.currentSub.duration+1) * 1000)
   }
 
   startTimer(type) {
