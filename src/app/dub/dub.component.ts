@@ -169,6 +169,8 @@ export class DubComponent {
   async processRecording(blob) {
     let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
+    URL.revokeObjectURL(this.url);
+    this.url = URL.createObjectURL(blob);
     await store.put({ audio: blob, clip: this.currentSub["clip"], duration: duration });
     if (!this.url){
       if (this.currentSub["gender"] === "f")
@@ -180,8 +182,6 @@ export class DubComponent {
       this.dubCountFilter++;
       localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
     }
-    URL.revokeObjectURL(this.url);
-    this.url = URL.createObjectURL(blob);
     this.dubEmpty = false;
     this.stream.getAudioTracks()[0].stop();  
   }
