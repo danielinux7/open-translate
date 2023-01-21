@@ -14,7 +14,7 @@
 }
 
 .red {
-  color: #FF4F5E;
+  color: #FF4F5E!important;
 }
 
 .right-section {
@@ -188,6 +188,12 @@
   display: flex;
   justify-content: center;
   position: relative;
+}
+
+.delete-clip {
+  position: absolute;
+  top: -20px;
+  right: 0px;
 }
 
 .alert {

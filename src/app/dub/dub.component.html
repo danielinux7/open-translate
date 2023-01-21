@@ -217,6 +217,9 @@
                     </button>
                     <div *ngIf="url" class="background blue"></div>
                 </div>
+                <span *ngIf="url" class="delete-clip red material-icons-outlined" (click)="deleteClip()">
+                    cancel
+                </span>
             </div>
             <button *ngIf="!isFilter&&!isSubFilter" [disabled]="recording" (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
@@ -232,9 +235,6 @@
         <div class="row m-0 justify-content-center">
             <div *ngIf="errorBar" class="col-10 alert alert-warning fade show" role="alert">
                 {{errorBar}}
-            </div>
-            <div class="col-10 alert alert-warning fade show" role="alert">
-                URL: {{url}}
             </div>
         </div>
     </div>
