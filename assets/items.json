@@ -59,5 +59,26 @@
                 "path": "mc/1"
             }
         ]
+    },
+    {
+        "label": "Џь. Ц.",
+        "description": "Џьули Цезар",
+        "active": false,
+        "labelColor": "green",
+        "path": "caesar"
+    },
+    {
+        "label": "Агәыӷә.",
+        "description": "Агәыӷәӷәа",
+        "active": false,
+        "labelColor": "green",
+        "path": "braveheart"
+    },
+    {
+        "label": "Ганди",
+        "description": "Ганди",
+        "active": false,
+        "labelColor": "green",
+        "path": "gandhi"
     }
 ]
