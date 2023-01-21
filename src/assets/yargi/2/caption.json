@@ -404,20 +404,20 @@
         "start_sec": 589.902,
         "end_sec": 590.902,
         "duration": 1.0,
-        "source": "-Duydun mu?",
-        "target": "-Иуаҳама?",
-        "gender": "f",
-        "length": 11
+        "source": "-Bırak iki tokatla eksilmez.",
+        "target": "–Улҟәаҵ, знык диҿасит ҳәа дыԥсрым.",
+        "gender": "m",
+        "length": 28
     },
     {
         "clip": "42",
         "start_sec": 590.902,
         "end_sec": 591.465,
         "duration": 0.563,
-        "source": "-Bırak iki tokatla eksilmez.",
-        "target": "–Улҟәаҵ, знык диҿасит ҳәа дыԥсрым.",
-        "gender": "m",
-        "length": 28
+        "source": "-Duydun mu?",
+        "target": "-Иуаҳама?",
+        "gender": "f",
+        "length": 11
     },
     {
         "clip": "43",
