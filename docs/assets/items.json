@@ -30,7 +30,7 @@
                         {
                 "label": "2",
                 "description": "Аӡбарҭа 2",
-                "active": true,
+                "active": false,
                 "labelColor": "red",
                 "path": "yargi/2"
             }
@@ -38,7 +38,7 @@
                         {
                 "label": "3",
                 "description": "Аӡбарҭа 3",
-                "active": true,
+                "active": false,
                 "labelColor": "red",
                 "path": "yargi/3"
             }
