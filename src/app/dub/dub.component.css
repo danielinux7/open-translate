@@ -342,5 +342,6 @@
 }
 
 .active-item {
-  background: hsla(var(--label-h), calc(var(--label-s) * 2%), calc((var(--label-l) + var(--lighten-by)) * 1%), var(--border-alpha));
+  color: white;
+  background: black;
 }
