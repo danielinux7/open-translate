@@ -45,7 +45,7 @@
         ]
     },
     {
-        "label": "З. А.",
+        "label": "Зеиԥшыҟам Аамҭа",
         "description": "Зеиԥшыҟам Аамҭа",
         "active": false,
         "labelColor": "green",
@@ -61,14 +61,14 @@
         ]
     },
     {
-        "label": "Џь. Ц.",
+        "label": "Џьули Цезар",
         "description": "Џьули Цезар",
         "active": false,
         "labelColor": "green",
         "path": "caesar"
     },
     {
-        "label": "Агәыӷә.",
+        "label": "Агәыӷәӷәа",
         "description": "Агәыӷәӷәа",
         "active": false,
         "labelColor": "green",
