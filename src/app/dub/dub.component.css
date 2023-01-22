@@ -14,7 +14,7 @@
 }
 
 .red {
-  color: #FF4F5E!important;
+  color: #FF4F5E;
 }
 
 .right-section {
@@ -293,42 +293,6 @@
   top: -4px;
 }
 
-.yellow {
-  --label-r: 228;
-  --label-g: 230;
-  --label-b: 105;
-  --label-h: 60;
-  --label-s: 71;
-  --label-l: 65;
-}
-
-.green {
-  --label-r: 0;
-  --label-g: 134;
-  --label-b: 114;
-  --label-h: 171;
-  --label-s: 100;
-  --label-l: 26;
-}
-
-.red {
-  --label-r: 215;
-  --label-g: 58;
-  --label-b: 74;
-  --label-h: 353;
-  --label-s: 66;
-  --label-l: 53;
-}
-
-.blue {
-  --label-r: 0;
-  --label-g: 117;
-  --label-b: 202;
-  --label-h: 205;
-  --label-s: 100;
-  --label-l: 39;
-}
-
 .nav-item {
   display: inline-block;
   --lightness-threshold: 0.6;
@@ -368,7 +332,6 @@
 }
 
 .nav-all {
-  background-color:#2b2b2b;
   padding: 0;
 }
 
