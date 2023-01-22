@@ -370,12 +370,12 @@
 .nav-all {
   background-color:#2b2b2b;
   padding: 0;
-  margin-bottom: 5px;
 }
 
 .nav-scroll {
   overflow-x: auto;
   white-space: nowrap;
+  padding-bottom: 6px;
 }
 
 .active-item {
