@@ -546,10 +546,6 @@ export class DubComponent {
     this.progressdownloadValue = 1;
     let zip = new JSZip();
     zip.file(this.curItem.path + ".json", localStorage.getItem(this.curItem.path));
-    let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-    let keys = await store.getAllKeys();
-    subs = subs.filter(sub => !keys.includes(sub["clip"]));
-    zip.file(this.curItem.path + "-no-record.json", JSON.stringify(subs, null, 2));
     let cursor = await store.openCursor();
     let singleFile = false;
     let blobs = [];
