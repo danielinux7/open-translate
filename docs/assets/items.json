@@ -3,21 +3,21 @@
         "label": "noise",
         "description": "Ауада Абжьы Мацара",
         "active": true,
-        "labelColor": "green",
+        "labelColor": "yellow",
         "path": "noise"
     },
     {
         "label": "Аҩны",
         "description": "Аҩны",
         "active": false,
-        "labelColor": "green",
+        "labelColor": "yellow",
         "path": "home"
     },
     {
         "label": "Аӡбарҭа",
         "description": "Аӡбарҭа",
         "active": false,
-        "labelColor": "green",
+        "labelColor": "yellow",
         "path": "yargi",
         "collection": [
             {
@@ -48,7 +48,7 @@
         "label": "Зеиԥшыҟам Аамҭа",
         "description": "Зеиԥшыҟам Аамҭа",
         "active": false,
-        "labelColor": "green",
+        "labelColor": "yellow",
         "path": "mc",
         "collection": [
             {
@@ -64,21 +64,21 @@
         "label": "Џьули Цезар",
         "description": "Џьули Цезар",
         "active": false,
-        "labelColor": "green",
+        "labelColor": "yellow",
         "path": "caesar"
     },
     {
         "label": "Агәыӷәӷәа",
         "description": "Агәыӷәӷәа",
         "active": false,
-        "labelColor": "green",
+        "labelColor": "yellow",
         "path": "braveheart"
     },
     {
         "label": "Ганди",
         "description": "Ганди",
         "active": false,
-        "labelColor": "green",
+        "labelColor": "yellow",
         "path": "gandhi"
     }
 ]
