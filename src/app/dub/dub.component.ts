@@ -97,10 +97,12 @@ export class DubComponent {
       audioBitsPerSecond: 128000
     };
     this.record = new MediaRecorder(stream, options);
+    this.record.ondataavailable = (e) => {
+      this.processRecording(e.data)
+    }
     this.playingOriginal.muted = true;
     this.playingOriginal.load();
     this.playingOriginal.play();
-    this.record.start();
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
@@ -139,9 +141,6 @@ export class DubComponent {
     else {
       this.playingOriginal.pause();
       this.record.stop();
-      this.record.ondataavailable = (e) => {
-        this.processRecording(e.data)
-      }
     }
   }
 
@@ -236,11 +235,17 @@ export class DubComponent {
     $("#sentence").text(this.currentSub.target);
     this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
+    this.playingOriginal.onplay = () => { 
+      if (this.recording)
+        this.record.start();
+    };
     this.playingOriginal.onended = (function () {
       this.isPlayingOriginal = false;
       this.allowRecording = true;
-      if (this.recording && this.curItem.path != "noise")
-        this.stopRecording();
+      if (this.recording && this.curItem.path != "noise") {
+        this.record.stop();
+        this.recording = false;
+      }
     }).bind(this);
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
     this.playingOriginal.load();
