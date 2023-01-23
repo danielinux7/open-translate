@@ -98,7 +98,10 @@ export class DubComponent {
     };
     this.record = new MediaRecorder(stream, options);
     this.record.ondataavailable = (e) => {
-      this.processRecording(e.data)
+      if (this.recording) {
+        this.processRecording(e.data);
+      }
+      this.recording = false;
     }
     this.playingOriginal.muted = true;
     this.playingOriginal.load();
@@ -134,12 +137,12 @@ export class DubComponent {
   * Stop recording.
   */
   stopRecording() {
-    this.recording = false;
     if (!this.record) {
       this.errorBar = "Амикрофон ԥшаам";
     }
     else {
       this.playingOriginal.pause();
+      this.record.requestData();
       this.record.stop();
     }
   }
@@ -237,15 +240,11 @@ export class DubComponent {
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
     this.playingOriginal.onplay = () => { 
       if (this.recording)
-        this.record.start();
+        this.record.start(this.currentSub.duration*1000);
     };
     this.playingOriginal.onended = (function () {
       this.isPlayingOriginal = false;
       this.allowRecording = true;
-      if (this.recording && this.curItem.path != "noise") {
-        this.record.stop();
-        this.recording = false;
-      }
     }).bind(this);
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
     this.playingOriginal.load();
