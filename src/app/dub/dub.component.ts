@@ -167,7 +167,7 @@ export class DubComponent {
 
   processRecording(blob) {
     let size = this.currentSub.duration*this.record.audioBitsPerSecond/8;
-    blob = blob.slice(0,size,blob.type)
+    blob = blob.slice(0,size+1000,blob.type)
     let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
     store.put({ audio: blob, clip: this.currentSub["clip"], duration: duration });
