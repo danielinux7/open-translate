@@ -238,6 +238,8 @@ export class DubComponent {
     this.playingOriginal.onplay = () => { 
       if (this.recording)
         this.record.start();
+      if (this.isPlaying) 
+        this.playing.play();
     };
     this.playingOriginal.onended = (function () {
       this.isPlayingOriginal = false;
@@ -246,6 +248,13 @@ export class DubComponent {
         this.record.stop();
         this.recording = false;
       }
+      if (this.isPlaying && this.curItem.path != "noise") {
+        this.playing.pause(); 
+        this.isPlaying = false;
+      }
+    }).bind(this);
+    this.playing.onended = (function () {
+      this.isPlaying = false;
     }).bind(this);
     this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
     this.playingOriginal.load();
@@ -604,12 +613,7 @@ export class DubComponent {
       this.playingOriginal.muted = true;
       this.playingOriginal.load();
       this.playingOriginal.play();
-      this.playing.play();
       this.startTimer("play");
-      this.playing.onended = function () { 
-        this.playingOriginal.pause(); 
-        this.isPlaying = false;
-      }.bind(this);
     }
     else {
       this.isPlaying = false;
