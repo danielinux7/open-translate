@@ -940,7 +940,14 @@ export class DubComponent {
     this.isSubFilter = false;
     if (this.isFilter === true){
       this.isFilter = false;
-      this.onChangeGender({"value":this.subindex[0]});
+      let value;
+      if (this.subindex[0] === "female")
+        value = "f";
+      else if (this.subindex[0] === "male")
+        value = "m";
+      else
+        value = "all"
+      this.onChangeGender({"value":value});
     }
     else {
       this.isFilter = true;
