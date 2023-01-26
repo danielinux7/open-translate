@@ -146,7 +146,7 @@
                     [class.active-edit-warning]="isWarning" (click)="onEdit()">
                     mode_edit
                 </span>
-                <div *ngIf="!isReadOnlysen&&subindex[0]=='all'" class="edit-gender">
+                <div *ngIf="!isReadOnlysen" class="edit-gender">
                     <span class="material-icons-outlined" [class.active-edit]="currentSub.gender == 'm'" (click)="editGender('male')">
                         man
                     </span>

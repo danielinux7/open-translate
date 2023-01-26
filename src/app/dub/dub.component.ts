@@ -727,6 +727,7 @@ export class DubComponent {
 
   editGender(gender) {
     this.isSubtitlesSaved = false;
+    this.isSaved = true;
     if (gender == "male") 
       this.currentSub.gender = "m";
     else if (gender == "female") 
@@ -916,6 +917,7 @@ export class DubComponent {
   makeNote() {
     this.currentSub.edit?this.currentSub.edit=false:this.currentSub.edit=true;
     this.isSubtitlesSaved = false;
+    this.isSaved = true;
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
