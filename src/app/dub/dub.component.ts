@@ -688,6 +688,17 @@ export class DubComponent {
       if (this.isTranslate == true) {
         this.getTranslate();
       }
+      let value;
+      if (this.subindex[0] === "female")
+        value = "f";
+      else if (this.subindex[0] === "male")
+        value = "m";
+      else
+        value = "all"
+      if (value == 'all')
+        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
+      else
+        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true && sub.gender == value).length;
       $("#sentence").text(this.currentSub.target);
       this.dubCount = this.subindex[1][this.subindex[0]][1]
       localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
@@ -937,10 +948,21 @@ export class DubComponent {
       this.subtitles[i]["gender"] = this.currentSub.gender;
       this.subtitles[i]["edit"] = this.currentSub.edit;
       localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
-      this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
       this.dubCountFilter++;
       this.isSubtitlesSaved = true;
       this.isSaved = false;
+      let value;
+      if (this.subindex[0] === "female")
+        value = "f";
+      else if (this.subindex[0] === "male")
+        value = "m";
+      else
+        value = "all"
+      if (value == 'all')
+        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
+      else
+        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true && sub.gender == value).length;
+      this.onChangeGender({"value":value});
     }
   }
 
