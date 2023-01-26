@@ -10086,7 +10086,7 @@
         "duration": 1.484,
         "source": "Nasıl isterseniz Yekta Bey.",
         "target": "Ишышәҭаху Иеқьҭа Беи.",
-        "gender": "m",
+        "gender": "f",
         "length": 27
     },
     {
@@ -10435,7 +10435,7 @@
         "end_sec": 5835.358,
         "duration": 1.727,
         "source": "Yeniden Çınar'ın avukatı.",
-        "target": "Чынар иадукас дыҟоуп.",
+        "target": "Чынар идукат дыҟоуп.",
         "gender": "m",
         "length": 25
     },
