@@ -655,6 +655,7 @@ export class DubComponent {
 
   async onChangeGender(gender) {
     this.errorBar = "";
+    this.isSubFilter = false;
     this.saveSubtitle();
     let sub = JSON.parse(localStorage.getItem(this.curItem.path));
     if (sub.filter(sub => sub["gender"] === gender.value).length > 0 || gender.value == "all") {
@@ -995,34 +996,43 @@ export class DubComponent {
     divTextarea.focus();
     if (this.isSubFilter === true){
       this.isSubFilter = false;
-      this.onChangeGender({"value":this.subindex[0]});
+      let value;
+      if (this.subindex[0] === "female")
+        value = "f";
+      else if (this.subindex[0] === "male")
+        value = "m";
+      else
+        value = "all"
+      this.onChangeGender({"value": value});
     }
     else {
-      this.isSubFilter = true;
-      this.dubCountFilter = 0;
-      this.indexFilter = 0;
       let subs = this.subtitles.filter(sub => !sub.target || sub.edit == true);
-      this.subtitlesFilter = subs;
-      this.currentSub = this.subtitlesFilter[0];
-      $("#sentence").text(this.currentSub.target);
-      this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
-      this.playingOriginal.load();
-      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.curItem.path, this.currentSub["clip"]);
-      if (!this.url)
-        URL.revokeObjectURL(this.url);
-      if (!dub) {
-        this.url = "";
-        this.progressbarValue = 0.0;
-        this.cursec = 0.0;
-        this.allowRecording = false;
-      }
-      else {
-        this.url = URL.createObjectURL(dub["audio"]);
-        this.progressBarColor = "green";
-        this.cursec = dub["duration"];
-        this.allowRecording = true;
-        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+      if (subs.length > 0) {
+        this.isSubFilter = true;
+        this.dubCountFilter = 0;
+        this.indexFilter = 0;
+        this.subtitlesFilter = subs;
+        this.currentSub = this.subtitlesFilter[0];
+        $("#sentence").text(this.currentSub.target);
+        this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
+        this.playingOriginal.load();
+        let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+        let dub = await store.get(this.curItem.path, this.currentSub["clip"]);
+        if (!this.url)
+          URL.revokeObjectURL(this.url);
+        if (!dub) {
+          this.url = "";
+          this.progressbarValue = 0.0;
+          this.cursec = 0.0;
+          this.allowRecording = false;
+        }
+        else {
+          this.url = URL.createObjectURL(dub["audio"]);
+          this.progressBarColor = "green";
+          this.cursec = dub["duration"];
+          this.allowRecording = true;
+          this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+        }
       }
     }
   }
