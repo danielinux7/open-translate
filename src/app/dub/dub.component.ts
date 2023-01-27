@@ -655,6 +655,7 @@ export class DubComponent {
 
   async onChangeGender(gender) {
     this.errorBar = "";
+    this.isFilter = false;
     this.isSubFilter = false;
     this.saveSubtitle();
     let sub = JSON.parse(localStorage.getItem(this.curItem.path));
@@ -871,6 +872,7 @@ export class DubComponent {
   }
 
   saveCurrent() {
+    this.isFilter = false;
     this.isSaved?this.isSaved=false:this.isSaved=true;
     if (this.isSaved == false)
       this.saveSubtitle();    
@@ -982,14 +984,13 @@ export class DubComponent {
       this.onChangeGender({"value":value});
     }
     else {
-      this.isFilter = true;
-      this.dubCountFilter = 0;
-      this.indexFilter = 0;
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
       let keys = await store.getAllKeys();
-      let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-      subs = subs.filter(sub => !keys.includes(sub["clip"]));
-      if (subs) {
+      let subs = this.subtitles.filter(sub => !keys.includes(sub["clip"]));
+      if (subs.length > 0) {
+        this.isFilter = true;
+        this.dubCountFilter = 0;
+        this.indexFilter = 0;
         if (this.subindex[0] === "female")
           subs = subs.filter(sub => sub["gender"] === "f");
         else if (this.subindex[0] === "male")
