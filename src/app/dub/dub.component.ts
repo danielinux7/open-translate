@@ -809,7 +809,7 @@ export class DubComponent {
                  this.allowRecording = true;
                  this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
                }
-             }), 500);
+             }), 5000);
            }
            else {
             this.error = "Иашам ZIP афаил";
