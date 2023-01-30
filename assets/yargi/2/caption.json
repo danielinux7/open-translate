@@ -11043,7 +11043,7 @@
         "clip": "1105",
         "start_sec": 6033.89,
         "end_sec": 6034.0,
-        "duration": 0.11,
+        "duration": 1,
         "source": "-Temizleyebiliyor muyuz?",
         "target": "-Иҳазрыцқьома?",
         "gender": "f",
@@ -12256,7 +12256,7 @@
         "duration": 2.058,
         "source": "-Çekil, bekleyemem. -Olmaz!",
         "target": "-Унаскьа, сзыԥшуам.",
-        "gender": "m",
+        "gender": "f",
         "length": 27
     },
     {
@@ -12266,7 +12266,7 @@
         "duration": 1.0,
         "source": "-Olmaz!",
         "target": "–Иҟалаӡом!",
-        "gender": "f",
+        "gender": "m",
         "length": 7
     },
     {
