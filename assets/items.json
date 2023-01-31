@@ -41,6 +41,13 @@
                 "active": false,
                 "labelColor": "red",
                 "path": "yargi/3"
+            },
+            {
+                "label": "4",
+                "description": "Аӡбарҭа 4",
+                "active": false,
+                "labelColor": "red",
+                "path": "yargi/4"
             }
         ]
     },
