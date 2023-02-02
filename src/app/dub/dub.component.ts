@@ -99,14 +99,14 @@ export class DubComponent {
     this.record = new MediaRecorder(stream, options);
     this.record.ondataavailable = (e) => {
       if (this.recording) {
-        this.processRecording(e.data)
+        this.processRecording(e.data);
         this.recording = false;
       }
     }
     this.playingOriginal.muted = true;
     this.playingOriginal.load();
     this.playingOriginal.play();
-    this.record.start(this.currentSub.duration*1000);
+    this.record.start(this.currentSub.duration*1000+50);
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
