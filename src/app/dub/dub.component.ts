@@ -98,11 +98,15 @@ export class DubComponent {
     };
     this.record = new MediaRecorder(stream, options);
     this.record.ondataavailable = (e) => {
-      this.processRecording(e.data)
+      if (this.recording) {
+        this.processRecording(e.data)
+        this.recording = false;
+      }
     }
     this.playingOriginal.muted = true;
     this.playingOriginal.load();
     this.playingOriginal.play();
+    this.record.start(this.currentSub.duration*1000);
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
@@ -134,7 +138,6 @@ export class DubComponent {
   * Stop recording.
   */
   stopRecording() {
-    this.recording = false;
     if (!this.record) {
       this.errorBar = "Амикрофон ԥшаам";
     }
@@ -242,23 +245,9 @@ export class DubComponent {
       $("#offlineModel").modal('show');
     }).bind(this);
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
-    this.playingOriginal.onplay = () => { 
-      if (this.recording)
-        this.record.start();
-      if (this.isPlaying) 
-        this.playing.play();
-    };
     this.playingOriginal.onended = (function () {
       this.isPlayingOriginal = false;
       this.allowRecording = true;
-      if (this.recording && this.curItem.path != "noise") {
-        this.record.stop();
-        this.recording = false;
-      }
-      if (this.isPlaying && this.curItem.path != "noise") {
-        this.playing.pause(); 
-        this.isPlaying = false;
-      }
     }).bind(this);
     this.playing.onended = (function () {
       this.isPlaying = false;
@@ -619,6 +608,7 @@ export class DubComponent {
       this.playing.load();
       this.playingOriginal.muted = true;
       this.playingOriginal.load();
+      this.playing.play();
       this.playingOriginal.play();
       this.startTimer("play");
     }
