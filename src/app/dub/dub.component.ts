@@ -127,9 +127,11 @@ export class DubComponent {
         sub.unsubscribe();
       }
       else if (type === "play" && !this.isPlaying) {
+        this.cursec = this.playing.duration;
         sub.unsubscribe();
       }
       else if (type === "playOriginal" && !this.isPlayingOriginal) {
+        this.cursec = this.currentSub.duration;
         sub.unsubscribe();
       }
     });
@@ -808,7 +810,7 @@ export class DubComponent {
                  this.allowRecording = true;
                  this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
                }
-             }), 5000);
+             }), 10000);
            }
            else {
             this.error = "Иашам ZIP афаил";
