@@ -180,11 +180,16 @@
         </div>
         <div class="row m-0">
             <div class="col-2"></div>
-            <mat-progress-bar [appProgressBarColor]="progressBarColor" class="col-8 audio-progress" mode="determinate"
+            <div class="col-8">
+                <span *ngIf="currentSub.extra" class="extra green material-icons-outlined" (click)="addTime()">
+                    add
+                </span>
+                <mat-progress-bar [appProgressBarColor]="progressBarColor" class="audio-progress" mode="determinate"
                 [value]="progressbarValue"></mat-progress-bar>
+            </div>
             <div class="col-2"></div>
         </div>
-        <div class="seconds">{{cursec | number : '1.1-1'}}/{{currentSub.duration | number : '1.1-1'}} асекундқәа</div>
+        <div class="seconds">{{cursec | number : '1.1-1'}}/{{currentSub.duration + extra | number : '1.1-1'}} асекундқәа</div>
         <div class="row m-2 mb-5 justify-content-center">
             <button *ngIf="!isFilter&&!isSubFilter" [disabled]="recording" (click)="onPrevious()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">
@@ -229,10 +234,10 @@
                         </span>
                     </button>
                     <div *ngIf="url" class="background blue"></div>
+                    <span *ngIf="url" class="clip red material-icons-outlined" (click)="deleteClip()">
+                        cancel
+                    </span>
                 </div>
-                <span *ngIf="url" class="delete-clip red material-icons-outlined" (click)="deleteClip()">
-                    cancel
-                </span>
             </div>
             <button *ngIf="!isFilter&&!isSubFilter" [disabled]="recording" (click)="onNext()" type="button" class="col-2 btn no-box-shadow">
                 <span class="fs-36 material-icons-outlined">

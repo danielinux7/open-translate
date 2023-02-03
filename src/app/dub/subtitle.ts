@@ -4,6 +4,7 @@ export interface Subtitle {
   target: string;
   start_sec: number;
   duration: number;
+  extra: number;
   gender: string;
   length: number;
   edit: boolean;

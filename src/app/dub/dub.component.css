@@ -10,7 +10,7 @@
   text-align: center;
 }
 .green {
-  color: #59cbb7;
+  color: #59cbb7!important;
 }
 
 .red {
@@ -190,10 +190,10 @@
   position: relative;
 }
 
-.delete-clip {
+.clip {
   position: absolute;
-  top: -20px;
-  right: 0px;
+  top: -15px;
+  right: -15px;
 }
 
 .alert {
@@ -344,4 +344,10 @@
 .active-item {
   color: white;
   background: black;
+}
+
+.extra {
+  position: absolute;
+  top: -10px;
+  left: -10px;
 }

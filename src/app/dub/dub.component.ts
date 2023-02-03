@@ -32,6 +32,7 @@ export class DubComponent {
   dubCountFilter: number;
   indexFilter: number;
   inputSub: number;
+  extra: number;
   playing = new Audio();
   isPlaying = false;
   playingOriginal;
@@ -106,7 +107,7 @@ export class DubComponent {
     this.playingOriginal.muted = true;
     this.playingOriginal.load();
     this.playingOriginal.play();
-    this.record.start(this.currentSub.duration*1000+50);
+    this.record.start((this.currentSub.duration+this.extra)*1000+50);
     this.progressBarColor = "blue";
     this.progressbarValue = 0.0;
     this.errorBar = "";
@@ -114,7 +115,7 @@ export class DubComponent {
   }
 
   startTimer(type) {
-    let seconds = this.currentSub.duration;
+    let seconds = this.currentSub.duration+this.extra;
     const timer$ = interval(100);
     const sub = timer$.subscribe((milisec) => {
       this.cursec = milisec / 10.0;
@@ -196,6 +197,7 @@ export class DubComponent {
   async ngOnInit() {
     window.onload = () => {this.isFont = true;}
     this.errorBar = "";
+    this.extra = 0;
     this.isTranslate = false;
     this.isSource = false;
     this.isReadOnlysen = true;
@@ -289,6 +291,7 @@ export class DubComponent {
   async onNext() {
     if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
       this.errorBar = "";
+      this.extra = 0;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
         let divTextarea = document.getElementById("sentence");
@@ -342,6 +345,7 @@ export class DubComponent {
   async onNextFilter() {
     if (this.indexFilter < this.subtitlesFilter.length-1) {
       this.errorBar = "";
+      this.extra = 0;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
         let divTextarea = document.getElementById("sentence");
@@ -392,6 +396,7 @@ export class DubComponent {
   async onPrevious() {
     if (this.subindex[1][this.subindex[0]][0] > 0) {
       this.errorBar = "";
+      this.extra = 0;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
         let divTextarea = document.getElementById("sentence");
@@ -445,6 +450,7 @@ export class DubComponent {
   async onPreviousFilter() {
     if (this.indexFilter > 0) {
       this.errorBar = "";
+      this.extra = 0;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
         let divTextarea = document.getElementById("sentence");
@@ -496,6 +502,7 @@ export class DubComponent {
     this.isSubFilter = false;
     let tempNum = this.inputSub - 1;
     if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
+      this.extra = 0;
       this.errorBar = "";
       this.saveSubtitle();
       if (this.isPlayingOriginal) {
@@ -645,6 +652,7 @@ export class DubComponent {
 
   async onChangeGender(gender) {
     this.errorBar = "";
+    this.extra = 0;
     this.isFilter = false;
     this.isSubFilter = false;
     this.saveSubtitle();
@@ -1086,5 +1094,12 @@ export class DubComponent {
   onNoise() {
     let item =  this.items.filter(item => item["path"] === "noise")[0]; 
     this.setCurItem(item);
+  }
+
+  addTime(){
+    if (this.currentSub.extra > this.extra + 0.5)
+      this.extra = this.extra + 0.5;
+    else
+      this.extra = this.currentSub.extra;
   }
 }
