@@ -181,9 +181,11 @@
         <div class="row m-0">
             <div class="col-2"></div>
             <div class="col-8">
-                <span *ngIf="currentSub.extra" class="extra green material-icons-outlined" (click)="addTime()">
-                    add
-                </span>
+                <button *ngIf="currentSub.extra" (click)="addTime()" type="button" class="extra p-0 btn no-box-shadow">
+                    <span class="material-icons-outlined" class="{{currentSub.extra != extra?'green':'red'}}">
+                        add
+                    </span>
+                </button>
                 <mat-progress-bar [appProgressBarColor]="progressBarColor" class="audio-progress" mode="determinate"
                 [value]="progressbarValue"></mat-progress-bar>
             </div>
