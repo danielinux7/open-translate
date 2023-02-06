@@ -63,6 +63,11 @@
                                 <div *ngIf="error" class="mt-4 mb-0 alert alert-warning fade show" role="alert">
                                     {{error}}
                                 </div>
+                                <div *ngIf="progressbarValue" class="mt-4 mb-0">
+                                    <mat-progress-bar [appProgressBarColor]="progressBarColor" class="audio-progress" mode="determinate"
+                                    [value]="progressbarValue"></mat-progress-bar>
+                                    {{progressbarValue | number : '1.1-1'}}%
+                                </div>
                             </div>
                             <div class="modal-footer row m-0">
                                 <button type="button" class="col-4 btn btn-secondary" data-dismiss="modal">Мап</button>

@@ -745,72 +745,72 @@ export class DubComponent {
   async onUpload() {
     let file = document.getElementById("file") as HTMLInputElement;
     this.error = "";
-      JSZip.loadAsync(file.files[0])
+    let num = 0;
+    let countm = 0;
+    let countf = 0;
+    let numbers = /^[0-9]+$/;
+    let subs = JSON.parse(localStorage.getItem(this.curItem.path));
+    this.progressbarValue = 0.0;
+    JSZip.loadAsync(file.files[0])
          .then(async function(zip: JSZip) {
+           zip.forEach(function (relativePath, entry) { 
+            if (!entry.dir && entry.name.match(numbers))
+              num++;
+             })
            if (zip.files[this.curItem.path + ".json"]) {
-             let files = [];
-             let keys = [];
-             let numbers = /^[0-9]+$/;
              zip.forEach(function (relativePath, entry) {
                if (entry.name === this.curItem.path + ".json") {
-                 entry.async('string').then(json => {
+                   entry.async('string').then(json => {
                    localStorage.setItem(this.curItem.path, json);
                    this.subtitles = this.getSubtitles()
                    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
                    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
                    this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
                    $("#sentence").text(this.currentSub.target);
+                   if (num == 0) {
+                    file.value = ""
+                    $("#uploadModel").modal('hide');
+                   }
                  });
                }
                else if (entry.name.match(numbers)) {
-                 keys.push(entry.name);
-                 entry.async('blob').then(blob => {
+                 entry.async('blob').then(async blob => {
                    blob = new Blob([blob], { type: blob.type });
-                   files.push({ "clip": entry.name, "audio": blob, "duration": 0 })
+                   let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
+                   await store.put({ "clip": entry.name, "audio": blob, "duration": 0 })
+                   let sub = subs.find(item => item.clip === entry.name);
+                   if (sub["gender"] === "f") { countf++ }
+                   else if (sub["gender"] === "m") { countm++ }
+                   this.subindex[1]["male"][1] = countm;
+                   this.subindex[1]["female"][1] = countf;
+                   this.subindex[1]["all"][1] = countm + countf;
+                   this.dubCount = this.subindex[1][this.subindex[0]][1];
+                   this.progressbarValue = (this.dubCount / num) * 100;
+                   if (this.dubCount == num) {
+                     localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
+                     file.value = ""
+                     $("#uploadModel").modal('hide');
+                     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
+                     let dub = await store.get(this.currentSub["clip"]);
+                     if (!this.url)
+                       URL.revokeObjectURL(this.url);
+                     if (!dub) {
+                       this.url = "";
+                       this.progressbarValue = 0.0;
+                       this.cursec = 0.0;
+                       this.allowRecording = false;
+                     }
+                     else {
+                       this.url = URL.createObjectURL(dub["audio"]);
+                       this.progressBarColor = "green";
+                       this.cursec = dub["duration"];
+                       this.allowRecording = true;
+                       this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+                     }
+                   }
                  });
                }
              }.bind(this));
-             // ToDo I need to wait untill the files object is ready
-             setTimeout((async () => {
-               let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-               files.forEach(async (file) => {
-                 await store.put(file)
-               });
-               keys = await store.getAllKeys();
-               let countm = 0;
-               let countf = 0;
-               let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-               subs.forEach(function (sub) {
-                 if (keys.includes(sub["clip"])) {
-                   if (sub["gender"] === "f") { countf++ }
-                   else if (sub["gender"] === "m") { countm++ }
-                 }
-               });
-               this.subindex[1]["male"][1] = countm;
-               this.subindex[1]["female"][1] = countf;
-               this.subindex[1]["all"][1] = countm + countf;
-               localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-               localStorage.setItem("items", JSON.stringify(this.items));
-               this.dubCount = this.subindex[1][this.subindex[0]][1];
-               file.value = ""
-               $("#uploadModel").modal('hide');
-               let dub = await store.get(this.currentSub["clip"]);
-               if (!this.url)
-                 URL.revokeObjectURL(this.url);
-               if (!dub) {
-                 this.url = "";
-                 this.progressbarValue = 0.0;
-                 this.cursec = 0.0;
-                 this.allowRecording = false;
-               }
-               else {
-                 this.url = URL.createObjectURL(dub["audio"]);
-                 this.progressBarColor = "green";
-                 this.cursec = dub["duration"];
-                 this.allowRecording = true;
-                 this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-               }
-             }), 10000);
            }
            else {
             this.error = "Иашам ZIP афаил";
