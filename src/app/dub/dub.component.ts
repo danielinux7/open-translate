@@ -1115,4 +1115,10 @@ export class DubComponent {
     else
       this.extra = this.currentSub.extra;
   }
+
+  focusOnEdit() {
+    if (!this.isReadOnlysen) {
+      $("#sentence")[0].focus();
+    }
+  }
 }
