@@ -187,7 +187,7 @@
             <div class="col-2"></div>
             <div class="col-8">
                 <button *ngIf="currentSub.extra" (click)="addTime()" type="button" class="extra p-0 btn no-box-shadow">
-                    <span class="material-icons-outlined" class="{{currentSub.extra != extra?'green':'red'}}">
+                    <span class="material-icons-outlined" class="{{currentSub.extra > extra?'green':(currentSub.extra == extra?'orange':'red')}}">
                         add
                     </span>
                 </button>

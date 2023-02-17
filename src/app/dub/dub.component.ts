@@ -189,6 +189,12 @@ export class DubComponent {
     this.url = URL.createObjectURL(blob);
     this.dubEmpty = false;
     this.stream.getAudioTracks()[0].stop();
+    if (this.currentSub.extra < this.extra )
+      this.currentSub.extended = true;
+    else
+      this.currentSub.extended = false;
+    this.isSubtitlesSaved = false;
+    this.saveSubtitle();
   }
   /**
   * Process Error.
@@ -951,6 +957,7 @@ export class DubComponent {
       this.subtitles[i]["target"] = $("#sentence").text();
       this.subtitles[i]["gender"] = this.currentSub.gender;
       this.subtitles[i]["edit"] = this.currentSub.edit;
+      this.subtitles[i]["extended"] = this.currentSub.extended;
       localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
       this.dubCountFilter++;
       this.isSubtitlesSaved = true;
@@ -1099,8 +1106,12 @@ export class DubComponent {
   }
 
   addTime(){
-    if (this.currentSub.extra > this.extra + 0.5)
+    if (this.currentSub.extra <= this.extra ) {
       this.extra = this.extra + 0.5;
+      return;
+    }
+    if (this.currentSub.extra > this.extra + 1)
+      this.extra = this.extra + 1;
     else
       this.extra = this.currentSub.extra;
   }

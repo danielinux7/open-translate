@@ -8,6 +8,7 @@ export interface Subtitle {
   gender: string;
   length: number;
   edit: boolean;
+  extended: boolean;
 }
 
 export interface Item {
