@@ -83,9 +83,9 @@ export class DubComponent {
     let mediaConstraints = {
       video: false,
       audio: {
-        echoCancellation: false,
-        autoGainControl: false,
-        noiseSuppression: false,
+        echoCancellation: true,
+        autoGainControl: true,
+        noiseSuppression: true,
       }     };
     navigator.mediaDevices.getUserMedia(mediaConstraints).then(this.successCallback.bind(this), this.errorCallback.bind(this));
   }
@@ -660,7 +660,6 @@ export class DubComponent {
 
   async onChangeGender(gender) {
     this.errorBar = "";
-    this.extra = 0;
     this.isFilter = false;
     this.isSubFilter = false;
     this.saveSubtitle();
