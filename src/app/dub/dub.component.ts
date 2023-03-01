@@ -27,9 +27,6 @@ export class DubComponent {
   progressBarColor = "blue";
   recording = false;
   dubEmpty = true;
-  dubCount: number;
-  subCount: number;
-  dubCountFilter: number;
   indexFilter: number;
   inputSub: number;
   extra: number;
@@ -47,9 +44,6 @@ export class DubComponent {
   items = <Item[]>[];
   initSub: Subtitle[];
   subtitlesFilter: Subtitle[];
-  subindex;
-  subindexList = {};
-  gender: string;
   url;
   allowRecording: Boolean;
   isReadOnlysen: Boolean;
@@ -158,16 +152,7 @@ export class DubComponent {
     if (!this.url)
       URL.revokeObjectURL(this.url);
     this.url = "";
-    if (this.currentSub["gender"] === "f")
-      this.subindex[1]["female"][1] = this.subindex[1]["female"][1] - 1;
-    else if (this.currentSub["gender"] === "m")
-      this.subindex[1]["male"][1] = this.subindex[1]["male"][1] - 1;
-    this.subindex[1]["all"][1] = this.subindex[1]["all"][1] - 1;
-    this.dubCount = this.subindex[1][this.subindex[0]][1];
-    this.dubCountFilter--;
-    if (this.subindex[1]["all"][1] == 0)
-      this.dubEmpty = true;
-    localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
+    // this.dubEmpty = true;
     localStorage.setItem("items", JSON.stringify(this.items));
     this.progressbarValue = 0.0;
     this.cursec = 0.0;
@@ -177,16 +162,6 @@ export class DubComponent {
     let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
     store.put({ audio: blob, clip: this.currentSub["clip"], duration: duration });
-    if (!this.url){
-      if (this.currentSub["gender"] === "f")
-        this.subindex[1]["female"][1] = this.subindex[1]["female"][1] + 1;
-      else if (this.currentSub["gender"] === "m")
-        this.subindex[1]["male"][1] = this.subindex[1]["male"][1] + 1;
-      this.subindex[1]["all"][1] = this.subindex[1]["all"][1] + 1;
-      this.dubCount = this.subindex[1][this.subindex[0]][1]
-      this.dubCountFilter++;
-      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-    }
     URL.revokeObjectURL(this.url);
     this.url = URL.createObjectURL(blob);
     this.dubEmpty = false;
@@ -228,28 +203,15 @@ export class DubComponent {
       this.curParItem = null;
       this.curItem = item;
     }
-    if (localStorage.getItem("subindexlist")) {
-      this.subindexList = JSON.parse(localStorage.getItem("subindexlist"));
-      if (!this.subindexList[this.curItem.path])
-        this.subindexList[this.curItem.path] = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
-    }
-    else {
-      this.subindexList[this.curItem.path] = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
-    }
-    localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-    this.subindex = this.subindexList[this.curItem.path];
     this.isFilter = false;
     this.isSubFilter = false;
-    this.dubCount = this.subindex[1][this.subindex[0]][1];
-    if (this.dubCount > 0)
-      this.dubEmpty = false;
+    // this.dubEmpty = false;
     this.metadata = await this.getAsset("/assets/"+this.curItem.path+"/metadata.json");
     this.initSub = await this.getAsset("/assets/"+this.curItem.path+"/caption.json");
     this.subtitles = this.getSubtitles()
-    this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
-    this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
+    this.currentSub = this.subtitles[this.curChar.charIndex];
     $("#sentence").text(this.currentSub.target);
-    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
+    this.inputSub = this.subtitles.indexOf(this.currentSub);
     window.ononline = (function () {
       $("#offlineModel").modal('hide');
       this.ngOnInit();
@@ -300,9 +262,11 @@ export class DubComponent {
   }
 
   async onNext() {
-    if (this.subindex[1][this.subindex[0]][0] < this.subtitles.length - 1) {
+    if (this.curChar.charIndex < this.subtitles.length - 1) {
       this.errorBar = "";
       this.extra = 0;
+      this.curChar.charIndex = this.curChar.charIndex + 1;
+      this.inputSub = this.curChar.charIndex;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
         let divTextarea = document.getElementById("sentence");
@@ -322,15 +286,12 @@ export class DubComponent {
         this.playing.pause();
         this.isPlaying = false;
       }
-      this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] + 1;
-      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
       localStorage.setItem("items", JSON.stringify(this.items));
-      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.currentSub = this.subtitles[this.curChar.charIndex]
       if (this.isTranslate == true) {
         this.getTranslate();
       }
       $("#sentence").text(this.currentSub.target);
-      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
@@ -405,9 +366,11 @@ export class DubComponent {
   }
 
   async onPrevious() {
-    if (this.subindex[1][this.subindex[0]][0] > 0) {
+    if (this.curChar.charIndex > 0) {
       this.errorBar = "";
       this.extra = 0;
+      this.curChar.charIndex = this.curChar.charIndex - 1;
+      this.inputSub = this.curChar.charIndex;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
         let divTextarea = document.getElementById("sentence");
@@ -427,15 +390,12 @@ export class DubComponent {
         this.playing.pause();
         this.isPlaying = false;
       }
-      this.subindex[1][this.subindex[0]][0] = this.subindex[1][this.subindex[0]][0] - 1;
-      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
       localStorage.setItem("items", JSON.stringify(this.items));
-      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
+      this.currentSub = this.subtitles[this.curChar.charIndex]
       if (this.isTranslate == true) {
         this.getTranslate();
       }
       $("#sentence").text(this.currentSub.target);
-      this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
@@ -511,10 +471,11 @@ export class DubComponent {
 
   async onChangeSub() {
     this.isSubFilter = false;
-    let tempNum = this.inputSub - 1;
-    if (tempNum <= this.subtitles.length - 1 && tempNum >= 0) {
+    if (this.inputSub <= this.subtitles.length - 1 && this.inputSub >= 0) {
       this.extra = 0;
       this.errorBar = "";
+      this.currentSub = this.subtitles[this.inputSub]
+      this.curChar.charIndex = this.inputSub;
       this.saveSubtitle();
       if (this.isPlayingOriginal) {
         this.playingOriginal.pause();
@@ -524,10 +485,7 @@ export class DubComponent {
         this.playing.pause();
         this.isPlaying = false;
       }
-      this.subindex[1][this.subindex[0]][0] = tempNum;
-      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
       localStorage.setItem("items", JSON.stringify(this.items));
-      this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
       if (this.isTranslate == true) {
         this.getTranslate();
       }
@@ -564,21 +522,16 @@ export class DubComponent {
     this.curChar = this.metadata.filter(char => char.active == true)[0];
     sub = JSON.parse(localStorage.getItem(this.curItem.path));
     sub = sub.filter(sub => sub["character"].includes(this.curChar.charType) || this.curChar.charType == "all");
-    // if (this.subindex[0] === "male")
-    //   sub = sub.filter(sub => sub["gender"] === "m")
-    // else if (this.subindex[0] === "female")
-    //   sub = sub.filter(sub => sub["gender"] === "f")
     return sub;
   }
 
   async onDownload() {
-    let count;
     this.saveSubtitle();
     let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-    count = 0;
     this.progressdownloadValue = 1;
     let zip = new JSZip();
     zip.file(this.curItem.path + ".json", localStorage.getItem(this.curItem.path));
+    zip.file(this.curItem.path + "_metadata.json", localStorage.getItem(this.curItem.path + "/" + "metadata"));
     let cursor = await store.openCursor();
     let singleFile = false;
     let blobs = [];
@@ -588,8 +541,6 @@ export class DubComponent {
       }
       else
         zip.file(cursor.key, cursor.value.audio);
-      count++;
-      this.progressdownloadValue = Math.round((count * 100) / this.dubCount);
       cursor = await cursor.continue();
     }
     if (singleFile)
@@ -608,9 +559,6 @@ export class DubComponent {
     await store.clear();
     localStorage.removeItem(this.curItem.path);
     localStorage.removeItem(this.curItem.path + "/" + "metadata");
-    this.subindexList[this.curItem.path] = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
-    this.subindex = this.subindexList[this.curItem.path];
-    localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
     this.items = await this.getAsset("/assets/items.json");
     localStorage.setItem("items", JSON.stringify(this.items));
     this.ngOnInit();
@@ -677,20 +625,16 @@ export class DubComponent {
     this.isPlayingOriginal = false;
     this.playing.pause();
     this.playingOriginal.pause();
-    this.saveSubtitle();
-    this.curChar = this.metadata.filter(char => char.active == true)[0];
+    this.curChar = this.metadata.filter(char2 => char2.active == true)[0];
     this.curChar.active = false;
     char.active = true;
+    this.curChar = char;
+    this.saveSubtitle();
     let sub = JSON.parse(localStorage.getItem(this.curItem.path));
-    // this.subindex[0] = 'male';
-    this.subtitles = sub.filter(sub => sub["character"].includes(char.charType) || char.charType == "all");
+    this.subtitles = sub.filter(sub => sub["character"] == char.charType || char.charType == "all");
     this.currentSub = this.subtitles[char.charIndex]
     this.inputSub = char.charIndex;
-    // this.subCount = this.subtitles.filter(sub => sub.target && !sub.edit).length;
     $("#sentence").text(this.currentSub.target);
-    // this.dubCount = this.subindex[1][this.subindex[0]][1]
-    // localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-    localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata));
     localStorage.setItem("items", JSON.stringify(this.items));
     this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
     this.playingOriginal.load();
@@ -717,9 +661,9 @@ export class DubComponent {
     this.isSubtitlesSaved = false;
     this.isSaved = true;
     if (gender == "male") 
-      this.currentSub.gender = "m";
+      this.currentSub.character = "m";
     else if (gender == "female") 
-      this.currentSub.gender = "f";
+      this.currentSub.character = "f";
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
@@ -733,10 +677,7 @@ export class DubComponent {
     let file = document.getElementById("file") as HTMLInputElement;
     this.error = "";
     let num = 0;
-    let countm = 0;
-    let countf = 0;
     let numbers = /^[0-9]+$/;
-    let subs = JSON.parse(localStorage.getItem(this.curItem.path));
     this.progressbarValue = 0.0;
     JSZip.loadAsync(file.files[0])
          .then(async function(zip: JSZip) {
@@ -750,9 +691,8 @@ export class DubComponent {
                    entry.async('string').then(json => {
                    localStorage.setItem(this.curItem.path, json);
                    this.subtitles = this.getSubtitles()
-                   this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]];
+                   this.currentSub = this.subtitles[this.curChar.charIndex];
                    this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-                   this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
                    $("#sentence").text(this.currentSub.target);
                    if (num == 0) {
                     file.value = ""
@@ -765,35 +705,24 @@ export class DubComponent {
                    blob = new Blob([blob], { type: blob.type });
                    let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
                    await store.put({ "clip": entry.name, "audio": blob, "duration": 0 })
-                   let sub = subs.find(item => item.clip === entry.name);
-                   if (sub["gender"] === "f") { countf++ }
-                   else if (sub["gender"] === "m") { countm++ }
-                   this.subindex[1]["male"][1] = countm;
-                   this.subindex[1]["female"][1] = countf;
-                   this.subindex[1]["all"][1] = countm + countf;
-                   this.dubCount = this.subindex[1][this.subindex[0]][1];
-                   this.progressbarValue = (this.dubCount / num) * 100;
-                   if (this.dubCount == num) {
-                     localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-                     file.value = ""
-                     $("#uploadModel").modal('hide');
-                     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-                     let dub = await store.get(this.currentSub["clip"]);
-                     if (!this.url)
-                       URL.revokeObjectURL(this.url);
-                     if (!dub) {
-                       this.url = "";
-                       this.progressbarValue = 0.0;
-                       this.cursec = 0.0;
-                       this.allowRecording = false;
-                     }
-                     else {
-                       this.url = URL.createObjectURL(dub["audio"]);
-                       this.progressBarColor = "green";
-                       this.cursec = dub["duration"];
-                       this.allowRecording = true;
-                       this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-                     }
+                   file.value = ""
+                   $("#uploadModel").modal('hide');
+                   store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
+                   let dub = await store.get(this.currentSub["clip"]);
+                   if (!this.url)
+                     URL.revokeObjectURL(this.url);
+                   if (!dub) {
+                     this.url = "";
+                     this.progressbarValue = 0.0;
+                     this.cursec = 0.0;
+                     this.allowRecording = false;
+                   }
+                   else {
+                     this.url = URL.createObjectURL(dub["audio"]);
+                     this.progressBarColor = "green";
+                     this.cursec = dub["duration"];
+                     this.allowRecording = true;
+                     this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
                    }
                  });
                }
@@ -936,22 +865,22 @@ export class DubComponent {
       this.subtitles = JSON.parse(localStorage.getItem(this.curItem.path));
       let i = this.subtitles.findIndex((sub => sub["clip"] == this.currentSub["clip"]));
       this.subtitles[i]["target"] = $("#sentence").text();
-      this.subtitles[i]["gender"] = this.currentSub.gender;
+      this.subtitles[i]["character"] = this.currentSub.character;
       this.subtitles[i]["edit"] = this.currentSub.edit;
       this.subtitles[i]["extended"] = this.currentSub.extended;
       localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
-      this.dubCountFilter++;
       this.isSubtitlesSaved = true;
       this.isSaved = false;
-      this.onChangeChar(this.curChar.charType);
+      this.onChangeChar(this.curChar);
     }
+    localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
   }
 
   async onToggleFilter() {
     this.isSubFilter = false;
     if (this.isFilter === true){
       this.isFilter = false;
-      this.onChangeChar(this.curChar.charType);
+      this.onChangeChar(this.curChar);
     }
     else {
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
@@ -959,12 +888,8 @@ export class DubComponent {
       let subs = this.subtitles.filter(sub => !keys.includes(sub["clip"]));
       if (subs.length > 0) {
         this.isFilter = true;
-        this.dubCountFilter = 0;
         this.indexFilter = 0;
-        if (this.subindex[0] === "female")
-          subs = subs.filter(sub => sub["gender"] === "f");
-        else if (this.subindex[0] === "male")
-          subs = subs.filter(sub => sub["gender"] === "m");
+        subs = subs.filter(sub => sub["character"] == this.curChar.charType || this.curChar.charType == "all");
         this.subtitlesFilter = subs;
         this.currentSub = this.subtitlesFilter[0];
         $("#sentence").text(this.currentSub.target);
@@ -991,13 +916,12 @@ export class DubComponent {
     divTextarea.focus();
     if (this.isSubFilter === true){
       this.isSubFilter = false;
-      this.onChangeChar(this.curChar.charType);
+      this.onChangeChar(this.curChar);
     }
     else {
       let subs = this.subtitles.filter(sub => !sub.target || sub.edit == true);
       if (subs.length > 0) {
         this.isSubFilter = true;
-        this.dubCountFilter = 0;
         this.indexFilter = 0;
         this.subtitlesFilter = subs;
         this.currentSub = this.subtitlesFilter[0];

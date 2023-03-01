@@ -8,35 +8,10 @@
                     <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
                 <div *ngIf="isFilter" class="count">
-                    <input class="cursub filter-bg" ngModel="{{indexFilter+1}}" type="number" />
+                    <input class="cursub filter-bg" ngModel="{{indexFilter}}" type="number" />
                     <span>/{{subtitlesFilter.length}}</span>
                     <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
-                <!-- <div class="gender">
-                    <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
-                        value="m" id="male" [checked]="subindex?subindex[0]=='male':false">
-                    <label *ngIf="isFont" class="m-0 p-0 btn m no-box-shadow material-icons-outlined" for="male">
-                        <div class="male">
-                            man
-                        </div>
-                    </label>
-
-                    <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender"
-                        value="f" id="female" [checked]="subindex?subindex[0]=='female':false">
-                    <label *ngIf="isFont" class="m-0 p-0 btn f no-box-shadow material-icons-outlined" for="female">
-                        <div class="female">
-                            woman
-                        </div>
-                    </label>
-
-                    <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender"
-                        value="all" id="all" [checked]="subindex?subindex[0]=='all':false">
-                    <label *ngIf="isFont" class="m-0 p-0 btn wc no-box-shadow material-icons-outlined" for="all">
-                        <div class="male">
-                            accessibility
-                        </div>
-                    </label>
-                </div> -->
             </div>
             <div class="col-4 p-0 right-section">
                 <button type="button" class="p-0 fs-28 btn no-box-shadow" (click)="onNoise()">
@@ -159,10 +134,10 @@
                     mode_edit
                 </span>
                 <div *ngIf="!isReadOnlysen" class="edit-gender">
-                    <span class="material-icons-outlined" [class.active-edit]="currentSub.gender == 'm'" (click)="editGender('male')">
+                    <span class="material-icons-outlined" [class.active-edit]="currentSub.character == 'm'" (click)="editGender('male')">
                         man
                     </span>
-                    <span class="material-icons-outlined" [class.active-edit]="currentSub.gender == 'f'" (click)="editGender('female')">
+                    <span class="material-icons-outlined" [class.active-edit]="currentSub.character == 'f'" (click)="editGender('female')">
                         woman
                     </span>
                 </div>

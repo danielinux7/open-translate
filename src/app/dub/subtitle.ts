@@ -5,11 +5,10 @@ export interface Subtitle {
   start_sec: number;
   duration: number;
   extra: number;
-  gender: string;
   length: number;
   edit: boolean;
   extended: boolean;
-  character: [];
+  character: string;
 }
 
 export interface Metadata {
