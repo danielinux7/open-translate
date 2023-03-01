@@ -9,6 +9,14 @@ export interface Subtitle {
   length: number;
   edit: boolean;
   extended: boolean;
+  character: [];
+}
+
+export interface Metadata {
+  charType: string;
+  charIndex: number;
+  charLabel: string;
+  active: boolean;
 }
 
 export interface Item {

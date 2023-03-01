@@ -1,7 +1,7 @@
 import { Injectable, Component } from '@angular/core';
 declare var $: any;
 import { DomSanitizer } from '@angular/platform-browser';
-import { Subtitle, Item } from './subtitle';
+import { Subtitle, Metadata, Item } from './subtitle';
 import { interval, firstValueFrom } from 'rxjs';
 import { saveAs } from "file-saver-es";
 import JSZip from "jszip";
@@ -42,6 +42,8 @@ export class DubComponent {
   curParItem: Item;
   currentSub =  <Subtitle>{"source":""};
   subtitles = <Subtitle[]>[];
+  metadata: Metadata[];
+  curChar: Metadata;
   items = <Item[]>[];
   initSub: Subtitle[];
   subtitlesFilter: Subtitle[];
@@ -241,6 +243,7 @@ export class DubComponent {
     this.dubCount = this.subindex[1][this.subindex[0]][1];
     if (this.dubCount > 0)
       this.dubEmpty = false;
+    this.metadata = await this.getAsset("/assets/"+this.curItem.path+"/metadata.json");
     this.initSub = await this.getAsset("/assets/"+this.curItem.path+"/caption.json");
     this.subtitles = this.getSubtitles()
     this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
@@ -555,11 +558,16 @@ export class DubComponent {
     let sub;
     if (!localStorage.getItem(this.curItem.path))
       localStorage.setItem(this.curItem.path, JSON.stringify(this.initSub,null,2));
+    if (!localStorage.getItem(this.curItem.path + "/" + "metadata"))
+      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+    this.metadata = JSON.parse(localStorage.getItem(this.curItem.path + "/" + "metadata"));
+    this.curChar = this.metadata.filter(char => char.active == true)[0];
     sub = JSON.parse(localStorage.getItem(this.curItem.path));
-    if (this.subindex[0] === "male")
-      sub = sub.filter(sub => sub["gender"] === "m")
-    else if (this.subindex[0] === "female")
-      sub = sub.filter(sub => sub["gender"] === "f")
+    sub = sub.filter(sub => sub["character"].includes(this.curChar.charType) || this.curChar.charType == "all");
+    // if (this.subindex[0] === "male")
+    //   sub = sub.filter(sub => sub["gender"] === "m")
+    // else if (this.subindex[0] === "female")
+    //   sub = sub.filter(sub => sub["gender"] === "f")
     return sub;
   }
 
@@ -599,6 +607,7 @@ export class DubComponent {
     let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
     await store.clear();
     localStorage.removeItem(this.curItem.path);
+    localStorage.removeItem(this.curItem.path + "/" + "metadata");
     this.subindexList[this.curItem.path] = ["all", { "all": [0, 0], "male": [0, 0], "female": [0, 0] }];
     this.subindex = this.subindexList[this.curItem.path];
     localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
@@ -658,76 +667,49 @@ export class DubComponent {
     }
   }
 
-  async onChangeGender(gender) {
+  async onChangeChar(char) {
     this.errorBar = "";
+    this.extra = 0;
     this.isFilter = false;
     this.isSubFilter = false;
+    this.isTranslate = false;
+    this.isPlaying = false;
+    this.isPlayingOriginal = false;
+    this.playing.pause();
+    this.playingOriginal.pause();
     this.saveSubtitle();
+    this.curChar = this.metadata.filter(char => char.active == true)[0];
+    this.curChar.active = false;
+    char.active = true;
     let sub = JSON.parse(localStorage.getItem(this.curItem.path));
-    if (sub.filter(sub => sub["gender"] === gender.value).length > 0 || gender.value == "all") {
-      if (this.isPlayingOriginal) {
-        this.playingOriginal.pause();
-        this.isPlayingOriginal = false;
-      }
-      if (this.isPlaying) {
-        this.playing.pause();
-        this.isPlaying = false;
-      }
-      if (gender.value === "m") {
-        this.subindex[0] = "male";
-        this.subtitles = sub.filter(sub => sub["gender"] === "m");
-        this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-        this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      }
-      else if (gender.value === "f") {
-        this.subindex[0] = "female";
-        this.subtitles = sub.filter(sub => sub["gender"] === "f");
-        this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-        this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      }
-      else {
-        this.subindex[0] = "all";
-        this.subtitles = sub;
-        this.currentSub = this.subtitles[this.subindex[1][this.subindex[0]][0]]
-        this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-      }
-      if (this.isTranslate == true) {
-        this.getTranslate();
-      }
-      let value;
-      if (this.subindex[0] === "female")
-        value = "f";
-      else if (this.subindex[0] === "male")
-        value = "m";
-      else
-        value = "all"
-      if (value == 'all')
-        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
-      else
-        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true && sub.gender == value).length;
-      $("#sentence").text(this.currentSub.target);
-      this.dubCount = this.subindex[1][this.subindex[0]][1]
-      localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
-      localStorage.setItem("items", JSON.stringify(this.items));
-      this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
-      this.playingOriginal.load();
-      let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.currentSub["clip"]);
-      if (!this.url)
-        URL.revokeObjectURL(this.url);
-      if (!dub) {
-        this.url = "";
-        this.progressbarValue = 0.0;
-        this.cursec = 0.0;
-        this.allowRecording = false;
-      }
-      else {
-        this.url = URL.createObjectURL(dub["audio"]);
-        this.progressBarColor = "green";
-        this.cursec = dub["duration"];
-        this.allowRecording = true;
-        this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-      }
+    // this.subindex[0] = 'male';
+    this.subtitles = sub.filter(sub => sub["character"].includes(char.charType) || char.charType == "all");
+    this.currentSub = this.subtitles[char.charIndex]
+    this.inputSub = char.charIndex;
+    // this.subCount = this.subtitles.filter(sub => sub.target && !sub.edit).length;
+    $("#sentence").text(this.currentSub.target);
+    // this.dubCount = this.subindex[1][this.subindex[0]][1]
+    // localStorage.setItem("subindexlist", JSON.stringify(this.subindexList));
+    localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata));
+    localStorage.setItem("items", JSON.stringify(this.items));
+    this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
+    this.playingOriginal.load();
+    let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
+    let dub = await store.get(this.currentSub["clip"]);
+    if (!this.url)
+      URL.revokeObjectURL(this.url);
+    if (!dub) {
+      this.url = "";
+      this.progressbarValue = 0.0;
+      this.cursec = 0.0;
+      this.allowRecording = false;
+    }
+    else {
+      this.url = URL.createObjectURL(dub["audio"]);
+      this.progressBarColor = "green";
+      this.cursec = dub["duration"];
+      this.allowRecording = true;
+      this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
     }
   }
 
@@ -961,18 +943,7 @@ export class DubComponent {
       this.dubCountFilter++;
       this.isSubtitlesSaved = true;
       this.isSaved = false;
-      let value;
-      if (this.subindex[0] === "female")
-        value = "f";
-      else if (this.subindex[0] === "male")
-        value = "m";
-      else
-        value = "all"
-      if (value == 'all')
-        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
-      else
-        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true && sub.gender == value).length;
-      this.onChangeGender({"value":value});
+      this.onChangeChar(this.curChar.charType);
     }
   }
 
@@ -980,14 +951,7 @@ export class DubComponent {
     this.isSubFilter = false;
     if (this.isFilter === true){
       this.isFilter = false;
-      let value;
-      if (this.subindex[0] === "female")
-        value = "f";
-      else if (this.subindex[0] === "male")
-        value = "m";
-      else
-        value = "all"
-      this.onChangeGender({"value":value});
+      this.onChangeChar(this.curChar.charType);
     }
     else {
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
@@ -1027,14 +991,7 @@ export class DubComponent {
     divTextarea.focus();
     if (this.isSubFilter === true){
       this.isSubFilter = false;
-      let value;
-      if (this.subindex[0] === "female")
-        value = "f";
-      else if (this.subindex[0] === "male")
-        value = "m";
-      else
-        value = "all"
-      this.onChangeGender({"value": value});
+      this.onChangeChar(this.curChar.charType);
     }
     else {
       let subs = this.subtitles.filter(sub => !sub.target || sub.edit == true);

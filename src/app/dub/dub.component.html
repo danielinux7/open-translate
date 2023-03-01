@@ -4,15 +4,15 @@
             <div class="p-0 col-8 curSub">
                 <div *ngIf="!isFilter" class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
-                    <span>/{{dubCount}}/{{subtitles.length}}</span>
+                    <span>/{{subtitles.length}}</span>
                     <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
                 <div *ngIf="isFilter" class="count">
                     <input class="cursub filter-bg" ngModel="{{indexFilter+1}}" type="number" />
-                    <span>/{{dubCountFilter}}/{{subtitlesFilter.length}}</span>
+                    <span>/{{subtitlesFilter.length}}</span>
                     <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
-                <div class="gender">
+                <!-- <div class="gender">
                     <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
                         value="m" id="male" [checked]="subindex?subindex[0]=='male':false">
                     <label *ngIf="isFont" class="m-0 p-0 btn m no-box-shadow material-icons-outlined" for="male">
@@ -36,7 +36,7 @@
                             accessibility
                         </div>
                     </label>
-                </div>
+                </div> -->
             </div>
             <div class="col-4 p-0 right-section">
                 <button type="button" class="p-0 fs-28 btn no-box-shadow" (click)="onNoise()">
@@ -128,6 +128,13 @@
                 </li>
             </ul>
         </div>
+        <div class="nav-scroll">
+            <ul class="mb-0 nav-all nav-pills">
+                <li *ngFor="let char of metadata" class="green nav-item nav-item-all bc" [class.active-item]="char.active" (click)="onChangeChar(char)">
+                    <span>{{char.charLabel}}</span>
+                </li>
+            </ul>
+        </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 ml-3 mr-3 video-section">
@@ -173,10 +180,10 @@
                 </span>
                 <div class="show-save">
                     <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{inputSub}}/{{subCount}}/{{subtitles.length}}
+                        {{inputSub}}/{{subtitles.length}}
                     </span>
                     <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{indexFilter+1}}/{{dubCountFilter}}/{{subtitlesFilter.length}}
+                        {{indexFilter+1}}/{{subtitlesFilter.length}}
                     </span>
                     <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
                 </div>
