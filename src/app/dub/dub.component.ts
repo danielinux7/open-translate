@@ -697,6 +697,8 @@ export class DubComponent {
             this.currentSub = this.subtitles[this.curChar.charIndex];
             this.inputSub = this.subtitles.indexOf(this.currentSub);
             $("#sentence").text(this.currentSub.target);
+            this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
+            this.playingOriginal.load();
             if (num == 0) {
               file.value = ""
               $("#uploadModel").modal('hide');

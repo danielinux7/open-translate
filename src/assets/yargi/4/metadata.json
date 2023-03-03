@@ -1,20 +1,26 @@
 [
   {
     "charType": "all",
-    "charIndex": 450,
+    "charIndex": 0,
     "charLabel": "Зегьы",
     "active": true
   },
   {
     "charType": "f",
-    "charIndex": 5,
+    "charIndex": 0,
     "charLabel": "Аҳәса",
     "active": false
   },
   {
     "charType": "m",
-    "charIndex": 10,
+    "charIndex": 0,
     "charLabel": "Ахаҵа",
+    "active": false
+  },
+  {
+    "charType": "m+f",
+    "charIndex": 0,
+    "charLabel": "Аҳәсеи Ахаҵеи",
     "active": false
   }
 ]
