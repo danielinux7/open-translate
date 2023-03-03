@@ -4,12 +4,12 @@
             <div class="p-0 col-8 curSub">
                 <div *ngIf="!isFilter" class="count">
                     <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
-                    <span>/{{subtitles.length}}</span>
+                    <span>/{{subtitles.length-1}}</span>
                     <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
                 <div *ngIf="isFilter" class="count">
                     <input class="cursub filter-bg" ngModel="{{indexFilter}}" type="number" />
-                    <span>/{{subtitlesFilter.length}}</span>
+                    <span>/{{subtitlesFilter.length-1}}</span>
                     <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                 </div>
             </div>
@@ -155,10 +155,10 @@
                 </span>
                 <div class="show-save">
                     <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{inputSub}}/{{subtitles.length}}
+                        {{inputSub}}/{{subtitles.length-1}}
                     </span>
                     <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{indexFilter+1}}/{{subtitlesFilter.length}}
+                        {{indexFilter+1}}/{{subtitlesFilter.length-1}}
                     </span>
                     <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
                 </div>
