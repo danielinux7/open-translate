@@ -972,7 +972,6 @@ export class DubComponent {
         this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
       else
         this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true && sub.gender == value).length;
-      this.onChangeGender({"value":value});
     }
   }
 
