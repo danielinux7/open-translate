@@ -521,7 +521,7 @@ export class DubComponent {
     this.metadata = JSON.parse(localStorage.getItem(this.curItem.path + "/" + "metadata"));
     this.curChar = this.metadata.filter(char => char.active == true)[0];
     sub = JSON.parse(localStorage.getItem(this.curItem.path));
-    sub = sub.filter(sub => sub["character"].includes(this.curChar.charType) || this.curChar.charType == "all");
+    sub = sub.filter(sub => sub["character"] == this.curChar.charType || this.curChar.charType == "all");
     return sub;
   }
 
@@ -680,59 +680,62 @@ export class DubComponent {
     let numbers = /^[0-9]+$/;
     this.progressbarValue = 0.0;
     JSZip.loadAsync(file.files[0])
-         .then(async function(zip: JSZip) {
-           zip.forEach(function (relativePath, entry) { 
-            if (!entry.dir && entry.name.match(numbers))
-              num++;
-             })
-           if (zip.files[this.curItem.path + ".json"]) {
-             zip.forEach(function (relativePath, entry) {
-               if (entry.name === this.curItem.path + ".json") {
-                   entry.async('string').then(json => {
-                   localStorage.setItem(this.curItem.path, json);
-                   this.subtitles = this.getSubtitles()
-                   this.currentSub = this.subtitles[this.curChar.charIndex];
-                   this.inputSub = this.subtitles.indexOf(this.currentSub) + 1;
-                   $("#sentence").text(this.currentSub.target);
-                   if (num == 0) {
-                    file.value = ""
-                    $("#uploadModel").modal('hide');
-                   }
-                 });
-               }
-               else if (entry.name.match(numbers)) {
-                 entry.async('blob').then(async blob => {
-                   blob = new Blob([blob], { type: blob.type });
-                   let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-                   await store.put({ "clip": entry.name, "audio": blob, "duration": 0 })
-                   file.value = ""
-                   $("#uploadModel").modal('hide');
-                   store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-                   let dub = await store.get(this.currentSub["clip"]);
-                   if (!this.url)
-                     URL.revokeObjectURL(this.url);
-                   if (!dub) {
-                     this.url = "";
-                     this.progressbarValue = 0.0;
-                     this.cursec = 0.0;
-                     this.allowRecording = false;
-                   }
-                   else {
-                     this.url = URL.createObjectURL(dub["audio"]);
-                     this.progressBarColor = "green";
-                     this.cursec = dub["duration"];
-                     this.allowRecording = true;
-                     this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
-                   }
-                 });
-               }
-             }.bind(this));
-           }
-           else {
-            this.error = "Иашам ZIP афаил";
-           }
-         }.bind(this), function () { this.error = "Иашам ZIP афаил" }.bind(this)); 
-    }
+      .then(async function (zip: JSZip) {
+        zip.forEach(function (relativePath, entry) {
+          if (!entry.dir && entry.name.match(numbers))
+            num++;
+        })
+        if (zip.files[this.curItem.path + ".json"]) {
+          zip.files[this.curItem.path + "_metadata.json"].async('string').then(json => {
+            localStorage.setItem(this.curItem.path + "/" + "metadata", json);
+            this.metadata = JSON.parse(localStorage.getItem(this.curItem.path + "/" + "metadata"));
+            this.curChar = this.metadata.filter(char => char.active == true)[0];
+          });
+          zip.files[this.curItem.path + ".json"].async('string').then(json => {
+            localStorage.setItem(this.curItem.path, json);
+            this.subtitles = this.getSubtitles()
+            this.currentSub = this.subtitles[this.curChar.charIndex];
+            this.inputSub = this.subtitles.indexOf(this.currentSub);
+            $("#sentence").text(this.currentSub.target);
+            if (num == 0) {
+              file.value = ""
+              $("#uploadModel").modal('hide');
+            }
+          });
+          zip.forEach(function (relativePath, entry) {
+            if (entry.name.match(numbers)) {
+              entry.async('blob').then(async blob => {
+                blob = new Blob([blob], { type: blob.type });
+                let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
+                await store.put({ "clip": entry.name, "audio": blob, "duration": 0 })
+                file.value = ""
+                $("#uploadModel").modal('hide');
+                store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
+                let dub = await store.get(this.currentSub["clip"]);
+                if (!this.url)
+                  URL.revokeObjectURL(this.url);
+                if (!dub) {
+                  this.url = "";
+                  this.progressbarValue = 0.0;
+                  this.cursec = 0.0;
+                  this.allowRecording = false;
+                }
+                else {
+                  this.url = URL.createObjectURL(dub["audio"]);
+                  this.progressBarColor = "green";
+                  this.cursec = dub["duration"];
+                  this.allowRecording = true;
+                  this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
+                }
+              });
+            }
+          }.bind(this));
+        }
+        else {
+          this.error = "Иашам ZIP афаил";
+        }
+      }.bind(this), function () { this.error = "Иашам ZIP афаил" }.bind(this));
+  }
 
   onEdit() {
     if (this.isReadOnlysen === true) {
