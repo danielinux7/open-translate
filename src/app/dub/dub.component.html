@@ -1,5 +1,29 @@
 <div class="container-xl p-0 height-google" (click)="focusOnEdit()">
     <div class="shadow-google bg-white">
+        <div>
+            <div class="nav-scroll">
+                <ul class="mb-0 nav-all nav-pills">
+                    <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} nav-item nav-item-all bc"
+                        [class.active-item]="item.active" (click)="setCurItem(item)">
+                        <span>{{item.label}}</span>
+                    </li>
+                </ul>
+            </div>
+            <ul *ngIf="curParItem&&isHide" class="nav nav-pills nav-scroll">
+                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} nav-item nav-item-col bc"
+                    [class.active-item]="item['active']" (click)="setCurItemCol(item)">
+                    <span>{{item['label']}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-scroll">
+            <ul class="mb-0 nav-all nav-pills">
+                <li *ngFor="let char of metadata" class="green nav-item nav-item-all bc" [class.active-item]="char.active"
+                    (click)="onChangeChar(char)">
+                    <span>{{char.charLabel}}</span>
+                </li>
+            </ul>
+        </div>
         <div class="row mb-0 mt-1 ml-1 mr-1">
             <div class="p-0 col-8 curSub">
                 <div *ngIf="!isFilter" class="count">
@@ -88,27 +112,6 @@
                 </div>
                 <!--  -->
             </div>
-        </div>
-        <div>
-            <div class="nav-scroll">
-                <ul class="mb-0 nav-all nav-pills">
-                    <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} nav-item nav-item-all bc" [class.active-item]="item.active" (click)="setCurItem(item)">
-                        <span>{{item.label}}</span>
-                    </li>
-                </ul>
-            </div>
-            <ul *ngIf="curParItem" class="nav nav-pills nav-scroll">
-                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} nav-item nav-item-col bc" [class.active-item]="item['active']" (click)="setCurItemCol(item)">
-                    <span>{{item['label']}}</span>
-                </li>
-            </ul>
-        </div>
-        <div class="nav-scroll">
-            <ul class="mb-0 nav-all nav-pills">
-                <li *ngFor="let char of metadata" class="green nav-item nav-item-all bc" [class.active-item]="char.active" (click)="onChangeChar(char)">
-                    <span>{{char.charLabel}}</span>
-                </li>
-            </ul>
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>

@@ -56,6 +56,7 @@ export class DubComponent {
   isCopy: boolean;
   isSaved: boolean;
   isFont: boolean;
+  isHide: boolean;
   error;
   dbService;
 
@@ -958,6 +959,7 @@ export class DubComponent {
     let itemIndex
     if (this.curParItem) {
       itemIndex = this.items.findIndex(item => item.path == this.curParItem.path);
+      this.isHide?this.isHide=false:this.isHide=true;
     }
     else {
       itemIndex = this.items.findIndex(item => item.path == this.curItem.path)
