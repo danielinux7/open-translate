@@ -950,29 +950,29 @@ export class DubComponent {
   }
   
   saveSubtitle() {
-    if (this.isSubtitlesSaved === false) {
-      this.subtitles = JSON.parse(localStorage.getItem(this.curItem.path));
-      let i = this.subtitles.findIndex((sub => sub["clip"] == this.currentSub["clip"]));
-      this.subtitles[i]["target"] = $("#sentence").text();
-      this.subtitles[i]["gender"] = this.currentSub.gender;
-      this.subtitles[i]["edit"] = this.currentSub.edit;
-      this.subtitles[i]["extended"] = this.currentSub.extended;
-      localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
-      this.dubCountFilter++;
-      this.isSubtitlesSaved = true;
-      this.isSaved = false;
-      let value;
-      if (this.subindex[0] === "female")
-        value = "f";
-      else if (this.subindex[0] === "male")
-        value = "m";
-      else
-        value = "all"
-      if (value == 'all')
-        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
-      else
-        this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true && sub.gender == value).length;
-    }
+    // if (this.isSubtitlesSaved === false) {
+    //   this.subtitles = JSON.parse(localStorage.getItem(this.curItem.path));
+    //   let i = this.subtitles.findIndex((sub => sub["clip"] == this.currentSub["clip"]));
+    //   this.subtitles[i]["target"] = $("#sentence").text();
+    //   this.subtitles[i]["gender"] = this.currentSub.gender;
+    //   this.subtitles[i]["edit"] = this.currentSub.edit;
+    //   this.subtitles[i]["extended"] = this.currentSub.extended;
+    //   localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
+    //   this.dubCountFilter++;
+    //   this.isSubtitlesSaved = true;
+    //   this.isSaved = false;
+    //   let value;
+    //   if (this.subindex[0] === "female")
+    //     value = "f";
+    //   else if (this.subindex[0] === "male")
+    //     value = "m";
+    //   else
+    //     value = "all"
+    //   if (value == 'all')
+    //     this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true).length;
+    //   else
+    //     this.subCount = this.subtitles.filter(sub => sub.target && sub.edit != true && sub.gender == value).length;
+    // }
   }
 
   async onToggleFilter() {
