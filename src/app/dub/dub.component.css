@@ -58,12 +58,14 @@
   border: 2px solid #FF4F5E;
 }
 
-.edit-gender {
+.edit-char {
   cursor: pointer;
   position: absolute;
   top: 5px;
-  font-size: 20px;
-  padding-right: 5px;
+  font-size: 10px;
+  width: 40%;
+  border-left: 1px solid #ffd740;
+  border-right: 1px solid #ffd740;
 }
 
 .show-source {

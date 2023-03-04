@@ -658,13 +658,10 @@ export class DubComponent {
     }
   }
 
-  editGender(gender) {
+  editChar(char) {
     this.isSubtitlesSaved = false;
     this.isSaved = true;
-    if (gender == "male") 
-      this.currentSub.character = "m";
-    else if (gender == "female") 
-      this.currentSub.character = "f";
+    this.currentSub.character = char.charType;
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();

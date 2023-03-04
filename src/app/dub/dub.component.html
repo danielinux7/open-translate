@@ -136,13 +136,13 @@
                     [class.active-edit-warning]="isWarning" (click)="onEdit()">
                     mode_edit
                 </span>
-                <div *ngIf="!isReadOnlysen" class="edit-gender">
-                    <span class="material-icons-outlined" [class.active-edit]="currentSub.character == 'm'" (click)="editGender('male')">
-                        man
-                    </span>
-                    <span class="material-icons-outlined" [class.active-edit]="currentSub.character == 'f'" (click)="editGender('female')">
-                        woman
-                    </span>
+                <div *ngIf="!isReadOnlysen" class="nav-scroll edit-char">
+                    <ul class="mb-0 nav-all nav-pills">
+                        <li *ngFor="let char of metadata | slice:1" class="yellow nav-item nav-item-all bc" [class.active-item]="char.charType == currentSub.character"
+                        (click)="editChar(char)">
+                            <span>{{char.charLabel}}</span>
+                        </li>
+                    </ul>
                 </div>
                 <span *ngIf="!isReadOnlysen" class="show-note material-icons-outlined" [class.active-edit]="currentSub.edit" (click)="makeNote()">
                     edit_notifications
