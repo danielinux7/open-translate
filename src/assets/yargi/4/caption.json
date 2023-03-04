@@ -1,4 +1,4 @@
-[
+ [
   {
     "clip": "1",
     "start": "0:01:32.516",
@@ -217,9 +217,8 @@
     "extra": 1.872,
     "source": "-Kaptanken. -Kaptan mıydı?",
     "target": "-Данкапитаныз.  -Дкапитанызма?",
-    "character": "",
-    "length": 26,
-    "edit": true
+    "character": "m+f",
+    "length": 26
   },
   {
     "clip": "18",
@@ -777,9 +776,8 @@
     "extra": 2.539,
     "source": "-Engin, çıktılar mı? -Çıktılar.",
     "target": "-Енгьин. Идәылҵхьоума? –Идәылҵхьеит.",
-    "character": "",
-    "length": 31,
-    "edit": true
+    "character": "m+f",
+    "length": 31
   },
   {
     "clip": "61",
@@ -791,9 +789,8 @@
     "extra": 0.089,
     "source": "-Doğrulatalım bakalım. Ben dışarıdayım. -Bitti mi?",
     "target": "-Ииашазар гәаҳҭап.  Адәахьы  сцоит. –Шәалгама?",
-    "character": "",
-    "length": 50,
-    "edit": true
+    "character": "m+f",
+    "length": 50
   },
   {
     "clip": "62",
@@ -844,9 +841,8 @@
     "extra": 5.1,
     "source": "-Olay yeri tutanağı geldi mi? -Geldi savcım.",
     "target": "-Ахҭыс ахьыҟалазтәи акт аама? –Иааит, сыпрокурор.",
-    "character": "",
-    "length": 44,
-    "edit": true
+    "character": "m+f",
+    "length": 44
   },
   {
     "clip": "66",
@@ -858,9 +854,8 @@
     "extra": 6.058,
     "source": "-Hazırla onu bana. -Başüstüne.",
     "target": "-Исзырмазеит. –Еилыскааит.",
-    "character": "",
-    "length": 30,
-    "edit": true
+    "character": "m+f",
+    "length": 30
   },
   {
     "clip": "67",
@@ -1197,9 +1192,8 @@
     "extra": 3.68,
     "source": "-Çantayı al. -Tamam.",
     "target": "-Асумка шьҭых. –Ибзиоуп.",
-    "character": "",
-    "length": 20,
-    "edit": true
+    "character": "m+f",
+    "length": 20
   },
   {
     "clip": "93",
@@ -1211,9 +1205,8 @@
     "extra": 3.846,
     "source": "-Gidiyoruz. Gidiyoruz. -Kolay gelsin.",
     "target": "-Ҳцоит. Ҳцоит. –Шәусқәа маншәалаз.",
-    "character": "",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "94",
@@ -1238,9 +1231,8 @@
     "extra": 0.081,
     "source": "-Ne oluyor be? -İlerle ilerle.",
     "target": "-Иҟалеи мшәан? –Унаскьа, унаскьа.",
-    "character": "",
-    "length": 30,
-    "edit": true
+    "character": "m+f",
+    "length": 30
   },
   {
     "clip": "96",
@@ -1252,9 +1244,8 @@
     "extra": 7.309,
     "source": "-Sıra var, görmüyor musun? -İlerle!",
     "target": "-Агәаран ҳақәгылоуп, ибымбаӡои?  -Унаскьа!",
-    "character": "",
-    "length": 35,
-    "edit": true
+    "character": "m+f",
+    "length": 35
   },
   {
     "clip": "97",
@@ -1565,9 +1556,8 @@
     "extra": 0.302,
     "source": "-Ne saklıyorsun? -Elinin körünü saklıyorum Ceylin!",
     "target": "-Иуҵәахуеи? –Баб гәышьа имаӡа сҵәахуеит, Џьеилин!",
-    "character": "",
-    "length": 50,
-    "edit": true
+    "character": "m+f",
+    "length": 50
   },
   {
     "clip": "121",
@@ -2048,8 +2038,7 @@
     "source": "\"\"\"Seni gördüm adi (***).\"\"\"",
     "target": "«Уара узбеит ацәыршәага(***)»",
     "character": "m",
-    "length": 24,
-    "edit": false
+    "length": 24
   },
   {
     "clip": "158",
@@ -2685,9 +2674,8 @@
     "extra": 0.306,
     "source": "-Alo? -Zümrüt Erguvan'la mı görüşüyorum?",
     "target": "-Алло? –Зумрут Ергуван шәоума?",
-    "character": "",
-    "length": 40,
-    "edit": true
+    "character": "m+f",
+    "length": 40
   },
   {
     "clip": "207",
@@ -2699,9 +2687,8 @@
     "extra": 0.556,
     "source": "-Evet, benim. -Emniyetten arıyorum Zümrüt Hanım.",
     "target": "-Аиеи, сара соуп. –Амилицаҟынтә сышәзасуеит.",
-    "character": "",
-    "length": 48,
-    "edit": true
+    "character": "m+f",
+    "length": 48
   },
   {
     "clip": "208",
@@ -2909,8 +2896,7 @@
     "source": "Ses de vermiyor bir de.",
     "target": "Арахь ибжьгьы уаҳаӡом. ",
     "character": "f",
-    "length": 23,
-    "extended": false
+    "length": 23
   },
   {
     "clip": "224",
@@ -3026,9 +3012,8 @@
     "extra": 0.902,
     "source": "-İhtimal, bakacağız. -Nereye?",
     "target": "-Иалшоит, ҳахәаԥшроуп. –Уабацои?",
-    "character": "",
-    "length": 29,
-    "edit": true
+    "character": "m+f",
+    "length": 29
   },
   {
     "clip": "233",
@@ -3040,9 +3025,8 @@
     "extra": 0.602,
     "source": "-Adliyeye. -Şimdi mi?",
     "target": "-Аӡбарҭахь. –Абыржәу?",
-    "character": "",
-    "length": 21,
-    "edit": true
+    "character": "m+f",
+    "length": 21
   },
   {
     "clip": "234",
@@ -3145,9 +3129,8 @@
     "extra": 0.787,
     "source": "-Ne oluyor? -Sessiz. Ozan'la karısı burada.",
     "target": "Иҟалеи? –Ҿыбымҭын, Озан иԥҳәыси иареи ара иҟоуп.",
-    "character": "",
-    "length": 43,
-    "edit": true
+    "character": "m+f",
+    "length": 43
   },
   {
     "clip": "242",
@@ -3237,9 +3220,8 @@
     "extra": 0.128,
     "source": "-Hadi yürü, çıkıyoruz emniyetten. -Hayatta olmaz.",
     "target": "-Бааи, ҳцап абрантәи. –Ҟалашьа амам.",
-    "character": "",
-    "length": 49,
-    "edit": true
+    "character": "m+f",
+    "length": 49
   },
   {
     "clip": "249",
@@ -3537,9 +3519,8 @@
     "extra": 8.119,
     "source": "-Başka bir şey ister misin? -Keyfim gayet yerinde.",
     "target": "-Уаҳа акры бҭахума? –Мап, сгәалаҟазаара бзиоуп. ",
-    "character": "",
-    "length": 50,
-    "edit": true
+    "character": "m+f",
+    "length": 50
   },
   {
     "clip": "272",
@@ -4110,9 +4091,8 @@
     "extra": 1.018,
     "source": "-Dikkatli olacağım, söz. -Hayır.",
     "target": "-Сгәы сҽанызаауеит, ажәа усҭоит. –Мап.",
-    "character": "",
-    "length": 32,
-    "edit": true
+    "character": "m+f",
+    "length": 32
   },
   {
     "clip": "316",
@@ -4202,9 +4182,8 @@
     "extra": 0.729,
     "source": "-Bitti. -Ee?",
     "target": "-Ҳалгеит. –Нас?",
-    "character": "",
-    "length": 12,
-    "edit": true
+    "character": "m+f",
+    "length": 12
   },
   {
     "clip": "323",
@@ -5503,9 +5482,8 @@
     "extra": 3.948,
     "source": "-Dikkat et. -Tamam.",
     "target": "-Угәыуҽаныз. –Ибзиоуп.",
-    "character": "",
-    "length": 19,
-    "edit": true
+    "character": "m+f",
+    "length": 19
   },
   {
     "clip": "423",
@@ -6102,9 +6080,8 @@
     "extra": 0.116,
     "source": "-Efendi, hala? -Ilgaz, oğlum, bir oğlan geldi.",
     "target": "-Иҟои, саҳәшьаду? –Ылгаз, ҷкәынак дааит.",
-    "character": "m",
-    "length": 46,
-    "edit": true
+    "character": "m+f",
+    "length": 46
   },
   {
     "clip": "469",
@@ -6233,9 +6210,8 @@
     "extra": 0.081,
     "source": "-Ne oldu hala? -Kaçarak döndü gitti bu oğlan.",
     "target": "-Иҟалеи, саҳәшьаду? –Дыҩны дцеит. ",
-    "character": "",
-    "length": 45,
-    "edit": true
+    "character": "m+f",
+    "length": 45
   },
   {
     "clip": "479",
@@ -6260,9 +6236,8 @@
     "extra": 0.16,
     "source": "-Tamam oğlum. -Defne nerede? Evde mi?",
     "target": "-Ибзиоуп, сыҷкәын. –Дефне аҩны дыҟоума?",
-    "character": "f",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "481",
@@ -6274,9 +6249,8 @@
     "extra": 0.188,
     "source": "-Evde. Odasında. -Tamam. Bekleyin, hemen geliyorum.",
     "target": "-Аиеи. Луадаҿ дыҟоуп. –Шәыҧшыз, снеиуеит.",
-    "character": "",
-    "length": 51,
-    "edit": true
+    "character": "m+f",
+    "length": 51
   },
   {
     "clip": "482",
@@ -6379,9 +6353,8 @@
     "extra": 0.364,
     "source": "-Zafer Bey, bir dakika. -Yekta, sana bir şey soracağım.",
     "target": "-Зафер беи, минуҭк. –Иеқьҭа, акы суазҵаауеит.",
-    "character": "",
-    "length": 55,
-    "edit": true
+    "character": "m+f",
+    "length": 55
   },
   {
     "clip": "490",
@@ -6575,9 +6548,8 @@
     "extra": 0.199,
     "source": "-Yapma. -Yaparım.",
     "target": "-Иҟаумҵан убри. -Иҟасҵоит.",
-    "character": "",
-    "length": 17,
-    "edit": true
+    "character": "m+f",
+    "length": 17
   },
   {
     "clip": "505",
@@ -6797,9 +6769,8 @@
     "extra": 0.499,
     "source": "-Abi. -Canım benim.",
     "target": "-Сашьа. –Сыхаара.",
-    "character": "",
-    "length": 19,
-    "edit": true
+    "character": "m+f",
+    "length": 19
   },
   {
     "clip": "522",
@@ -6811,9 +6782,8 @@
     "extra": 1.512,
     "source": "-Çok özlemişim. -Ben de.",
     "target": "-Даара быгәхьаазгеит. –Саргьы.",
-    "character": "",
-    "length": 24,
-    "edit": true
+    "character": "m+f",
+    "length": 24
   },
   {
     "clip": "523",
@@ -6955,9 +6925,8 @@
     "extra": 0.133,
     "source": "-Yolculuk nasıl geçti? -Kısa.",
     "target": "-Нас, бышҧааи? –Ирласны.",
-    "character": "m",
-    "length": 29,
-    "edit": true
+    "character": "m+f",
+    "length": 29
   },
   {
     "clip": "534",
@@ -6983,8 +6952,7 @@
     "source": "Oğlum, ne oldu? Ben bir yanlış mı yaptım?",
     "target": "Сыҷкәын, иҟалеи? Иакәым ҟасҵама?",
     "character": "f",
-    "length": 41,
-    "edit": false
+    "length": 41
   },
   {
     "clip": "536",
@@ -7217,9 +7185,8 @@
     "extra": 0.088,
     "source": "-Hala, hadi siz yukarı çıkın. -Tamam.",
     "target": "-Саҳәшьаду, шәара хыхь шәхал. –Ибзиоуп.",
-    "character": "",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "554",
@@ -7244,9 +7211,8 @@
     "extra": 6.312,
     "source": "-Çiçekleri sularız hem, değil mi? -Aferin, hadi.",
     "target": "-Ашәҭқәагьы аӡы рыҵаҳҭәап. – Аҟәыбҷа, бца. ",
-    "character": "",
-    "length": 48,
-    "edit": true
+    "character": "m+f",
+    "length": 48
   },
   {
     "clip": "556",
@@ -7661,9 +7627,8 @@
     "extra": 111.483,
     "source": "-Bir saatliğine ama. -Tamam.",
     "target": "-Сааҭзаҵәык. –Ибзиоуп.",
-    "character": "",
-    "length": 28,
-    "edit": true
+    "character": "m+f",
+    "length": 28
   },
   {
     "clip": "588",
@@ -7741,8 +7706,7 @@
     "source": "Emniyetten bir haber geldi, bir olay varmış...",
     "target": "Амилициа рахь иԥхьеит, ак ҟалазар акәхап...",
     "character": "f",
-    "length": 46,
-    "edit": false
+    "length": 46
   },
   {
     "clip": "594",
@@ -8053,9 +8017,8 @@
     "extra": 0.339,
     "source": "-Ben ifademi verdim. -Biliyorum. İfadenizi gördüm.",
     "target": "-Сҿахәы рысҭахьеит. –Издыруеит, избахьеит.",
-    "character": "",
-    "length": 50,
-    "edit": true
+    "character": "m+f",
+    "length": 50
   },
   {
     "clip": "618",
@@ -8275,9 +8238,8 @@
     "extra": 1.825,
     "source": "-Ölen kızın kardeşi. -Aa!",
     "target": "-Иԥсыз лаҳәшьа лоуп. –Унан!",
-    "character": "m",
-    "length": 25,
-    "edit": true
+    "character": "m+f",
+    "length": 25
   },
   {
     "clip": "635",
@@ -8354,9 +8316,8 @@
     "extra": 0.211,
     "source": "-Evet, ne oldu ki? -Baban bekliyordu.",
     "target": "-Аиеи. Иҟалеи? –Баб уа дыҟан.",
-    "character": "",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "641",
@@ -8394,9 +8355,8 @@
     "extra": 2.367,
     "source": "-Sen ne dedin? -Tabii ki reddettim.",
     "target": "-Уара иауҳәеи? –Мап скит, ҳәарада.",
-    "character": "",
-    "length": 35,
-    "edit": true
+    "character": "m+f",
+    "length": 35
   },
   {
     "clip": "644",
@@ -8408,9 +8368,8 @@
     "extra": 0.301,
     "source": "-Seni korumaya devam edeyim mi... -Lütfen.",
     "target": "-Быхьчара саҿызаауама?... –Суҳәоит.",
-    "character": "",
-    "length": 42,
-    "edit": true
+    "character": "m+f",
+    "length": 42
   },
   {
     "clip": "645",
@@ -8448,9 +8407,8 @@
     "extra": 0.42,
     "source": "-Yani sen babana git, dedim. -Ee?",
     "target": "-Ажәакала, уаб иахь  уца, сҳәеит. –Нас?",
-    "character": "",
-    "length": 33,
-    "edit": true
+    "character": "m+f",
+    "length": 33
   },
   {
     "clip": "648",
@@ -10035,9 +9993,8 @@
     "extra": 0.123,
     "source": "-Bizde miydin? -Evet.",
     "target": "-Ҳара ҳҿы быҟазма? -Аиеи.",
-    "character": "",
-    "length": 21,
-    "edit": true
+    "character": "m+f",
+    "length": 21
   },
   {
     "clip": "770",
@@ -10049,9 +10006,8 @@
     "extra": 0.205,
     "source": "-Ben ölsem ifade vermem. -Sakin ol Zümrüt, vermek zorundasın.",
     "target": "-Сара сыршьыргьы сҿахәы рысҭом. –Бҽырҭынч, Зумрут, ирыбымҭар ауӡом.",
-    "character": "",
-    "length": 61,
-    "edit": true
+    "character": "m+f",
+    "length": 61
   },
   {
     "clip": "771",
@@ -10102,9 +10058,8 @@
     "extra": 1.266,
     "source": "...komisyon aldığını herkese derim. -Saçmalama, sakın!",
     "target": "...апроценқәа шуго, зегь расҳәоит. –Беиламган!",
-    "character": "",
-    "length": 54,
-    "edit": true
+    "character": "m+f",
+    "length": 54
   },
   {
     "clip": "775",
@@ -10129,9 +10084,8 @@
     "extra": 18.164,
     "source": "-Bundan kaçış yok, kimse öğrenmez. -Tabii.",
     "target": "-Ари ацәыбналашьа амаӡам. –Ҳәарада. ",
-    "character": "",
-    "length": 42,
-    "edit": true
+    "character": "m+f",
+    "length": 42
   },
   {
     "clip": "777",
@@ -10221,9 +10175,8 @@
     "extra": 0.454,
     "source": "-Ekstra bir şey mi oldu? -Yoo. Bizi dinlediler...",
     "target": "-Акыр ҟалама? –Мап. Иаҳзыӡырҩит...",
-    "character": "f",
-    "length": 49,
-    "edit": true
+    "character": "m+f",
+    "length": 49
   },
   {
     "clip": "784",
@@ -10287,9 +10240,8 @@
     "extra": 0.081,
     "source": "-Neredeydin oğlum? -Defne odasında mı hala?",
     "target": "-Уабаҟаз, сыҷкәын? –Дефне луадаҿы дыҟоума?",
-    "character": "",
-    "length": 43,
-    "edit": true
+    "character": "m+f",
+    "length": 43
   },
   {
     "clip": "789",
@@ -10314,9 +10266,8 @@
     "extra": 1.813,
     "source": "-Hani bir saatti? -Özür dilerim, işim uzadı.",
     "target": "-Сааҭк умҳәаз? –Саҭамыз, сус садхалеит.",
-    "character": "",
-    "length": 44,
-    "edit": true
+    "character": "m+f",
+    "length": 44
   },
   {
     "clip": "791",
@@ -10354,9 +10305,8 @@
     "extra": 0.414,
     "source": "-Aynı işte. -Değil.",
     "target": "-Иароуп. –Иара акәӡам.",
-    "character": "",
-    "length": 19,
-    "edit": true
+    "character": "m+f",
+    "length": 19
   },
   {
     "clip": "794",
@@ -10407,9 +10357,8 @@
     "extra": 29.506,
     "source": "-Seni çok seviyorum. -Ben de seni.",
     "target": "-Сара даара бзиа бызбоит. –Саргьы.",
-    "character": "",
-    "length": 34,
-    "edit": true
+    "character": "m+f",
+    "length": 34
   },
   {
     "clip": "798",
@@ -10460,9 +10409,8 @@
     "extra": 0.104,
     "source": "-O kesin sütlüdür. -Hayır, bilemedin Sayın Savcı'm.",
     "target": "-Уи ахш алазар акәхап. –Мап, сыпрокурор.",
-    "character": "",
-    "length": 51,
-    "edit": true
+    "character": "m+f",
+    "length": 51
   },
   {
     "clip": "802",
@@ -10968,9 +10916,8 @@
     "extra": 0.081,
     "source": "-Doğru olan neyse onu yapacağım. -Ne?",
     "target": "-Иахәҭоу ҟасҵоит. –Изакәи?",
-    "character": "",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "841",
@@ -11359,9 +11306,8 @@
     "extra": 0.149,
     "source": "...Çınar'ın gözaltına alındığı gün. -Evet?",
     "target": "...Чынар амилициахь даннарга аҽны. –Нас?",
-    "character": "f",
-    "length": 42,
-    "edit": true
+    "character": "m+f",
+    "length": 42
   },
   {
     "clip": "871",
@@ -11399,9 +11345,8 @@
     "extra": 0.531,
     "source": "-Kişisel görüş. -Belli ki Çınar, abisine itiraf etti.",
     "target": "-Уи бгәаанагароуп. –Чынар иашьа иеиҳәазар ҟалоит.",
-    "character": "",
-    "length": 53,
-    "edit": true
+    "character": "m+f",
+    "length": 53
   },
   {
     "clip": "874",
@@ -11738,9 +11683,8 @@
     "extra": 0.685,
     "source": "-Polise teslim edeceğiz, konu kapandı. -Belki bu bir...",
     "target": "-Амилициа ираҳҭоит, ацәажәара аҭахым. –Ари ...",
-    "character": "",
-    "length": 55,
-    "edit": true
+    "character": "m+f",
+    "length": 55
   },
   {
     "clip": "900",
@@ -11753,8 +11697,7 @@
     "source": "...yardım çığlığıdır, ne dersin?",
     "target": "...иҳахәаша ак акәзар, иахуҳәаауеи?",
     "character": "f",
-    "length": 32,
-    "edit": false
+    "length": 32
   },
   {
     "clip": "901",
@@ -11818,9 +11761,8 @@
     "extra": 0.735,
     "source": "-Ne yapalım, takdir mi edelim? -Yargılamayın!",
     "target": "-Иҟаҳҵари нас, дҳарҽхәар аума? –Шәиқәмыӡбан!",
-    "character": "",
-    "length": 45,
-    "edit": true
+    "character": "m+f",
+    "length": 45
   },
   {
     "clip": "906",
@@ -11858,9 +11800,8 @@
     "extra": 0.617,
     "source": "-Çocuk sevildiğini hissetsin. -Nasıl olacakmış öyle?",
     "target": "-Бзиа дшышәбо инырааит . –Ишҧаҟало убри?",
-    "character": "",
-    "length": 52,
-    "edit": true
+    "character": "m+f",
+    "length": 52
   },
   {
     "clip": "909",
@@ -11924,9 +11865,8 @@
     "extra": 6.365,
     "source": "...o çocuğu sevmek zorundasınız. -Yok öyle bir şey.",
     "target": "...шәхәыҷы бзиа дыжәбозароуп . –Иҟалаӡом ус.",
-    "character": "",
-    "length": 51,
-    "edit": true
+    "character": "m+f",
+    "length": 51
   },
   {
     "clip": "914",
@@ -12003,9 +11943,8 @@
     "extra": 0.142,
     "source": "-Bizi günahında boğuyor be! -Çocuk sadece çıkış yolu arıyor.",
     "target": "-Игәнаҳа ҳалеихәаҽуеит. –Уи дызлалҵша мҩакы дашьҭоуп.",
-    "character": "",
-    "length": 60,
-    "edit": true
+    "character": "m+f",
+    "length": 60
   },
   {
     "clip": "920",
@@ -12290,9 +12229,8 @@
     "extra": 8.047,
     "source": "-Bir merhaba der, kaçarız. -Dışarıda bekliyorum abi.",
     "target": "-Аԥсшәа наиаҳәаны ҳцап. –Адәахьы сузыԥшуеит сара.",
-    "character": "",
-    "length": 52,
-    "edit": true
+    "character": "m+f",
+    "length": 52
   },
   {
     "clip": "942",
@@ -12551,9 +12489,8 @@
     "extra": 2,
     "source": "-Kızım, sen nereden çıktın? -Metin baba.",
     "target": "-Сыԥҳа, бара бабаанагеи? –Аб Меҭин.",
-    "character": "",
-    "length": 40,
-    "edit": true
+    "character": "m+f",
+    "length": 40
   },
   {
     "clip": "962",
@@ -12578,9 +12515,8 @@
     "extra": 0.615,
     "source": "-Nasılsınız? -İyiyim.",
     "target": "-Шәышԥаҟоу? –Ҳабзиоуп.",
-    "character": "",
-    "length": 21,
-    "edit": true
+    "character": "m+f",
+    "length": 21
   },
   {
     "clip": "964",
@@ -12631,9 +12567,8 @@
     "extra": 0.734,
     "source": "...yapabileceğim bir şey var mı? -İyi yapmışsın, hoş geldin.",
     "target": "...иҟасҵаша акрыҟоума? –Иишаны иҟабҵеит, бзиала баабеит.",
-    "character": "",
-    "length": 60,
-    "edit": true
+    "character": "m+f",
+    "length": 60
   },
   {
     "clip": "968",
@@ -12671,9 +12606,8 @@
     "extra": 8.61,
     "source": "-Neva, hoş geldin. -Hoş bulduk.",
     "target": "-Нева, бзиала баабеит. –Бзиара убааит.",
-    "character": "",
-    "length": 31,
-    "edit": true
+    "character": "m+f",
+    "length": 31
   },
   {
     "clip": "971",
@@ -12867,9 +12801,8 @@
     "extra": 2.969,
     "source": "-Öyle bir anda geldin ki. -Çınar'la mı ilgili?",
     "target": "-Ианаамҭамыз бааит. –Чынар идҳәалоума?",
-    "character": "",
-    "length": 46,
-    "edit": true
+    "character": "m+f",
+    "length": 46
   },
   {
     "clip": "986",
@@ -13011,9 +12944,8 @@
     "extra": 19.378,
     "source": "-Görüşürüz. -Görüşürüz.",
     "target": "-Ҳаибабоит. –Ҳаибабоит.",
-    "character": "",
-    "length": 23,
-    "edit": true
+    "character": "m+f",
+    "length": 23
   },
   {
     "clip": "997",
@@ -13077,9 +13009,8 @@
     "extra": 0.335,
     "source": "-Artık gidebilir miyiz? -Niye?",
     "target": "-Уажәшьҭа ҳцар ҟалома? –Избан?",
-    "character": "",
-    "length": 30,
-    "edit": true
+    "character": "m+f",
+    "length": 30
   },
   {
     "clip": "1002",
@@ -13195,9 +13126,8 @@
     "extra": 0.523,
     "source": "-Metin baba, Eren... -Eren?",
     "target": "-Аиҳабы Меҭин , Ерен... –Ерен?",
-    "character": "",
-    "length": 27,
-    "edit": true
+    "character": "m+f",
+    "length": 27
   },
   {
     "clip": "1011",
@@ -13300,9 +13230,8 @@
     "extra": 0.352,
     "source": "-Olur mu? -Tamam, sakin. Nasılsa öğrenirim.",
     "target": "-Иҟалома? –Ибзиоуп, бҽырҭынч. Усгьы еилыскаауеит.",
-    "character": "f",
-    "length": 43,
-    "edit": true
+    "character": "m+f",
+    "length": 43
   },
   {
     "clip": "1019",
@@ -13327,9 +13256,8 @@
     "extra": 0.594,
     "source": "-O kız kimdi, avukat dediğin? -Ceylin işte.",
     "target": "-Уи адукат ҳәа узҿу дызусҭада? –Џьеилин лоуми.",
-    "character": "",
-    "length": 43,
-    "edit": true
+    "character": "m+f",
+    "length": 43
   },
   {
     "clip": "1021",
@@ -13341,9 +13269,8 @@
     "extra": 0.54,
     "source": "-Hiç hoşlanmadım. -Öyle mi?",
     "target": "-Дысгәамҧхеит. –Ус аума?",
-    "character": "",
-    "length": 27,
-    "edit": true
+    "character": "m+f",
+    "length": 27
   },
   {
     "clip": "1022",
@@ -13368,9 +13295,8 @@
     "extra": 2.109,
     "source": "-Gerçekten mi? -Olmaz mı?",
     "target": "-Иҵабыргыҵәҟьаны? –Иҟамлаӡои?",
-    "character": "",
-    "length": 25,
-    "edit": true
+    "character": "m+f",
+    "length": 25
   },
   {
     "clip": "1024",
@@ -13720,9 +13646,8 @@
     "extra": 15.594,
     "source": "-Canım istemiyor. -Otur Ceylin.",
     "target": "-Сгәы иагом. –Бтәа, Џьеилин.",
-    "character": "",
-    "length": 31,
-    "edit": true
+    "character": "m+f",
+    "length": 31
   },
   {
     "clip": "1051",
@@ -14008,8 +13933,7 @@
     "source": "Buraya kadarmış. Ama doktor umut var dedi.",
     "target": "џьысшьеит. Аха аҳақьым агәыӷра сиҭеит. ",
     "character": "m",
-    "length": 42,
-    "edit": false
+    "length": 42
   },
   {
     "clip": "1073",
@@ -15113,9 +15037,8 @@
     "extra": 2.854,
     "source": "-Baba! -İnci? Kızım?",
     "target": "-Саб! –Инџьи? Сыԥҳа?",
-    "character": "",
-    "length": 20,
-    "edit": true
+    "character": "m+f",
+    "length": 20
   },
   {
     "clip": "1158",
@@ -15153,9 +15076,8 @@
     "extra": 0.081,
     "source": "-Çık bakayım sen, gel bakayım. -Baba, bir dakika.",
     "target": "-Арахь бааҭыҵи бара. –Саб, минуҭк.",
-    "character": "",
-    "length": 49,
-    "edit": true
+    "character": "m+f",
+    "length": 49
   },
   {
     "clip": "1161",
@@ -15167,9 +15089,8 @@
     "extra": 3.687,
     "source": "-Çık dışarıya! -Baba, bırakır mısın?",
     "target": "-Бҭыц! –Саб, усҟәаҵ?",
-    "character": "",
-    "length": 36,
-    "edit": true
+    "character": "m+f",
+    "length": 36
   },
   {
     "clip": "1162",
@@ -15181,9 +15102,8 @@
     "extra": 0.081,
     "source": "-Bu ne? -Baba, bir çantamı verir misin?",
     "target": "-Ари закәи? –Саб, арахь исыҭ ссумка.",
-    "character": "",
-    "length": 39,
-    "edit": true
+    "character": "m+f",
+    "length": 39
   },
   {
     "clip": "1163",
@@ -15208,9 +15128,8 @@
     "extra": 0.362,
     "source": "-Baba, lütfen yapma. -Bu ne kılık!",
     "target": "-Саб, суҳәоит иҟаумҵан. –Ари ибшәу закәи!",
-    "character": "",
-    "length": 34,
-    "edit": true
+    "character": "m+f",
+    "length": 34
   },
   {
     "clip": "1165",
@@ -15846,9 +15765,8 @@
     "extra": 1.727,
     "source": "-Onun babası benim. -Sen yoktun baba!",
     "target": "-Уи абыс илымаз сара сакәын. –Уара уҟаӡамызт саб!",
-    "character": "",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "1214",
@@ -17395,8 +17313,7 @@
     "source": "Ama susuyormuşsun, konuşmuyormuşsun.",
     "target": "Амала  ҿумҭуазаап, умцәажәозаап. ",
     "character": "f",
-    "length": 36,
-    "edit": false
+    "length": 36
   },
   {
     "clip": "1333",
@@ -17408,9 +17325,8 @@
     "extra": 0.191,
     "source": "-Abim mi gönderdi seni? -Hayır.",
     "target": "-Сашьа бааишьҭма? –Мап.",
-    "character": "",
-    "length": 31,
-    "edit": true
+    "character": "m+f",
+    "length": 31
   },
   {
     "clip": "1334",
@@ -17799,9 +17715,8 @@
     "extra": 0.111,
     "source": "-Afiyet olsun. -Hoş geldin.",
     "target": "-Ихааны ишәфааит. –Бзиала баабеит.",
-    "character": "",
-    "length": 27,
-    "edit": true
+    "character": "m+f",
+    "length": 27
   },
   {
     "clip": "1364",
@@ -17879,8 +17794,7 @@
     "source": "Aylar oldu sanki gelmeyeli.",
     "target": "Мызқәак раахыс смаацшәа.",
     "character": "f",
-    "length": 27,
-    "edit": false
+    "length": 27
   },
   {
     "clip": "1370",
@@ -17918,9 +17832,8 @@
     "extra": 4.742,
     "source": "-Tamam. -Aa! Kim yiyecek bunları?",
     "target": "-Ибзиоуп. –Аа! Изфода арҭ?",
-    "character": "",
-    "length": 33,
-    "edit": true
+    "character": "m+f",
+    "length": 33
   },
   {
     "clip": "1373",
@@ -18050,8 +17963,7 @@
     "source": "Engin, ben diyorum ki...",
     "target": "Енгьин, сара убас ҟасҵоит",
     "character": "f",
-    "length": 24,
-    "edit": false
+    "length": 24
   },
   {
     "clip": "1383",
@@ -18116,8 +18028,7 @@
     "source": "Çocuk ispatlamamı isteyecek, aptal değil.",
     "target": "аҷкәын агәра исыргарц иҭаххоит, дгаӡаӡам.",
     "character": "f",
-    "length": 41,
-    "edit": false
+    "length": 41
   },
   {
     "clip": "1388",
@@ -18442,8 +18353,7 @@
     "source": "Bizi de yakalatmak için maşa gibi kullandılar.",
     "target": "Ҳаргьы, иаанаҳкыларц азы рхы ҳадырхәеит.",
     "character": "m",
-    "length": 46,
-    "edit": false
+    "length": 46
   },
   {
     "clip": "1413",
@@ -19157,9 +19067,8 @@
     "extra": 0.726,
     "source": "-Yeter artık. -Ne yeter be?",
     "target": "-Иазхоит шьҭа. –Изакәи иазхо?",
-    "character": "",
-    "length": 27,
-    "edit": true
+    "character": "m+f",
+    "length": 27
   },
   {
     "clip": "1468",
@@ -19184,9 +19093,8 @@
     "extra": 0.081,
     "source": "-Tamam. -Ne tamam?",
     "target": "-Ибзиоуп. –Иарбан ибзиоу?",
-    "character": "",
-    "length": 18,
-    "edit": true
+    "character": "m+f",
+    "length": 18
   },
   {
     "clip": "1470",
@@ -19198,9 +19106,8 @@
     "extra": 0.081,
     "source": "-Telafi edeceğiz artık, tamam. -Neyi telafi ediyorsun Ozan?",
     "target": "-Иҳарҽеип, шьҭа. –Иурҽеиуеи, Озан?",
-    "character": "",
-    "length": 59,
-    "edit": true
+    "character": "m+f",
+    "length": 59
   },
   {
     "clip": "1471",
@@ -19225,9 +19132,8 @@
     "extra": 0.25,
     "source": "-Tamam, yeter artık. -Ne yeter, karakollarda sürün...",
     "target": "-Иазхоит шьҭа. –Закәи иазхо? Амилициа ҳрылоуп...",
-    "character": "",
-    "length": 53,
-    "edit": true
+    "character": "m+f",
+    "length": 53
   },
   {
     "clip": "1473",
@@ -19239,9 +19145,8 @@
     "extra": 0.081,
     "source": "Aa! Beyefendi, ne olu... Beyefendi!",
     "target": "Аа! Шәызҿуи, иҟашә... Ҳаҭыр зқәу!",
-    "character": "m",
-    "length": 35,
-    "edit": true
+    "character": "m+f",
+    "length": 35
   },
   {
     "clip": "1474",
@@ -19526,9 +19431,8 @@
     "extra": 5.727,
     "source": "-Görüşmek üzere. -Görüşürüz.",
     "target": "-Ҳаибабап. –Ҳаибабап.",
-    "character": "",
-    "length": 28,
-    "edit": true
+    "character": "m+f",
+    "length": 28
   },
   {
     "clip": "1496",
@@ -19540,9 +19444,8 @@
     "extra": 1.726,
     "source": "-Bu neydi şimdi? -Bence tatlıydı.",
     "target": "-Ари иаанагои? –Даара дхаан.",
-    "character": "f",
-    "length": 33,
-    "edit": true
+    "character": "m+f",
+    "length": 33
   },
   {
     "clip": "1497",
@@ -19632,9 +19535,8 @@
     "extra": 5.391,
     "source": "-Afiyet olsun komiserim. -Sağ ol.",
     "target": "-Гәаҧхачара умаз!  –Иҭабуп.",
-    "character": "",
-    "length": 33,
-    "edit": true
+    "character": "m+f",
+    "length": 33
   },
   {
     "clip": "1504",
@@ -19724,9 +19626,8 @@
     "extra": 1.047,
     "source": "-Ee, benden izin almaya mı geldin? -Hayır tabii ki.",
     "target": "-Ее, сара сҟны азин ылыбхуама? –Мамоу, ҳәарада.",
-    "character": "",
-    "length": 51,
-    "edit": true
+    "character": "m+f",
+    "length": 51
   },
   {
     "clip": "1511",
@@ -19777,9 +19678,8 @@
     "extra": 0.081,
     "source": "-Ne diyorsun? -Ne var?",
     "target": "-Ибҳәо закәи бара? –Иамоуи?",
-    "character": "",
-    "length": 22,
-    "edit": true
+    "character": "m+f",
+    "length": 22
   },
   {
     "clip": "1515",
@@ -19843,9 +19743,8 @@
     "extra": 0.081,
     "source": "-Yaparsın. -Hasbinallah!",
     "target": "-Иҟауҵоит. –Иа Анцәа!",
-    "character": "",
-    "length": 24,
-    "edit": true
+    "character": "m+f",
+    "length": 24
   },
   {
     "clip": "1520",
@@ -19870,9 +19769,8 @@
     "extra": 0.101,
     "source": "-Nerem sana benziyor be? -Bana benziyorsun tabii.",
     "target": "-Бара сабабеиԥшу? –Ҳәарада усеиԥшуп.",
-    "character": "",
-    "length": 49,
-    "edit": true
+    "character": "m+f",
+    "length": 49
   },
   {
     "clip": "1522",
@@ -19975,9 +19873,8 @@
     "extra": 0.156,
     "source": "-İstediğini yaptım, Çınar'la görüştüm. -Hayır demiştin.",
     "target": "-Иуҭахыз ҟасҵеит, Чынар дызбеит. –Мап бымкызи?",
-    "character": "",
-    "length": 55,
-    "edit": true
+    "character": "m+f",
+    "length": 55
   },
   {
     "clip": "1530",
@@ -20015,9 +19912,8 @@
     "extra": 1.493,
     "source": "-Tamam. -Sanırım biraz çözdüm.",
     "target": "-Ибзиоуп. –Сгәанала маҷк еилсыргеит.",
-    "character": "",
-    "length": 30,
-    "edit": true
+    "character": "m+f",
+    "length": 30
   },
   {
     "clip": "1533",
@@ -20120,9 +20016,8 @@
     "extra": 3.102,
     "source": "...belli ki anlaşmanın nesnesi. -Öğrenmenin tek yolu var.",
     "target": "...аказы еицәажәеит. –Аилкаара мҩак ауп иамоу.",
-    "character": "f",
-    "length": 57,
-    "edit": true
+    "character": "m+f",
+    "length": 57
   },
   {
     "clip": "1541",
@@ -20161,8 +20056,7 @@
     "source": "Şimdi sen kılçığı takıp gidince...",
     "target": "Иацы уара  уанцанахыс",
     "character": "m",
-    "length": 34,
-    "edit": false
+    "length": 34
   },
   {
     "clip": "1544",
@@ -20174,7 +20068,7 @@
     "extra": 2.062,
     "source": "...dünden beri düşünüyorum.",
     "target": "...акыр сазхәыцуан.",
-    "character": "",
+    "character": "m",
     "length": 27
   },
   {
@@ -20473,9 +20367,8 @@
     "extra": 5.188,
     "source": "-Abim nerede? O niye gelmedi? -Sana sinirli olduğu için olabilir mi?",
     "target": "-Сашьа дабаҟоу? Уи дзымааи? –Уара дахьузгәаау акәхап?",
-    "character": "",
-    "length": 68,
-    "edit": true
+    "character": "m+f",
+    "length": 68
   },
   {
     "clip": "1568",
@@ -20539,9 +20432,8 @@
     "extra": 0.495,
     "source": "-Alo? -Alo.",
     "target": "-Алло? –Алло.",
-    "character": "",
-    "length": 11,
-    "edit": true
+    "character": "m+f",
+    "length": 11
   },
   {
     "clip": "1573",
@@ -20566,9 +20458,8 @@
     "extra": 10.977,
     "source": "-Şimdi sana konum atacağım. -Tamam, geliyorum.",
     "target": "-Уажәы сахьыҟоу адрес узынасышьҭуеит. –Ибзиоуп, снеиуеит.",
-    "character": "",
-    "length": 46,
-    "edit": true
+    "character": "m+f",
+    "length": 46
   },
   {
     "clip": "1575",
@@ -20580,9 +20471,8 @@
     "extra": 0.156,
     "source": "-Alo? -Alo, Çınar, çıkmadın değil mi?",
     "target": "-Алло?  -Алло, Чынар, удәылымҵӡаци?",
-    "character": "",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "1576",
@@ -20698,9 +20588,8 @@
     "extra": 0.428,
     "source": "-Kıyafet getirdin mi? -Getirdim, arabada.",
     "target": "-Амаҭәа сзааугама? –Иаазгеит, амашьына иҭоуп.",
-    "character": "",
-    "length": 41,
-    "edit": true
+    "character": "m+f",
+    "length": 41
   },
   {
     "clip": "1585",
@@ -20751,9 +20640,8 @@
     "extra": 0.234,
     "source": "-Hocanın karısı, yanlış anladı. -Neyi yanlış anladı İnci?",
     "target": "-Озан иԥҳәыс ииашамкәа еилылкааит. –Изакәи илзеилымкааз?",
-    "character": "",
-    "length": 57,
-    "edit": true
+    "character": "m+f",
+    "length": 57
   },
   {
     "clip": "1589",
@@ -20856,9 +20744,8 @@
     "extra": 0.733,
     "source": "-O nasıl olacak? -Bilmiyorum.",
     "target": "-Уи ишҧа? –Исыздыруам.",
-    "character": "",
-    "length": 29,
-    "edit": true
+    "character": "m+f",
+    "length": 29
   },
   {
     "clip": "1597",
@@ -20883,9 +20770,8 @@
     "extra": 0.081,
     "source": "-Para getirdin mi? -Getirdim.",
     "target": "-Аԥара сзааугама? –Ибзаазгеит.",
-    "character": "",
-    "length": 29,
-    "edit": true
+    "character": "m+f",
+    "length": 29
   },
   {
     "clip": "1599",
@@ -20910,9 +20796,8 @@
     "extra": 0.343,
     "source": "-Tamam. Şifresi? -4123",
     "target": "-Ибзиоуп. Акод...?  - 4123",
-    "character": "",
-    "length": 22,
-    "edit": true
+    "character": "m+f",
+    "length": 22
   },
   {
     "clip": "1601",
@@ -20950,9 +20835,8 @@
     "extra": 0.14,
     "source": "-Bak saat geç oldu, emin misin? -Başıma daha kötü ne gelebilir ki?",
     "target": "-Аҵх цахьеит, бхы гәаҭ. –Ари аасҭа еицәоу сзықәшәари?",
-    "character": "",
-    "length": 66,
-    "edit": true
+    "character": "m+f",
+    "length": 66
   },
   {
     "clip": "1604",
@@ -21146,9 +21030,8 @@
     "extra": 1.805,
     "source": "-Nereye? -Bilmiyorum, bana söylemedi.",
     "target": "-Дабацеи? –Исыздырӡом, исалымҳәаӡеит.",
-    "character": "",
-    "length": 37,
-    "edit": true
+    "character": "m+f",
+    "length": 37
   },
   {
     "clip": "1619",
@@ -21589,9 +21472,8 @@
     "extra": 42.159,
     "source": "-Çabuk. -Tamam, gir.",
     "target": "-Лассы. –Ибзиоуп, бҭал.",
-    "character": "",
-    "length": 20,
-    "edit": true
+    "character": "m+f",
+    "length": 20
   },
   {
     "clip": "1653",
@@ -22279,9 +22161,8 @@
     "extra": 0.608,
     "source": "-Tamam. -O ifade bugün alınacak.",
     "target": "-Ибзиоуп. –Иҿахәы иахьа имырхроуп.",
-    "character": "",
-    "length": 32,
-    "edit": true
+    "character": "m+f",
+    "length": 32
   },
   {
     "clip": "1706",
@@ -22800,9 +22681,8 @@
     "extra": 0.081,
     "source": "-Çıldıracağım. -Bana da yazıklar olsun.",
     "target": "-Сеилаԥсоит. –Саргьы лахь соуааит.",
-    "character": "",
-    "length": 39,
-    "edit": true
+    "character": "m+f",
+    "length": 39
   },
   {
     "clip": "1746",
@@ -22814,9 +22694,8 @@
     "extra": 0.081,
     "source": "-Zafer, bir de bana, ne oluyor? -Evlat değil, ne yaparsan oymuş.",
     "target": "-Зафер, суҳәоит, иҟалеи? –Ҳара дҳаҧҳаӡаи уи. ",
-    "character": "",
-    "length": 64,
-    "edit": true
+    "character": "m+f",
+    "length": 64
   },
   {
     "clip": "1747",
@@ -22867,9 +22746,8 @@
     "extra": 0.081,
     "source": "-O artık bu ailenin bir parçası değil. -Sen ne diyorsun?",
     "target": "-Уи ҳҭаацәара датәӡам. –Иуҳәо иаанагои?",
-    "character": "",
-    "length": 56,
-    "edit": true
+    "character": "m+f",
+    "length": 56
   },
   {
     "clip": "1751",
@@ -22894,9 +22772,8 @@
     "extra": 0.766,
     "source": "-Baba, lütfen öyle deme. -Ağzından çıkanı kulağın duyuyor mu?",
     "target": "-Саб, ус умҳәан. –Уҿы иаҳәо улымҳа иаҳауама?",
-    "character": "",
-    "length": 61,
-    "edit": true
+    "character": "m+f",
+    "length": 61
   },
   {
     "clip": "1753",
@@ -22921,9 +22798,8 @@
     "extra": 0.081,
     "source": "-İkincisini de kaybedemem. -Zaten kaybetmişiz.",
     "target": "-Аҩбатәигьы дысзгәыӷьуам. –Усгьы даҳцәыӡхьеит.",
-    "character": "",
-    "length": 46,
-    "edit": true
+    "character": "m+f",
+    "length": 46
   },
   {
     "clip": "1755",
@@ -23078,9 +22954,8 @@
     "extra": 0.081,
     "source": "-Sen kafayı mı yedin? Ne yapıyorsun? -Abla, yapma.",
     "target": "-Бхы еилагама бара? Иҟабҵои? –Саҳәшьа, баангыл.",
-    "character": "",
-    "length": 50,
-    "edit": true
+    "character": "m+f",
+    "length": 50
   },
   {
     "clip": "1767",
