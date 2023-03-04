@@ -41,6 +41,7 @@ export class DubComponent {
   subtitles = <Subtitle[]>[];
   metadata: Metadata[];
   curChar: Metadata;
+  newChar: Metadata;
   items = <Item[]>[];
   initSub: Subtitle[];
   subtitlesFilter: Subtitle[];
@@ -57,6 +58,7 @@ export class DubComponent {
   isSaved: boolean;
   isFont: boolean;
   isHide: boolean;
+  isAddChar: boolean;
   error;
   dbService;
 
@@ -186,6 +188,7 @@ export class DubComponent {
     this.extra = 0;
     this.isTranslate = false;
     this.isSource = false;
+    this.isAddChar = false;
     this.isReadOnlysen = true;
     this.isSubtitlesSaved = true;
     this.subtitlesFilter = [];
@@ -669,6 +672,36 @@ export class DubComponent {
     range.collapse(false);
     selection.addRange(range);
     $("#sentence")[0].focus();
+  }
+
+  addChar() {
+    this.isAddChar?this.isAddChar=false:this.isAddChar=true;
+    this.newChar = {charType:"",charIndex: 0, charLabel:"", active: false};
+  }
+
+  saveChar() {
+    let label = this.newChar.charLabel.trim();
+    if (label != "" && !this.metadata.find(char => char.charLabel == label)) {
+      this.newChar.charType = this.makeCharType();
+      this.metadata.push(this.newChar);
+      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+      this.isAddChar = false;
+    }
+  }
+
+  makeCharType() {
+    let result = '';
+    let alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let char;
+    let isUnique = false;
+    while (!isUnique) {
+      result = alpha.charAt(Math.floor(Math.random() * alpha.length));
+      result += alpha.charAt(Math.floor(Math.random() * alpha.length));
+      char = this.metadata.find(char => char.charType == result);
+      if (char == undefined)
+        isUnique = true;
+    }
+    return result;
   }
 
   async onUpload() {

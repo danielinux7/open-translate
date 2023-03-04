@@ -17,13 +17,23 @@
             </ul>
         </div>
         <div class="row mb-0 mr-1">
-            <div class="col-8 nav-scroll char">
-                <ul class="mb-0 nav-all nav-pills">
-                    <li *ngFor="let char of metadata" class="green2 nav-item nav-item-all bc" [class.active-item]="char.active"
-                        (click)="onChangeChar(char)">
-                        <span>{{char.charLabel}}</span>
-                    </li>
-                </ul>
+            <div class="col-8">
+                <div class="nav-scroll char">
+                    <ul class="mb-0 nav-all nav-pills">
+                        <li *ngFor="let char of metadata" class="green2 nav-item nav-item-all bc" [class.active-item]="char.active"
+                            (click)="onChangeChar(char)">
+                            <span>{{char.charLabel}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <button (click)="addChar()" type="button" class="p-0 add-char btn no-box-shadow">
+                    <span *ngIf="!isAddChar" class="green material-icons-outlined">
+                        add
+                    </span>
+                    <span *ngIf="isAddChar" class="green material-icons-outlined">
+                        clear
+                    </span>
+                </button>
             </div>
             <div class="col-4 p-0 right-section">
                 <button type="button" class="p-0 fs-28 btn no-box-shadow" (click)="onNoise()">
@@ -100,6 +110,19 @@
                 </div>
                 <!--  -->
             </div>
+        </div>
+        <div *ngIf="isAddChar" class="row m-0">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <span>Ахьӡ: </span>
+                <input class="char-field" [(ngModel)]='newChar.charLabel' />
+                <button (click)="saveChar()" class="p-0 btn no-box-shadow">
+                    <span class="green char-save material-icons-outlined">
+                        save
+                    </span>
+                </button>
+            </div>
+            <div class="col-2"></div>
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>

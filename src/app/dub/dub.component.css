@@ -366,6 +366,15 @@
   border-right: 1px solid #59cbb7;
 }
 
+.char-field {
+  width: 100px;
+  height: 24px
+}
+
+.char-save {
+  line-height: inherit;
+}
+
 .active-item {
   color: white;
   background: black;
@@ -375,4 +384,14 @@
   position: absolute;
   top: -10px;
   left: -10px;
+}
+
+.add-char {
+  position: absolute;
+  top: 3px;
+  right: -5px;
+}
+
+.add-char span {
+  font-size: 18px;
 }
