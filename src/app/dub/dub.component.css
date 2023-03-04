@@ -349,6 +349,17 @@
   padding-bottom: 6px;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.nav-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 .char {
   border-right: 1px solid #59cbb7;
 }
