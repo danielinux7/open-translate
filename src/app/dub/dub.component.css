@@ -204,10 +204,6 @@
   text-align: center;
 }
 
-.curSub{
-  color: #212529
-}
-
 .modal-body {
   text-align: center;
   color: #212529;
@@ -224,19 +220,22 @@
   width: 90%;
 }
 
-.cursub {
-  border-radius: 15%;
+.curSub {
+  z-index: 1;
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  color: #212529;
+  background-color: #f5f5f5;
   border:1px solid black;
-  width: 43px;
   text-align: center;
+  padding-left: 5px;
+  padding-right: 15px;
+  margin: 5px;
 }
 
 .gender, .filter{
   display: inline-block;
-}
-
-.filter-bg {
-  background-color: rgb(3, 3, 3);
 }
 
 .filter {
@@ -271,7 +270,12 @@
 
 .count {
   display: inline-block;
-  min-width: 130px;
+}
+
+.count input {
+  width: 50px;
+  height: 18px;
+  border: 1px solid #444444;
 }
 
 .video-section {
@@ -343,6 +347,10 @@
   overflow-x: auto;
   white-space: nowrap;
   padding-bottom: 6px;
+}
+
+.char {
+  border-right: 1px solid #59cbb7;
 }
 
 .active-item {

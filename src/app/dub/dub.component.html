@@ -16,26 +16,14 @@
                 </li>
             </ul>
         </div>
-        <div class="nav-scroll">
-            <ul class="mb-0 nav-all nav-pills">
-                <li *ngFor="let char of metadata" class="green nav-item nav-item-all bc" [class.active-item]="char.active"
-                    (click)="onChangeChar(char)">
-                    <span>{{char.charLabel}}</span>
-                </li>
-            </ul>
-        </div>
-        <div class="row mb-0 mt-1 ml-1 mr-1">
-            <div class="p-0 col-8 curSub">
-                <div *ngIf="!isFilter" class="count">
-                    <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
-                    <span>/{{subtitles.length-1}}</span>
-                    <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
-                </div>
-                <div *ngIf="isFilter" class="count">
-                    <input class="cursub filter-bg" ngModel="{{indexFilter}}" type="number" />
-                    <span>/{{subtitlesFilter.length-1}}</span>
-                    <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
-                </div>
+        <div class="row mb-0 mr-1">
+            <div class="col-8 nav-scroll char">
+                <ul class="mb-0 nav-all nav-pills">
+                    <li *ngFor="let char of metadata" class="green2 nav-item nav-item-all bc" [class.active-item]="char.active"
+                        (click)="onChangeChar(char)">
+                        <span>{{char.charLabel}}</span>
+                    </li>
+                </ul>
             </div>
             <div class="col-4 p-0 right-section">
                 <button type="button" class="p-0 fs-28 btn no-box-shadow" (click)="onNoise()">
@@ -116,6 +104,18 @@
         <div class="row m-0">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 ml-3 mr-3 video-section">
+                <div class="curSub">
+                    <div *ngIf="!isFilter" class="count">
+                        <input [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
+                        <span (click)="onToggleFilter()"> /{{subtitles.length-1}}</span>
+                        <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                    </div>
+                    <div *ngIf="isFilter" class="count">
+                        <input class="filter-bg" ngModel="{{indexFilter}}" type="number" />
+                        <span (click)="onToggleFilter()"> /{{subtitlesFilter.length-1}}</span>
+                        <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                    </div>
+                </div>
                 <video width="100%" height="100%" id="video" preload="auto" playsinline>
                     <!-- <source [src]="urlorginal+'.webm'" type="video/webm"> -->
                     <source [src]="urlorginal+'.mp4'" type="video/mp4">
