@@ -707,14 +707,15 @@ export class DubComponent {
   async onUpload() {
     let file = document.getElementById("file") as HTMLInputElement;
     this.error = "";
-    let num = 0;
+    let total = 0;
+    let current = 0;
     let numbers = /^[0-9]+$/;
     this.progressbarValue = 0.0;
     JSZip.loadAsync(file.files[0])
       .then(async function (zip: JSZip) {
         zip.forEach(function (relativePath, entry) {
           if (!entry.dir && entry.name.match(numbers))
-            num++;
+          total++;
         })
         if (zip.files[this.curItem.path + ".json"]) {
           zip.files[this.curItem.path + "_metadata.json"].async('string').then(json => {
@@ -730,7 +731,7 @@ export class DubComponent {
             $("#sentence").text(this.currentSub.target);
             this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
             this.playingOriginal.load();
-            if (num == 0) {
+            if (total == 0) {
               file.value = ""
               $("#uploadModel").modal('hide');
             }
@@ -741,8 +742,11 @@ export class DubComponent {
                 blob = new Blob([blob], { type: blob.type });
                 let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
                 await store.put({ "clip": entry.name, "audio": blob, "duration": 0 })
-                file.value = ""
-                $("#uploadModel").modal('hide');
+                current++;
+                this.progressbarValue = (100.0 / total) * current;
+                if (current == total) {
+                  $("#uploadModel").modal('hide');
+                  file.value = ""
                 store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
                 let dub = await store.get(this.currentSub["clip"]);
                 if (!this.url)
@@ -760,6 +764,7 @@ export class DubComponent {
                   this.allowRecording = true;
                   this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
                 }
+              }
               });
             }
           }.bind(this));
