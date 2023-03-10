@@ -67,6 +67,22 @@
             }
         ]
     },
+        {
+        "label": "Амацәазқәа рымчхара змоу",
+        "description": "Амацәазқәа рымчхара змоу",
+        "active": false,
+        "labelColor": "yellow",
+        "path": "lotr",
+        "collection": [
+            {
+                "label": "1",
+                "description": "Амацәазқәа рымчхара змоу",
+                "active": true,
+                "labelColor": "red",
+                "path": "lotr/1"
+            }
+        ]
+    },
     {
         "label": "Џьули Цезар",
         "description": "Џьули Цезар",
