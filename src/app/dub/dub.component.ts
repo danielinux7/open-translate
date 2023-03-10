@@ -59,6 +59,7 @@ export class DubComponent {
   isFont: boolean;
   isHide: boolean;
   isAddChar: boolean;
+  canPlay: boolean;
   error;
   dbService;
 
@@ -185,6 +186,7 @@ export class DubComponent {
   async ngOnInit() {
     window.onload = () => {this.isFont = true;}
     this.errorBar = "";
+    this.canPlay = false;
     this.extra = 0;
     this.isTranslate = false;
     this.isSource = false;
@@ -224,6 +226,9 @@ export class DubComponent {
       $("#offlineModel").modal('show');
     }).bind(this);
     this.playingOriginal = document.getElementById('video') as HTMLMediaElement;
+    this.playingOriginal.oncanplay = (function () {
+      this.canPlay = true;
+    }).bind(this);  
     this.playingOriginal.onended = (function () {
       this.isPlayingOriginal = false;
       this.allowRecording = true;
@@ -268,6 +273,7 @@ export class DubComponent {
   async onNext() {
     if (this.curChar.charIndex < this.subtitles.length - 1) {
       this.errorBar = "";
+      this.canPlay = false;
       this.extra = 0;
       this.curChar.charIndex = this.curChar.charIndex + 1;
       this.inputSub = this.curChar.charIndex;
@@ -321,6 +327,7 @@ export class DubComponent {
   async onNextFilter() {
     if (this.indexFilter < this.subtitlesFilter.length-1) {
       this.errorBar = "";
+      this.canPlay = false;
       this.extra = 0;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
@@ -372,6 +379,7 @@ export class DubComponent {
   async onPrevious() {
     if (this.curChar.charIndex > 0) {
       this.errorBar = "";
+      this.canPlay = false;
       this.extra = 0;
       this.curChar.charIndex = this.curChar.charIndex - 1;
       this.inputSub = this.curChar.charIndex;
@@ -425,6 +433,7 @@ export class DubComponent {
   async onPreviousFilter() {
     if (this.indexFilter > 0) {
       this.errorBar = "";
+      this.canPlay = false;
       this.extra = 0;
       this.saveSubtitle();
       if (this.isReadOnlysen === false) {
@@ -477,6 +486,7 @@ export class DubComponent {
     this.isSubFilter = false;
     if (this.inputSub <= this.subtitles.length - 1 && this.inputSub >= 0) {
       this.extra = 0;
+      this.canPlay = false;
       this.errorBar = "";
       this.currentSub = this.subtitles[this.inputSub]
       this.curChar.charIndex = this.inputSub;
@@ -607,11 +617,16 @@ export class DubComponent {
       $("#sentence")[0].focus();
     }
     if (!this.isPlayingOriginal) {
-      this.isPlayingOriginal = true;
-      this.playingOriginal.muted = false;
-      this.playingOriginal.load();
-      this.playingOriginal.play();
-      this.startTimer("playOriginal");
+      if (this.canPlay == true) {
+        this.isPlayingOriginal = true;
+        this.playingOriginal.muted = false;
+        this.playingOriginal.load();
+        this.playingOriginal.play();
+        this.startTimer("playOriginal");
+      }
+      else {
+        $("#offlineModel").modal('show');
+      }
     }
     else {
       this.isPlayingOriginal = false;
@@ -624,6 +639,7 @@ export class DubComponent {
     sub = sub.filter(sub => sub["character"] == char.charType || char.charType == "all");
     if (sub.length > 0){
       this.errorBar = "";
+      this.canPlay = false;
       this.extra = 0;
       this.isFilter = false;
       this.isSubFilter = false;
