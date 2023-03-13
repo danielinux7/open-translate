@@ -246,6 +246,10 @@
   position: absolute;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .sub-filter {
   font-size: 12px;
   top: 0px;
@@ -275,7 +279,7 @@
 }
 
 .count input {
-  width: 50px;
+  width: 60px;
   height: 18px;
   border: 1px solid #444444;
 }

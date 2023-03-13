@@ -3,14 +3,14 @@
         <div>
             <div class="mr-2 nav-scroll char">
                 <ul class="mb-0 nav-all nav-pills">
-                    <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} btn nav-item nav-item-all bc"
+                    <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} pointer nav-item nav-item-all bc"
                         [class.active-item]="item.active" (click)="setCurItem(item)">
                         <span>{{item.label}}</span>
                     </li>
                 </ul>
             </div>
             <ul *ngIf="curParItem&&isHide" class="nav nav-pills nav-scroll">
-                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} btn nav-item nav-item-col bc"
+                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} pointer nav-item nav-item-col bc"
                     [class.active-item]="item['active']" (click)="setCurItemCol(item)">
                     <span>{{item['label']}}</span>
                 </li>
@@ -20,7 +20,7 @@
             <div class="col-8">
                 <div class="nav-scroll char">
                     <ul class="mb-0 nav-all nav-pills">
-                        <li *ngFor="let char of metadata" class="green2 btn nav-item nav-item-all bc" [class.active-item]="char.active"
+                        <li *ngFor="let char of metadata" class="green2 pointer nav-item nav-item-all bc" [class.active-item]="char.active"
                             (click)="onChangeChar(char)">
                             <span>{{char.charLabel}}</span>
                         </li>
@@ -130,13 +130,13 @@
                 <div class="curSub">
                     <div *ngIf="!isFilter" class="count">
                         <input [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
-                        <span (click)="onToggleFilter()"> /{{subtitles.length-1}}</span>
-                        <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                        <span class="pointer" (click)="onToggleFilter()"> /{{subtitles.length-1}}</span>
+                        <span class="pointer filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                     </div>
                     <div *ngIf="isFilter" class="count">
                         <input class="filter-bg" ngModel="{{indexFilter}}" type="number" />
-                        <span (click)="onToggleFilter()"> /{{subtitlesFilter.length-1}}</span>
-                        <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                        <span class="pointer" (click)="onToggleFilter()"> /{{subtitlesFilter.length-1}}</span>
+                        <span *ngIf="isFont" class="pointer active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
                     </div>
                 </div>
                 <video width="100%" height="100%" id="video" preload="auto" playsinline>
