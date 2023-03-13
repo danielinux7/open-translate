@@ -1,0 +1,20 @@
+[
+  {
+    "charType": "all",
+    "charIndex": 0,
+    "charLabel": "Зегьы",
+    "active": true
+  },
+  {
+    "charType": "f",
+    "charIndex": 0,
+    "charLabel": "Аҳәса",
+    "active": false
+  },
+  {
+    "charType": "m",
+    "charIndex": 0,
+    "charLabel": "Ахаҵа",
+    "active": false
+  }
+]
