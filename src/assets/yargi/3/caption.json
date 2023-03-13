@@ -464,7 +464,7 @@
         "extra": 0.514,
         "source": "Sen de...",
         "target": "Уаргьы...",
-        "character": "m",
+        "character": "f",
         "length": 9
     },
     {
@@ -3623,7 +3623,7 @@
         "extra": 5.607,
         "source": "Hadi sen git.",
         "target": "Уца уара.",
-        "character": "m",
+        "character": "f",
         "length": 13
     },
     {
@@ -11098,7 +11098,7 @@
         "extra": 0.0,
         "source": "-Allah seni kahretsin!",
         "target": "-Анцәа илахь уоуааит!",
-        "character": "m",
+        "character": "f",
         "length": 23
     },
     {
