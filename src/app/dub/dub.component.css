@@ -58,12 +58,14 @@
   border: 2px solid #FF4F5E;
 }
 
-.edit-gender {
+.edit-char {
   cursor: pointer;
   position: absolute;
   top: 5px;
-  font-size: 20px;
-  padding-right: 5px;
+  font-size: 10px;
+  width: 40%;
+  border-left: 1px solid #ffd740;
+  border-right: 1px solid #ffd740;
 }
 
 .show-source {
@@ -204,10 +206,6 @@
   text-align: center;
 }
 
-.curSub{
-  color: #212529
-}
-
 .modal-body {
   text-align: center;
   color: #212529;
@@ -224,19 +222,22 @@
   width: 90%;
 }
 
-.cursub {
-  border-radius: 15%;
+.curSub {
+  z-index: 1;
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  color: #212529;
+  background-color: #f5f5f5;
   border:1px solid black;
-  width: 43px;
   text-align: center;
+  padding-left: 5px;
+  padding-right: 15px;
+  margin: 5px;
 }
 
 .gender, .filter{
   display: inline-block;
-}
-
-.filter-bg {
-  background-color: rgb(3, 3, 3);
 }
 
 .filter {
@@ -271,7 +272,12 @@
 
 .count {
   display: inline-block;
-  min-width: 130px;
+}
+
+.count input {
+  width: 50px;
+  height: 18px;
+  border: 1px solid #444444;
 }
 
 .video-section {
@@ -342,7 +348,31 @@
 .nav-scroll {
   overflow-x: auto;
   white-space: nowrap;
-  padding-bottom: 6px;
+  margin-bottom: 5px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.nav-scroll {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.char {
+  border-right: 1px solid #59cbb7;
+}
+
+.char-field {
+  width: 100px;
+  height: 24px
+}
+
+.char-save {
+  line-height: inherit;
 }
 
 .active-item {
@@ -354,4 +384,14 @@
   position: absolute;
   top: -10px;
   left: -10px;
+}
+
+.add-char {
+  position: absolute;
+  top: 3px;
+  right: -5px;
+}
+
+.add-char span {
+  font-size: 18px;
 }

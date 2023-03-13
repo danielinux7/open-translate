@@ -1,42 +1,39 @@
 <div class="container-xl p-0 height-google" (click)="focusOnEdit()">
     <div class="shadow-google bg-white">
-        <div class="row mb-0 mt-1 ml-1 mr-1">
-            <div class="p-0 col-8 curSub">
-                <div *ngIf="!isFilter" class="count">
-                    <input class="cursub" [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
-                    <span>/{{dubCount}}/{{subtitles.length}}</span>
-                    <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+        <div>
+            <div class="mr-2 nav-scroll char">
+                <ul class="mb-0 nav-all nav-pills">
+                    <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} nav-item nav-item-all bc"
+                        [class.active-item]="item.active" (click)="setCurItem(item)">
+                        <span>{{item.label}}</span>
+                    </li>
+                </ul>
+            </div>
+            <ul *ngIf="curParItem&&isHide" class="nav nav-pills nav-scroll">
+                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} nav-item nav-item-col bc"
+                    [class.active-item]="item['active']" (click)="setCurItemCol(item)">
+                    <span>{{item['label']}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="row mb-0 mr-1">
+            <div class="col-8">
+                <div class="nav-scroll char">
+                    <ul class="mb-0 nav-all nav-pills">
+                        <li *ngFor="let char of metadata" class="green2 nav-item nav-item-all bc" [class.active-item]="char.active"
+                            (click)="onChangeChar(char)">
+                            <span>{{char.charLabel}}</span>
+                        </li>
+                    </ul>
                 </div>
-                <div *ngIf="isFilter" class="count">
-                    <input class="cursub filter-bg" ngModel="{{indexFilter+1}}" type="number" />
-                    <span>/{{dubCountFilter}}/{{subtitlesFilter.length}}</span>
-                    <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
-                </div>
-                <div class="gender">
-                    <input hidden type="radio" (click)="onChangeGender(male)" #male class="btn-check" name="gender"
-                        value="m" id="male" [checked]="subindex?subindex[0]=='male':false">
-                    <label *ngIf="isFont" class="m-0 p-0 btn m no-box-shadow material-icons-outlined" for="male">
-                        <div class="male">
-                            man
-                        </div>
-                    </label>
-
-                    <input hidden type="radio" (click)="onChangeGender(female)" #female class="btn-check" name="gender"
-                        value="f" id="female" [checked]="subindex?subindex[0]=='female':false">
-                    <label *ngIf="isFont" class="m-0 p-0 btn f no-box-shadow material-icons-outlined" for="female">
-                        <div class="female">
-                            woman
-                        </div>
-                    </label>
-
-                    <input hidden type="radio" (click)="onChangeGender(all)" #all class="btn-check" name="gender"
-                        value="all" id="all" [checked]="subindex?subindex[0]=='all':false">
-                    <label *ngIf="isFont" class="m-0 p-0 btn wc no-box-shadow material-icons-outlined" for="all">
-                        <div class="male">
-                            accessibility
-                        </div>
-                    </label>
-                </div>
+                <button (click)="addChar()" type="button" class="p-0 add-char btn no-box-shadow">
+                    <span *ngIf="!isAddChar" class="green material-icons-outlined">
+                        add
+                    </span>
+                    <span *ngIf="isAddChar" class="green material-icons-outlined">
+                        clear
+                    </span>
+                </button>
             </div>
             <div class="col-4 p-0 right-section">
                 <button type="button" class="p-0 fs-28 btn no-box-shadow" (click)="onNoise()">
@@ -114,23 +111,34 @@
                 <!--  -->
             </div>
         </div>
-        <div>
-            <div class="nav-scroll">
-                <ul class="mb-0 nav-all nav-pills">
-                    <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} nav-item nav-item-all bc" [class.active-item]="item.active" (click)="setCurItem(item)">
-                        <span>{{item.label}}</span>
-                    </li>
-                </ul>
+        <div *ngIf="isAddChar" class="row m-0">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <span>Ахьӡ: </span>
+                <input class="char-field" [(ngModel)]='newChar.charLabel' />
+                <button (click)="saveChar()" class="p-0 btn no-box-shadow">
+                    <span class="green char-save material-icons-outlined">
+                        save
+                    </span>
+                </button>
             </div>
-            <ul *ngIf="curParItem" class="nav nav-pills nav-scroll">
-                <li *ngFor="let item of curParItem.collection" class="{{item['labelColor']}} nav-item nav-item-col bc" [class.active-item]="item['active']" (click)="setCurItemCol(item)">
-                    <span>{{item['label']}}</span>
-                </li>
-            </ul>
+            <div class="col-2"></div>
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
             <div class="col-sm-8 px-0 ml-3 mr-3 video-section">
+                <div class="curSub">
+                    <div *ngIf="!isFilter" class="count">
+                        <input [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
+                        <span (click)="onToggleFilter()"> /{{subtitles.length-1}}</span>
+                        <span class="filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                    </div>
+                    <div *ngIf="isFilter" class="count">
+                        <input class="filter-bg" ngModel="{{indexFilter}}" type="number" />
+                        <span (click)="onToggleFilter()"> /{{subtitlesFilter.length-1}}</span>
+                        <span *ngIf="isFont" class="active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                    </div>
+                </div>
                 <video width="100%" height="100%" id="video" preload="auto" playsinline>
                     <!-- <source [src]="urlorginal+'.webm'" type="video/webm"> -->
                     <source [src]="urlorginal+'.mp4'" type="video/mp4">
@@ -151,13 +159,13 @@
                     [class.active-edit-warning]="isWarning" (click)="onEdit()">
                     mode_edit
                 </span>
-                <div *ngIf="!isReadOnlysen" class="edit-gender">
-                    <span class="material-icons-outlined" [class.active-edit]="currentSub.gender == 'm'" (click)="editGender('male')">
-                        man
-                    </span>
-                    <span class="material-icons-outlined" [class.active-edit]="currentSub.gender == 'f'" (click)="editGender('female')">
-                        woman
-                    </span>
+                <div *ngIf="!isReadOnlysen" class="nav-scroll edit-char">
+                    <ul class="mb-0 nav-all nav-pills">
+                        <li *ngFor="let char of metadata | slice:1" class="yellow nav-item nav-item-all bc" [class.active-item]="char.charType == currentSub.character"
+                        (click)="editChar(char)">
+                            <span>{{char.charLabel}}</span>
+                        </li>
+                    </ul>
                 </div>
                 <span *ngIf="!isReadOnlysen" class="show-note material-icons-outlined" [class.active-edit]="currentSub.edit" (click)="makeNote()">
                     edit_notifications
@@ -173,10 +181,10 @@
                 </span>
                 <div class="show-save">
                     <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{inputSub}}/{{subCount}}/{{subtitles.length}}
+                        {{inputSub}}/{{subtitles.length-1}}
                     </span>
                     <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{indexFilter+1}}/{{dubCountFilter}}/{{subtitlesFilter.length}}
+                        {{indexFilter+1}}/{{subtitlesFilter.length-1}}
                     </span>
                     <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
                 </div>
