@@ -40,6 +40,7 @@ export class DubComponent {
   currentSub =  <Subtitle>{"source":""};
   subtitles = <Subtitle[]>[];
   metadata: Metadata[];
+  initMetadata: Metadata[];
   curChar: Metadata;
   newChar: Metadata;
   items = <Item[]>[];
@@ -212,7 +213,7 @@ export class DubComponent {
     this.isFilter = false;
     this.isSubFilter = false;
     // this.dubEmpty = false;
-    this.metadata = await this.getAsset("/assets/"+this.curItem.path+"/metadata.json");
+    this.initMetadata = await this.getAsset("/assets/"+this.curItem.path+"/metadata.json");
     this.initSub = await this.getAsset("/assets/"+this.curItem.path+"/caption.json");
     this.subtitles = this.getSubtitles()
     this.currentSub = this.subtitles[this.curChar.charIndex];
@@ -531,7 +532,7 @@ export class DubComponent {
     if (!localStorage.getItem(this.curItem.path))
       localStorage.setItem(this.curItem.path, JSON.stringify(this.initSub,null,2));
     if (!localStorage.getItem(this.curItem.path + "/" + "metadata"))
-      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.initMetadata,null,2));
     this.metadata = JSON.parse(localStorage.getItem(this.curItem.path + "/" + "metadata"));
     this.curChar = this.metadata.filter(char => char.active == true)[0];
     sub = JSON.parse(localStorage.getItem(this.curItem.path));
