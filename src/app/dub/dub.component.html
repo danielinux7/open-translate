@@ -181,10 +181,10 @@
                 </span>
                 <div class="show-save">
                     <span *ngIf="!isReadOnlysen&&!isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{inputSub}}/{{subtitles.length-1}}
+                        {{inputSub+1}}/{{subtitles.length}}
                     </span>
                     <span *ngIf="!isReadOnlysen&&isSubFilter" class="yellow nav-item-all nav-item bc" [class.active-item]="isSaved" (click)="saveCurrent()">
-                        {{indexFilter+1}}/{{subtitlesFilter.length-1}}
+                        {{indexFilter+1}}/{{subtitlesFilter.length}}
                     </span>
                     <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
                 </div>
