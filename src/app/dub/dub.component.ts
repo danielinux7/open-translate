@@ -176,7 +176,7 @@ export class DubComponent {
     else
       this.currentSub.extended = false;
     this.isSubtitlesSaved = false;
-    // this.saveSubtitle();
+    this.saveSubtitle();
   }
   /**
   * Process Error.
@@ -923,16 +923,16 @@ export class DubComponent {
   
   saveSubtitle() {
     if (this.isSubtitlesSaved === false) {
-      this.subtitles = JSON.parse(localStorage.getItem(this.curItem.path));
-      let i = this.subtitles.findIndex((sub => sub["clip"] == this.currentSub["clip"]));
-      this.subtitles[i]["target"] = $("#sentence").text();
-      this.subtitles[i]["character"] = this.currentSub.character;
-      this.subtitles[i]["edit"] = this.currentSub.edit;
-      this.subtitles[i]["extended"] = this.currentSub.extended;
-      localStorage.setItem(this.curItem.path, JSON.stringify(this.subtitles,null,2));
+      let sub = JSON.parse(localStorage.getItem(this.curItem.path));
+      let i = sub.findIndex((sub => sub["clip"] == this.currentSub["clip"]));
+      sub[i]["target"] = $("#sentence").text();
+      sub[i]["character"] = this.currentSub.character;
+      sub[i]["edit"] = this.currentSub.edit;
+      sub[i]["extended"] = this.currentSub.extended;
+      localStorage.setItem(this.curItem.path, JSON.stringify(sub,null,2));
       this.isSubtitlesSaved = true;
       this.isSaved = false;
-      this.onChangeChar(this.curChar);
+      this.subtitles = sub.filter(sub => sub["character"] == this.curChar.charType || this.curChar.charType == "all");
     }
     localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
   }
