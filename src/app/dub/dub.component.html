@@ -47,7 +47,7 @@
                     <span class="download material-icons">download</span>
                     <span class="progress-download">{{progressdownloadValue}}%</span>
                 </button>
-                <button data-toggle="modal" data-target="#uploadModel" type="button" class="p-0 fs-28 btn no-box-shadow">
+                <button data-toggle="modal" data-target="#uploadModel" (click)="uploadModel()" type="button" class="p-0 fs-28 btn no-box-shadow">
                     <span *ngIf="isFont" class="material-icons-outlined">upload</span>
                 </button>
                 <!-- Modal -->

@@ -724,6 +724,10 @@ export class DubComponent {
     return result;
   }
 
+  uploadModel() {
+    this.progressbarValue = 0;
+  }
+
   async onUpload() {
     let file = document.getElementById("file") as HTMLInputElement;
     this.error = "";
