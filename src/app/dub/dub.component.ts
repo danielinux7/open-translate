@@ -176,7 +176,7 @@ export class DubComponent {
     else
       this.currentSub.extended = false;
     this.isSubtitlesSaved = false;
-    this.saveSubtitle();
+    // this.saveSubtitle();
   }
   /**
   * Process Error.
