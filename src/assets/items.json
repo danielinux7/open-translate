@@ -84,6 +84,22 @@
         ]
     },
     {
+        "label": "Крестный отец",
+        "description": "Крестный отец",
+        "active": false,
+        "labelColor": "yellow",
+        "path": "tgf",
+        "collection": [
+            {
+                "label": "1",
+                "description": "Крестный отец",
+                "active": true,
+                "labelColor": "red",
+                "path": "tgf/1"
+            }
+        ]
+    },
+    {
         "label": "Џьули Цезар",
         "description": "Џьули Цезар",
         "active": false,
