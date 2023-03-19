@@ -5,7 +5,7 @@
                 <ul class="mb-0 nav-all nav-pills">
                     <li *ngFor="let item of items | slice:1" class="{{item.labelColor}} pointer nav-item nav-item-all bc"
                         [class.active-item]="item.active" (click)="setCurItem(item)">
-                        <span>{{item.label}}</span>
+                        <span matBadge="{{item.badge}}" matBadgeSize="small" matBadgeColor="warn">{{item.label}}</span>
                     </li>
                 </ul>
             </div>

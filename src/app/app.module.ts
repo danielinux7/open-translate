@@ -11,6 +11,7 @@ import { CookieService} from 'ngx-cookie-service';
 import { DubComponent } from './dub/dub.component';
 import { RouterModule } from '@angular/router';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatBadgeModule} from '@angular/material/badge';
 import {ProgressBarColor} from './dub/progress-bar-color';
 
 @NgModule({
@@ -28,6 +29,7 @@ import {ProgressBarColor} from './dub/progress-bar-color';
     HttpClientModule,
     ClipboardModule,
     MatProgressBarModule,
+    MatBadgeModule,
     RouterModule.forRoot([
     {path: '', component: TranslateComponent},
     {path: 'dub', component: DubComponent},

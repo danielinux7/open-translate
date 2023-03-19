@@ -22,6 +22,7 @@ export interface Item {
   label: string;
   labelColor: string;
   description: string;
+  badge: string;
   active: boolean;
   collection?: [];
   path: string;

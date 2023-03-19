@@ -1042,6 +1042,7 @@ export class DubComponent {
     this.curItem.active = false;
     this.curItem = item;
     this.curItem.active = true;
+    this.curParItem.badge = this.curItem.label;
     localStorage.setItem("items", JSON.stringify(this.items));
     this.ngOnInit();
   }
