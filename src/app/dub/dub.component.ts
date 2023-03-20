@@ -571,12 +571,18 @@ export class DubComponent {
   }
 
   async onDelete() {
-    let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
-    await store.clear();
-    localStorage.removeItem(this.curItem.path);
-    localStorage.removeItem(this.curItem.path + "/" + "metadata");
-    this.items = await this.getAsset("/assets/items.json");
-    localStorage.setItem("items", JSON.stringify(this.items));
+    let isPurge = true;
+    if (isPurge) {
+      localStorage.clear();
+      let db = await deleteDB('dubDB');
+    }
+    else {
+      let store = this.dbService.transaction(this.curItem.path,'readwrite').objectStore(this.curItem.path);
+      await store.clear();
+      localStorage.removeItem(this.curItem.path);
+      localStorage.removeItem(this.curItem.path + "/" + "metadata");
+      localStorage.removeItem("items");
+    }
     this.ngOnInit();
   }
 
