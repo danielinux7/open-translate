@@ -738,8 +738,9 @@ export class DubComponent {
     JSZip.loadAsync(file.files[0])
       .then(async function (zip: JSZip) {
         zip.forEach(function (relativePath, entry) {
-          if (!entry.dir && entry.name.match(numbers))
-          total++;
+          let e = entry.name.split('/');
+          if (!entry.dir && e[1].match(numbers))
+            total++;
         })
         if (zip.files[this.curItem.path + ".json"]) {
           zip.files[this.curItem.path + "_metadata.json"].async('string').then(json => {
@@ -761,11 +762,12 @@ export class DubComponent {
             }
           });
           zip.forEach(function (relativePath, entry) {
-            if (entry.name.match(numbers)) {
+            let e = entry.name.split('/');
+            if (e[1].match(numbers)) {
               entry.async('blob').then(async blob => {
                 blob = new Blob([blob], { type: blob.type });
                 let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-                await store.put({ "clip": entry.name, "audio": blob, "duration": 0 })
+                await store.put({ "clip": e[1], "audio": blob, "character": e[0] })
                 current++;
                 this.progressbarValue = (100.0 / total) * current;
                 if (current == total) {
