@@ -60,6 +60,7 @@ export class DubComponent {
   isFont: boolean;
   isHide: boolean;
   isAddChar: boolean;
+  isCopyChar: boolean;
   canPlay: boolean;
   error;
   dbService;
@@ -705,9 +706,23 @@ export class DubComponent {
     if (label != "" && !this.metadata.find(char => char.charLabel == label)) {
       this.newChar.charType = this.makeCharType();
       this.metadata.push(this.newChar);
-      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+      if (this.isCopyChar) {
+        let subs = JSON.parse(localStorage.getItem(this.curItem.path));
+        subs = subs.map(sub => {
+          if (sub.character.includes(this.curChar.charType))
+            sub.character.push(this.newChar.charType);
+          return sub;
+        })
+        localStorage.setItem(this.curItem.path, JSON.stringify(subs,null,2));
+      }
+      this.isCopyChar = false;
       this.isAddChar = false;
+      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
     }
+  }
+
+  copyChar() {
+    this.isCopyChar?this.isCopyChar=false:this.isCopyChar=true;
   }
 
   makeCharType() {

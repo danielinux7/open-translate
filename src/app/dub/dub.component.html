@@ -121,6 +121,11 @@
                         save
                     </span>
                 </button>
+                <button (click)="copyChar()" class="p-0 btn no-box-shadow">
+                    <span class="green char-save material-icons-outlined" [class.active-copychar]="isCopyChar">
+                        copy
+                    </span>
+                </button>
             </div>
             <div class="col-2"></div>
         </div>
