@@ -8,7 +8,7 @@ export interface Subtitle {
   length: number;
   edit: boolean;
   extended: boolean;
-  character: [];
+  character: string[];
 }
 
 export interface Metadata {

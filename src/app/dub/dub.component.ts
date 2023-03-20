@@ -684,7 +684,8 @@ export class DubComponent {
   editChar(char) {
     this.isSubtitlesSaved = false;
     this.isSaved = true;
-    this.currentSub.character = char.charType;
+    let index = this.currentSub.character.indexOf(char.charType);
+    index==-1?this.currentSub.character.push(char.charType):this.currentSub.character.splice(index,1);
     const selection = window.getSelection();
     const range = document.createRange();
     selection.removeAllRanges();
