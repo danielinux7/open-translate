@@ -536,7 +536,7 @@ export class DubComponent {
     this.metadata = JSON.parse(localStorage.getItem(this.curItem.path + "/" + "metadata"));
     this.curChar = this.metadata.filter(char => char.active == true)[0];
     sub = JSON.parse(localStorage.getItem(this.curItem.path));
-    sub = sub.filter(sub => sub["character"] == this.curChar.charType || this.curChar.charType == "all");
+    sub = sub.filter(sub => sub["character"].includes(this.curChar.charType));
     return sub;
   }
 
@@ -637,7 +637,7 @@ export class DubComponent {
 
   async onChangeChar(char) {
     let sub = JSON.parse(localStorage.getItem(this.curItem.path));
-    sub = sub.filter(sub => sub["character"] == char.charType || char.charType == "all");
+    sub = sub.filter(sub => sub["character"].includes(char.charType));
     if (sub.length > 0){
       this.errorBar = "";
       this.canPlay = false;
@@ -938,7 +938,7 @@ export class DubComponent {
       localStorage.setItem(this.curItem.path, JSON.stringify(sub,null,2));
       this.isSubtitlesSaved = true;
       this.isSaved = false;
-      this.subtitles = sub.filter(sub => sub["character"] == this.curChar.charType || this.curChar.charType == "all");
+      this.subtitles = sub.filter(sub => sub["character"].includes(this.curChar.charType));
     }
     localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
   }

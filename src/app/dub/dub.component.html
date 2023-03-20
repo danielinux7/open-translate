@@ -161,7 +161,7 @@
                 </span>
                 <div *ngIf="!isReadOnlysen" class="nav-scroll edit-char">
                     <ul class="mb-0 nav-all nav-pills">
-                        <li *ngFor="let char of metadata | slice:1" class="yellow nav-item nav-item-all bc" [class.active-item]="char.charType == currentSub.character"
+                        <li *ngFor="let char of metadata | slice:1" class="yellow nav-item nav-item-all bc" [class.active-item]="currentSub.character.includes(char.charType)"
                         (click)="editChar(char)">
                             <span>{{char.charLabel}}</span>
                         </li>
