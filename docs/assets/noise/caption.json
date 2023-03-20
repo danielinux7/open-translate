@@ -6,7 +6,7 @@
         "extra": 10,
         "source": "...ГОЛОС КОМНАТЫ...",
         "target": "...АУАДА АБЖЬЫ...",
-        "gender": "m",
+        "character": ["all"],
         "length": 19
     }
 ]
