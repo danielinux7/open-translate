@@ -61,6 +61,7 @@ export class DubComponent {
   isHide: boolean;
   isAddChar: boolean;
   isCopyChar: boolean;
+  isEditChar: boolean;
   canPlay: boolean;
   error;
   dbService;
@@ -705,30 +706,47 @@ export class DubComponent {
   addChar() {
     this.isAddChar?this.isAddChar=false:this.isAddChar=true;
     this.newChar = {charType:"",charIndex: 0, charLabel:"", active: false};
+    this.isCopyChar = false;
+    this.isEditChar = false;
   }
 
   saveChar() {
-    let label = this.newChar.charLabel.trim();
-    if (label != "" && !this.metadata.find(char => char.charLabel == label)) {
-      this.newChar.charType = this.makeCharType();
-      this.metadata.push(this.newChar);
-      if (this.isCopyChar) {
-        let subs = JSON.parse(localStorage.getItem(this.curItem.path));
-        subs = subs.map(sub => {
-          if (sub.character.includes(this.curChar.charType))
-            sub.character.push(this.newChar.charType);
-          return sub;
-        })
-        localStorage.setItem(this.curItem.path, JSON.stringify(subs,null,2));
-      }
-      this.isCopyChar = false;
+    if (this.isEditChar == true){
+      this.curChar.charLabel = this.newChar.charLabel.trim();
+      this.isEditChar = false;
       this.isAddChar = false;
       localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+    }
+    else {
+      let label = this.newChar.charLabel.trim();
+      if (label != "" && !this.metadata.find(char => char.charLabel == label)) {
+        this.newChar.charType = this.makeCharType();
+        this.metadata.push(this.newChar);
+        if (this.isCopyChar) {
+          let subs = JSON.parse(localStorage.getItem(this.curItem.path));
+          subs = subs.map(sub => {
+            if (sub.character.includes(this.curChar.charType))
+              sub.character.push(this.newChar.charType);
+            return sub;
+          })
+          localStorage.setItem(this.curItem.path, JSON.stringify(subs,null,2));
+        }
+        this.isCopyChar = false;
+        this.isAddChar = false;
+        localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+      }
     }
   }
 
   copyChar() {
+    this.isEditChar = false;
     this.isCopyChar?this.isCopyChar=false:this.isCopyChar=true;
+  }
+
+  editCharItem() {
+    this.isCopyChar = false;
+    this.isEditChar?this.isEditChar=false:this.isEditChar=true;
+    this.newChar.charLabel = this.curChar.charLabel;
   }
 
   makeCharType() {

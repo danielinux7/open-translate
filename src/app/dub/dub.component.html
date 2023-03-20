@@ -112,8 +112,8 @@
             </div>
         </div>
         <div *ngIf="isAddChar" class="row m-0">
-            <div class="col-2"></div>
-            <div class="col-8">
+            <div class="col-1"></div>
+            <div class="col-10">
                 <span>Ахьӡ: </span>
                 <input class="char-field" [(ngModel)]='newChar.charLabel' />
                 <button (click)="saveChar()" class="p-0 btn no-box-shadow">
@@ -126,8 +126,13 @@
                         copy
                     </span>
                 </button>
+                <button (click)="editCharItem()" class="p-0 btn no-box-shadow">
+                    <span class="green char-save material-icons-outlined" [class.active-copychar]="isEditChar">
+                        edit
+                    </span>
+                </button>
             </div>
-            <div class="col-2"></div>
+            <div class="col-1"></div>
         </div>
         <div class="row m-0">
             <div class="col-sm-2"></div>
