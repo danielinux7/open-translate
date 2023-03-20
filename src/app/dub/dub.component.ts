@@ -153,7 +153,7 @@ export class DubComponent {
 
   deleteClip() {
     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-    store.delete(this.currentSub["clip"]);
+    store.delete([this.currentSub.clip,this.curChar.charType]);
     if (!this.url)
       URL.revokeObjectURL(this.url);
     this.url = "";
@@ -164,9 +164,9 @@ export class DubComponent {
   }
 
   processRecording(blob) {
-    let duration = blob.size*8/this.record.audioBitsPerSecond;
+    // let duration = blob.size*8/this.record.audioBitsPerSecond;
     let store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-    store.put({ audio: blob, clip: this.currentSub["clip"], duration: duration });
+    store.put({ audio: blob, clip: this.currentSub.clip, character: this.curChar.charType });
     URL.revokeObjectURL(this.url);
     this.url = URL.createObjectURL(blob);
     this.dubEmpty = false;
@@ -246,16 +246,16 @@ export class DubComponent {
       db.close();
       indexedDB.open('dubDB',ver).onupgradeneeded = (event) => {
         let db = event.target["result"];
-        let store = db.createObjectStore(this.curItem.path, { keyPath: 'clip' });
+        let store = db.createObjectStore(this.curItem.path, { keyPath: ['clip', 'character'] });
         store.createIndex("audio", "audio", { unique: false });
-        store.createIndex("duration", "duration", { unique: false });
+        store.createIndex("character", "character", { unique: false });
         db.close();
       };
     }
     db = await openDB('dubDB');
     this.dbService = db;
     let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-    let dub = await store.get(this.currentSub["clip"]);
+    let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
     if (!this.url)
       URL.revokeObjectURL(this.url);
     if (!dub) {
@@ -306,7 +306,7 @@ export class DubComponent {
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.currentSub["clip"]);
+      let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
       if (!this.url)
         URL.revokeObjectURL(this.url);
       if (!dub) {
@@ -358,7 +358,7 @@ export class DubComponent {
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.currentSub["clip"]);
+      let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
       if (!this.url)
         URL.revokeObjectURL(this.url);
       if (!dub) {
@@ -412,7 +412,7 @@ export class DubComponent {
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.currentSub["clip"]);
+      let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
       if (!this.url)
         URL.revokeObjectURL(this.url);
       if (!dub) {
@@ -464,7 +464,7 @@ export class DubComponent {
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.currentSub["clip"]);
+      let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
       if (!this.url)
         URL.revokeObjectURL(this.url);
       if (!dub) {
@@ -508,7 +508,7 @@ export class DubComponent {
       this.urlorginal = "/assets/"+this.curItem.path+"/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.currentSub["clip"]);
+      let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
       if (!this.url)
         URL.revokeObjectURL(this.url);
       if (!dub) {
@@ -555,7 +555,7 @@ export class DubComponent {
         blobs.push(cursor.value.audio);
       }
       else
-        zip.file(cursor.key, cursor.value.audio);
+        zip.file(cursor.key[1]+"/"+cursor.key[0], cursor.value.audio);
       cursor = await cursor.continue();
     }
     if (singleFile)
@@ -662,7 +662,7 @@ export class DubComponent {
       this.urlorginal = "/assets/" + this.curItem.path + "/" + this.currentSub["clip"];
       this.playingOriginal.load();
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
-      let dub = await store.get(this.currentSub["clip"]);
+      let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
       if (!this.url)
         URL.revokeObjectURL(this.url);
       if (!dub) {
@@ -772,7 +772,7 @@ export class DubComponent {
                   $("#uploadModel").modal('hide');
                   file.value = ""
                 store = this.dbService.transaction(this.curItem.path, 'readwrite').objectStore(this.curItem.path);
-                let dub = await store.get(this.currentSub["clip"]);
+                let dub = await store.get([this.currentSub.clip,this.curChar.charType]);
                 if (!this.url)
                   URL.revokeObjectURL(this.url);
                 if (!dub) {
@@ -950,11 +950,12 @@ export class DubComponent {
     else {
       let store = this.dbService.transaction(this.curItem.path).objectStore(this.curItem.path);
       let keys = await store.getAllKeys();
+      keys = keys.filter(key => key[1] == this.curChar.charType);
+      keys = keys.map(arr => arr[0]);
       let subs = this.subtitles.filter(sub => !keys.includes(sub["clip"]));
       if (subs.length > 0) {
         this.isFilter = true;
         this.indexFilter = 0;
-        subs = subs.filter(sub => sub["character"] == this.curChar.charType || this.curChar.charType == "all");
         this.subtitlesFilter = subs;
         this.currentSub = this.subtitlesFilter[0];
         $("#sentence").text(this.currentSub.target);
