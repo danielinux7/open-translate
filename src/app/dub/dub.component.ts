@@ -532,9 +532,9 @@ export class DubComponent {
   getSubtitles(): Subtitle[] {
     let sub;
     if (!localStorage.getItem(this.curItem.path))
-      localStorage.setItem(this.curItem.path, JSON.stringify(this.initSub,null,2));
+      localStorage.setItem(this.curItem.path, JSON.stringify(this.initSub,null,4));
     if (!localStorage.getItem(this.curItem.path + "/" + "metadata"))
-      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.initMetadata,null,2));
+      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.initMetadata,null,4));
     this.metadata = JSON.parse(localStorage.getItem(this.curItem.path + "/" + "metadata"));
     this.curChar = this.metadata.filter(char => char.active == true)[0];
     sub = JSON.parse(localStorage.getItem(this.curItem.path));
@@ -715,7 +715,7 @@ export class DubComponent {
       this.curChar.charLabel = this.newChar.charLabel.trim();
       this.isEditChar = false;
       this.isAddChar = false;
-      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+      localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,4));
     }
     else {
       let label = this.newChar.charLabel.trim();
@@ -729,11 +729,11 @@ export class DubComponent {
               sub.character.push(this.newChar.charType);
             return sub;
           })
-          localStorage.setItem(this.curItem.path, JSON.stringify(subs,null,2));
+          localStorage.setItem(this.curItem.path, JSON.stringify(subs,null,4));
         }
         this.isCopyChar = false;
         this.isAddChar = false;
-        localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+        localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,4));
       }
     }
   }
@@ -975,12 +975,12 @@ export class DubComponent {
       sub[i]["character"] = this.currentSub.character;
       sub[i]["edit"] = this.currentSub.edit;
       sub[i]["extended"] = this.currentSub.extended;
-      localStorage.setItem(this.curItem.path, JSON.stringify(sub,null,2));
+      localStorage.setItem(this.curItem.path, JSON.stringify(sub,null,4));
       this.isSubtitlesSaved = true;
       this.isSaved = false;
       this.subtitles = sub.filter(sub => sub["character"].includes(this.curChar.charType));
     }
-    localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,2));
+    localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,4));
   }
 
   async onToggleFilter() {
