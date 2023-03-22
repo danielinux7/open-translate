@@ -979,6 +979,9 @@ export class DubComponent {
       this.isSubtitlesSaved = true;
       this.isSaved = false;
       this.subtitles = sub.filter(sub => sub["character"].includes(this.curChar.charType));
+      if (this.curChar.charIndex == this.subtitles.length) {
+        this.curChar.charIndex--;
+      }
     }
     localStorage.setItem(this.curItem.path + "/" + "metadata", JSON.stringify(this.metadata,null,4));
   }
