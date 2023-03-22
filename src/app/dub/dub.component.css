@@ -90,11 +90,11 @@
   position: absolute;
   top: 5px;
   left: 0px;
-  padding: 0 5px;
+  padding: 3px 3px;
   margin: 0 5px;
   font-size: 12px;
   font-weight: var(--base-text-weight-medium, 500);
-  line-height: 22px !important;
+  line-height: 14px !important;
 }
 
 .show-translate {
