@@ -198,6 +198,9 @@
                     </span>
                     <span *ngIf="!isReadOnlysen" class="sub-filter material-icons-outlined" [class.active-edit]="isSubFilter" (click)="onToggleSubFilter()">filter_list</span>
                 </div>
+                <span *ngIf="isReadOnlysen" class="show-clip nav-item bc">
+                    {{currentSub.clip}}
+                </span>
           </div>
             <div class="col-sm-2"></div>
         </div>
