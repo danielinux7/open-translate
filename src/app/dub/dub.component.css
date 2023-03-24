@@ -248,7 +248,7 @@
   border:1px solid black;
   text-align: center;
   padding-left: 5px;
-  padding-right: 15px;
+  padding-right: 5px;
   margin: 5px;
 }
 
@@ -256,10 +256,12 @@
   display: inline-block;
 }
 
+.filter-container {
+  display: inline-block;
+}
+
 .filter {
-  font-size: 12px;
-  top: 0px;
-  position: absolute;
+  font-size: 16px;
 }
 
 .pointer {
@@ -267,9 +269,7 @@
 }
 
 .sub-filter {
-  font-size: 12px;
-  top: 0px;
-  position: absolute;
+  font-size: 16px;
 }
 
 .active-filter, .active-noise {

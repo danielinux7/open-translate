@@ -140,13 +140,17 @@
                 <div class="curSub">
                     <div *ngIf="!isFilter" class="count">
                         <input [(ngModel)]="inputSub" (ngModelChange)="onChangeSub()" type="number" />
-                        <span class="pointer" (click)="onToggleFilter()"> /{{subtitles.length-1}}</span>
-                        <span class="pointer filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                        <div class="filter-container pointer" (click)="onToggleFilter()">
+                            <span> /{{subtitles.length-1}}</span>
+                            <span class="filter material-icons-outlined">filter_list</span>
+                        </div>
                     </div>
                     <div *ngIf="isFilter" class="count">
                         <input class="filter-bg" ngModel="{{indexFilter}}" type="number" />
-                        <span class="pointer" (click)="onToggleFilter()"> /{{subtitlesFilter.length-1}}</span>
-                        <span *ngIf="isFont" class="pointer active-filter filter material-icons-outlined" (click)="onToggleFilter()">filter_list</span>
+                        <div class="filter-container pointer" (click)="onToggleFilter()">
+                            <span > /{{subtitlesFilter.length-1}}</span>
+                            <span *ngIf="isFont" class="active-filter filter material-icons-outlined">filter_list</span>
+                        </div>
                     </div>
                 </div>
                 <video width="100%" height="100%" id="video" preload="auto" playsinline>
