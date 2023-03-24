@@ -267,7 +267,6 @@ export class DubComponent {
     else {
       this.url = URL.createObjectURL(dub["audio"]);
       this.progressBarColor = "green";
-      this.cursec = dub["duration"];
       this.allowRecording = true;
       this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
     }
@@ -276,6 +275,7 @@ export class DubComponent {
   async onNext() {
     if (this.curChar.charIndex < this.subtitles.length - 1) {
       this.errorBar = "";
+      this.cursec = 0.0;
       this.canPlay = false;
       this.extra = 0;
       this.curChar.charIndex = this.curChar.charIndex + 1;
@@ -314,13 +314,11 @@ export class DubComponent {
       if (!dub) {
         this.url = "";
         this.progressbarValue = 0.0;
-        this.cursec = 0.0;
         this.allowRecording = false;
       }
       else {
         this.url = URL.createObjectURL(dub["audio"]);
         this.progressBarColor = "green";
-        this.cursec = dub["duration"];
         this.allowRecording = true;
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
@@ -330,6 +328,7 @@ export class DubComponent {
   async onNextFilter() {
     if (this.indexFilter < this.subtitlesFilter.length-1) {
       this.errorBar = "";
+      this.cursec = 0.0;
       this.canPlay = false;
       this.extra = 0;
       this.saveSubtitle();
@@ -366,13 +365,11 @@ export class DubComponent {
       if (!dub) {
         this.url = "";
         this.progressbarValue = 0.0;
-        this.cursec = 0.0;
         this.allowRecording = false;
       }
       else {
         this.url = URL.createObjectURL(dub["audio"]);
         this.progressBarColor = "green";
-        this.cursec = dub["duration"];
         this.allowRecording = true;
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
@@ -382,6 +379,7 @@ export class DubComponent {
   async onPrevious() {
     if (this.curChar.charIndex > 0) {
       this.errorBar = "";
+      this.cursec = 0.0;
       this.canPlay = false;
       this.extra = 0;
       this.curChar.charIndex = this.curChar.charIndex - 1;
@@ -420,13 +418,11 @@ export class DubComponent {
       if (!dub) {
         this.url = "";
         this.progressbarValue = 0.0;
-        this.cursec = 0.0;
         this.allowRecording = false;
       }
       else {
         this.url = URL.createObjectURL(dub["audio"]);
         this.progressBarColor = "green";
-        this.cursec = dub["duration"];
         this.allowRecording = true;
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
@@ -436,6 +432,7 @@ export class DubComponent {
   async onPreviousFilter() {
     if (this.indexFilter > 0) {
       this.errorBar = "";
+      this.cursec = 0.0;
       this.canPlay = false;
       this.extra = 0;
       this.saveSubtitle();
@@ -472,13 +469,11 @@ export class DubComponent {
       if (!dub) {
         this.url = "";
         this.progressbarValue = 0.0;
-        this.cursec = 0.0;
         this.allowRecording = false;
       }
       else {
         this.url = URL.createObjectURL(dub["audio"]);
         this.progressBarColor = "green";
-        this.cursec = dub["duration"];
         this.allowRecording = true;
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
@@ -489,6 +484,7 @@ export class DubComponent {
     this.isSubFilter = false;
     if (this.inputSub <= this.subtitles.length - 1 && this.inputSub >= 0) {
       this.extra = 0;
+      this.cursec = 0.0;
       this.canPlay = false;
       this.errorBar = "";
       this.currentSub = this.subtitles[this.inputSub]
@@ -516,13 +512,11 @@ export class DubComponent {
       if (!dub) {
         this.url = "";
         this.progressbarValue = 0.0;
-        this.cursec = 0.0;
         this.allowRecording = false;
       }
       else {
         this.url = URL.createObjectURL(dub["audio"]);
         this.progressBarColor = "green";
-        this.cursec = dub["duration"];
         this.allowRecording = true;
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
@@ -649,6 +643,7 @@ export class DubComponent {
     if (sub.length > 0){
       this.errorBar = "";
       this.canPlay = false;
+      this.cursec = 0.0;
       this.extra = 0;
       this.isFilter = false;
       this.isSubFilter = false;
@@ -676,13 +671,11 @@ export class DubComponent {
       if (!dub) {
         this.url = "";
         this.progressbarValue = 0.0;
-        this.cursec = 0.0;
         this.allowRecording = false;
       }
       else {
         this.url = URL.createObjectURL(dub["audio"]);
         this.progressBarColor = "green";
-        this.cursec = dub["duration"];
         this.allowRecording = true;
         this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
       }
@@ -771,6 +764,7 @@ export class DubComponent {
   async onUpload() {
     let file = document.getElementById("file") as HTMLInputElement;
     this.error = "";
+    this.cursec = 0.0;
     let total = 0;
     let current = 0;
     let numbers = /^[0-9]+$/;
@@ -820,13 +814,11 @@ export class DubComponent {
                 if (!dub) {
                   this.url = "";
                   this.progressbarValue = 0.0;
-                  this.cursec = 0.0;
                   this.allowRecording = false;
                 }
                 else {
                   this.url = URL.createObjectURL(dub["audio"]);
                   this.progressBarColor = "green";
-                  this.cursec = dub["duration"];
                   this.allowRecording = true;
                   this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
                 }
@@ -1034,6 +1026,7 @@ export class DubComponent {
       if (subs.length > 0) {
         this.isSubFilter = true;
         this.indexFilter = 0;
+        this.cursec = 0.0;
         this.subtitlesFilter = subs;
         this.currentSub = this.subtitlesFilter[0];
         $("#sentence").text(this.currentSub.target);
@@ -1046,13 +1039,11 @@ export class DubComponent {
         if (!dub) {
           this.url = "";
           this.progressbarValue = 0.0;
-          this.cursec = 0.0;
           this.allowRecording = false;
         }
         else {
           this.url = URL.createObjectURL(dub["audio"]);
           this.progressBarColor = "green";
-          this.cursec = dub["duration"];
           this.allowRecording = true;
           this.progressbarValue = (this.cursec / this.currentSub["duration"]) * 100;
         }
