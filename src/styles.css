@@ -295,6 +295,17 @@ body {
   background-image: url('assets/images/logo.png');
 }
 
+.aps-logo {
+  display: block;
+  background: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 60px;
+  width: 60px;
+  height: 60px;
+  background-image: url('assets/images/aps_logo.png');
+}
+
 .logo-exp {
   display: block;
   background: #fff;
