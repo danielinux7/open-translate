@@ -6,4 +6,4 @@ sudo apt update
 sudo apt-get install tensorflow-model-server
 sudo pip3 install -r requirements.txt
 sudo apt-get install certbot
-sudo certbot certonly -d server.bagrat.space -n --standalone
+sudo certbot certonly -d server.bagrat.space -n --standalone --agree-tos -m daniel.abzakh@gmail.com
