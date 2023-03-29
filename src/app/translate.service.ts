@@ -8,10 +8,10 @@ import { Lang } from './language';
   providedIn: 'root'
 })
 export class TranslateService {
-  private translateUrl = 'https://server.bagrat.space:5000/translate';  // URL to web api
-  private convUrl = 'https://server.bagrat.space:5000/conv';  // URL to web api
-  private readUrl = 'https://server.bagrat.space:5000/read';  // URL to web api
-  private starUrl = 'https://server.bagrat.space:5000/star';  // URL to web api
+  private translateUrl = 'https://translate.apshost.ru:5000/translate';  // URL to web api
+  private convUrl = 'https://translate.apshost.ru:5000/conv';  // URL to web api
+  private readUrl = 'https://translate.apshost.ru:5000/read';  // URL to web api
+  private starUrl = 'https://translate.apshost.ru:5000/star';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
