@@ -143,6 +143,7 @@
                         <div class="filter-container pointer" (click)="onToggleFilter()">
                             <span> /{{subtitles.length-1}}</span>
                             <span class="filter material-icons-outlined">filter_list</span>
+                            <span *ngIf="isDone" class="active-done filter material-icons-outlined">done_all</span>
                         </div>
                     </div>
                     <div *ngIf="isFilter" class="count">

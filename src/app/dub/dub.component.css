@@ -276,6 +276,10 @@
   color: #ffd740!important;
 }
 
+.active-done {
+  color: #59cbb7!important;
+}
+
 .male {
   display: inline-block;
 }

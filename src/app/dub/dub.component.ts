@@ -62,6 +62,7 @@ export class DubComponent {
   isAddChar: boolean;
   isCopyChar: boolean;
   isEditChar: boolean;
+  isDone: boolean;
   canPlay: boolean;
   error;
   dbService;
@@ -159,7 +160,7 @@ export class DubComponent {
     if (!this.url)
       URL.revokeObjectURL(this.url);
     this.url = "";
-    // this.dubEmpty = true;
+    this.isDone = false;
     localStorage.setItem("items", JSON.stringify(this.items));
     this.progressbarValue = 0.0;
     this.cursec = 0.0;
@@ -189,6 +190,7 @@ export class DubComponent {
   async ngOnInit() {
     window.onload = () => {this.isFont = true;}
     this.errorBar = "";
+    this.isDone = false;
     this.canPlay = false;
     this.extra = 0;
     this.isTranslate = false;
@@ -642,6 +644,7 @@ export class DubComponent {
     sub = sub.filter(sub => sub["character"].includes(char.charType));
     if (sub.length > 0){
       this.errorBar = "";
+      this.isDone = false;
       this.canPlay = false;
       this.cursec = 0.0;
       this.extra = 0;
@@ -764,6 +767,7 @@ export class DubComponent {
   async onUpload() {
     let file = document.getElementById("file") as HTMLInputElement;
     this.error = "";
+    this.isDone = false;
     this.cursec = 0.0;
     let total = 0;
     let current = 0;
@@ -1002,6 +1006,9 @@ export class DubComponent {
         this.progressbarValue = 0.0;
         this.cursec = 0.0;
         this.allowRecording = false;
+      }
+      else if (subs.length == 0) {
+        this.isDone = true;
       }
     }
   }
