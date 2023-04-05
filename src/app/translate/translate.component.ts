@@ -22,6 +22,7 @@ export class TranslateComponent implements OnInit {
   isReadOnlyTgt = true
   starred = false
   edit = false
+  isNote = [true,true,true,true];
   selectedType: string;
   file: File;
   photo: File;
@@ -37,6 +38,10 @@ export class TranslateComponent implements OnInit {
     this.selectedSrcLang = this.langs[0]
     this.selectedTgtLang = this.langs[1]
     this.selectedType = "text"
+    if (localStorage.getItem("isNote"))
+      this.isNote = JSON.parse(localStorage.getItem("isNote"))["note"];
+    else
+      localStorage.setItem("isNote", JSON.stringify({"note":this.isNote}));
   }
 
   onSelectType(type: string): void {
@@ -209,5 +214,10 @@ export class TranslateComponent implements OnInit {
       this.translateService.setStar(formData)
         .subscribe(data => this.starred = data["star"]);
     }
+  }
+
+  closeNote(loc: number) {
+    this.isNote[loc] = false;
+    localStorage.setItem("isNote", JSON.stringify({"note":this.isNote}));
   }
 }

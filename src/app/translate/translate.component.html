@@ -164,44 +164,44 @@
       class="col-11 col-sm-2 btn btn-success mt-2 no-box-shadow" id="conv">Аиҭакра</button>
   </div>
   <div *ngIf="!tgt&&selectedType === 'text'">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div  *ngIf="isNote[0]" class="alert alert-warning alert-dismissible fade show" role="alert">
       <span class="material-icons-outlined">
         bolt
       </span>
       <strong>Алҵшәа бзиақәа уоуарц азы,</strong> еиҭагатәу аҳәоу ииашоу аграмматикеи апунктуациеи амазароуп, иара убас
       иаламзароуп ацифрақәеи арқьаҿрақәеи.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeNote(0)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
   </div>
   <div *ngIf="tgt&&selectedType === 'text'">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div  *ngIf="isNote[1]" class="alert alert-warning alert-dismissible fade show" role="alert">
       <span class="material-icons-outlined">
         mode_edit
       </span>
       <strong>Акарандашь уанақәыӷәӷәалак,</strong> уара иулшоит аиҭага аредакциа азура.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click)="closeNote(1)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div *ngIf="isNote[2]" class="alert alert-warning alert-dismissible fade show" role="alert">
       <span class="material-icons-outlined">
         front_hand
       </span>
       <strong>Анапы уанақәыӷәӷәалак ашҭахь,</strong> аиҭага ҳауеит.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  (click)="closeNote(2)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
   </div>
   <div *ngIf="selectedType === 'conv'">
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div  *ngIf="isNote[3]" class="alert alert-warning alert-dismissible fade show" role="alert">
       <span class="material-icons-outlined">
         bolt
       </span>
       Ари ажәытәтәи ашрифт иҿыцу истандарту ашрифт ахь еиҭакразы.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"  (click)="closeNote(3)">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
