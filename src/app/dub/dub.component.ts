@@ -87,7 +87,9 @@ export class DubComponent {
     let mediaConstraints = {
       video: false,
       audio: {
-        echoCancellation: false,
+        channelCount: 1,
+        sampleRate: 48000,
+        echoCancellation: true,
         autoGainControl: false,
         noiseSuppression: false,
       }     };
@@ -98,8 +100,10 @@ export class DubComponent {
   */
   successCallback(stream) {
     this.stream = stream;
+    //console.log(stream.getAudioTracks()[0].getSettings());
+    let mime = MediaRecorder.isTypeSupported('audio/webm')?'audio/webm; codecs=pcm':'audio/mp4; codecs=pcm';
     var options = {
-      audioBitsPerSecond: 128000
+      mimeType: mime,
     };
     this.record = new MediaRecorder(stream, options);
     this.record.ondataavailable = (e) => {
