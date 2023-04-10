@@ -1,0 +1,38 @@
+[
+  {
+    "charType": "all",
+    "charIndex": 0,
+    "charLabel": "Зегьы",
+    "active": true
+  },
+  {
+    "charType": "m",
+    "charIndex": 0,
+    "charLabel": "Абраскил",
+    "active": false
+  },
+  {
+    "charType": "b",
+    "charIndex": 0,
+    "charLabel": "Ахра",
+    "active": false
+  },
+    {
+    "charType": "g1",
+    "charIndex": 0,
+    "charLabel": "Амра",
+    "active": false
+  },
+  {
+    "charType": "g2",
+    "charIndex": 0,
+    "charLabel": "Лиа",
+    "active": false
+  },
+  {
+    "charType": "nan",
+    "charIndex": 0,
+    "charLabel": "Нанду",
+    "active": false
+  }
+]
