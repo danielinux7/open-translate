@@ -1,0 +1,1462 @@
+[
+    {
+        "clip": "1",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара умаз!",
+        "target": "Абзиара умаз!",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "2",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара бымаз!",
+        "target": "Абзиара бымаз!",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "3",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара ббааит!",
+        "target": "Бзиара ббааит!",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "4",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара шәымаз!",
+        "target": "Бзиара шәымаз!",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "5",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара жәбааит!",
+        "target": "Бзиара жәбааит!",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "6",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиараз!",
+        "target": "Абзиараз!",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "7",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Уара иухьӡузеи?",
+        "target": "Уара иухьӡузеи?",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "8",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бара ибыхьӡузеи?",
+        "target": "Бара ибыхьӡузеи?",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "9",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "аҭаацәа",
+        "target": "аҭаацәа",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "10",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ан",
+        "target": "ан",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "11",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "аб",
+        "target": "аб",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "12",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "анду",
+        "target": "анду",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "13",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "абду",
+        "target": "абду",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "14",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "аиашьа",
+        "target": "аиашьа",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "15",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "аиаҳәшьа",
+        "target": "аиаҳәшьа",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "16",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара исымоуп ани аби.",
+        "target": "Сара исымоуп ани аби.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "17",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара исымоуп андуи абдуи.",
+        "target": "Сара исымоуп андуи абдуи.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "18",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара дсымоуп аиаҳәшьа.",
+        "target": "Сара дсымоуп аиаҳәшьа.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "19",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара дсымоуп аиашьа.",
+        "target": "Сара дсымоуп аиашьа.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "20",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Акьаҿ",
+        "target": "Акьаҿ",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "21",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Аҵкы",
+        "target": "Аҵкы",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "22",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Аиҧка",
+        "target": "Аиҧка",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "23",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Аиқәа",
+        "target": "Аиқәа",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "24",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Аимаа",
+        "target": "Аимаа",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "25",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Асахьаҭыхра",
+        "target": "Асахьаҭыхра",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "26",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Ахәмарра",
+        "target": "Ахәмарра",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "27",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Акәашара",
+        "target": "Акәашара",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "28",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Аныҟәара",
+        "target": "Аныҟәара",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "29",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Аҧхьара",
+        "target": "Аҧхьара",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "30",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Ашәаҳәара",
+        "target": "Ашәаҳәара",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "31",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара асахьаҭыхра бзиа избоит.",
+        "target": "Сара асахьаҭыхра бзиа избоит.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "32",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара ахәмарра бзиа избоит.",
+        "target": "Сара ахәмарра бзиа избоит.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "33",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара акәашара бзиа избоит.",
+        "target": "Сара акәашара бзиа избоит.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "34",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара аныҟәара бзиа избоит.",
+        "target": "Сара аныҟәара бзиа избоит.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "35",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара аҧхьара бзиа избоит.",
+        "target": "Сара аҧхьара бзиа избоит.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "36",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара ашәаҳәара бзиа избоит.",
+        "target": "Сара ашәаҳәара бзиа избоит.",
+        "character": ["all","m"]
+    },
+    {
+        "clip": "37",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "Ҩ",
+        "target": "Ҩ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "38",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "Џ",
+        "target": "Џ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "39",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "џь",
+        "target": "џь",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "40",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӡ",
+        "target": "ӡ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "41",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӡә",
+        "target": "ӡә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "42",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "дә",
+        "target": "дә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "43",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "кә",
+        "target": "кә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "44",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "қ",
+        "target": "қ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "45",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҟ",
+        "target": "ҟ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "46",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "кь",
+        "target": "кь",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "47",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "қь",
+        "target": "қь",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "48",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "қә",
+        "target": "қә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "49",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҟь",
+        "target": "ҟь",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "50",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҟә",
+        "target": "ҟә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "51",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҧ",
+        "target": "ҧ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "52",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "тә",
+        "target": "тә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "53",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҭ",
+        "target": "ҭ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "54",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҭә",
+        "target": "ҭә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "55",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "гь",
+        "target": "гь",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "56",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "гә",
+        "target": "гә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "57",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӷ",
+        "target": "ӷ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "58",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӷь",
+        "target": "ӷь",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "59",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӷә",
+        "target": "ӷә",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "60",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҵ",
+        "target": "ҵ",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "61",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "1",
+        "target": "1",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "62",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "2",
+        "target": "2",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "63",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "3",
+        "target": "3",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "64",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "4",
+        "target": "4",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "65",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "5",
+        "target": "5",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "66",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "6",
+        "target": "6",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "67",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "7",
+        "target": "7",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "68",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "8",
+        "target": "8",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "69",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "9",
+        "target": "9",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "70",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "10",
+        "target": "10",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "71",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара умаз!",
+        "target": "Абзиара умаз!",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "72",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара бымаз!",
+        "target": "Абзиара бымаз!",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "73",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара ббааит!",
+        "target": "Бзиара ббааит!",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "74",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара шәымаз!",
+        "target": "Бзиара шәымаз!",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "75",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара жәбааит!",
+        "target": "Бзиара жәбааит!",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "76",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиараз!",
+        "target": "Абзиараз!",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "77",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара Ахра сыхьӡуп.",
+        "target": "Сара Ахра сыхьӡуп.",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "78",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Уара иухьӡузеи?",
+        "target": "Уара иухьӡузеи?",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "79",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бара ибыхьӡузеи?",
+        "target": "Бара ибыхьӡузеи?",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "80",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара исымоуп ани аби.",
+        "target": "Сара исымоуп ани аби.",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "81",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара исымоуп андуи абдуи.",
+        "target": "Сара исымоуп андуи абдуи.",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "82",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара дсымоуп аиаҳәшьа.",
+        "target": "Сара дсымоуп аиаҳәшьа.",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "83",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара аныҟәара бзиа избоит.",
+        "target": "Сара аныҟәара бзиа избоит.",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "84",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара ахәмарра бзиа избоит.",
+        "target": "Сара ахәмарра бзиа избоит.",
+        "character": ["all","b"]
+    },
+    {
+        "clip": "85",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "Ҩ",
+        "target": "Ҩ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "86",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "Џ",
+        "target": "Џ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "87",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "џь",
+        "target": "џь",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "88",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӡ",
+        "target": "ӡ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "89",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӡә",
+        "target": "ӡә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "90",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "дә",
+        "target": "дә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "91",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "кә",
+        "target": "кә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "92",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "қ",
+        "target": "қ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "93",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҟ",
+        "target": "ҟ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "94",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "кь",
+        "target": "кь",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "95",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "қь",
+        "target": "қь",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "96",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "қә",
+        "target": "қә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "97",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҟь",
+        "target": "ҟь",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "98",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҟә",
+        "target": "ҟә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "99",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҧ",
+        "target": "ҧ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "100",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "тә",
+        "target": "тә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "101",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҭ",
+        "target": "ҭ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "102",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҭә",
+        "target": "ҭә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "103",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "гь",
+        "target": "гь",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "104",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "гә",
+        "target": "гә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "105",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӷ",
+        "target": "ӷ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "106",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӷь",
+        "target": "ӷь",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "107",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ӷә",
+        "target": "ӷә",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "108",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "ҵ",
+        "target": "ҵ",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "109",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "1",
+        "target": "1",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "110",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "2",
+        "target": "2",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "111",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "3",
+        "target": "3",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "112",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "4",
+        "target": "4",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "113",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "5",
+        "target": "5",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "114",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "6",
+        "target": "6",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "115",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "7",
+        "target": "7",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "116",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "8",
+        "target": "8",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "117",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "9",
+        "target": "9",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "118",
+        "start_sec": 0.0,
+        "end_sec": 1.0,
+        "duration": 1.0,
+        "extra": 10.0,
+        "source": "10",
+        "target": "10",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "119",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара умаз!",
+        "target": "Абзиара умаз!",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "120",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара бымаз!",
+        "target": "Абзиара бымаз!",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "121",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара ббааит!",
+        "target": "Бзиара ббааит!",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "122",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара шәымаз!",
+        "target": "Бзиара шәымаз!",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "123",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара жәбааит!",
+        "target": "Бзиара жәбааит!",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "124",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиараз!",
+        "target": "Абзиараз!",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "125",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара Амра сыхьӡуп.",
+        "target": "Сара Амра сыхьӡуп.",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "126",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Уара иухьӡузеи?",
+        "target": "Уара иухьӡузеи?",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "127",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бара ибыхьӡузеи?",
+        "target": "Бара ибыхьӡузеи?",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "128",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара исымоуп ани аби.",
+        "target": "Сара исымоуп ани аби.",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "129",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара исымоуп андуи абдуи.",
+        "target": "Сара исымоуп андуи абдуи.",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "130",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара дсымоуп аиашьа.",
+        "target": "Сара дсымоуп аиашьа.",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "131",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара аҧхьара бзиа избоит.",
+        "target": "Сара аҧхьара бзиа избоит.",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "132",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара ахәмарра бзиа избоит.",
+        "target": "Сара ахәмарра бзиа избоит.",
+        "character": ["all","g1"]
+    },
+    {
+        "clip": "133",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара шәымаз!",
+        "target": "Абзиара шәымаз!",
+        "character": ["all","g2"]
+    },
+    {
+        "clip": "134",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара Лия сыхьӡуп.",
+        "target": "Сара Лия сыхьӡуп.",
+        "character": ["all","g2"]
+    },
+    {
+        "clip": "135",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Уара иухьӡузеи?",
+        "target": "Уара иухьӡузеи?",
+        "character": ["all","g2"]
+    },
+    {
+        "clip": "136",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бара ибыхьӡузеи?",
+        "target": "Бара ибыхьӡузеи?",
+        "character": ["all","g2"]
+    },
+    {
+        "clip": "137",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиараз!",
+        "target": "Абзиараз!",
+        "character": ["all","g2"]
+    },
+    {
+        "clip": "138",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара умаз!",
+        "target": "Абзиара умаз!",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "139",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиара бымаз!",
+        "target": "Абзиара бымаз!",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "140",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара ббааит!",
+        "target": "Бзиара ббааит!",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "141",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара шәымаз!",
+        "target": "Бзиара шәымаз!",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "142",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бзиара жәбааит!",
+        "target": "Бзиара жәбааит!",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "143",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Абзиараз!",
+        "target": "Абзиараз!",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "144",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Уара иухьӡузеи?",
+        "target": "Уара иухьӡузеи?",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "145",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Бара ибыхьӡузеи?",
+        "target": "Бара ибыхьӡузеи?",
+        "character": ["all","nan"]
+    },
+    {
+        "clip": "146",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Сара акәашара бзиа избоит.",
+        "target": "Сара акәашара бзиа избоит.",
+        "character": ["all","nan"]
+    }
+]
