@@ -605,142 +605,12 @@
         "end_sec": 2.0,
         "duration": 2.0,
         "extra": 10.0,
-        "source": "шь",
-        "target": "шь",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "62",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "шә",
-        "target": "шә",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "63",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "цә",
-        "target": "цә",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "64",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҵә",
-        "target": "ҵә",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "65",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "жь",
-        "target": "жь",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "66",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "жә",
-        "target": "жә",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "67",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "хь",
-        "target": "хь",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "68",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "хә",
-        "target": "хә",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "69",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҳ",
-        "target": "ҳ",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "70",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҳә",
-        "target": "ҳә",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "71",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҽ",
-        "target": "ҽ",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "72",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҿ",
-        "target": "ҿ",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "73",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҷ",
-        "target": "ҷ",
-        "character": "['all', 'b']"
-    },
-    {
-        "clip": "74",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
         "source": "1",
         "target": "1",
         "character": "['all', 'b']"
     },
     {
-        "clip": "75",
+        "clip": "62",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -750,7 +620,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "76",
+        "clip": "63",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -760,7 +630,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "77",
+        "clip": "64",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -770,7 +640,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "78",
+        "clip": "65",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -780,7 +650,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "79",
+        "clip": "66",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -790,7 +660,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "80",
+        "clip": "67",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -800,7 +670,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "81",
+        "clip": "68",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -810,7 +680,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "82",
+        "clip": "69",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -820,7 +690,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "83",
+        "clip": "70",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -830,7 +700,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "84",
+        "clip": "71",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -840,7 +710,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "85",
+        "clip": "72",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -850,7 +720,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "86",
+        "clip": "73",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -860,7 +730,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "87",
+        "clip": "74",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -870,7 +740,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "88",
+        "clip": "75",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -880,7 +750,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "89",
+        "clip": "76",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -890,7 +760,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "90",
+        "clip": "77",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -900,7 +770,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "91",
+        "clip": "78",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -910,7 +780,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "92",
+        "clip": "79",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -920,7 +790,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "93",
+        "clip": "80",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -930,7 +800,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "94",
+        "clip": "81",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -940,7 +810,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "95",
+        "clip": "82",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -950,7 +820,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "96",
+        "clip": "83",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -960,7 +830,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "97",
+        "clip": "84",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -970,7 +840,7 @@
         "character": "['all', 'b']"
     },
     {
-        "clip": "98",
+        "clip": "85",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -980,7 +850,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "99",
+        "clip": "86",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -990,7 +860,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "100",
+        "clip": "87",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1000,7 +870,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "101",
+        "clip": "88",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1010,7 +880,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "102",
+        "clip": "89",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1020,7 +890,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "103",
+        "clip": "90",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1030,7 +900,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "104",
+        "clip": "91",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1040,7 +910,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "105",
+        "clip": "92",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1050,7 +920,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "106",
+        "clip": "93",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1060,7 +930,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "107",
+        "clip": "94",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1070,7 +940,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "108",
+        "clip": "95",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1080,7 +950,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "109",
+        "clip": "96",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1090,7 +960,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "110",
+        "clip": "97",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1100,7 +970,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "111",
+        "clip": "98",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1110,7 +980,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "112",
+        "clip": "99",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1120,7 +990,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "113",
+        "clip": "100",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1130,7 +1000,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "114",
+        "clip": "101",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1140,7 +1010,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "115",
+        "clip": "102",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1150,7 +1020,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "116",
+        "clip": "103",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1160,7 +1030,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "117",
+        "clip": "104",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1170,7 +1040,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "118",
+        "clip": "105",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1180,7 +1050,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "119",
+        "clip": "106",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1190,7 +1060,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "120",
+        "clip": "107",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1200,7 +1070,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "121",
+        "clip": "108",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1210,137 +1080,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "122",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "шь",
-        "target": "шь",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "123",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "шә",
-        "target": "шә",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "124",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "цә",
-        "target": "цә",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "125",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҵә",
-        "target": "ҵә",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "126",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "жь",
-        "target": "жь",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "127",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "жә",
-        "target": "жә",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "128",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "хь",
-        "target": "хь",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "129",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "хә",
-        "target": "хә",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "130",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҳ",
-        "target": "ҳ",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "131",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҳә",
-        "target": "ҳә",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "132",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҽ",
-        "target": "ҽ",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "133",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҿ",
-        "target": "ҿ",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "134",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҷ",
-        "target": "ҷ",
-        "character": "['all', 'g1']"
-    },
-    {
-        "clip": "135",
+        "clip": "109",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1350,7 +1090,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "136",
+        "clip": "110",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1360,7 +1100,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "137",
+        "clip": "111",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1370,7 +1110,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "138",
+        "clip": "112",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1380,7 +1120,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "139",
+        "clip": "113",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1390,7 +1130,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "140",
+        "clip": "114",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1400,7 +1140,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "141",
+        "clip": "115",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1410,7 +1150,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "142",
+        "clip": "116",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1420,7 +1160,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "143",
+        "clip": "117",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1430,7 +1170,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "144",
+        "clip": "118",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1440,7 +1180,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "145",
+        "clip": "119",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1450,7 +1190,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "146",
+        "clip": "120",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1460,7 +1200,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "147",
+        "clip": "121",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1470,7 +1210,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "148",
+        "clip": "122",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1480,7 +1220,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "149",
+        "clip": "123",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1490,7 +1230,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "150",
+        "clip": "124",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1500,7 +1240,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "151",
+        "clip": "125",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1510,7 +1250,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "152",
+        "clip": "126",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1520,7 +1260,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "153",
+        "clip": "127",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1530,7 +1270,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "154",
+        "clip": "128",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1540,7 +1280,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "155",
+        "clip": "129",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1550,7 +1290,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "156",
+        "clip": "130",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1560,7 +1300,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "157",
+        "clip": "131",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1570,7 +1310,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "158",
+        "clip": "132",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1580,7 +1320,7 @@
         "character": "['all', 'g1']"
     },
     {
-        "clip": "159",
+        "clip": "133",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1590,7 +1330,7 @@
         "character": "['all', 'g2']"
     },
     {
-        "clip": "160",
+        "clip": "134",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1600,7 +1340,7 @@
         "character": "['all', 'g2']"
     },
     {
-        "clip": "161",
+        "clip": "135",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1610,7 +1350,7 @@
         "character": "['all', 'g2']"
     },
     {
-        "clip": "162",
+        "clip": "136",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1620,7 +1360,7 @@
         "character": "['all', 'g2']"
     },
     {
-        "clip": "163",
+        "clip": "137",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -1630,377 +1370,7 @@
         "character": "['all', 'g2']"
     },
     {
-        "clip": "164",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "Ҩ",
-        "target": "Ҩ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "165",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "Џ",
-        "target": "Џ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "166",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "џь",
-        "target": "џь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "167",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ӡ",
-        "target": "ӡ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "168",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ӡә",
-        "target": "ӡә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "169",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "дә",
-        "target": "дә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "170",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "кә",
-        "target": "кә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "171",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "қ",
-        "target": "қ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "172",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҟ",
-        "target": "ҟ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "173",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "кь",
-        "target": "кь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "174",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "қь",
-        "target": "қь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "175",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "қә",
-        "target": "қә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "176",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҟь",
-        "target": "ҟь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "177",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҟә",
-        "target": "ҟә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "178",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҧ",
-        "target": "ҧ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "179",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "тә",
-        "target": "тә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "180",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҭ",
-        "target": "ҭ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "181",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҭә",
-        "target": "ҭә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "182",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "гь",
-        "target": "гь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "183",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "гә",
-        "target": "гә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "184",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ӷ",
-        "target": "ӷ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "185",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ӷь",
-        "target": "ӷь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "186",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ӷә",
-        "target": "ӷә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "187",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҵ",
-        "target": "ҵ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "188",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "шь",
-        "target": "шь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "189",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "шә",
-        "target": "шә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "190",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "цә",
-        "target": "цә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "191",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҵә",
-        "target": "ҵә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "192",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "жь",
-        "target": "жь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "193",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "жә",
-        "target": "жә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "194",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "хь",
-        "target": "хь",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "195",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "хә",
-        "target": "хә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "196",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҳ",
-        "target": "ҳ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "197",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҳә",
-        "target": "ҳә",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "198",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҽ",
-        "target": "ҽ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "199",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҿ",
-        "target": "ҿ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "200",
-        "start_sec": 0.0,
-        "end_sec": 2.0,
-        "duration": 2.0,
-        "extra": 10.0,
-        "source": "ҷ",
-        "target": "ҷ",
-        "character": "['all', 'nan']"
-    },
-    {
-        "clip": "201",
+        "clip": "138",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2010,7 +1380,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "202",
+        "clip": "139",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2020,7 +1390,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "203",
+        "clip": "140",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2030,7 +1400,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "204",
+        "clip": "141",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2040,7 +1410,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "205",
+        "clip": "142",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2050,7 +1420,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "206",
+        "clip": "143",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2060,7 +1430,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "207",
+        "clip": "144",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2070,7 +1440,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "208",
+        "clip": "145",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2080,7 +1450,7 @@
         "character": "['all', 'nan']"
     },
     {
-        "clip": "209",
+        "clip": "146",
         "start_sec": 0.0,
         "end_sec": 2.0,
         "duration": 2.0,
@@ -2088,5 +1458,635 @@
         "source": "Сара акәашара бзиа избоит.",
         "target": "Сара акәашара бзиа избоит.",
         "character": "['all', 'nan']"
+    },
+    {
+        "clip": "147",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Ҩ",
+        "target": "Ҩ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "148",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "Џ",
+        "target": "Џ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "149",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "џь",
+        "target": "џь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "150",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ӡ",
+        "target": "ӡ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "151",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ӡә",
+        "target": "ӡә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "152",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "дә",
+        "target": "дә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "153",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "кә",
+        "target": "кә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "154",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "қ",
+        "target": "қ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "155",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҟ",
+        "target": "ҟ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "156",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "кь",
+        "target": "кь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "157",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "қь",
+        "target": "қь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "158",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "қә",
+        "target": "қә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "159",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҟь",
+        "target": "ҟь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "160",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҟә",
+        "target": "ҟә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "161",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҧ",
+        "target": "ҧ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "162",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "тә",
+        "target": "тә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "163",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҭ",
+        "target": "ҭ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "164",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҭә",
+        "target": "ҭә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "165",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "гь",
+        "target": "гь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "166",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "гә",
+        "target": "гә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "167",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ӷ",
+        "target": "ӷ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "168",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ӷь",
+        "target": "ӷь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "169",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ӷә",
+        "target": "ӷә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "170",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҵ",
+        "target": "ҵ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "171",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "шь",
+        "target": "шь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "172",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "шә",
+        "target": "шә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "173",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "цә",
+        "target": "цә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "174",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҵә",
+        "target": "ҵә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "175",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "жь",
+        "target": "жь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "176",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "жә",
+        "target": "жә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "177",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "хь",
+        "target": "хь",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "178",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "хә",
+        "target": "хә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "179",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҳ",
+        "target": "ҳ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "180",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҳә",
+        "target": "ҳә",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "181",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҽ",
+        "target": "ҽ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "182",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҿ",
+        "target": "ҿ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "183",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҷ",
+        "target": "ҷ",
+        "character": "['all', 'nan']"
+    },
+    {
+        "clip": "184",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "шь",
+        "target": "шь",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "185",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "шә",
+        "target": "шә",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "186",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "цә",
+        "target": "цә",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "187",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҵә",
+        "target": "ҵә",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "188",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "жь",
+        "target": "жь",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "189",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "жә",
+        "target": "жә",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "190",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "хь",
+        "target": "хь",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "191",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "хә",
+        "target": "хә",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "192",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҳ",
+        "target": "ҳ",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "193",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҳә",
+        "target": "ҳә",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "194",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҽ",
+        "target": "ҽ",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "195",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҿ",
+        "target": "ҿ",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "196",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҷ",
+        "target": "ҷ",
+        "character": "['all', 'g1']"
+    },
+    {
+        "clip": "197",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "шь",
+        "target": "шь",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "198",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "шә",
+        "target": "шә",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "199",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "цә",
+        "target": "цә",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "200",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҵә",
+        "target": "ҵә",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "201",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "жь",
+        "target": "жь",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "202",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "жә",
+        "target": "жә",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "203",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "хь",
+        "target": "хь",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "204",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "хә",
+        "target": "хә",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "205",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҳ",
+        "target": "ҳ",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "206",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҳә",
+        "target": "ҳә",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "207",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҽ",
+        "target": "ҽ",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "208",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҿ",
+        "target": "ҿ",
+        "character": "['all', 'b']"
+    },
+    {
+        "clip": "209",
+        "start_sec": 0.0,
+        "end_sec": 2.0,
+        "duration": 2.0,
+        "extra": 10.0,
+        "source": "ҷ",
+        "target": "ҷ",
+        "character": "['all', 'b']"
     }
 ]
