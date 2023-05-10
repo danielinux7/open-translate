@@ -114,7 +114,7 @@ def convFile(file):
                         
         docx_replace_regex(doc)
         doc.save("./downloads/"+file.filename[:-5]+"_еиҭакганы.docx")
-        download = {'url':'/downloads/'+file.filename[:-5]+'_еиҭакганы.docx','filename':file.filename[:-5]+'_еиҭакганы.docx'}
+        download = {'url':'/downloads/'+file.filename[:-5]+'_еиҭакны.docx','filename':file.filename[:-5]+'_еиҭакганы.docx'}
         return download
 
 
