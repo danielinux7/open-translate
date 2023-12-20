@@ -8,10 +8,15 @@ import { Lang } from './language';
   providedIn: 'root'
 })
 export class TranslateService {
-  private translateUrl = 'https://translate.apsny.land:5000/translate';  // URL to web api
-  private convUrl = 'https://translate.apsny.land:5000/conv';  // URL to web api
-  private readUrl = 'https://translate.apsny.land:5000/read';  // URL to web api
-  private starUrl = 'https://translate.apsny.land:5000/star';  // URL to web api
+  private translateUrl = 'https://localhost:5000/translate';  // URL to web api
+  private convUrl = 'https://localhost:5000/conv';  // URL to web api
+  private readUrl = 'https://localhost:5000/read';  // URL to web api
+  private starUrl = 'https://localhost:5000/star';  // URL to web api
+  
+ // private translateUrl = 'https://translate.apsny.land:5000/translate';  // URL to web api
+ // private convUrl = 'https://translate.apsny.land:5000/conv';  // URL to web api
+ // private readUrl = 'https://translate.apsny.land:5000/read';  // URL to web api
+ // private starUrl = 'https://translate.apsny.land:5000/star';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
