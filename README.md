@@ -81,6 +81,8 @@ Expanding the server's language capabilities is a straightforward process. To in
 
 For tokenization, the backend uses Sentencepiece. Include the `src.model` and `tgt.model` models in the `/models/<langSrc-langTgt>/<Version>/assets` folder.
 
+You can unpuck `server/models.zip` to get the available models running.
+
 ### User-Submitted Translations
 
 The `/starred` folder serves as the destination for user-submitted edited or high-quality translations via the frontend.
