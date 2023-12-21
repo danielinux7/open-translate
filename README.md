@@ -59,7 +59,7 @@ The backend comprises two servers: a Flask server responsible for handling RESTf
    bash run_prod.sh # use run.sh for localhost
    ```
 
-You should configure your production server name in `setup_prod.sh` and `run_prod.sh`. You can stop the servers by running `bash stop_prod.sh` or `bash stop.sh` for localhost.
+You should configure your production server name in `setup_prod.sh` and `run_prod.sh`. You can stop the servers by running `bash stop.sh`.
 
 ### API Payload
 
