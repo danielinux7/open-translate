@@ -7,6 +7,23 @@
         "path": "noise"
     },
     {
+        "label": "Ахәыҷқәа",
+        "description": "Ахәыҷқәа",
+        "active": false,
+        "labelColor": "yellow",
+        "path": "kids",
+        "badge": "1",
+        "collection": [
+            {
+                "label": "1",
+                "description": "Ахәыҷқәа 1",
+                "active": true,
+                "labelColor": "red",
+                "path": "kids/1"
+            }
+        ]
+    },
+    {
         "label": "Аҩны",
         "description": "Аҩны",
         "active": false,
